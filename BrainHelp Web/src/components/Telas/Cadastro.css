@@ -1,35 +1,36 @@
-.login-container{
+.cadastro-container{
     width: 100%;
     height: 100vh;
     background: url('../../imagens/idosos.jpg') no-repeat;
     background-size: 70%;
-    background-position-x: -50%;
+    background-position-x: 100%;
     display: flex;
-    justify-content: flex-end;
+    justify-content: flex-start;
 }
 
-.login-right-container{
+.cadastro-left-container{
     width: 45%;
     height: 100vh;
     background: #B9E5FF;
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
 
-.login-content{
+.cadastro-content{
     width: 330px;
-    height: 80%;
 }
 
-.login-title h1{
+.cadastro-title h1{
     color: white;
     font-size: 30pt;
     text-shadow: 0px 1px 5px rgb(185, 183, 183);
     font-weight: bold;
+    margin-bottom: 30px;
 }
 
-.login-google{
+.cadastro-google{
     margin-top: 30px;
     height: 50px;
     width: 100%;
@@ -42,7 +43,7 @@
     align-items: center !important;
 }
 
-.divider{
+.cadastro-divider{
     margin: 30px 0 30px 0;
     width: 100%;
     display: flex;
@@ -51,7 +52,7 @@
     align-items: center;
 }
 
-.or{
+.cadastro-or{
     display: flex;
     margin: 0px 15px 0px 15px;
     font-size: 25px;
@@ -59,7 +60,7 @@
     align-items: center;
 }
 
-.barra{
+.cadastro-barra{
     width: 100%;
     height: 100%;
     display: flex;
@@ -69,73 +70,9 @@
     justify-content: center;
 }
 
-.form-email{
-    border: none;
-    height: 50px;
-    width: 100%;
-    color: #47BDEF;
-    background: white;
-    font-size: 20pt;
-    padding: 10px !important;
-    padding-right: 55px !important;
-    box-shadow: 0px 0px 5px 0.3px rgb(196, 194, 194);
-    margin-bottom: 20px;
-}
 
-.form-senha{
-    padding-left: 10px !important;
-    border: none;
-    height: 50px;
-    width: 100%;
-    color: #47BDEF;
-    background: white;
-    font-size: 20pt;
-}
-
-.form::-webkit-input-placeholder {
-    font-size: 20pt;
-    color: #47BDEF;
-    font-weight: 400;
- }
-  
- .form:-moz-placeholder { /* Firefox 18- */
-    font-size: 20pt;
-    color: #47BDEF;
-    font-weight: 400;
- }
-  
- .form::-moz-placeholder {  /* Firefox 19+ */
-    font-size: 20pt;
-    color: #47BDEF;
-    font-weight: 400;
- }
-  
- .form:-ms-input-placeholder {  
-    font-size: 20pt;
-    color: #47BDEF;
-    font-weight: 400;
- }
-
- .login-senha{
-    cursor: pointer;
-    font-size: 13pt;
-    text-decoration: underline;
-    margin-top: 5px;
-    width: 165px;
- }
-
- .login-form-senha{
-    box-shadow: 0px 0px 5px 0.3px rgb(196, 194, 194);
-    background: white;
-    height: 50px;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
- }
-
- .login-entrar{
-    margin-top: 30px;
+ .cadastro-entrar{
+    margin-top: 10px;
     width: 100%;
     height: 50px;
     background: purple;
@@ -149,22 +86,79 @@
     font-weight: 500;
  }
 
- .login-footer{
+ .cadastro-footer{
     font-size: 13pt;
     display: flex;
  }
 
- .login-cadastro{
+ .cadastro-login{
     cursor: pointer;
     margin-left: 8px;
     text-decoration: underline;
  }
 
- .eye{
+ .cadastro-form{
+    border: none;
+    height: 50px;
+    width: 100%;
+    color: #47BDEF;
+    background: white;
+    font-size: 20pt;
+    padding: 10px !important;
+    padding-right: 15px !important;
+    box-shadow: 0px 0px 5px 0.3px rgb(196, 194, 194);
+    margin-bottom: 20px;
+}
+
+.cadastro-form-senha{
+    padding-left: 10px !important;
+    border: none;
+    height: 50px;
+    width: 100%;
+    color: #47BDEF;
+    background: white;
+    font-size: 20pt;
+}
+
+.cadastro-placeholder::-webkit-input-placeholder {
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ .cadastro-placeholder:-moz-placeholder { /* Firefox 18- */
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+
+ .cadastro-placeholder::-moz-placeholder {  /* Firefox 19+ */
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+.cadastro-placeholder:-ms-input-placeholder {  
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+
+ .cadastro-eye{
     height: 30px;
     width: 30px;
     background: url('../../imagens/eyee.png') no-repeat center;
     background-position-x: center;
     background-size: 100%; 
     margin: 0 10px 0 10px;
- }
+}
+
+.cadastro-senha{
+    box-shadow: 0px 0px 5px 0.3px rgb(196, 194, 194);
+    background: white;
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}

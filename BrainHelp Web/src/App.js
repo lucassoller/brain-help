@@ -7,6 +7,8 @@ import MostrarTodasRecebidas from './components/Telas/Mensagem/MostrarTodasReceb
 import RegisterForm from './components/RegisterForm/RegisterForm'
 import TelaInicial from './components/Telas/TelaInicial'
 import Login from './components/Telas/Login'
+import CadastroInicial from './components/Telas/CadastroInicial'
+import Cadastro from './components/Telas/Cadastro'
 
 class App extends Component {
   render() {
@@ -14,7 +16,9 @@ class App extends Component {
       <div className="div">
         <Switch>
             <Route path="/404" component={NotFound} />
-            <Route path="/registro" component={RegisterForm} />
+            <Route path="/cadastroAntigo" component={RegisterForm} />
+            <Route path="/cadastro-inicial" component={CadastroInicial} />
+            <Route path="/cadastro" component={Cadastro} />
             <Route path="/" exact component={TelaInicial} />
             <Route path="/loginAntigo" exact component={LoginForm} />
             <Route path="/login" exact component={Login} />

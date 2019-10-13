@@ -1,13 +1,12 @@
 import React from 'react'
 import './TelaInicial.css'
 import {Redirect} from 'react-router-dom'
-import Google from '../Google'
 
 const SELECTED_CONTENTS = {
     LOGIN: 'LOGIN',
-    REGISTER: 'REGISTER',
+    CADASTROINICIAL: 'CADASTROINICIAL',
     HOME: 'HOME',
-    INICIAL: 'INICIAL'
+    TELAINICIAL: 'TELAINICIAL'
 
 }
 
@@ -16,14 +15,14 @@ export default class TelaInicial extends React.Component{
     constructor() {
         super()
         this.state = {
-            selectedContent: SELECTED_CONTENTS.INICIAL
+            selectedContent: SELECTED_CONTENTS.TELAINICIAL
         }
         this.onClickLinkLogin = this.onClickLinkLogin.bind(this)
         this.onClickLinkCadastro = this.onClickLinkCadastro.bind(this)
     }
 
     onClickLinkCadastro() {
-        this.setSelectedContent(SELECTED_CONTENTS.REGISTER)
+        this.setSelectedContent(SELECTED_CONTENTS.CADASTROINICIAL)
     }
 
     onClickLinkLogin() {
@@ -37,8 +36,8 @@ export default class TelaInicial extends React.Component{
     }
 
     render() {
-        if( this.state.selectedContent === SELECTED_CONTENTS.REGISTER){
-            return <Redirect to='/registro' />
+        if( this.state.selectedContent === SELECTED_CONTENTS.CADASTROINICIAL){
+            return <Redirect to='/cadastro-inicial' />
         }
 
         if( this.state.selectedContent === SELECTED_CONTENTS.LOGIN){
