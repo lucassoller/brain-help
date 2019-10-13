@@ -1,0 +1,56 @@
+.MinhaMensagemCard{
+    display: flex;
+    flex-direction: row;
+    border-top: 1px  rgb(70, 71, 71);
+    margin-left: 20px;
+}
+
+.MinhaMensagem{
+    height: 100px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid rgb(193, 196, 196);
+}
+
+.MinhaMensagem:hover{
+    background: rgba(184, 185, 185, 0.158);
+    cursor: pointer;
+}
+.MinhaMensagem--header{
+    display: flex;
+}
+.data{
+    margin-left: 600px;
+    font-size: 10pt;
+}
+
+.nome{
+    margin-left: 5px;
+    width: 250px;
+}
+
+.nome:hover{
+    text-decoration: underline;
+}
+.MinhaMensagem--content{
+    margin-left: 10px;
+    margin-top: -5px;
+}
+
+.foto{
+    background: #5593F6;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.usuario{
+    margin-top: -5px;
+    color: rgb(82, 80, 80);
+    font-size: 10pt;
+}

@@ -1,0 +1,154 @@
+.login-container{
+    width: 100%;
+    height: 100vh;
+    background: url('../../imagens/idosos.jpg') no-repeat;
+    background-size: 70%;
+    background-position-x: -50%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.login-right-container{
+    width: 45%;
+    height: 100vh;
+    background: #B9E5FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-content{
+    width: 330px;
+    height: 80%;
+}
+
+.login-title h1{
+    color: white;
+    font-size: 30pt;
+    text-shadow: 0px 1px 5px rgb(185, 183, 183);
+    font-weight: bold;
+}
+
+.login-google{
+    margin-top: 30px;
+    height: 50px;
+    width: 100%;
+    border-radius: 100px !important;
+    overflow: hidden;
+    font-size: 18pt !important;
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.divider{
+    margin: 30px 0 30px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.or{
+    display: flex;
+    margin: 0px 15px 0px 15px;
+    font-size: 25px;
+    justify-content: center;
+    align-items: center;
+}
+
+.barra{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid grey;
+    margin-top: 7px;
+    justify-content: center;
+}
+
+.form{
+    border: none;
+    height: 50px;
+    width: 100%;
+    color: #47BDEF;
+    background: white;
+    font-size: 20pt;
+    padding: 10px !important;
+    padding-right: 55px !important;
+    box-shadow: 0px 0px 5px 0.3px rgb(196, 194, 194);
+}
+
+.form-email{
+    margin-bottom: 20px;
+}
+
+.form::-webkit-input-placeholder {
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ .form:-moz-placeholder { /* Firefox 18- */
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ .form::-moz-placeholder {  /* Firefox 19+ */
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ .form:-ms-input-placeholder {  
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+
+ .login-senha{
+    cursor: pointer;
+    font-size: 13pt;
+    text-decoration: underline;
+    margin-top: 5px;
+    width: 165px;
+ }
+
+ .login-entrar{
+    margin-top: 30px;
+    width: 100%;
+    height: 50px;
+    background: purple;
+    border-radius: 80px;
+    cursor: pointer;
+    color: white;
+    font-size: 20pt;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+ }
+
+ .login-footer{
+    font-size: 13pt;
+    display: flex;
+ }
+
+ .login-cadastro{
+    cursor: pointer;
+    margin-left: 8px;
+    text-decoration: underline;
+ }
+
+ .eye{
+    height: 30px;
+    width: 30px;
+    background: url('../../imagens/eyee.png') no-repeat;
+    background-size: 100%;
+    position: absolute;
+    right: 155px;
+    bottom: 225px;
+ }
