@@ -24,6 +24,7 @@ export default class Login extends React.Component {
             senha: '',
             error: '',
             show: true,
+            social: false,
             selectedContent: SELECTED_CONTENTS.LOGIN
         }
         this.handdleChange = this.handdleChange.bind(this)
@@ -45,14 +46,25 @@ export default class Login extends React.Component {
 
     onClickLinkEntrar(){
         const account = this.state
-            LoginService.login(account.email, account.senha)
-            .then(() => {
-                this.setSelectedContent(SELECTED_CONTENTS.HOME)
-            }).catch((err) => {
-                this.setState({
-                    error: err.response.data.message
+            if(account.social === true){
+                LoginService.loginSocial(account.email)
+                .then(() => {
+                    this.setSelectedContent(SELECTED_CONTENTS.HOME)
+                }).catch((err) => {
+                    this.setState({
+                        error: err.response.data.message
+                    })
                 })
-            })
+            }else{
+                LoginService.login(account.email, account.senha)
+                .then(() => {
+                    this.setSelectedContent(SELECTED_CONTENTS.HOME)
+                }).catch((err) => {
+                    this.setState({
+                        error: err.response.data.message
+                    })
+                })
+            }
     }
 
     onClickLinkCadastro(){
@@ -88,6 +100,7 @@ export default class Login extends React.Component {
             this.setState({
                 email: response.profileObj.email,
                 show: false,
+                social: true
             })
             this.onClickLinkEntrar()
         }
@@ -113,7 +126,6 @@ export default class Login extends React.Component {
                             buttonText="Entrar com o Google"
                             className="login-google"
                             onSuccess={responseGoogle}
-                            onFailure={responseGoogle}
                         />
                     <div className="divider">
                         <div className="barra"></div>
@@ -125,7 +137,6 @@ export default class Login extends React.Component {
                         className="form form-email"
                         name="email"
                         placeholder="Email"
-                        required = "true"
                         value={this.state.email}
                         onChange={this.handdleChange}
                     />
@@ -135,7 +146,6 @@ export default class Login extends React.Component {
                             className="form form-senha"
                             name="senha"
                             placeholder="Senha"
-                            required = "true"
                             value={this.state.senha}
                             onChange={this.handdleChange}
                         />

@@ -22,7 +22,7 @@ export default class LoginService {
 		})
 	}
 
-	static loginSociak(identificacao) {
+	static loginSocial(identificacao) {
 		return axios.post(`${CONFIG.API_URL_BASE}/public/login/medico/google`, {
 			identificacao
 		}).then((result) => {

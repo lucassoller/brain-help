@@ -72,7 +72,6 @@ export default class Log extends React.Component {
                         buttonText="Cadastrar com o Google"
                         className="cadastro-inicial-google"
                         onSuccess={responseGoogle}
-                        onFailure={responseGoogle}
                     />
                 <div className="cadastro-inicial-divider">
                     <div className="cadastro-inicial-barra"></div>

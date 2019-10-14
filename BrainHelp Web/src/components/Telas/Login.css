@@ -81,11 +81,21 @@
     margin-bottom: 20px;
 }
 
+
+.eye{
+    height: 30px;
+    width: 30px;
+    background: url('../../imagens/eyee.png') no-repeat center;
+    background-position-x: center;
+    background-size: 100%; 
+    margin: 0 10px 0 10px;
+ }
+
 .form-senha{
     padding-left: 10px !important;
     border: none;
     height: 50px;
-    width: 100%;
+    width: 85%;
     color: #47BDEF;
     background: white;
     font-size: 20pt;
@@ -157,11 +167,8 @@
     text-decoration: underline;
  }
 
- .eye{
-    height: 30px;
-    width: 30px;
-    background: url('../../imagens/eyee.png') no-repeat center;
-    background-position-x: center;
-    background-size: 100%; 
-    margin: 0 10px 0 10px;
- }
+ @media screen and (min-width: 1920px){
+    .login-container {
+        background-size: 75%;
+    }
+}

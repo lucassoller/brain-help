@@ -161,7 +161,6 @@ export default class Log extends React.Component {
                             className="cadastro-placeholder cadastro-form-senha cadastro-confirmacao"
                             name="senha"
                             placeholder="Senha"
-                            required = "true"
                             value={this.state.senha}
                             onChange={this.handdleChange}  
                             disabled={this.props.disabled}
@@ -174,7 +173,6 @@ export default class Log extends React.Component {
                             className="cadastro-placeholder cadastro-form-senha cadastro-confirmacao-2"
                             name="confirmar"
                             placeholder="Senha"
-                            required = "true"
                             value={this.state.confirmar}
                             onChange={this.handdleChange}  
                             disabled={this.props.disabled}
@@ -182,7 +180,7 @@ export default class Log extends React.Component {
                        
                         <div className="cadastro-eye" onMouseOver={this.onShowOverConfirmacao} onMouseOut={this.onShowOutConfirmacao}></div>
                     </div>
-                    <input
+                    {/* <input
                         type="text"
                         className="cadastro-form cadastro-placeholder"
                         name="local"
@@ -190,7 +188,7 @@ export default class Log extends React.Component {
                         required = "true"
                         value={this.state.local}
                         onChange={this.handdleChange}  
-                    />
+                    /> */}
                     <div className="cadastro-entrar" onClick={this.onClickLinkCadastrar}>Cadastrar</div>
                     <div className="cadastro-footer">
                         <div>
