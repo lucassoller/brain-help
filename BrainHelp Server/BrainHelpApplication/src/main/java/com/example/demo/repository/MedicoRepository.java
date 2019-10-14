@@ -6,5 +6,5 @@ import com.example.demo.model.Medico;
 
 public interface MedicoRepository extends JpaRepository<Medico, Integer>{
 	Optional<Medico> findByEmail(String email);
-	Optional<Medico> findByCodMedico(String codMedico);
+	Optional<Medico> findByEmailAndGoogle(String email, boolean google);
 }

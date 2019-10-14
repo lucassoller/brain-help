@@ -20,19 +20,42 @@ export default class Log extends React.Component {
     constructor() {
         super()
         this.state = {
-            nome: '',
-            email: '',
+            nome:'',
+            email:'',
             senha: '',
             confirmar: '',
-            local: '',
-            erro: '',
+            local:'',
+            error: '',
+            google: false,
             selectedContent: SELECTED_CONTENTS.CADASTRO
         }
+
+        this.handdleChange = this.handdleChange.bind(this)
         this.onShowOver = this.onShowOver.bind(this)
         this.onShowOut = this.onShowOut.bind(this)
         this.onShowOverConfirmacao = this.onShowOverConfirmacao.bind(this)
         this.onShowOutConfirmacao = this.onShowOutConfirmacao.bind(this)
         this.onClickLinkLogin = this.onClickLinkLogin.bind(this)
+        this.onClickLinkCadastrar = this.onClickLinkCadastrar.bind(this)
+    }
+
+    handdleChange(event) {
+        const target = event.target
+        const value = target.value
+        const name = target.name
+        this.setState({
+            [name]: value
+        })
+    }
+
+    componentDidMount(){
+        this.setState({
+            senha: this.props.senha,
+            confirmar: this.props.senha,
+            email: this.props.email,
+            nome: this.props.nomeCompleto,
+            google: this.props.google
+        })
     }
 
     onClickLinkCadastrar() {
@@ -43,8 +66,8 @@ export default class Log extends React.Component {
             })
         }else{
             CadastroService
-            .register('123', account.nome, 'sobrenome', account.email,
-                account.senha, account.local, 'medico')
+            .register(account.nome,  account.email,
+                account.senha, account.local, account.google)
             .then((result) => {
                 LoginService.login(account.email, account.senha)
                 .then((r) =>{
@@ -59,7 +82,9 @@ export default class Log extends React.Component {
     }
 
     onShowOver(){
-        $(".cadastro-confirmacao").attr("type", "text");
+        if(this.props.disabled === false){
+            $(".cadastro-confirmacao").attr("type", "text");
+        }
     }
 
     onShowOut(){
@@ -67,7 +92,9 @@ export default class Log extends React.Component {
     }
 
     onShowOverConfirmacao(){
-        $(".cadastro-confirmacao-2").attr("type", "text");
+        if(this.props.disabled === false){
+            $(".cadastro-confirmacao-2").attr("type", "text");
+        }
     }
 
     onShowOutConfirmacao(){
@@ -102,27 +129,32 @@ export default class Log extends React.Component {
             return <Redirect to='/home' />
         }
        return (
-        <div className="cadastro-container">
-            <div className="cadastro-left-container">
-                <div className="cadastro-content">
+           <div>
                     {this.renderError()}
                     <div className="cadastro-title">
                         <h1>Nova conta</h1>
                     </div>
                     <input
+                        value={this.state.nome} 
                         type="text"
                         className="cadastro-placeholder cadastro-form"
                         name="nome"
                         placeholder="Nome completo"
+                        disabled={this.props.disabled}
                         required = "true"
+                        onChange={this.handdleChange}      
                     />
                     <input
                         type="text"
                         className="cadastro-placeholder cadastro-form"
                         name="email"
-                        placeholder="Email"
+                        placeholder= "Email"
                         required = "true"
+                        value={this.state.email}
+                        onChange={this.handdleChange} 
+                        disabled={this.props.disabled} 
                     />
+
                     <div className="cadastro-senha">
                         <input
                             type="password"
@@ -130,17 +162,24 @@ export default class Log extends React.Component {
                             name="senha"
                             placeholder="Senha"
                             required = "true"
+                            value={this.state.senha}
+                            onChange={this.handdleChange}  
+                            disabled={this.props.disabled}
                         />
                         <div className="cadastro-eye" onMouseOver={this.onShowOver} onMouseOut={this.onShowOut}></div>
                     </div>
                     <div className="cadastro-senha">
                         <input
-                            className="cadastro-placeholder cadastro-form-senha cadastro-confirmacao-2"
-                            name="confimar"
-                            placeholder="Confirmar senha"
                             type="password"
+                            className="cadastro-placeholder cadastro-form-senha cadastro-confirmacao-2"
+                            name="confirmar"
+                            placeholder="Senha"
                             required = "true"
+                            value={this.state.confirmar}
+                            onChange={this.handdleChange}  
+                            disabled={this.props.disabled}
                         />
+                       
                         <div className="cadastro-eye" onMouseOver={this.onShowOverConfirmacao} onMouseOut={this.onShowOutConfirmacao}></div>
                     </div>
                     <input
@@ -149,8 +188,10 @@ export default class Log extends React.Component {
                         name="local"
                         placeholder="Local de trabalho"
                         required = "true"
+                        value={this.state.local}
+                        onChange={this.handdleChange}  
                     />
-                    <div className="cadastro-entrar">Cadastrar</div>
+                    <div className="cadastro-entrar" onClick={this.onClickLinkCadastrar}>Cadastrar</div>
                     <div className="cadastro-footer">
                         <div>
                             Já possui uma conta?
@@ -159,9 +200,6 @@ export default class Log extends React.Component {
                             Faça o login
                         </div>
                     </div>
-                </div>
-            </div>
-        
         </div>)
     }
 }

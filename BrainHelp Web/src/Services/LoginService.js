@@ -22,6 +22,16 @@ export default class LoginService {
 		})
 	}
 
+	static loginSociak(identificacao) {
+		return axios.post(`${CONFIG.API_URL_BASE}/public/login/medico/google`, {
+			identificacao
+		}).then((result) => {
+			console.info(result);
+			this.setLoggedUser(result.data.token, result.data.email)
+			return result
+		})
+	}
+
 	static getLoggedUser() {
 		return localStorage.getItem(LOGGED_USER)
 	}

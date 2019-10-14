@@ -18,7 +18,7 @@ public class VincularDiagnosticadoService {
 	BuscarDiagnosticadoPorEmailService buscarDiagnosticado;
 	
 	@Autowired
-	BuscarMedicoPorEmailOuIdService buscarMedico;
+	BuscarMedicoPorEmailService buscarMedico;
 
 	public void vincular(String emailMedico, String emailDiagnosticado) {
 		if (Objects.isNull(emailMedico) || emailMedico.isEmpty()) {

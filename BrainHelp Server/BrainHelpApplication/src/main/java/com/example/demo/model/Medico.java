@@ -11,26 +11,29 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 public class Medico extends Usuario{
 	
-	@Id
-	private String codMedico;
+//	@Id
+//	private String codMedico;
 	
 	@Column(nullable = false)
 	private String nome;
 	
-	@Column(nullable = false)
-	private String sobrenome;
+//	@Column(nullable = true)
+//	private String sobrenome;
 	
+	@Id
 	@Column(nullable = false, unique = true)
 	private String email;
 	
-	@Column(nullable = false)
 	private String senha;
+	
+	@Column(nullable = false)
+	private boolean google;
 	
 	@Column(nullable = false)
 	private String localTrabalho;
 	
-	@Column(nullable = false)
-	private String especializacao;
+//	@Column(nullable = false)
+//	private String especializacao;
 	
 	@OneToMany(mappedBy = "medico")
 	private List<Diagnosticado> diagnosticados;
@@ -40,13 +43,13 @@ public class Medico extends Usuario{
         return Optional.of("Usuario normal");
     }
 
-	public String getCodMedico() {
-		return codMedico;
-	}
-
-	public void setCodMedico(String codMedico) {
-		this.codMedico = codMedico;
-	}
+//	public String getCodMedico() {
+//		return codMedico;
+//	}
+//
+//	public void setCodMedico(String codMedico) {
+//		this.codMedico = codMedico;
+//	}
 
 	public String getNome() {
 		return nome;
@@ -56,13 +59,13 @@ public class Medico extends Usuario{
 		this.nome = nome;
 	}
 
-	public String getSobrenome() {
-		return sobrenome;
-	}
-
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
-	}
+//	public String getSobrenome() {
+//		return sobrenome;
+//	}
+//
+//	public void setSobrenome(String sobrenome) {
+//		this.sobrenome = sobrenome;
+//	}
 
 	public String getEmail() {
 		return email;
@@ -90,13 +93,13 @@ public class Medico extends Usuario{
 		this.localTrabalho = localTrabalho;
 	}
 
-	public String getEspecializacao() {
-		return especializacao;
-	}
-
-	public void setEspecializacao(String especializacao) {
-		this.especializacao = especializacao;
-	}
+//	public String getEspecializacao() {
+//		return especializacao;
+//	}
+//
+//	public void setEspecializacao(String especializacao) {
+//		this.especializacao = especializacao;
+//	}
 
 	public List<Diagnosticado> getDiagnosticados() {
 		return diagnosticados;
@@ -105,17 +108,24 @@ public class Medico extends Usuario{
 	public void setDiagnosticados(List<Diagnosticado> diagnosticados) {
 		this.diagnosticados = diagnosticados;
 	}
+	
+	public boolean isGoogle() {
+		return google;
+	}
 
-	public Medico(String codMedico, String nome, String sobrenome, String email, String senha, String localTrabalho,
-			String especializacao, List<Diagnosticado> diagnosticados) {
-		super();
-		this.codMedico = codMedico;
+	public void setGoogle(boolean google) {
+		this.google = google;
+	}
+
+	
+
+	public Medico(String email, String senha, String nome, boolean google,
+			String localTrabalho, List<Diagnosticado> diagnosticados) {
 		this.nome = nome;
-		this.sobrenome = sobrenome;
 		this.email = email;
 		this.senha = senha;
+		this.google = google;
 		this.localTrabalho = localTrabalho;
-		this.especializacao = especializacao;
 		this.diagnosticados = diagnosticados;
 	}
 
@@ -123,6 +133,4 @@ public class Medico extends Usuario{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 }

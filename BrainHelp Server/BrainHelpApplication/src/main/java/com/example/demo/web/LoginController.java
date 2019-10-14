@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.dto.LoginRequestDto;
 import com.example.demo.model.dto.LoginResponseDto;
 import com.example.demo.service.diagnosticado.LogarDiagnosticadoService;
+import com.example.demo.service.medico.LogarMedicoGoogleService;
 import com.example.demo.service.medico.LogarMedicoService;
 
 @RestController
@@ -18,11 +19,19 @@ public class LoginController {
 	LogarMedicoService logarMedico;
 	
 	@Autowired
+	LogarMedicoGoogleService logarMedicoNoGoogle;
+	
+	@Autowired
 	LogarDiagnosticadoService logarDiagnosticado;
 	
 	@PostMapping("/medico")
 	public LoginResponseDto logarMedico(@RequestBody LoginRequestDto loginDto) {
 		return logarMedico.logar(loginDto);
+	}
+	
+	@PostMapping("/medico/google")
+	public LoginResponseDto logarMedicoGoogle(@RequestBody LoginRequestDto loginDto) {
+		return logarMedicoNoGoogle.logar(loginDto);
 	}
 	
 	@PostMapping("/diagnosticado")

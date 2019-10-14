@@ -19,7 +19,6 @@
 
 .login-content{
     width: 330px;
-    height: 80%;
 }
 
 .login-title h1{
@@ -120,7 +119,6 @@
     cursor: pointer;
     font-size: 13pt;
     text-decoration: underline;
-    margin-top: 5px;
     width: 165px;
  }
 
@@ -131,7 +129,6 @@
     width: 100%;
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
  }
 
  .login-entrar{

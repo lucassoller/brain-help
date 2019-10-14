@@ -23,13 +23,24 @@ export default class Login extends React.Component {
             email: '',
             senha: '',
             error: '',
+            show: true,
             selectedContent: SELECTED_CONTENTS.LOGIN
         }
+        this.handdleChange = this.handdleChange.bind(this)
         this.onShowOver = this.onShowOver.bind(this)
         this.onShowOut = this.onShowOut.bind(this)
         this.onClickLinkCadastro = this.onClickLinkCadastro.bind(this)
         this.onClickLinkSenha = this.onClickLinkSenha.bind(this)
         this.onClickLinkEntrar = this.onClickLinkEntrar.bind(this)
+    }
+
+    handdleChange(event) {
+        const target = event.target
+        const value = target.value
+        const name = target.name
+        this.setState({
+            [name]: value
+        })
     }
 
     onClickLinkEntrar(){
@@ -59,7 +70,9 @@ export default class Login extends React.Component {
     }
 
     onShowOver(){
-        $(".form-senha").attr("type", "text");
+        if(this.state.show === true){
+            $(".form-senha").attr("type", "text");
+        }
     }
 
     onShowOut(){
@@ -72,7 +85,11 @@ export default class Login extends React.Component {
 
     render() {
         const responseGoogle = (response) => {
-            console.log(response);
+            this.setState({
+                email: response.profileObj.email,
+                show: false,
+            })
+            this.onClickLinkEntrar()
         }
 
         if(this.state.selectedContent === SELECTED_CONTENTS.CADASTROINICIAL){
@@ -109,6 +126,8 @@ export default class Login extends React.Component {
                         name="email"
                         placeholder="Email"
                         required = "true"
+                        value={this.state.email}
+                        onChange={this.handdleChange}
                     />
                     <div className="login-form-senha">
                         <input
@@ -117,6 +136,8 @@ export default class Login extends React.Component {
                             name="senha"
                             placeholder="Senha"
                             required = "true"
+                            value={this.state.senha}
+                            onChange={this.handdleChange}
                         />
                         <div className="eye" onMouseOver={this.onShowOver} onMouseOut={this.onShowOut}></div>
                     </div>
