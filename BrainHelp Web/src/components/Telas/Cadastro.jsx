@@ -15,7 +15,7 @@ const SELECTED_CONTENTS = {
 
 }
 
-export default class Log extends React.Component {
+export default class Cadastro extends React.Component {
     
     constructor() {
         super()

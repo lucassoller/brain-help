@@ -9,6 +9,7 @@ import TelaInicial from './components/Telas/TelaInicial'
 import Login from './components/Telas/Login'
 import CadastroInicial from './components/Telas/CadastroInicial'
 import Cadastro from './components/Telas/Cadastro'
+import Home from './components/Telas/Home'
 
 class App extends Component {
   render() {
@@ -19,6 +20,7 @@ class App extends Component {
             <Route path="/cadastroAntigo" component={RegisterForm} />
             <Route path="/cadastro-inicial" component={CadastroInicial} />
             <Route path="/cadastro" component={Cadastro} />
+            <Route path="/info" component={Home} />
             <Route path="/" exact component={TelaInicial} />
             <Route path="/loginAntigo" exact component={LoginForm} />
             <Route path="/login" exact component={Login} />

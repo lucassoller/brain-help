@@ -1,0 +1,123 @@
+.home-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.home-navbar{
+    width: 100%;
+    height: 10%;
+    background: #38B6FF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-menu{
+    width: 40px;
+    height: 40px;
+    background: url('../../imagens/menu-button.png') no-repeat center;
+    background-size: 100%;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.home-perfil{
+    width: 35px;
+    height: 35px;
+    background: url('../../imagens/user.png') no-repeat center;
+    background-size: 100%;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.home-titulo{
+    font-family: "Segoe UI";
+    color: white;
+    font-size: 22pt;
+    text-shadow: 0px 1px 4px rgb(119, 117, 117);
+
+}
+
+.home-content{
+    flex: 1;
+    background: #B9E5FF;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.home-users{
+    flex: 1;
+    background: red;
+}
+
+.home-search{
+    margin: 30px 0 30px 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    background: white;
+}
+
+.home-form{
+    display: flex !important;
+    flex: 1;
+    border: none;
+    padding-left: 10px !important;
+    align-items: center !important;
+}
+
+.home-form::-webkit-input-placeholder {
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ .home-form:-moz-placeholder { /* Firefox 18- */
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ .home-form::-moz-placeholder {  /* Firefox 19+ */
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ .home-form:-ms-input-placeholder {  
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+
+.home-search-icon{
+    width: 50px;
+    background: url('../../imagens/search.png') no-repeat center;
+    background-size: 75%;
+}
+
+.home-content-side{
+    width: 60px;
+    background: blue;
+}
+
+.home-logo{
+    width: 40px;
+    height: 40px;
+    background: white;
+    background-image: url('../../imagens/sem-nome.png');
+    background-position: center;
+    background-size: 110%;
+    border-radius: 50px;
+}
+
+.home-center{
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
