@@ -5,6 +5,7 @@ import LoginService from '../../Services/LoginService'
 import './Home.css'
 import {Redirect} from 'react-router-dom'
 import $ from 'jquery'
+import PacienteCard from './PacienteCard'
 export default class Home extends React.Component{
 
     render(){
@@ -30,7 +31,12 @@ export default class Home extends React.Component{
                             />
                             <div className="home-search-icon"></div>
                         </div>
-                        <div className="home-pacientes"></div>
+                        <div className="home-pacientes">
+                            <PacienteCard />
+                            <PacienteCard />
+                            <PacienteCard />
+                            <PacienteCard />
+                        </div>
                     </div>
                     <div className="home-content-side home-abc"></div>
                 </div>
