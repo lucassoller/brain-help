@@ -11,8 +11,7 @@ const SELECTED_CONTENTS = {
     LOGIN: 'LOGIN',
     CADASTROINICIAL: 'CADASTROINICIAL',
     HOME: 'HOME',
-    SENHA: 'SENHA'
-
+    ESQUECERSENHA: 'ESQUECERSENHA'
 }
 
 export default class Login extends React.Component {
@@ -72,7 +71,7 @@ export default class Login extends React.Component {
     }
 
     onClickLinkSenha(){
-        this.setSelectedContent(SELECTED_CONTENTS.SENHA)
+        this.setSelectedContent(SELECTED_CONTENTS.ESQUECERSENHA)
     }
 
     setSelectedContent(content) {
@@ -113,6 +112,10 @@ export default class Login extends React.Component {
             return <Redirect to='/home' />
         }
 
+        if( this.state.selectedContent === SELECTED_CONTENTS.ESQUECERSENHA){
+            return <Redirect to='/esquecer' />
+        }
+
        return (
         <div className="login-container">
             <div className="login-right-container">
@@ -151,7 +154,7 @@ export default class Login extends React.Component {
                         />
                         <div className="eye" onMouseOver={this.onShowOver} onMouseOut={this.onShowOut}></div>
                     </div>
-                    <div className="login-senha">Esqueceu sua senha?</div>
+                    <div className="login-senha" onClick={this.onClickLinkSenha}>Esqueceu sua senha?</div>
                     <div className="login-entrar" onClick={this.onClickLinkEntrar}>Entrar</div>
                     <div className="login-footer">
                         <div>
