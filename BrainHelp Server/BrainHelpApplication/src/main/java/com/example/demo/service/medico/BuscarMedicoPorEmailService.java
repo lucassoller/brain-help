@@ -14,10 +14,10 @@ public class BuscarMedicoPorEmailService {
 
 	public Medico buscar(String emailMedico) {
 		if ((Objects.isNull(emailMedico) || emailMedico.isEmpty())) {
-			throw new IllegalArgumentException("A identificação não pode estar em branco");
+			throw new IllegalArgumentException("O email nï¿½o pode estar em branco");
 		}		
 		
 		return medicoRepository.findByEmail(emailMedico)
-				.orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+				.orElseThrow(() -> new IllegalArgumentException("Usuï¿½rio nï¿½o encontrado"));
 	}
 }

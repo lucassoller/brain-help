@@ -2,6 +2,7 @@ package com.example.demo.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,6 +27,11 @@ public class RegistroController {
 	
 	@PostMapping("/medico")
 	public void cadastrarMedico(@RequestBody Medico medico) {
+		cadastrarMedico.salvar(medico);
+	}
+	
+	@PutMapping("/medico/editar")
+	public void editarMedico(@RequestBody Medico medico) {
 		cadastrarMedico.salvar(medico);
 	}
 	

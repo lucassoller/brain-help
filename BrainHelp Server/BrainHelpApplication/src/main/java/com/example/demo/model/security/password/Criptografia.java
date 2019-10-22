@@ -6,6 +6,7 @@ public class Criptografia {
 
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder(16);
     String result = encoder.encode("myPassword");
+    
     public String criptografarSenha(String senha){
         return encoder.encode(senha);
     }
