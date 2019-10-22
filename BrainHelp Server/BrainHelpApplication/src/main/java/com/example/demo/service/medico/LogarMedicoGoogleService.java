@@ -11,6 +11,7 @@ import com.example.demo.model.security.password.Criptografia;
 
 @Service
 public class LogarMedicoGoogleService {
+	
 	@Autowired
 	private BuscarMedicoPorEmailEGoogleService buscarMedico;
 	
@@ -20,11 +21,11 @@ public class LogarMedicoGoogleService {
 	public LoginResponseDto logar(LoginRequestDto loginDto){
 		
 		if(Objects.isNull(loginDto.getIdentificacao()) || loginDto.getIdentificacao().isEmpty()){
-			throw new IllegalArgumentException("O nome de usuário não pode estar em branco");
+			throw new IllegalArgumentException("O nome de usuï¿½rio nï¿½o pode estar em branco");
 
 		}
 		
-		Medico medico = buscarMedico.buscar(loginDto.getIdentificacao());
+		Medico medico = buscarMedico.buscar(loginDto.getIdentificacao(), true);
 		medico.setSenha("senha");
 
 		String token = authenticationService.authenticate(medico.getEmail(), medico.getSenha());

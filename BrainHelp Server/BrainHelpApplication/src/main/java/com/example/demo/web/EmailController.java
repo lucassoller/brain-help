@@ -26,8 +26,8 @@ public class EmailController {
 		recuperarSenha.recuperar(emailRecuperacao);
 	}
 	
-	@GetMapping("redefinir/medico/{EMAIL}/{URL}")
-	public Medico redefinirSenha(@PathVariable("EMAIL") String emailRecuperacao, @PathVariable("URL") String url) {
-		return redefinirSenha.redefinir(emailRecuperacao, url);
+	@GetMapping("redefinir/medico/{URL}")
+	public Medico redefinirSenha (@PathVariable("URL") String url) {
+		return redefinirSenha.redefinir(url);
 	}
 }

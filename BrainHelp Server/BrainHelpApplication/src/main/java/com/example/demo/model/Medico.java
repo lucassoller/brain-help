@@ -32,9 +32,6 @@ public class Medico extends Usuario{
 	@Column(nullable = false)
 	private String localTrabalho;
 	
-	@JsonIgnore
-	private String urlRedefinicao;
-	
 //	@Column(nullable = false)
 //	private String especializacao;
 	
@@ -120,23 +117,14 @@ public class Medico extends Usuario{
 		this.google = google;
 	}
 
-	public String getUrlRedefinicao() {
-		return urlRedefinicao;
-	}
-
-	public void setUrlRedefinicao(String urlRedefinicao) {
-		this.urlRedefinicao = urlRedefinicao;
-	}
-
 	public Medico(String email, String senha, String nome, boolean google,
-			String localTrabalho, String urlRedefinicao, List<Diagnosticado> diagnosticados) {
+			String localTrabalho, List<Diagnosticado> diagnosticados) {
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
 		this.google = google;
 		this.localTrabalho = localTrabalho;
 		this.diagnosticados = diagnosticados;
-		this.urlRedefinicao = urlRedefinicao;
 	}
 
 	public Medico() {

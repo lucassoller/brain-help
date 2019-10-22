@@ -7,13 +7,14 @@ import org.springframework.stereotype.Service;
 import com.example.demo.email.Email;
 import com.example.demo.model.Medico;
 import com.example.demo.repository.MedicoRepository;
+import com.example.demo.service.medico.BuscarMedicoPorEmailEGoogleService;
 import com.example.demo.service.medico.BuscarMedicoPorEmailService;
 
 @Service
 public class RecuperarSenhaService {
 	
 	@Autowired
-	BuscarMedicoPorEmailService buscarMedico;
+	BuscarMedicoPorEmailEGoogleService buscarMedico;
 	
 	@Autowired
 	MedicoRepository medicoRepository;
@@ -23,14 +24,11 @@ public class RecuperarSenhaService {
 			throw new IllegalArgumentException("O e-mail não pode estar em branco");
 		}
 		
-		Medico medico = buscarMedico.buscar(emailRecuperacao);
+		Medico medico = buscarMedico.buscar(emailRecuperacao, false);
 		long data = new Date().getTime();
 		
 		String url = emailRecuperacao + "#" + data;
 		
 		new Email().enviarEmail(emailRecuperacao, url);
-		
-		medico.setUrlRedefinicao(url);
-		medicoRepository.save(medico);
 	}
 }

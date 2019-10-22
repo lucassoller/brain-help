@@ -12,12 +12,12 @@ public class BuscarMedicoPorEmailEGoogleService {
 	@Autowired
 	MedicoRepository medicoRepository;
 
-	public Medico buscar(String emailMedico) {
+	public Medico buscar(String emailMedico, boolean google) {
 		if ((Objects.isNull(emailMedico) || emailMedico.isEmpty())) {
-			throw new IllegalArgumentException("A identificação não pode estar em branco");
+			throw new IllegalArgumentException("A identificaï¿½ï¿½o nï¿½o pode estar em branco");
 		}		
 		
-		return medicoRepository.findByEmailAndGoogle(emailMedico, true)
-				.orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
+		return medicoRepository.findByEmailAndGoogle(emailMedico, google)
+				.orElseThrow(() -> new IllegalArgumentException("Usuï¿½rio nï¿½o encontrado"));
 	}
 }
