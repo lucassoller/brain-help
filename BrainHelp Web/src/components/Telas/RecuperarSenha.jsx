@@ -36,10 +36,11 @@ export default class RecuperarSenha extends React.Component{
 
     redefinirSenha(){
         var url = this.props.match.params.url
+        var email = url.split(":")[0]
         EmailService.redefinirSenha(url)
         .then((result) => {
             this.setState({
-                email: url.split("#")[0],
+                email: email,
                 url: url
             })
         }).catch((err) => {
@@ -47,6 +48,7 @@ export default class RecuperarSenha extends React.Component{
                 error: err.response.data.message
             })
         })
+        
     }
 
     handdleChange(event) {
@@ -59,10 +61,12 @@ export default class RecuperarSenha extends React.Component{
     }
 
     onClickLinkDefinirSenha(){
+        console.log(this.state.email)
+        console.log(this.state.senha)
         if(this.state.senha !== this.state.confirmar){
             console.log("Não coincidem")
         }else{
-            RegisterService.editar(this.state.email, this.state.url)
+            RegisterService.editar(this.state.email, this.state.senha)
             .then((result) => {
             }).catch((err) => {
                 this.setState({

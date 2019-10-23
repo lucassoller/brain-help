@@ -27,7 +27,7 @@ public class RecuperarSenhaService {
 		Medico medico = buscarMedico.buscar(emailRecuperacao, false);
 		long data = new Date().getTime();
 		
-		String url = emailRecuperacao + "#" + data;
+		String url = emailRecuperacao + ":" + data;
 		
 		new Email().enviarEmail(emailRecuperacao, url);
 	}

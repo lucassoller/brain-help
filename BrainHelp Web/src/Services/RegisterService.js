@@ -14,7 +14,7 @@ export default class RegisterService {
     }
 
     static editar(email, senha) {
-        return axios.post(`${CONFIG.API_URL_BASE}/public/registro/medico/editar/senha`, {           
+        return axios.put(`${CONFIG.API_URL_BASE}/public/registro/medico/editar/senha`, {           
             email,
             senha
         })

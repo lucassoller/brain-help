@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Diagnosticado;
 import com.example.demo.model.Medico;
+import com.example.demo.model.dto.RedefinicaoSenhaRequestDto;
 import com.example.demo.repository.MedicoRepository;
 import com.example.demo.service.diagnosticado.CadastrarDiagnosticadoService;
 import com.example.demo.service.medico.CadastrarMedicoService;
@@ -35,8 +36,8 @@ public class RegistroController {
 	}
 	
 	@PutMapping("/medico/editar/senha")
-	public void editarMedico(@RequestBody String email, @RequestBody String senha) {
-		editarSenhaMedico.editar(email, senha);
+	public void editarMedico(@RequestBody RedefinicaoSenhaRequestDto redefinicao) {
+		editarSenhaMedico.editar(redefinicao);
 	}
 	
 	@PostMapping("/diagnosticado")

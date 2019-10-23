@@ -23,16 +23,17 @@ public class RedefinirSenhaService {
 			throw new IllegalArgumentException("A URL não pode estar em branco");
 		}
 		
-		String emailRecuperacao = url.split("#")[0];
-		long dataUrl = Long.parseLong(url.split("#")[1]);
+		String emailRecuperacao = url.split(":")[0];
+		long dataUrl = Long.parseLong(url.split(":")[1]);
 		
 		buscarMedico.buscar(emailRecuperacao);
 		
 		GregorianCalendar gc = new GregorianCalendar();
-		gc.setTime(new Date());
+		
+		gc.setTimeInMillis(dataUrl);
 		gc.add(Calendar.MINUTE, 30);
 		
-		if(gc.getTimeInMillis() > dataUrl) {
+		if(new Date().getTime() > gc.getTimeInMillis()) {
 			throw new IllegalArgumentException("Esse link já expirou");
 		}
 	}

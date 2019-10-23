@@ -4,6 +4,7 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.model.Medico;
+import com.example.demo.model.dto.RedefinicaoSenhaRequestDto;
 import com.example.demo.model.security.password.Criptografia;
 import com.example.demo.repository.MedicoRepository;
 
@@ -16,18 +17,18 @@ public class EditarSenhaMedicoService {
 	@Autowired
 	BuscarMedicoPorEmailService buscarMedico;
 
-	public void editar(String email, String senha) {
-		if (Objects.isNull(email) || email.isEmpty()) {
+	public void editar(RedefinicaoSenhaRequestDto redefinicaoRequest) {
+		if (Objects.isNull(redefinicaoRequest.getEmail()) || redefinicaoRequest.getEmail().isEmpty()) {
 			throw new IllegalArgumentException("O email n�o pode estar em branco");
 		}
-		if (Objects.isNull(senha) || senha.isEmpty()) {
+		if (Objects.isNull(redefinicaoRequest.getSenha()) || redefinicaoRequest.getSenha().isEmpty()) {
 			throw new IllegalArgumentException("A senha n�o pode estar em branco");
 		}
 		
-		Medico medico = buscarMedico.buscar(email);
+		Medico medico = buscarMedico.buscar(redefinicaoRequest.getEmail());
 		
 		Criptografia criptografia = new Criptografia();
-		medico.setSenha(criptografia.criptografarSenha(senha));
+		medico.setSenha(criptografia.criptografarSenha(redefinicaoRequest.getSenha()));
 		medicoRepository.save(medico);
 	}
 }
