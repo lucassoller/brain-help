@@ -19,9 +19,9 @@ public class Email {
 			email.setFrom("appbrainhelp@gmail.com", "Brain Help");
 			email.setSubject("Solicitção de redefinição de senha");
 			   
-			String pathHtml = new File(".").getCanonicalPath()+"//src//email//index.html";			
-			String pathLogo = new File(".").getCanonicalPath()+"/src/email/sem-nome.png";
-			String pathIdosos = new File(".").getCanonicalPath()+"/src/email/idosos.jpg";
+			String pathHtml = new File(".").getCanonicalPath()+"/src/main/java/com/example/demo/email/index.html";			
+			String pathLogo = new File(".").getCanonicalPath()+"/src/main/java/com/example/demo/email/sem-nome.png";
+			String pathIdosos = new File(".").getCanonicalPath()+"/src/main/java/com/example/demo/email/idosos.jpg";
 			
 			String cid = email.embed(new File(pathLogo));
 			String cidIdosos = email.embed(new File(pathIdosos));

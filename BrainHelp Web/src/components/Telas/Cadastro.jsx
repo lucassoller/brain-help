@@ -67,7 +67,7 @@ export default class Cadastro extends React.Component {
         }else{
             CadastroService
             .register(account.nome,  account.email,
-                account.senha, account.local, account.google)
+                account.senha, 'account.local', account.google)
             .then((result) => {
                 LoginService.login(account.email, account.senha)
                 .then((r) =>{

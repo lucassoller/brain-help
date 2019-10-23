@@ -1,6 +1,7 @@
 import React from 'react'
 import './EsquecerSenha.css'
 import {Redirect} from 'react-router-dom'
+import EmailService from '../../Services/EmailService'
 import $ from 'jquery'
 
 const SELECTED_CONTENTS = {
@@ -20,6 +21,7 @@ export default class EsquecerSenha extends React.Component{
 
         this.handdleChange = this.handdleChange.bind(this)
         this.onClickLinkLogin = this.onClickLinkLogin.bind(this)
+        this.onClickLinkEnviar = this.onClickLinkEnviar.bind(this)
     }
 
     handdleChange(event) {
@@ -33,6 +35,19 @@ export default class EsquecerSenha extends React.Component{
 
     onClickLinkLogin(){
         this.setSelectedContent(SELECTED_CONTENTS.LOGIN)
+    }
+
+    onClickLinkEnviar(){
+        EmailService.recuperarSenha(this.state.email)
+        .then((result) => {
+            this.setState({
+               
+            })
+        }).catch((err) => {
+            this.setState({
+                error: err.response.data.message
+            })
+        })
     }
 
     setSelectedContent(content) {
@@ -55,9 +70,13 @@ export default class EsquecerSenha extends React.Component{
                         <input 
                             type="text"
                             placeholder="Email"
-                            className="esquecer-form"/>
+                            className="esquecer-form"
+                            name="email"
+                            value={this.state.email}
+                            onChange={this.handdleChange} 
+                        />
                     </div>
-                    <div className="esquecer-button">Enviar</div>
+                    <div className="esquecer-button" onClick={this.onClickLinkEnviar}>Enviar</div>
                     <div className="esquecer-footer">
                         <div className="esquecer-login" onClick={this.onClickLinkLogin}>Voltar a página de login</div>
                         <div className="esquecer-footer-end"></div>

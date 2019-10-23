@@ -6,8 +6,6 @@ import java.util.GregorianCalendar;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.demo.email.Email;
-import com.example.demo.model.Medico;
 import com.example.demo.repository.MedicoRepository;
 import com.example.demo.service.medico.BuscarMedicoPorEmailService;
 
@@ -20,7 +18,7 @@ public class RedefinirSenhaService {
 	@Autowired
 	MedicoRepository medicoRepository;
 	
-	public Medico redefinir(String url) {
+	public void redefinir(String url) {
 		if(Objects.isNull(url) || url.isEmpty()) {
 			throw new IllegalArgumentException("A URL não pode estar em branco");
 		}
@@ -28,7 +26,7 @@ public class RedefinirSenhaService {
 		String emailRecuperacao = url.split("#")[0];
 		long dataUrl = Long.parseLong(url.split("#")[1]);
 		
-		Medico medico = buscarMedico.buscar(emailRecuperacao);
+		buscarMedico.buscar(emailRecuperacao);
 		
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.setTime(new Date());
@@ -37,7 +35,5 @@ public class RedefinirSenhaService {
 		if(gc.getTimeInMillis() > dataUrl) {
 			throw new IllegalArgumentException("Esse link já expirou");
 		}
-		
-		return medico;
 	}
 }

@@ -7,7 +7,6 @@ import com.example.demo.model.Medico;
 import com.example.demo.model.dto.LoginRequestDto;
 import com.example.demo.model.dto.LoginResponseDto;
 import com.example.demo.model.security.AuthenticationService;
-import com.example.demo.model.security.password.Criptografia;
 
 @Service
 public class LogarMedicoGoogleService {
@@ -22,7 +21,6 @@ public class LogarMedicoGoogleService {
 		
 		if(Objects.isNull(loginDto.getIdentificacao()) || loginDto.getIdentificacao().isEmpty()){
 			throw new IllegalArgumentException("O nome de usu�rio n�o pode estar em branco");
-
 		}
 		
 		Medico medico = buscarMedico.buscar(loginDto.getIdentificacao(), true);

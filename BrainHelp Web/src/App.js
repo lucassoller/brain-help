@@ -25,7 +25,7 @@ class App extends Component {
             <Route path="/cadastro" component={Cadastro} />
             <Route path="/info" component={Home} />
             <Route path="/email" component={Email} />
-            <Route path="/recuperar" component={RecuperarSenha} />
+            <Route path="/recuperarSenha/:url" component={RecuperarSenha} />
             <Route path="/esquecer" component={EsquecerSenha} />
             <Route path="/" exact component={TelaInicial} />
             <Route path="/loginAntigo" exact component={LoginForm} />

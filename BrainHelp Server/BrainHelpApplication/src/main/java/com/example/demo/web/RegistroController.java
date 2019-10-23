@@ -11,6 +11,7 @@ import com.example.demo.model.Medico;
 import com.example.demo.repository.MedicoRepository;
 import com.example.demo.service.diagnosticado.CadastrarDiagnosticadoService;
 import com.example.demo.service.medico.CadastrarMedicoService;
+import com.example.demo.service.medico.EditarSenhaMedicoService;
 
 @RestController
 @RequestMapping("/public/registro")
@@ -23,6 +24,9 @@ public class RegistroController {
 	CadastrarDiagnosticadoService cadastrarDiagnosticado;
 	
 	@Autowired
+	EditarSenhaMedicoService editarSenhaMedico;
+	
+	@Autowired
 	MedicoRepository medicoRepository;
 	
 	@PostMapping("/medico")
@@ -30,9 +34,9 @@ public class RegistroController {
 		cadastrarMedico.salvar(medico);
 	}
 	
-	@PutMapping("/medico/editar")
-	public void editarMedico(@RequestBody Medico medico) {
-		cadastrarMedico.salvar(medico);
+	@PutMapping("/medico/editar/senha")
+	public void editarMedico(@RequestBody String email, @RequestBody String senha) {
+		editarSenhaMedico.editar(email, senha);
 	}
 	
 	@PostMapping("/diagnosticado")

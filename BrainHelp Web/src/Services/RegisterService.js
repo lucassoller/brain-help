@@ -12,4 +12,11 @@ export default class RegisterService {
             especializacao
         })
     }
+
+    static editar(email, senha) {
+        return axios.post(`${CONFIG.API_URL_BASE}/public/registro/medico/editar/senha`, {           
+            email,
+            senha
+        })
+    }
 }
