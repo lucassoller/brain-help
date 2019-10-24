@@ -5,8 +5,41 @@ import LoginService from '../../Services/LoginService'
 import './Home.css'
 import {Redirect} from 'react-router-dom'
 import $ from 'jquery'
-import PacienteCard from './PacienteCard'
+import Paciente from './Paciente'
 export default class Home extends React.Component{
+
+    constructor(){
+        super()
+        this.state = {
+            nome: '',
+            render: true
+        },
+        this.handdleChange = this.handdleChange.bind(this)
+        this.onClickLinkSearch = this.onClickLinkSearch.bind(this)
+    }
+
+     handdleChange(event) {
+        const target = event.target
+        const value = target.value
+        const name = target.name
+        this.setState({
+            [name]: value
+        })
+    }
+
+    onClickLinkSearch(){
+        this.setState({
+            render: true
+        })
+    }
+
+    renderPacientes(){
+        if(this.state.nome !== '' && this.state.render === true){
+            return <Paciente 
+                    nome = {this.state.nome}
+                />
+        }
+    }
 
     render(){
         return (<div className="home-container">
@@ -28,14 +61,14 @@ export default class Home extends React.Component{
                                 type="text"
                                 className="home-form"
                                 placeholder="Buscar pacientes"
+                                name="nome"
+                                value={this.state.nome}
+                                onChange={this.handdleChange} 
                             />
-                            <div className="home-search-icon"></div>
+                            <div className="home-search-icon" onClick={this.onClickLinkSearch}></div>
                         </div>
                         <div className="home-pacientes">
-                            <PacienteCard />
-                            <PacienteCard />
-                            <PacienteCard />
-                            <PacienteCard />
+                            {this.renderPacientes()}
                         </div>
                     </div>
                     <div className="home-content-side home-abc"></div>

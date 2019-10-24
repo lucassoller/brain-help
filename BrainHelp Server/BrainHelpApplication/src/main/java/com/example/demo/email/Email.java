@@ -17,7 +17,7 @@ public class Email {
         try {
         	email.addTo(emailRedefinicao);
 			email.setFrom("appbrainhelp@gmail.com", "Brain Help");
-			email.setSubject("Solicitção de redefinição de senha");
+			email.setSubject("Solicitação de redefinição de senha");
 			   
 			String pathHtml = new File(".").getCanonicalPath()+"/src/main/java/com/example/demo/email/index.html";			
 			String pathLogo = new File(".").getCanonicalPath()+"/src/main/java/com/example/demo/email/sem-nome.png";

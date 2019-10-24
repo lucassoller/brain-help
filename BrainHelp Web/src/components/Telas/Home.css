@@ -103,6 +103,7 @@
     width: 50px;
     background: url('../../imagens/search.png') no-repeat center;
     background-size: 75%;
+    cursor: pointer;
 }
 
 .home-content-side{

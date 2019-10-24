@@ -1,0 +1,148 @@
+<html>
+<head>
+	<style type="text/css">
+	
+		.display_flex {
+	        display: flex;
+	        flex-direction: column;
+	        align-items: center;
+	    }
+	    
+		.email-container{
+		    width: 30%;
+		    background: #47BDEF;
+		    color: white;
+		    padding: 10px;
+		}
+		
+		.email-logo{
+		    width: 50px;
+		    height: 50px;
+		    cursor: pointer;		  
+		}
+		
+		.email-logo-back{
+		    width: 50px;
+		    height: 50px;
+		    border-radius: 50px;
+		    overflow: hidden;
+		}
+		
+		.email-pergunta{
+		    font-family: "Segoe UI";
+		    color: white;
+		    font-size: 20pt;
+		    text-shadow: 0px 0.5px 0.2px rgb(156, 154, 154);
+		    margin-bottom: 15px;
+		}
+		
+		.email-texto{
+			color: white;
+		}
+		
+		.email-titulo{
+			width: 100%;
+		    margin-top: 5px;
+		    font-family: "Segoe UI";
+		    color: white;
+		    font-size: 25pt;
+		    text-shadow: 0px 1px 4px rgb(119, 117, 117);
+		    margin-bottom: 10px;
+		    text-align: center
+		}
+		
+		.email-botao{
+		    margin-top: 20px;
+		    width: 150px;
+		    height: 35px;
+		    background: purple;
+		    border-radius: 80px;
+		    cursor: pointer;
+		    color: white;
+		    font-size: 12pt;
+		    display: flex;
+		    font-weight: 500;
+		    text-align: center;
+		    padding-top: 10px;
+		    padding-left: 0px;
+		}
+		
+		.email-content{
+		    width: 100%;
+		}
+		
+		.email-imagem{
+		    width: 100%;
+		}
+		
+		.email-image{
+		    margin-top: 20px;
+		    width: 100%;
+		    height: 250px;
+		    display: flex;
+		    justify-content: center;
+		    opacity: 0.9;   
+		}
+		
+		.email-button{
+			width: 100%;
+			text-align: center;
+		}
+		
+		.email-link{
+			width: 100%;
+			text-decoration: none;
+			cursor: default;
+		}
+		
+		@media (max-width: 1900px) {
+			.email-container{
+				width: 50%;
+			}
+		}
+		
+		@media (max-width: 1200px) {
+			.email-container{
+				width: 75%;
+			}
+		}
+		
+		@media (max-width: 600px) {
+			.email-container{
+				width: 100%;
+			}
+		}
+		
+		
+
+
+
+  	</style>
+</head>
+
+<body>
+			<div class="email-container">                    
+			    <div class="email-content">
+			    	<div>
+				    	<div class="email-logo-back">
+				    		<a class="email-link" href="#LINKLOGO">
+				            	<img class="email-logo" src="#LOGO" alt="logo"/>
+				            </a>
+				        </div>  				
+				    	<div class="email-titulo">Brain Help</div>
+			    	</div>
+			        
+					<div class="email-pergunta">Redefinir sua senha?</div>
+					<div class="email-texto">Se você solicitou uma redefinição de senha, clique no botão abaixo. Se você não fez essa solicitação, ignore esse e-mail.</div>
+						<a class="email-link" href="http://localhost:3000/recuperarSenha/#LINKBOTAO">
+							<div class="email-botao">
+								<div class="email-button">Redefinir senha</div>
+							</div>
+						</a>
+					<div class="email-image">
+						<img class="email-imagem" src="#IDOSOS" alt="idosos"/>
+					</div>
+				</div>
+			</div>
+	</body>
+</html>

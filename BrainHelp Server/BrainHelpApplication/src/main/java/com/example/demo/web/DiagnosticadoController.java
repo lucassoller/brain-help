@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Diagnosticado;
 import com.example.demo.repository.DiagnosticadoRepository;
 import com.example.demo.service.diagnosticado.BuscarDiagnosticadoPorEmailService;
+import com.example.demo.service.diagnosticado.BuscarDiagnosticadosPorEmailService;
+import com.example.demo.service.diagnosticado.BuscarDiagnosticadosPorNomeService;
 
 @RestController
 @RequestMapping("/diagnosticado")
@@ -20,6 +22,12 @@ public class DiagnosticadoController {
 	@Autowired
 	private BuscarDiagnosticadoPorEmailService buscarDiagnosticadoPorEmail;
 	
+	@Autowired
+	private BuscarDiagnosticadosPorEmailService buscarDiagnosticadosPorEmail;
+	
+	@Autowired
+	private BuscarDiagnosticadosPorNomeService buscarDiagnosticadosPorNome;
+	
 	@GetMapping("/buscar/todos")
 	public List<Diagnosticado> buscarTodos(){
 		return diagnosticadoRepository.findAll();
@@ -28,5 +36,15 @@ public class DiagnosticadoController {
 	@GetMapping("/buscar/{EMAIL}")
 	public Diagnosticado buscarPorEmail(@PathVariable("EMAIL") String email){
 		return buscarDiagnosticadoPorEmail.buscar(email);
+	}
+	
+	@GetMapping("/buscar/todos/nome/{NOME}")
+	public List<Diagnosticado> buscarTodosPorNome(@PathVariable("NOME") String nome){
+		return buscarDiagnosticadosPorNome.buscar(nome);
+	}
+	
+	@GetMapping("/buscar/todos/email/{EMAIL}")
+	public List<Diagnosticado> buscarTodosPorEmail(@PathVariable("EMAIL") String email){
+		return buscarDiagnosticadosPorEmail.buscar(email);
 	}
 }

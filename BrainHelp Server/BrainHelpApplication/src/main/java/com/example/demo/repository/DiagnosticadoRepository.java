@@ -9,4 +9,7 @@ import com.example.demo.model.Medico;
 public interface DiagnosticadoRepository extends JpaRepository<Diagnosticado, Integer>{
 	Optional<Diagnosticado> findByEmail(String email);
 	List<Diagnosticado> findByMedico(Medico medico);
+
+	List<Diagnosticado> findAllByEmailContaining(String email);
+	List<Diagnosticado> findAllByNomeContaining(String nome);
 }
