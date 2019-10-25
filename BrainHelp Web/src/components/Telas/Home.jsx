@@ -12,7 +12,8 @@ export default class Home extends React.Component{
         super()
         this.state = {
             nome: '',
-            render: true
+            render: false,
+            y: 1
         },
         this.handdleChange = this.handdleChange.bind(this)
         this.onClickLinkSearch = this.onClickLinkSearch.bind(this)
@@ -34,11 +35,17 @@ export default class Home extends React.Component{
     }
 
     renderPacientes(){
-        if(this.state.nome !== '' && this.state.render === true){
+        if(this.state.nome !== ''){
             return <Paciente 
                     nome = {this.state.nome}
                 />
         }
+    }
+
+    mudarEstado(){
+        this.setState({
+            render: false
+        })
     }
 
     render(){

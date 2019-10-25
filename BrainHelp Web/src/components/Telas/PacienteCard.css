@@ -40,9 +40,16 @@
 }
 
 .pacienteCard-button{
-    background: rgb(29, 255, 21);
     padding: 2px 12px 2px 12px;
     margin-right: 15px;
     color: black;
     cursor: pointer;
+}
+
+.green{
+    background: rgb(83, 255, 40);
+}
+
+.blue{
+    background: rgb(82, 166, 245);
 }

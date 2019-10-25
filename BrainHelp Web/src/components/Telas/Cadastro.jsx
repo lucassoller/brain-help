@@ -12,7 +12,6 @@ const SELECTED_CONTENTS = {
     CADASTROINICIAL: 'CADASTROINICIAL',
     HOME: 'HOME',
     SENHA: 'SENHA'
-
 }
 
 export default class Cadastro extends React.Component {
