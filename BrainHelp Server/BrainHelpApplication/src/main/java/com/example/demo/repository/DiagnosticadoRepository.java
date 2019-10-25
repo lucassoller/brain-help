@@ -3,13 +3,15 @@ package com.example.demo.repository;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import com.example.demo.model.Diagnosticado;
-import com.example.demo.model.Medico;
 
 public interface DiagnosticadoRepository extends JpaRepository<Diagnosticado, Integer>{
 	Optional<Diagnosticado> findByEmail(String email);
-	List<Diagnosticado> findByMedico(Medico medico);
-
-	List<Diagnosticado> findAllByEmailContaining(String email);
-	List<Diagnosticado> findAllByNomeContaining(String nome);
+	
+	@Query("SELECT d FROM Diagnosticado d WHERE (d.medico.email LIKE ?1) AND (d.nome LIKE %?2% OR d.email LIKE %?2%)")
+	List<Diagnosticado> findByMedico(String email, String nome);
+	
+	@Query("SELECT d FROM Diagnosticado d WHERE (d.medico = null OR d.medico.email NOT LIKE ?1) AND (d.nome LIKE %?2% OR d.email LIKE %?2%)")
+	List<Diagnosticado> findByMedicoNotLike(String email, String nome);
 }

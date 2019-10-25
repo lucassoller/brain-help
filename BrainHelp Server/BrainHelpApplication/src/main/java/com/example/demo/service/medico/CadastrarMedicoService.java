@@ -21,25 +21,25 @@ public class CadastrarMedicoService {
 
 	public void salvar(Medico medico) {
 //		if (Objects.isNull(medico.getCodMedico()) || medico.getCodMedico().isEmpty()) {
-//			throw new IllegalArgumentException("O código de identificação não pode estar em branco");
+//			throw new IllegalArgumentException("O cï¿½digo de identificaï¿½ï¿½o nï¿½o pode estar em branco");
 //		}
 		if (Objects.isNull(medico.getNome()) || medico.getNome().isEmpty()) {
-			throw new IllegalArgumentException("O nome não pode estar em branco");
+			throw new IllegalArgumentException("O nome nï¿½o pode estar em branco");
 		}
 //		if (Objects.isNull(medico.getSobrenome()) || medico.getSobrenome().isEmpty()) {
-//			throw new IllegalArgumentException("O sobrenome não pode estar em branco");
+//			throw new IllegalArgumentException("O sobrenome nï¿½o pode estar em branco");
 //		}
 		if (Objects.isNull(medico.getEmail()) || medico.getEmail().isEmpty()) {
-			throw new IllegalArgumentException("O email não pode estar em branco");
+			throw new IllegalArgumentException("O email nï¿½o pode estar em branco");
 		}
 		if (Objects.isNull(medico.getSenha()) || medico.getSenha().isEmpty()) {
-			throw new IllegalArgumentException("A senha não pode estar em branco");
+			throw new IllegalArgumentException("A senha nï¿½o pode estar em branco");
 		}
-		if (Objects.isNull(medico.getLocalTrabalho()) || medico.getLocalTrabalho().isEmpty()) {
-			throw new IllegalArgumentException("O local de trabalho não pode estar em branco");
-		}
+//		if (Objects.isNull(medico.getLocalTrabalho()) || medico.getLocalTrabalho().isEmpty()) {
+//			throw new IllegalArgumentException("O local de trabalho nï¿½o pode estar em branco");
+//		}
 //		if (Objects.isNull(medico.getEspecializacao()) || medico.getEspecializacao().isEmpty()) {
-//			throw new IllegalArgumentException("A especialização não pode estar em branco");
+//			throw new IllegalArgumentException("A especializaï¿½ï¿½o nï¿½o pode estar em branco");
 //		}
 		
 		buscarEmailUsadoService.buscar(medico.getEmail());

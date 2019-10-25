@@ -31,7 +31,7 @@ public class EnderecoController {
 		return enderecoRepository.findAll();
 	}
 	
-	@GetMapping("/buscar/{EMAIL}")
+	@GetMapping("/buscar/{ID}")
 	public Endereco buscarPorId(@PathVariable("ID") Integer codEndereco){
 		return buscarEnderecoPorId.buscar(codEndereco);
 	}

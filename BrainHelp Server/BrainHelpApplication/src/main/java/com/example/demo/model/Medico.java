@@ -5,20 +5,21 @@ import java.util.Optional;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Medico extends Usuario{
-	
-//	@Id
-//	private String codMedico;
+
 	
 	@Column(nullable = false)
 	private String nome;
 	
-//	@Column(nullable = true)
-//	private String sobrenome;
+	@Column(nullable = true)
+	private String sobrenome;
 	
 	@Id
 	@Column(nullable = false, unique = true)
@@ -29,11 +30,12 @@ public class Medico extends Usuario{
 	@Column(nullable = false)
 	private boolean google;
 	
-	@Column(nullable = false)
-	private String localTrabalho;
+	@OneToOne
+	@JoinColumn(name="codEndereco")
+	private Endereco endereco;
 	
-//	@Column(nullable = false)
-//	private String especializacao;
+	@Column(nullable = false)
+	private String especializacao;
 	
 	@OneToMany(mappedBy = "medico")
 	private List<Diagnosticado> diagnosticados;
@@ -43,14 +45,6 @@ public class Medico extends Usuario{
         return Optional.of("Usuario normal");
     }
 
-//	public String getCodMedico() {
-//		return codMedico;
-//	}
-//
-//	public void setCodMedico(String codMedico) {
-//		this.codMedico = codMedico;
-//	}
-
 	public String getNome() {
 		return nome;
 	}
@@ -58,14 +52,6 @@ public class Medico extends Usuario{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-//	public String getSobrenome() {
-//		return sobrenome;
-//	}
-//
-//	public void setSobrenome(String sobrenome) {
-//		this.sobrenome = sobrenome;
-//	}
 
 	public String getEmail() {
 		return email;
@@ -85,22 +71,6 @@ public class Medico extends Usuario{
 		this.senha = senha;
 	}
 
-	public String getLocalTrabalho() {
-		return localTrabalho;
-	}
-
-	public void setLocalTrabalho(String localTrabalho) {
-		this.localTrabalho = localTrabalho;
-	}
-
-//	public String getEspecializacao() {
-//		return especializacao;
-//	}
-//
-//	public void setEspecializacao(String especializacao) {
-//		this.especializacao = especializacao;
-//	}
-
 	public List<Diagnosticado> getDiagnosticados() {
 		return diagnosticados;
 	}
@@ -116,16 +86,50 @@ public class Medico extends Usuario{
 	public void setGoogle(boolean google) {
 		this.google = google;
 	}
+	
 
-	public Medico(String email, String senha, String nome, boolean google,
-			String localTrabalho, List<Diagnosticado> diagnosticados) {
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+
+	public String getEspecializacao() {
+		return especializacao;
+	}
+
+
+	public void setEspecializacao(String especializacao) {
+		this.especializacao = especializacao;
+	}
+
+	public Medico(String email, String senha, String nome, String sobrenome,
+			boolean google, Endereco endereco, String especializacao, List<Diagnosticado> diagnosticados) {
+		super(email, senha);
 		this.nome = nome;
+		this.sobrenome = sobrenome;
 		this.email = email;
 		this.senha = senha;
 		this.google = google;
-		this.localTrabalho = localTrabalho;
+		this.endereco = endereco;
+		this.especializacao = especializacao;
 		this.diagnosticados = diagnosticados;
 	}
+
 
 	public Medico() {
 		super();
