@@ -7,6 +7,7 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -19,5 +20,5 @@ public interface VinculoService {
     Call<Vinculo> buscarPorId(@Path("ID") Integer codVinculo);
 
     @POST("vinculo/cadastrar")
-    Call<Vinculo> cadastrarVinculo(@Body Vinculo vinculo);
+    Call<Vinculo> cadastrarVinculo(@Header("Authorization") String token, @Body Vinculo vinculo);
 }
