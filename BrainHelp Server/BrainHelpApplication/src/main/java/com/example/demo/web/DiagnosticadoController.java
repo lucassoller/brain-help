@@ -2,15 +2,16 @@ package com.example.demo.web;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Diagnosticado;
+import com.example.demo.model.security.UserPrincipal;
 import com.example.demo.repository.DiagnosticadoRepository;
 import com.example.demo.service.diagnosticado.BuscarDiagnosticadoPorEmailService;
-import com.example.demo.service.diagnosticado.BuscarDiagnosticadosPorEmailService;
-import com.example.demo.service.diagnosticado.BuscarDiagnosticadosPorNomeService;
+import com.example.demo.service.diagnosticado.BuscarDiagnosticadosPorNomeOuEmailService;
 
 @RestController
 @RequestMapping("/diagnosticado")
@@ -23,10 +24,7 @@ public class DiagnosticadoController {
 	private BuscarDiagnosticadoPorEmailService buscarDiagnosticadoPorEmail;
 	
 	@Autowired
-	private BuscarDiagnosticadosPorEmailService buscarDiagnosticadosPorEmail;
-	
-	@Autowired
-	private BuscarDiagnosticadosPorNomeService buscarDiagnosticadosPorNome;
+	private BuscarDiagnosticadosPorNomeOuEmailService buscarDiagnosticados;
 	
 	@GetMapping("/buscar/todos")
 	public List<Diagnosticado> buscarTodos(){
@@ -38,13 +36,14 @@ public class DiagnosticadoController {
 		return buscarDiagnosticadoPorEmail.buscar(email);
 	}
 	
-	@GetMapping("/buscar/todos/nome/{NOME}")
-	public List<Diagnosticado> buscarTodosPorNome(@PathVariable("NOME") String nome){
-		return buscarDiagnosticadosPorNome.buscar(nome);
+	@GetMapping("/buscar/todos/vinculados/{NOME}")
+	public List<Diagnosticado> buscarTodosVinculados(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("NOME") String nome){
+		return buscarDiagnosticados.buscar(userPrincipal.getEmail(), nome, true);
 	}
 	
-	@GetMapping("/buscar/todos/email/{EMAIL}")
-	public List<Diagnosticado> buscarTodosPorEmail(@PathVariable("EMAIL") String email){
-		return buscarDiagnosticadosPorEmail.buscar(email);
+	@GetMapping("/buscar/todos/{NOME}")
+	public List<Diagnosticado> buscarTodosNaoVinculados(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("NOME") String nome){
+		return buscarDiagnosticados.buscar(userPrincipal.getEmail(), nome, false);
 	}
+
 }
