@@ -18,7 +18,7 @@ public class Medico extends Usuario{
 	@Column(nullable = false)
 	private String nome;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
 	private String sobrenome;
 	
 	@Id
@@ -29,6 +29,9 @@ public class Medico extends Usuario{
 	
 	@Column(nullable = false)
 	private boolean google;
+	
+	@Column(nullable = false)
+	private String telefone;
 	
 	@OneToOne
 	@JoinColumn(name="codEndereco")
@@ -117,19 +120,28 @@ public class Medico extends Usuario{
 		this.especializacao = especializacao;
 	}
 
+	public String getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	
 	public Medico(String email, String senha, String nome, String sobrenome,
-			boolean google, Endereco endereco, String especializacao, List<Diagnosticado> diagnosticados) {
-		super(email, senha);
+			boolean google, String telefone, Endereco endereco, String especializacao,
+			List<Diagnosticado> diagnosticados) {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.email = email;
 		this.senha = senha;
 		this.google = google;
+		this.telefone = telefone;
 		this.endereco = endereco;
 		this.especializacao = especializacao;
 		this.diagnosticados = diagnosticados;
 	}
-
 
 	public Medico() {
 		super();

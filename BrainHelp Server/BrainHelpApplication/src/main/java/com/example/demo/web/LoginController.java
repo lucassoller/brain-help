@@ -39,6 +39,7 @@ public class LoginController {
 	@Autowired
 	MedicoRepository mr;
 	
+	
 	@PostMapping("/medico")
 	public LoginResponseDto logarMedico(@RequestBody LoginRequestDto loginDto) {
 		return logarMedico.logar(loginDto);

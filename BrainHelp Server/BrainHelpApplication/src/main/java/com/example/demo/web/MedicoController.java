@@ -42,4 +42,10 @@ public class MedicoController {
 	public void vincularDiagnosticado(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestParam String emailDiagnosticado){
 		vincularDiagnosticado.vincular(userPrincipal.getEmail(), emailDiagnosticado);
 	}
+	
+	@GetMapping("/teste")
+	public Medico medico (@AuthenticationPrincipal UserPrincipal userPrincipal){
+		return buscarMedicoPorEmail.buscar(userPrincipal.getEmail());
+	
+	}
 }
