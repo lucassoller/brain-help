@@ -37,6 +37,7 @@ export default class Home extends React.Component{
     renderPacientes(){
         if(this.state.nome !== ''){
             return <Paciente 
+                    tipo = "meu"
                     nome = {this.state.nome}
                 />
         }
@@ -63,6 +64,7 @@ export default class Home extends React.Component{
                 <div className="home-content">
                     <div className="home-content-side"></div>
                     <div className="home-users">
+                        Meus Pacientes
                         <div className="home-search">
                             <input 
                                 type="text"

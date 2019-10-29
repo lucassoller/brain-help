@@ -11,21 +11,35 @@ export default class Paciente extends React.Component{
     }
 
     componentDidMount(){
-        // this.loadPacientes()
+        this.loadPacientes()
     }
 
     loadPacientes(){
-        DiagnosticadoService.buscarTodosPorNome(this.props.nome)
-        .then((result => {
-            this.setState({
-                pacientes: result.data
-            })
-            this.renderPacientes()
-        })).catch((err =>{
-            this.setState({
-                error: err.response.data
-            })
-        }))
+        if(this.props.tipo === "meu"){
+            DiagnosticadoService.buscarTodosPorNome(this.props.nome)
+            .then((result => {
+                this.setState({
+                    pacientes: result.data
+                })
+                this.renderPacientes()
+            })).catch((err =>{
+                this.setState({
+                    error: err.response.data
+                })
+            }))
+        }else{
+            DiagnosticadoService.buscarTodosPorNome(this.props.nome)
+            .then((result => {
+                this.setState({
+                    pacientes: result.data
+                })
+                this.renderPacientes()
+            })).catch((err =>{
+                this.setState({
+                    error: err.response.data
+                })
+            }))
+        }       
     }
 
     renderPacientes() {

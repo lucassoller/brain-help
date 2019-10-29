@@ -2,16 +2,14 @@ import React, { Component } from 'react';
 import NotFound from './components/NotFound/NotFound'
 import { Switch, Route, Redirect} from 'react-router-dom'
 import './App.css';
-import MostrarTodasRecebidas from './components/Telas/Mensagem/MostrarTodasRecebidas';
 import TelaInicial from './components/Telas/TelaInicial'
 import Login from './components/Telas/Login'
 import CadastroInicial from './components/Telas/CadastroInicial'
-import Cadastro from './components/Telas/Cadastro'
 import Home from './components/Telas/Home'
 import RecuperarSenha from './components/Telas/RecuperarSenha'
 import EsquecerSenha from './components/Telas/EsquecerSenha'
 import Email from './components/Telas/Email'
-import InformacoesPessoais from './components/Telas/InformacoesPessoais'
+import Cadastro from './components/Telas/Cadastro'
 
 class App extends Component {
   render() {
@@ -27,7 +25,6 @@ class App extends Component {
             <Route path="/esquecer" component={EsquecerSenha} />
             <Route path="/" exact component={TelaInicial} />
             <Route path="/login" exact component={Login} />
-            <Route path="/info" component={InformacoesPessoais} />  
             <Route path="/homepage" component={TelaInicial} />    
             <Redirect to="/404"/>
           </Switch>

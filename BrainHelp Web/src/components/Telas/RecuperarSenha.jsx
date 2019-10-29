@@ -3,7 +3,7 @@ import './RecuperarSenha.css'
 import {Redirect} from 'react-router-dom'
 import $ from 'jquery'
 import EmailService from '../../Services/EmailService'
-import RegisterService from '../../Services/RegisterService'
+import CadastroService from '../../Services/CadastroService'
 
 const SELECTED_CONTENTS = {
     LOGIN: 'LOGIN',
@@ -66,7 +66,7 @@ export default class RecuperarSenha extends React.Component{
         if(this.state.senha !== this.state.confirmar){
             console.log("Não coincidem")
         }else{
-            RegisterService.editar(this.state.email, this.state.senha)
+            CadastroService.editar(this.state.email, this.state.senha)
             .then((result) => {
             }).catch((err) => {
                 this.setState({

@@ -25,7 +25,8 @@ export default class Log extends React.Component {
             proximo: false,
             google: false,
             email: '',
-            nomeCompleto: '',
+            nome: '',
+            sobrenome: '',
             senha: '',
             disabled: false,
             selectedContent: SELECTED_CONTENTS.CADASTROINICIAL
@@ -55,7 +56,8 @@ export default class Log extends React.Component {
             const responseGoogle = (response) => {
                 this.setState({
                     email: response.profileObj.email,
-                    nomeCompleto: response.profileObj.givenName+" "+response.profileObj.familyName,
+                    nome: response.profileObj.givenName,
+                    sobrenome: response.profileObj.familyName,
                     senha: '12345678',
                     disabled: true,
                     proximo: true,
@@ -63,37 +65,43 @@ export default class Log extends React.Component {
                 })
             }
 
-            return <div>
-                <div className="cadastro-inicial-title">
-                    <h1>Cadastro</h1>
-                </div>
-                    <GoogleLogin
-                        clientId="269388326604-4vldemgim545v46bel9he4erpji2sgpl.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
-                        buttonText="Cadastrar com o Google"
-                        className="cadastro-inicial-google"
-                        onSuccess={responseGoogle}
-                    />
-                <div className="cadastro-inicial-divider">
-                    <div className="cadastro-inicial-barra"></div>
-                    <div className="cadastro-inicial-or">ou</div>
-                    <div className="cadastro-inicial-barra"></div>
-                </div>
-                <div className="cadastro-inicial-entrar" onClick={this.onClickLinkCadastro}>Cadastrar</div>
-                <div className="cadastro-inicial-footer">
-                    <div>
-                        Já possui uma conta?
+            return <div className="cadastro-inicial-container">
+                        <div className="cadastro-inicial-left-container">
+                            <div className="cadastro-inicial-content">
+                                <div className="cadastro-inicial-title">
+                                    <h1>Cadastro</h1>
+                                </div>
+                                    <GoogleLogin
+                                        clientId="269388326604-4vldemgim545v46bel9he4erpji2sgpl.apps.googleusercontent.com" //CLIENTID NOT CREATED YET
+                                        buttonText="Cadastrar com o Google"
+                                        className="cadastro-inicial-google"
+                                        onSuccess={responseGoogle}
+                                    />
+                                <div className="cadastro-inicial-divider">
+                                    <div className="cadastro-inicial-barra"></div>
+                                    <div className="cadastro-inicial-or">ou</div>
+                                    <div className="cadastro-inicial-barra"></div>
+                                </div>
+                                <div className="cadastro-inicial-entrar" onClick={this.onClickLinkCadastro}>Cadastrar</div>
+                                <div className="cadastro-inicial-footer">
+                                    <div>
+                                        Já possui uma conta?
+                                    </div>
+                                    <div className="cadastro-inicial-login" onClick={this.onClickLinkLogin}>
+                                        Faça o login
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="cadastro-inicial-login" onClick={this.onClickLinkLogin}>
-                        Faça o login
-                    </div>
-                </div>
-                </div>
             }else{
                 return <Cadastro 
-                        nomeCompleto={this.state.nomeCompleto}
+                        nome={this.state.nome}
+                        sobrenome={this.state.sobrenome}
                         email={this.state.email}
                         senha={this.state.senha}
-                        disabled={this.state.disabled}/>
+                        disabled={this.state.disabled}
+                        google={this.state.google}/>
             }
     }
 
@@ -106,13 +114,6 @@ export default class Log extends React.Component {
             return <Redirect to='/cadastro' />
         }
 
-       return (
-        <div className="cadastro-inicial-container">
-            <div className="cadastro-inicial-left-container">
-                <div className="cadastro-inicial-content">
-                    {this.renderTela()}            
-                </div>
-            </div>    
-        </div>)
+       return (this.renderTela())
     }
 }

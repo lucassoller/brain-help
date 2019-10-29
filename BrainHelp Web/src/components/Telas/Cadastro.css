@@ -1,170 +1,186 @@
-.cadastro-container{
+.info-container{
     width: 100%;
     height: 100vh;
-    background: url('../../imagens/idosos.jpg') no-repeat;
-    background-size: 70%;
-    background-position-x: 100%;
     display: flex;
-    justify-content: flex-start;
+    flex-direction: column;
+    
 }
 
-.cadastro-left-container{
-    width: 45%;
-    height: 100vh;
+.info-navbar{
+    width: 100%;
+    height: 60px;
+    background: #38B6FF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+}
+
+.info-logo{
+    width: 40px;
+    height: 40px;
+    background: white;
+    background-image: url('../../imagens/sem-nome.png');
+    background-position: center;
+    background-size: 110%;
+    border-radius: 50px;
+    margin-left: 10px;
+}
+
+.info-titulo{
+    font-family: "Segoe UI";
+    color: white;
+    font-size: 22pt;
+    text-shadow: 0px 1px 4px rgb(119, 117, 117);
+
+}
+
+.info-form{
+    display: flex;
+    width: 80%;
+}
+
+.info-content{
+    width: 100%;
+    margin-top: 60px;
+    flex: 1;
     background: #B9E5FF;
     display: flex;
     justify-content: center;
-    align-items: center;
-
 }
 
-.cadastro-content{
-    width: 330px;
-}
-
-.cadastro-title h1{
-    color: white;
-    font-size: 30pt;
-    text-shadow: 0px 1px 5px rgb(185, 183, 183);
-    font-weight: bold;
-    margin-bottom: 30px;
-}
-
-.cadastro-google{
-    margin-top: 30px;
-    height: 50px;
-    width: 100%;
-    border-radius: 100px !important;
-    overflow: hidden;
-    font-size: 18pt !important;
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: center !important;
-    align-items: center !important;
-}
-
-.cadastro-divider{
-    margin: 30px 0 30px 0;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.cadastro-or{
-    display: flex;
-    margin: 0px 15px 0px 15px;
-    font-size: 25px;
-    justify-content: center;
-    align-items: center;
-}
-
-.cadastro-barra{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid grey;
-    margin-top: 7px;
-    justify-content: center;
-}
-
-
- .cadastro-entrar{
-    margin-top: 10px;
-    width: 100%;
-    height: 50px;
-    background: purple;
-    border-radius: 80px;
-    cursor: pointer;
-    color: white;
-    font-size: 20pt;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 500;
- }
-
- .cadastro-footer{
-    font-size: 13pt;
-    display: flex;
- }
-
- .cadastro-login{
-    cursor: pointer;
-    margin-left: 8px;
-    text-decoration: underline;
- }
-
- .cadastro-form{
-    border: none;
-    height: 50px;
-    width: 100%;
-    color: #47BDEF;
+.info-foto{
+    width: 160px;
+    height: 160px;
     background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 20px 0 10px;
+    border-radius: 100%;
+    font-family: "Segoe UI";
     font-size: 20pt;
+    font-weight: 400;
+    box-shadow: 0px 0px 3px 0.1px rgb(196, 194, 194);
+    color: #47BDEF;
+    cursor: pointer;
+}
+
+.info-form-fields{
+    margin-top: 20px;
+    flex: 1;
+}
+
+.info-input{
+    margin-bottom: 10px !important;
+    box-shadow: 0px 0px 3px 0.1px rgb(196, 194, 194);
+    width: 49%;
+    border: none;
+    color: black;
+    background: white;
+    font-size: 15pt;
     padding: 10px !important;
-    padding-right: 15px !important;
-    box-shadow: 0px 0px 5px 0.3px rgb(196, 194, 194);
-    margin-bottom: 20px;
+    font-weight: 400 !important;
+    height: 45px;
 }
 
-.cadastro-form-senha{
-    padding-left: 10px !important;
-    border: none;
-    height: 50px;
-    width: 85%;
+.complete{
+    width: 100%;
+}
+
+
+input::-webkit-input-placeholder {
+    font-size: 15pt;
     color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ input::-moz-placeholder { /* Firefox 18- */
+    font-size: 15pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ input::-moz-placeholder {  /* Firefox 19+ */
+    font-size: 15pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ input::-ms-input-placeholder {  
+    font-size: 15pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+
+.info-combo{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.info-form-senha{
     background: white;
-    font-size: 20pt;
+    width: 49%;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 3px 0.1px rgb(196, 194, 194);
+    margin-bottom: 10px;
 }
 
-.cadastro-placeholder::-webkit-input-placeholder {
-    font-size: 20pt;
-    color: #47BDEF;
-    font-weight: 400;
- }
-  
- .cadastro-placeholder:-moz-placeholder { /* Firefox 18- */
-    font-size: 20pt;
-    color: #47BDEF;
-    font-weight: 400;
- }
+.info-senha{
+    flex: 1;
+    margin: 0 !important;
+    box-shadow: none;
+}
 
- .cadastro-placeholder::-moz-placeholder {  /* Firefox 19+ */
-    font-size: 20pt;
-    color: #47BDEF;
-    font-weight: 400;
- }
-  
-.cadastro-placeholder:-ms-input-placeholder {  
-    font-size: 20pt;
-    color: #47BDEF;
-    font-weight: 400;
- }
-
- .cadastro-eye{
+.info-eye{
     height: 30px;
     width: 30px;
     background: url('../../imagens/eyee.png') no-repeat center;
     background-position-x: center;
     background-size: 100%; 
     margin: 0 10px 0 10px;
-}
+ }
 
-.cadastro-senha{
-    box-shadow: 0px 0px 5px 0.3px rgb(196, 194, 194);
-    background: white;
-    height: 50px;
+ .info-logradouro{
+    width: 79%;
+ }
+
+ .info-numero{
+    width: 19%;
+ }
+ .info-form-footer{
     width: 100%;
     display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
+    justify-content: space-between;
+ }
 
-@media screen and (min-width: 1920px){
-    .cadastro-container {
-        background-size: 75%;
-    }
-}
+ .info-button{
+    height: 40px;
+    width: 200px;
+    background: purple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 50px;
+    font-size: 15pt;
+    font-weight: 400;
+    cursor: pointer;
+ }
+
+ .info-label{
+    font-size: 13pt;
+ }
+
+ .info-footer{
+    margin-top: -8px;
+    display: flex;
+ }
+
+ .info-login{
+    margin-left: 8px;
+    text-decoration: underline;
+    cursor: pointer;
+ }

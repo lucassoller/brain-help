@@ -3,21 +3,21 @@ import axios from 'axios'
 import LoginService from './LoginService'
 export default class DiagnosticadoService {
 
-	static buscarTodosPorNome(nome) {
-		return axios.get(`${CONFIG.API_URL_BASE}/diagnosticado/buscar/todos/nome/${nome}`,
+	static buscarMeusPacientesPorNome(nome) {
+		return axios.get(`${CONFIG.API_URL_BASE}/diagnosticado/buscar/todos/vinculados/nome/${nome}`,
         {
             headers: {
                 authorization:  LoginService.getLoggedUser(),
                 'Content-Type': 'application/json',
             }
         })
-	}
-
-	static buscarTodosPorEmail(email) {
-		return axios.get(`${CONFIG.API_URL_BASE}/diagnosticado/buscar/todos/email/${email}`,{},
+    }
+    
+    static buscarOutrosPacientesPorNome(nome) {
+		return axios.get(`${CONFIG.API_URL_BASE}/diagnosticado/buscar/todos/nome/${nome}`,
         {
             headers: {
-                authorization: LoginService.getLoggedUser(),
+                authorization:  LoginService.getLoggedUser(),
                 'Content-Type': 'application/json',
             }
         })
