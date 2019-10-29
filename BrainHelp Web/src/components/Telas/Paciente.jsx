@@ -16,7 +16,7 @@ export default class Paciente extends React.Component{
 
     loadPacientes(){
         if(this.props.tipo === "meu"){
-            DiagnosticadoService.buscarTodosPorNome(this.props.nome)
+            DiagnosticadoService.buscarMeusPacientesPorNome(this.props.nome)
             .then((result => {
                 this.setState({
                     pacientes: result.data
@@ -28,7 +28,7 @@ export default class Paciente extends React.Component{
                 })
             }))
         }else{
-            DiagnosticadoService.buscarTodosPorNome(this.props.nome)
+            DiagnosticadoService.buscarOutrosPacientesPorNome(this.props.nome)
             .then((result => {
                 this.setState({
                     pacientes: result.data

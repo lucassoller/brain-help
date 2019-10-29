@@ -12,8 +12,7 @@ export default class Home extends React.Component{
         super()
         this.state = {
             nome: '',
-            render: false,
-            y: 1
+            tipoPaciente: 'meu'
         },
         this.handdleChange = this.handdleChange.bind(this)
         this.onClickLinkSearch = this.onClickLinkSearch.bind(this)
@@ -37,17 +36,18 @@ export default class Home extends React.Component{
     renderPacientes(){
         if(this.state.nome !== ''){
             return <Paciente 
-                    tipo = "meu"
+                    tipo = {this.state.tipoPaciente}
                     nome = {this.state.nome}
                 />
         }
     }
 
-    mudarEstado(){
-        this.setState({
-            render: false
-        })
+    renderTipo(){
+        if(this.state.tipoPaciente){
+            return 'Meus pacientes'
+        }
     }
+
 
     render(){
         return (<div className="home-container">
@@ -64,7 +64,9 @@ export default class Home extends React.Component{
                 <div className="home-content">
                     <div className="home-content-side"></div>
                     <div className="home-users">
-                        Meus Pacientes
+                        <div className="home-tipo">
+                            {this.renderTipo()}
+                        </div>
                         <div className="home-search">
                             <input 
                                 type="text"
