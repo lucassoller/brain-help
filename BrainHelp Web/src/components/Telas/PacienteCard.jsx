@@ -1,16 +1,22 @@
 import React from 'react'
 import './PacienteCard.css'
-import {Redirect} from 'react-router-dom'
-import LoginService from '../../Services/LoginService'
 
 export default class PacienteCard extends React.Component{
 
     renderVinculado(){
-        if(this.props.emailMedico === LoginService.getUserName()){
-            return <div className="pacienteCard-button green">Vinculado</div>
-        }else{
+        if(this.props.tipoPaciente !== 'meu'){
             return <div className="pacienteCard-button blue">+ Vincular</div>
         }
+    }
+
+    renderEstagio(){
+       if(this.props.estagio === 'INICIAL'){
+            return 'Inicial'
+       }else if(this.props.estagio === 'INTERMEDIARIO'){
+            return 'Intermediário'
+       }else{
+            return 'Avançado'
+       }
     }
     
     render(){
@@ -19,11 +25,9 @@ export default class PacienteCard extends React.Component{
             <div className="pacienteCard-info">
                 <div className="pacienteCard-nome">{this.props.nome}</div>
                 <div className="pacienteCard-outro">Telefone: {this.props.telefone}</div>
-                <div className="pacienteCard-outro">Estagio: {this.props.estagio}</div>
-                
+                <div className="pacienteCard-outro">Estágio: {this.renderEstagio()}</div>
             </div>
-            {this.renderVinculado()}
-            
+            {this.renderVinculado()}  
         </div>)
     }
 }

@@ -1,53 +1,44 @@
 import React from 'react'
-import Alert from '../generic/Alert/Alert'
-import CadastroService from '../../Services/CadastroService'
-import LoginService from '../../Services/LoginService'
 import './Home.css'
-import {Redirect} from 'react-router-dom'
-import $ from 'jquery'
 import Paciente from './Paciente'
+import $ from 'jquery'
 export default class Home extends React.Component{
 
     constructor(){
         super()
         this.state = {
             nome: '',
-            tipoPaciente: 'meu'
-        },
+            tipoPaciente: 'outros'
+        }
         this.handdleChange = this.handdleChange.bind(this)
-        this.onClickLinkSearch = this.onClickLinkSearch.bind(this)
     }
 
-     handdleChange(event) {
+    handdleChange(event) {  
         const target = event.target
         const value = target.value
-        const name = target.name
         this.setState({
-            [name]: value
-        })
-    }
-
-    onClickLinkSearch(){
-        this.setState({
-            render: true
+            nome: value
         })
     }
 
     renderPacientes(){
         if(this.state.nome !== ''){
+            var v = $(".home-form").val();
+            console.log(v)
             return <Paciente 
-                    tipo = {this.state.tipoPaciente}
-                    nome = {this.state.nome}
+                    tipoPaciente = {this.state.tipoPaciente}
+                    nome = {v}           
                 />
         }
     }
 
     renderTipo(){
-        if(this.state.tipoPaciente){
+        if(this.state.tipoPaciente === 'meu'){
             return 'Meus pacientes'
+        }else{
+            return 'Vincular pacientes'
         }
     }
-
 
     render(){
         return (<div className="home-container">
@@ -74,9 +65,9 @@ export default class Home extends React.Component{
                                 placeholder="Buscar pacientes"
                                 name="nome"
                                 value={this.state.nome}
-                                onChange={this.handdleChange} 
+                                onChange={this.handdleChange}
                             />
-                            <div className="home-search-icon" onClick={this.onClickLinkSearch}></div>
+                            <div className="home-search-icon"></div>
                         </div>
                         <div className="home-pacientes">
                             {this.renderPacientes()}

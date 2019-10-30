@@ -2,7 +2,6 @@ import React from 'react'
 import './EsquecerSenha.css'
 import {Redirect} from 'react-router-dom'
 import EmailService from '../../Services/EmailService'
-import $ from 'jquery'
 
 const SELECTED_CONTENTS = {
     LOGIN: 'LOGIN',

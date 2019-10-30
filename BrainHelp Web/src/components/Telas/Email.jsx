@@ -6,7 +6,6 @@ const SELECTED_CONTENTS = {
     TELAINICIAL: 'TELAINICIAL',
     RECUPERARSENHA: 'RECUPERARSENHA',
     EMAIL: 'EMAIL'
-
 }
 
 export default class Email extends React.Component{

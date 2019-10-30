@@ -34,7 +34,7 @@ export default class InformacoesPessoais extends React.Component{
             google: false,
             disabled: false,
             selectedContent: SELECTED_CONTENTS.CADASTRO
-        },
+        }
         this.handdleChange = this.handdleChange.bind(this)
         this.onShowOver = this.onShowOver.bind(this)
         this.onShowOut = this.onShowOut.bind(this)

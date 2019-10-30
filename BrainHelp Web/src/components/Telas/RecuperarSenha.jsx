@@ -1,6 +1,5 @@
 import React from 'react'
 import './RecuperarSenha.css'
-import {Redirect} from 'react-router-dom'
 import $ from 'jquery'
 import EmailService from '../../Services/EmailService'
 import CadastroService from '../../Services/CadastroService'
