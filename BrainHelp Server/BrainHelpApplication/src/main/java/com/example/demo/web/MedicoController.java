@@ -44,8 +44,8 @@ public class MedicoController {
 	}
 	
 	@GetMapping("/teste")
-	public Medico medico (@AuthenticationPrincipal UserPrincipal userPrincipal){
-		return buscarMedicoPorEmail.buscar(userPrincipal.getEmail());
+	public List<Medico> medico (@AuthenticationPrincipal UserPrincipal userPrincipal){
+		return medicoRepository.findAll();
 	
 	}
 }
