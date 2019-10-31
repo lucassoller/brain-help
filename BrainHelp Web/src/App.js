@@ -19,7 +19,8 @@ class App extends Component {
             <Route path="/404" component={NotFound} />
             <Route path="/cadastro-inicial" component={CadastroInicial} />
             <Route path="/cadastro" component={Cadastro} />
-            <Route path="/home" component={Home} />
+            <Route path="/home/meus-pacientes" component={Home} />
+            <Route path="/home/vincular-pacientes" component={Home} />
             <Route path="/email" component={Email} />
             <Route path="/recuperarSenha/:url" component={RecuperarSenha} />
             <Route path="/esquecer" component={EsquecerSenha} />

@@ -60,8 +60,6 @@ export default class RecuperarSenha extends React.Component{
     }
 
     onClickLinkDefinirSenha(){
-        console.log(this.state.email)
-        console.log(this.state.senha)
         if(this.state.senha !== this.state.confirmar){
             console.log("Não coincidem")
         }else{

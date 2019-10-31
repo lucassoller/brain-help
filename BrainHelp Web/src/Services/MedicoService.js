@@ -1,11 +1,16 @@
 import axios from 'axios'
 import CONFIG from '../config'
-export default class EmailService {
-    static redefinirSenha(url) {
-        return axios.get(`${CONFIG.API_URL_BASE}/public/email/redefinir/medico/${url}`, {})
-    }
+import LoginService from './LoginService'
 
-    static recuperarSenha(email) {
-        return axios.get(`${CONFIG.API_URL_BASE}/public/email/recuperar/medico/${email}`, {})
+export default class MedicoService {
+    static vincularPaciente(email){
+        console.log(LoginService.getLoggedUser())
+        return axios.put(`${CONFIG.API_URL_BASE}/medico/vincular/${email}`,
+        {
+            headers: {
+                authorization:  LoginService.getLoggedUser(),
+                'Content-Type': 'application/json',
+            }
+        })
     }
 }

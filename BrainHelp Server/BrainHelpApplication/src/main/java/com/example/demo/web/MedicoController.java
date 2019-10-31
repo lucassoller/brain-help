@@ -6,6 +6,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,9 +39,9 @@ public class MedicoController {
 		return buscarMedicoPorEmail.buscar(email);
 	}
 	
-	@PostMapping("/vincular")
-	public void vincularDiagnosticado(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestParam String emailDiagnosticado){
-		vincularDiagnosticado.vincular(userPrincipal.getEmail(), emailDiagnosticado);
+	@PutMapping("/vincular/{EMAIL}")
+	public void vincularDiagnosticado(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("EMAIL") String email){
+		vincularDiagnosticado.vincular(userPrincipal.getEmail(), email);
 	}
 	
 	@GetMapping("/teste")

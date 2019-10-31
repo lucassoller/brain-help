@@ -24,7 +24,8 @@ export default class Paciente extends React.Component{
         this.setState({
             nome: this.props.nome
         })
-        if(this.props.tipoPaciente === "meu"){
+        
+        if(this.props.tipoPaciente === "meus-pacientes"){
             DiagnosticadoService.buscarMeusPacientesPorNome(this.props.nome)
             .then((result => {
                 this.setState({
