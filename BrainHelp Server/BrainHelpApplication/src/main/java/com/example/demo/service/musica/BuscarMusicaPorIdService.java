@@ -14,10 +14,10 @@ public class BuscarMusicaPorIdService {
 
 	public Musica buscar(Integer codMusica) {
 		if ((Objects.isNull(codMusica))) {
-			throw new IllegalArgumentException("O cÛdigo da m˙sica n„o pode estar em branco");
+			throw new IllegalArgumentException("O c√≥digo da m√∫sica n√£o pode estar em branco");
 		}
 		
 		return musicaRepository.findById(codMusica)
-				.orElseThrow(() -> new IllegalArgumentException("Nenhuma m˙sica foi encontrada"));
+				.orElseThrow(() -> new IllegalArgumentException("Nenhuma m√∫sica foi encontrada"));
 	}
 }

@@ -14,7 +14,7 @@ public class BuscarAtividadePorIdService {
 
 	public Atividade buscar(Integer codAtividade) {
 		if ((Objects.isNull(codAtividade))) {
-			throw new IllegalArgumentException("O cÛdigo da atividade n„o pode estar em branco");
+			throw new IllegalArgumentException("O c√≥digo da atividade n√£o pode estar em branco");
 		}
 		
 		return atividadeRepository.findById(codAtividade)

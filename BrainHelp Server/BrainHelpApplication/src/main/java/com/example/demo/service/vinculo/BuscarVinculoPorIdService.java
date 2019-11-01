@@ -14,10 +14,10 @@ public class BuscarVinculoPorIdService {
 
 	public Vinculo buscar(Integer codTarefa) {
 		if ((Objects.isNull(codTarefa))) {
-			throw new IllegalArgumentException("O cÛdigo do vÌnculo n„o pode estar em branco");
+			throw new IllegalArgumentException("O c√≥digo do v√≠nculo n√£o pode estar em branco");
 		}
 		
 		return vinculoRepository.findById(codTarefa)
-				.orElseThrow(() -> new IllegalArgumentException("Nenhum vÌnculo foi encontrado"));
+				.orElseThrow(() -> new IllegalArgumentException("Nenhum v√≠nculo foi encontrado"));
 	}
 }

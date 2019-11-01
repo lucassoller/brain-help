@@ -21,15 +21,15 @@ public class CadastrarTarefaService {
 	
 	public void salvar(Diagnosticado diagnosticado, Tarefa tarefa) {
 		if (Objects.isNull(tarefa.getTarefa()) || tarefa.getTarefa().isEmpty()) {
-			throw new IllegalArgumentException("A tarefa n„o pode estar em branco");
+			throw new IllegalArgumentException("A tarefa n√£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(tarefa.getDescricao()) || tarefa.getDescricao().isEmpty()) {
-			throw new IllegalArgumentException("A descriÁ„o da tarefa n„o pode estar em branco");
+			throw new IllegalArgumentException("A descri√ß√£o da tarefa n√£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(tarefa.getDataRealizacao())) {
-			throw new IllegalArgumentException("A data da realizaÁ„o da tarefa n„o pode estar em branco");
+			throw new IllegalArgumentException("A data da realiza√ß√£o da tarefa n√£o pode estar em branco");
 		}
 				
 		tarefa.setStatusTarefa(StatusTarefa.ABERTA);

@@ -21,11 +21,11 @@ public class CadastrarLembrancaService {
 
 	public void salvar(Lembranca lembranca) {
 		if (Objects.isNull(lembranca.getTitulo()) || lembranca.getTitulo().isEmpty()) {
-			throw new IllegalArgumentException("O tÌtulo da lembranÁa n„o pode estar em branco");
+			throw new IllegalArgumentException("O t√≠tulo da lembran√ßa n√£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(lembranca.getLembranca()) || lembranca.getLembranca().isEmpty()) {
-			throw new IllegalArgumentException("A lembranÁa n„o pode estar em branco");
+			throw new IllegalArgumentException("A lembran√ßa n√£o pode estar em branco");
 		}
 		
 		lembrancaRepository.save(lembranca);

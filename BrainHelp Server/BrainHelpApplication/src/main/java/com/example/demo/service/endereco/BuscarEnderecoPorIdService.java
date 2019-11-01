@@ -14,10 +14,10 @@ public class BuscarEnderecoPorIdService {
 
 	public Endereco buscar(Integer codEndereco) {
 		if ((Objects.isNull(codEndereco))) {
-			throw new IllegalArgumentException("O cÛdigo do endereÁo n„o pode estar em branco");
+			throw new IllegalArgumentException("O c√≥digo do endere√ßo n√£o pode estar em branco");
 		}
 		
 		return enderecoRepository.findById(codEndereco)
-				.orElseThrow(() -> new IllegalArgumentException("Nenhum endereÁo foi encontrado"));
+				.orElseThrow(() -> new IllegalArgumentException("Nenhum endere√ßo foi encontrado"));
 	}
 }

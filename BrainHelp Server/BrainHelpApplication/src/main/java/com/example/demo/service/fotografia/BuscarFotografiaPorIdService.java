@@ -14,7 +14,7 @@ public class BuscarFotografiaPorIdService {
 
 	public Fotografia buscar(Integer codFotografia) {
 		if ((Objects.isNull(codFotografia))) {
-			throw new IllegalArgumentException("O cÛdigo da fotografia n„o pode estar em branco");
+			throw new IllegalArgumentException("O c√≥digo da fotografia n√£o pode estar em branco");
 		}
 		
 		return fotografiaRepository.findById(codFotografia)

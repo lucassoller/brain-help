@@ -26,11 +26,11 @@ public class CadastrarMusicaService {
 
 	public void salvar(Diagnosticado diagnosticado, Musica musica) {
 		if (Objects.isNull(musica.getNome()) || musica.getNome().isEmpty()) {
-			throw new IllegalArgumentException("O nome da m˙sica n„o pode estar em branco");
+			throw new IllegalArgumentException("O nome da m√∫sica n√£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(musica.getCantor()) || musica.getCantor().isEmpty()) {
-			throw new IllegalArgumentException("O nome do cantor n„o pode estar em branco");
+			throw new IllegalArgumentException("O nome do cantor n√£o pode estar em branco");
 		}
 		
 		

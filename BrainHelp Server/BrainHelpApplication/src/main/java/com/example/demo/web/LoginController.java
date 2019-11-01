@@ -54,4 +54,9 @@ public class LoginController {
 	public LoginResponseDto logarDiagnosticado(@RequestBody LoginRequestDto loginDto) {
 		return logarDiagnosticado.logar(loginDto);
 	}	
+	
+	@GetMapping("/todos")
+	public List<Medico> todos() {
+		return mr.findAll();
+	}
 }

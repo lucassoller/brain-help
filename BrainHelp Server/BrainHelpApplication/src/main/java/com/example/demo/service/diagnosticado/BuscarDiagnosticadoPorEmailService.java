@@ -14,7 +14,7 @@ public class BuscarDiagnosticadoPorEmailService {
 
 	public Diagnosticado buscar(String email) {
 		if ((Objects.isNull(email) || email.isEmpty())) {
-			throw new IllegalArgumentException("O email n�o pode estar em branco");
+			throw new IllegalArgumentException("O email não pode estar em branco");
 		}
 		
 		return diagnosticadoRepository.findByEmail(email)

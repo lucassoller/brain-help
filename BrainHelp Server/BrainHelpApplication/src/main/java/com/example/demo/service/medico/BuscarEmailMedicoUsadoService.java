@@ -14,12 +14,12 @@ public class BuscarEmailMedicoUsadoService {
 	
 	public void buscar(String email) {
 		if ((Objects.isNull(email) || email.isEmpty())) {
-			throw new IllegalArgumentException("O email n„o pode estar em branco");
+			throw new IllegalArgumentException("O email n√£o pode estar em branco");
 		}
 		
 		Optional<Medico> medico = medicoRepository.findByEmail(email);
 		if(medico.isPresent()) {
-			throw new IllegalArgumentException("O email j· est· em uso");
+			throw new IllegalArgumentException("O email j√° est√° em uso");
 		}
 	}
 }

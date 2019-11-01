@@ -30,27 +30,27 @@ public class CadastrarVinculoService {
 
 	public void salvar(Diagnosticado diagnosticado, Vinculo vinculo) {
 		if (Objects.isNull(vinculo.getNome()) || vinculo.getNome().isEmpty()) {
-			throw new IllegalArgumentException("O nome n„o pode estar em branco");
+			throw new IllegalArgumentException("O nome n√£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(vinculo.getSobrenome()) || vinculo.getSobrenome().isEmpty()) {
-			throw new IllegalArgumentException("O sobrenome n„o pode estar em branco");
+			throw new IllegalArgumentException("O sobrenome n√£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(vinculo.getTelefone()) || vinculo.getTelefone().isEmpty()) {
-			throw new IllegalArgumentException("O telefone n„o pode estar em branco");
+			throw new IllegalArgumentException("O telefone n√£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(vinculo.getVinculo()) || vinculo.getVinculo().isEmpty()) {
-			throw new IllegalArgumentException("O vÌnculo n„o pode estar em branco");
+			throw new IllegalArgumentException("O v√≠nculo n√£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(vinculo.getSexo())) {
-			throw new IllegalArgumentException("O sexo n„o pode estar em branco");
+			throw new IllegalArgumentException("O sexo n√£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(vinculo.getIdade())) {
-			throw new IllegalArgumentException("A idade n„o pode estar em branco");
+			throw new IllegalArgumentException("A idade n√£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(vinculo.getIdade() < 0 || vinculo.getIdade() > 110)) {

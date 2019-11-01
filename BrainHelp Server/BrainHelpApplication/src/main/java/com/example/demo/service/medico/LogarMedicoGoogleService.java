@@ -20,7 +20,7 @@ public class LogarMedicoGoogleService {
 	public LoginResponseDto logar(LoginRequestDto loginDto){
 		
 		if(Objects.isNull(loginDto.getIdentificacao()) || loginDto.getIdentificacao().isEmpty()){
-			throw new IllegalArgumentException("O nome de usu�rio n�o pode estar em branco");
+			throw new IllegalArgumentException("O nome de usuário não pode estar em branco");
 		}
 		
 		Medico medico = buscarMedico.buscar(loginDto.getIdentificacao(), true);
