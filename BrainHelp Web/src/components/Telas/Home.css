@@ -160,7 +160,7 @@
     transition: 0.3s;
 }
 
-.sidenav div:hover {
+.nav-item:hover {
     color: #f1f1f1;
     cursor: pointer;
     text-decoration: underline;
@@ -206,7 +206,7 @@
     cursor: pointer;
 }
 
-.sidenav2 a {
+.sidenav2 div{
     padding: 8px 8px 8px 32px;
     text-decoration: none;
     font-size: 25px;
@@ -215,16 +215,11 @@
     transition: 0.3s;
 }
 
-.sidenav2 a:hover {
-    color: #f1f1f1;
-}
-
 .sidenav2 .closebtn{
     position: absolute;
     top: 0;
     left: 0;
     font-size: 36px;
-    margin-left: 20px;
 }
 
 @media screen and (max-height: 450px) {

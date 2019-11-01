@@ -2,10 +2,13 @@ import React from 'react'
 import './Home.css'
 import Paciente from './Paciente'
 import {Redirect} from 'react-router-dom'
+import $ from 'jquery'
+import LoginService from '../../Services/LoginService'
 
 const SELECTED_CONTENTS = {
     MEUSPACIENTES: 'MEUSPACIENTES',
-    VINCULARPACIENTES: 'VINCULARPACINTES'
+    VINCULARPACIENTES: 'VINCULARPACINTES',
+    LOGOUT: 'LOGOUT'
 }
 export default class Home extends React.Component{
 
@@ -23,7 +26,7 @@ export default class Home extends React.Component{
         this.open = this.open.bind(this)
         this.onClickMeusPacientes = this.onClickMeusPacientes.bind(this)
         this.onClickVincularPacientes = this.onClickVincularPacientes.bind(this)
-        this.baseState = this.state 
+        this.onClickLogout = this.onClickLogout.bind(this)
     }
 
     onClickMeusPacientes(){
@@ -32,6 +35,10 @@ export default class Home extends React.Component{
 
     onClickVincularPacientes(){
         this.setSelectedContent(SELECTED_CONTENTS.VINCULARPACIENTES)
+    }
+
+    onClickLogout(){
+        this.setSelectedContent(SELECTED_CONTENTS.LOGOUT)
     }
 
     setSelectedContent(content) {
@@ -74,13 +81,11 @@ export default class Home extends React.Component{
     }
 
     renderPacientes(){
-        if(this.state.nome !== ''){
-            // var v = $(".home-form").val();
-            return <Paciente 
-                    tipoPaciente = {this.state.tipoPaciente}
-                    nome = {this.state.nome}           
-                />
-        }
+        var nome = $(".home-form").val();
+        return <Paciente 
+                tipoPaciente = {this.state.tipoPaciente}
+                nome = {nome}           
+            />
     }
 
     renderTipo(){
@@ -92,14 +97,19 @@ export default class Home extends React.Component{
     }
 
     render(){
-        if( this.state.selectedContent === SELECTED_CONTENTS.MEUSPACIENTES){
+        if(this.state.selectedContent === SELECTED_CONTENTS.MEUSPACIENTES){
             window.location.reload(false);
             return <Redirect to='/home/meus-pacientes' />
         }
 
-        if( this.state.selectedContent === SELECTED_CONTENTS.VINCULARPACIENTES){
+        if(this.state.selectedContent === SELECTED_CONTENTS.VINCULARPACIENTES){
             window.location.reload(false);
             return <Redirect to='/home/vincular-pacientes' />
+        }
+        
+        if(this.state.selectedContent === SELECTED_CONTENTS.LOGOUT){
+            LoginService.logout()
+            return <Redirect to='/' />
         }
         return (<div className="home-container">
                 <div className="home-navbar">
@@ -137,17 +147,16 @@ export default class Home extends React.Component{
                 </div>
                 <div id="mySidenav" className="sidenav">
                     <div className="closebtn" onClick={this.closeNav}>x</div>
-                    <div onClick={this.onClickMeusPacientes}>Página Inicial</div>
-                    <div onClick={this.onClickVincularPacientes}>Vincular Pacientes</div>
-                    <div>Relatórios Gerados</div>
+                    <div className="nav-item" onClick={this.onClickMeusPacientes}>Página Inicial</div>
+                    <div className="nav-item" onClick={this.onClickVincularPacientes}>Vincular Pacientes</div>
+                    <div className="nav-item">Relatórios Gerados</div>
                 </div>
 
                 <div id="mySidenav2" className="sidenav2">
                     <div className="closebtn" onClick={this.close}>x</div>
-                    <a href="https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav">About</a>
-                    <a href="https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav">Services</a>
-                    <a href="https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav">Clients</a>
-                    <a href="https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav">Contact</a>
+                    <div className="nav-item" onClick={this.onClickMeusPacientes}>Meu Perfil</div>
+                    <div className="nav-item" onClick={this.onClickVincularPacientes}>Alterar Senha</div>
+                    <div className="nav-item" onClick={this.onClickLogout}>Logout</div>
                 </div>
             </div>
         )

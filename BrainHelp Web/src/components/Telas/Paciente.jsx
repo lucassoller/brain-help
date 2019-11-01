@@ -6,7 +6,8 @@ export default class Paciente extends React.Component{
         super()
         this.state = {
             pacientes: [],
-            nome: ''
+            nome: '',
+            tipoPaciente: ''
         }
     }
 
@@ -14,7 +15,7 @@ export default class Paciente extends React.Component{
         this.loadPacientes()
     }
 
-    componentWillUpdate(){
+    componentDidUpdate(){
         if(this.props.nome !== this.state.nome){
             this.loadPacientes()
         }
@@ -24,29 +25,48 @@ export default class Paciente extends React.Component{
         this.setState({
             nome: this.props.nome
         })
-        
         if(this.props.tipoPaciente === "meus-pacientes"){
-            DiagnosticadoService.buscarMeusPacientesPorNome(this.props.nome)
-            .then((result => {
+            if(this.props.nome === ''){
+                DiagnosticadoService.buscarMeusPacientes()
+                .then((result => {
+                    this.setState({
+                        pacientes: result.data
+                    })
+                })).catch((err =>{
+                    this.setState({
+                        error: err.response.data
+                    })
+                }))
+            }else{
+                DiagnosticadoService.buscarMeusPacientesPorNome(this.props.nome)
+                .then((result => {
+                    this.setState({
+                        pacientes: result.data
+                    })
+                })).catch((err =>{
+                    this.setState({
+                        error: err.response.data
+                    })
+                }))
+            }            
+            
+        }else if(this.props.tipoPaciente === "vincular-pacientes"){
+            if(this.props.nome !== ''){
+                DiagnosticadoService.buscarOutrosPacientesPorNome(this.props.nome)
+                .then((result => {
+                    this.setState({
+                        pacientes: result.data
+                    })
+                })).catch((err =>{
+                    this.setState({
+                        error: err.response.data
+                    })
+                }))
+            }else{
                 this.setState({
-                    pacientes: result.data
+                    pacientes: []
                 })
-            })).catch((err =>{
-                this.setState({
-                    error: err.response.data
-                })
-            }))
-        }else{
-            DiagnosticadoService.buscarOutrosPacientesPorNome(this.props.nome)
-            .then((result => {
-                this.setState({
-                    pacientes: result.data
-                })
-            })).catch((err =>{
-                this.setState({
-                    error: err.response.data
-                })
-            }))
+            }
         }       
     }
 
@@ -55,6 +75,7 @@ export default class Paciente extends React.Component{
                 return <div>
                     <PacienteCard
                         nome={paciente.nome}
+                        sobrenome={paciente.sobrenome}
                         email={paciente.email}
                         telefone={paciente.telefone}
                         estagio={paciente.estagioAlzheimer}

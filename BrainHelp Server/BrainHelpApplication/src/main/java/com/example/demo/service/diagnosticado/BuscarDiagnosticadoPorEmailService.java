@@ -14,10 +14,10 @@ public class BuscarDiagnosticadoPorEmailService {
 
 	public Diagnosticado buscar(String email) {
 		if ((Objects.isNull(email) || email.isEmpty())) {
-			throw new IllegalArgumentException("O email não pode estar em branco");
+			throw new IllegalArgumentException("O email nï¿½o pode estar em branco");
 		}
 		
 		return diagnosticadoRepository.findByEmail(email)
-				.orElseThrow(() -> new IllegalArgumentException("Nenhum diagnosticado foi encontrado"));
+				.orElseThrow(() -> new IllegalArgumentException("Nenhum diagnosticado foi encontrado" + email));
 	}
 }

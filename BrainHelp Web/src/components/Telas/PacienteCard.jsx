@@ -48,7 +48,7 @@ export default class PacienteCard extends React.Component{
         return(<div className="pacienteCard-container">
             <div className="pacienteCard-foto"></div>
             <div className="pacienteCard-info">
-                <div className="pacienteCard-nome">{this.props.nome}</div>
+                <div className="pacienteCard-nome">{this.props.nome+" "+this.props.sobrenome}</div>
                 <div className="pacienteCard-outro">Telefone: {this.props.telefone}</div>
                 <div className="pacienteCard-outro">Estágio: {this.renderEstagio()}</div>
             </div>

@@ -108,7 +108,7 @@ export default class Login extends React.Component {
         }
 
         if( this.state.selectedContent === SELECTED_CONTENTS.HOME){
-            return <Redirect to='/home' />
+            return <Redirect to='/home/meus-pacientes' />
         }
 
         if( this.state.selectedContent === SELECTED_CONTENTS.ESQUECERSENHA){
