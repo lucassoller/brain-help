@@ -13,4 +13,30 @@ export default class MedicoService {
             }
         })
     }
+
+    static editarPerfil(nome, sobrenome, telefone, endereco, especializacao) {
+        return axios.post(`${CONFIG.API_URL_BASE}/medico/editar/perfil`, {
+            nome,
+            sobrenome,  
+            telefone,
+            endereco,
+            especializacao,
+        },
+        {
+            headers: {
+                authorization:  LoginService.getLoggedUser(),
+                'Content-Type': 'application/json',
+            }
+        })
+    }
+
+    static obterMedicoLogado() {
+        return axios.post(`${CONFIG.API_URL_BASE}/medico/obter/logado`,
+        {
+            headers: {
+                authorization:  LoginService.getLoggedUser(),
+                'Content-Type': 'application/json',
+            }
+        })
+    }
 }

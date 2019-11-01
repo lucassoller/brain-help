@@ -8,7 +8,8 @@ import LoginService from '../../Services/LoginService'
 const SELECTED_CONTENTS = {
     MEUSPACIENTES: 'MEUSPACIENTES',
     VINCULARPACIENTES: 'VINCULARPACINTES',
-    LOGOUT: 'LOGOUT'
+    LOGOUT: 'LOGOUT',
+    MEUPERFIL: 'MEUPERFIL'
 }
 export default class Home extends React.Component{
 
@@ -27,6 +28,7 @@ export default class Home extends React.Component{
         this.onClickMeusPacientes = this.onClickMeusPacientes.bind(this)
         this.onClickVincularPacientes = this.onClickVincularPacientes.bind(this)
         this.onClickLogout = this.onClickLogout.bind(this)
+        this.onClickMeuPerfil = this.onClickMeuPerfil.bind(this)
     }
 
     onClickMeusPacientes(){
@@ -39,6 +41,10 @@ export default class Home extends React.Component{
 
     onClickLogout(){
         this.setSelectedContent(SELECTED_CONTENTS.LOGOUT)
+    }
+
+    onClickMeuPerfil(){
+        this.setSelectedContent(SELECTED_CONTENTS.MEUPERFIL)
     }
 
     setSelectedContent(content) {
@@ -111,6 +117,10 @@ export default class Home extends React.Component{
             LoginService.logout()
             return <Redirect to='/' />
         }
+
+        if(this.state.selectedContent === SELECTED_CONTENTS.MEUPERFIL){
+            return <Redirect to='/meu-perfil' />
+        }
         return (<div className="home-container">
                 <div className="home-navbar">
                     <div className="home-menu" onClick={this.openNav}></div>
@@ -154,7 +164,7 @@ export default class Home extends React.Component{
 
                 <div id="mySidenav2" className="sidenav2">
                     <div className="closebtn" onClick={this.close}>x</div>
-                    <div className="nav-item" onClick={this.onClickMeusPacientes}>Meu Perfil</div>
+                    <div className="nav-item" onClick={this.onClickMeuPerfil}>Meu Perfil</div>
                     <div className="nav-item" onClick={this.onClickVincularPacientes}>Alterar Senha</div>
                     <div className="nav-item" onClick={this.onClickLogout}>Logout</div>
                 </div>
