@@ -4,7 +4,6 @@ import LoginService from './LoginService'
 
 export default class MedicoService {
     static vincularPaciente(email){
-        console.log(LoginService.getLoggedUser())
         return axios.get(`${CONFIG.API_URL_BASE}/medico/vincular/${email}`,
         {
             headers: {
@@ -15,7 +14,7 @@ export default class MedicoService {
     }
 
     static editarPerfil(nome, sobrenome, telefone, endereco, especializacao) {
-        return axios.post(`${CONFIG.API_URL_BASE}/medico/editar/perfil`, {
+        return axios.put(`${CONFIG.API_URL_BASE}/medico/editar/perfil`, {
             nome,
             sobrenome,  
             telefone,
@@ -31,7 +30,20 @@ export default class MedicoService {
     }
 
     static obterMedicoLogado() {
-        return axios.post(`${CONFIG.API_URL_BASE}/medico/obter/logado`,
+        return axios.get(`${CONFIG.API_URL_BASE}/medico/buscar/${LoginService.getUserName()}`,
+        {
+            headers: {
+                authorization:  LoginService.getLoggedUser(),
+                'Content-Type': 'application/json',
+            }
+        })
+    }
+
+    static alterarSenha(email, senha) {
+        return axios.put(`${CONFIG.API_URL_BASE}/medico/editar/senha`, {           
+            email,
+            senha
+        },
         {
             headers: {
                 authorization:  LoginService.getLoggedUser(),

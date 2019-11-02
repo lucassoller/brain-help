@@ -4,12 +4,15 @@ import Paciente from './Paciente'
 import {Redirect} from 'react-router-dom'
 import $ from 'jquery'
 import LoginService from '../../Services/LoginService'
+import MeuPerfil from './MeuPerfil'
+import AlterarSenha from './AlterarSenha'
 
 const SELECTED_CONTENTS = {
     MEUSPACIENTES: 'MEUSPACIENTES',
     VINCULARPACIENTES: 'VINCULARPACINTES',
     LOGOUT: 'LOGOUT',
-    MEUPERFIL: 'MEUPERFIL'
+    MEUPERFIL: 'MEUPERFIL',
+    ALTERARSENHA: 'ALTERARSENHA'
 }
 export default class Home extends React.Component{
 
@@ -29,6 +32,7 @@ export default class Home extends React.Component{
         this.onClickVincularPacientes = this.onClickVincularPacientes.bind(this)
         this.onClickLogout = this.onClickLogout.bind(this)
         this.onClickMeuPerfil = this.onClickMeuPerfil.bind(this)
+        this.onClickAlterarSenha = this.onClickAlterarSenha.bind(this)
     }
 
     onClickMeusPacientes(){
@@ -45,6 +49,10 @@ export default class Home extends React.Component{
 
     onClickMeuPerfil(){
         this.setSelectedContent(SELECTED_CONTENTS.MEUPERFIL)
+    }
+
+    onClickAlterarSenha(){
+        this.setSelectedContent(SELECTED_CONTENTS.ALTERARSENHA)
     }
 
     setSelectedContent(content) {
@@ -64,19 +72,19 @@ export default class Home extends React.Component{
 
     closeNav(){
         document.getElementById("mySidenav").style.width = "0";
-      }
+    }
     
-      openNav(){
-          document.getElementById("mySidenav").style.width = "250px";
-      }
+    openNav(){
+        document.getElementById("mySidenav").style.width = "250px";
+    }
 
-      close(){
+    close(){
         document.getElementById("mySidenav2").style.width = "0";
-      }
+    }
     
-      open(){
+    open(){
         document.getElementById("mySidenav2").style.width = "250px";
-      }
+    }
 
     handdleChange(event) {  
         const target = event.target
@@ -96,9 +104,48 @@ export default class Home extends React.Component{
 
     renderTipo(){
         if(this.state.tipoPaciente === 'meus-pacientes'){
-            return 'Meus pacientes'
+            return 'Meus Pacientes'
         }else if(this.state.tipoPaciente === 'vincular-pacientes'){
-            return 'Vincular pacientes'
+            return 'Vincular Pacientes'
+        }else if(this.state.tipoPaciente === 'meu-perfil'){
+            return 'Meu Perfil'
+        }else if(this.state.tipoPaciente === 'alterar-senha'){
+            return 'Alterar Senha'
+        }
+    }
+
+    renderConteudo(){
+        if(this.state.tipoPaciente === 'meus-pacientes' || this.state.tipoPaciente === 'vincular-pacientes'){
+            return (<div className="home-content">
+                    <div className="home-content-side"></div>
+                    <div className="home-users">
+                        <div className="home-search">
+                            <input 
+                                type="text"
+                                className="home-form"
+                                placeholder="Buscar pacientes"
+                                name="nome"
+                                value={this.state.nome}
+                                onChange={this.handdleChange}
+                            />
+                            <div className="home-search-icon"></div>
+                        </div>
+                        <div className="home-pacientes">
+                            {this.renderPacientes()}
+                        </div>
+                    </div>
+                    <div className="home-content-side home-abc"></div>
+                </div>)
+        }else if(this.state.tipoPaciente === 'meu-perfil'){
+            return <MeuPerfil />
+        }else if(this.state.tipoPaciente === 'alterar-senha'){
+            return <AlterarSenha />
+        }
+    }
+
+    renderBotaoAlterarSenha(){
+        if(LoginService.getLoginType() === 'false'){
+            return (<div className="nav-item" onClick={this.onClickAlterarSenha}>Alterar Senha</div>)
         }
     }
 
@@ -119,7 +166,13 @@ export default class Home extends React.Component{
         }
 
         if(this.state.selectedContent === SELECTED_CONTENTS.MEUPERFIL){
-            return <Redirect to='/meu-perfil' />
+            window.location.reload(false);
+            return <Redirect to='/home/meu-perfil' />
+        }
+
+        if(this.state.selectedContent === SELECTED_CONTENTS.ALTERARSENHA){
+            window.location.reload(false);
+            return <Redirect to='/home/alterar-senha' />
         }
         return (<div className="home-container">
                 <div className="home-navbar">
@@ -127,34 +180,12 @@ export default class Home extends React.Component{
                     <div className="home-center">
                         <div className="home-logo"></div>
                         <div className="home-titulo">
-                            Brain Help Web
+                            Brain Help | {this.renderTipo()}
                         </div>
                     </div>
                     <div className="home-perfil" onClick={this.open}></div>
                 </div>
-                <div className="home-content">
-                    <div className="home-content-side"></div>
-                    <div className="home-users">
-                        <div className="home-tipo">
-                            {this.renderTipo()}
-                        </div>
-                        <div className="home-search">
-                            <input 
-                                type="text"
-                                className="home-form"
-                                placeholder="Buscar pacientes"
-                                name="nome"
-                                value={this.state.nome}
-                                onChange={this.handdleChange}
-                            />
-                            <div className="home-search-icon"></div>
-                        </div>
-                        <div className="home-pacientes">
-                            {this.renderPacientes()}
-                        </div>
-                    </div>
-                    <div className="home-content-side home-abc"></div>
-                </div>
+                {this.renderConteudo()}
                 <div id="mySidenav" className="sidenav">
                     <div className="closebtn" onClick={this.closeNav}>x</div>
                     <div className="nav-item" onClick={this.onClickMeusPacientes}>Página Inicial</div>
@@ -165,7 +196,7 @@ export default class Home extends React.Component{
                 <div id="mySidenav2" className="sidenav2">
                     <div className="closebtn" onClick={this.close}>x</div>
                     <div className="nav-item" onClick={this.onClickMeuPerfil}>Meu Perfil</div>
-                    <div className="nav-item" onClick={this.onClickVincularPacientes}>Alterar Senha</div>
+                    {this.renderBotaoAlterarSenha()}
                     <div className="nav-item" onClick={this.onClickLogout}>Logout</div>
                 </div>
             </div>

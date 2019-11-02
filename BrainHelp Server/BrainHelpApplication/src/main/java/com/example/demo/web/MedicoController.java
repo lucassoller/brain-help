@@ -57,7 +57,7 @@ public class MedicoController {
 		return medicoRepository.findAll();
 	}
 	
-	@PutMapping("/editar")
+	@PutMapping("/editar/perfil")
 	public void cadastrarMedico(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Medico medico) {
 		editarMedico.editar(userPrincipal.getEmail(), medico);
 	}

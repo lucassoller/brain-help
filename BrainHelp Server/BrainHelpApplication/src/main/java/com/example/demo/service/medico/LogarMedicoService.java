@@ -40,6 +40,6 @@ public class LogarMedicoService {
 		}
 
 		String token = authenticationService.authenticate(medico.getEmail(), medico.getSenha());
-		return new LoginResponseDto(medico.getEmail(), token);
+		return new LoginResponseDto(medico.getEmail(), token, medico.isGoogle());
 	}
 }

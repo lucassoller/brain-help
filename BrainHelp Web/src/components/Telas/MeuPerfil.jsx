@@ -34,7 +34,7 @@ export default class InformacoesPessoais extends React.Component{
     }
 
     componentDidMount(){   
-        // this.loadMedicoLogado()   
+        this.loadMedicoLogado()   
         this.setColor()
     }
 
@@ -114,16 +114,7 @@ export default class InformacoesPessoais extends React.Component{
         if( this.state.selectedContent === SELECTED_CONTENTS.LOGIN){
             return <Redirect to='/login' />
         }
-        return(<div className="perfil-container">
-                <div className="perfil-navbar">
-                    <div className="perfil-logo"></div>
-                    <div className="perfil-center">
-                        <div className="perfil-titulo">
-                            Informações Pessoais
-                        </div>
-                    </div>
-                    <div></div>
-                </div>
+        return(
                 <div className="perfil-content">
                     <div className="perfil-form">
                         <div className="perfil-foto">
@@ -267,7 +258,6 @@ export default class InformacoesPessoais extends React.Component{
                             </div>                          
                         </div>                       
                     </div> 
-                </div>
         </div>)
     }
 }

@@ -22,6 +22,8 @@ class App extends Component {
             <Route path="/meu-perfil" component={MeuPerfil} />
             <Route path="/home/meus-pacientes" component={Home} />
             <Route path="/home/vincular-pacientes" component={Home} />
+            <Route path="/home/meu-perfil" component={Home} />
+            <Route path="/home/alterar-senha" component={Home} />
             <Route path="/email" component={Email} />
             <Route path="/recuperarSenha/:url" component={RecuperarSenha} />
             <Route path="/esquecer" component={EsquecerSenha} />

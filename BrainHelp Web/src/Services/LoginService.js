@@ -3,12 +3,13 @@ import axios from 'axios'
 
 const LOGGED_USER = 'LOGGED_USER'
 const USER_EMAIL = 'USER_EMAIL'
+const LOGIN_TYPE = 'LOGIN_TYPE'
 
 export default class LoginService {
-
-	static setLoggedUser(token, email) {
+	static setLoggedUser(token, email, google) {
 		localStorage.setItem(LOGGED_USER, token)
 		localStorage.setItem(USER_EMAIL, email)
+		localStorage.setItem(LOGIN_TYPE, google)
 	}
 
 	static login(identificacao, senha) {
@@ -16,8 +17,7 @@ export default class LoginService {
 			identificacao,
 			senha
 		}).then((result) => {
-			console.info(result);
-			this.setLoggedUser(result.data.token, result.data.email)
+			this.setLoggedUser(result.data.token, result.data.email, result.data.google)
 			return result
 		})
 	}
@@ -26,7 +26,6 @@ export default class LoginService {
 		return axios.post(`${CONFIG.API_URL_BASE}/public/login/medico/google`, {
 			identificacao
 		}).then((result) => {
-			console.info(result);
 			this.setLoggedUser(result.data.token, result.data.email)
 			return result
 		})
@@ -40,8 +39,13 @@ export default class LoginService {
 		return localStorage.getItem(USER_EMAIL)
 	}
 
+	static getLoginType(){
+		return localStorage.getItem(LOGIN_TYPE)
+	}
+
 	static logout() {
 		localStorage.removeItem(LOGGED_USER);
 		localStorage.removeItem(USER_EMAIL);
+		localStorage.removeItem(LOGIN_TYPE);
 	}
 }
