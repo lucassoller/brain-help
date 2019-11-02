@@ -5,28 +5,29 @@ export default class Paciente extends React.Component{
     constructor(){
         super()
         this.state = {
-            pacientes: [{nome:"Lucas", sobrenome: "Soller", estagio:"Inicial", telefone: "93214544", email:"lucassoller2000@gmail.com"}, {nome:"Carlos", sobrenome: "Silva", estagio:"Intermediario", telefone: "93214544", email:"lucassoller2000@gmail.com"}, {nome:"Paula", sobrenome: "Dias", estagio:"Avançado", telefone: "93214544", email:"lucassoller2000@gmail.com"} ],
+            pacientes: [],
+            // pacientes: [{nome:"Lucas", sobrenome: "Soller", estagio:"Inicial", telefone: "93214544", email:"lucassoller2000@gmail.com"}, {nome:"Carlos", sobrenome: "Silva", estagio:"Intermediario", telefone: "93214544", email:"lucassoller2000@gmail.com"}, {nome:"Paula", sobrenome: "Dias", estagio:"Avançado", telefone: "93214544", email:"lucassoller2000@gmail.com"} ],
             nome: '',
             tipoPaciente: ''
         }
     }
 
-    // componentDidMount(){
-    //     this.loadPacientes()
-    // }
+    componentDidMount(){
+        this.loadPacientes()
+    }
 
-    // componentDidUpdate(){
-    //     if(this.props.nome !== this.state.nome){
-    //         this.loadPacientes()
-    //     }
-    // }
+    componentDidUpdate(){
+        if(this.props.nome !== this.state.nome){
+            this.loadPacientes()
+        }
+    }
 
     loadPacientes(){
         this.setState({
             nome: this.props.nome
         })
         if(this.props.tipoPaciente === "meus-pacientes"){
-            if(this.props.nome === ''){
+            if(this.props.nome === '' || this.props.nome === undefined){
                 DiagnosticadoService.buscarMeusPacientes()
                 .then((result => {
                     this.setState({

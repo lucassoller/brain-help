@@ -6,6 +6,7 @@ import $ from 'jquery'
 import LoginService from '../../Services/LoginService'
 import MeuPerfil from './MeuPerfil'
 import AlterarSenha from './AlterarSenha'
+import HistoricoPaciente from './HistoricoPaciente'
 
 const SELECTED_CONTENTS = {
     MEUSPACIENTES: 'MEUSPACIENTES',
@@ -111,6 +112,8 @@ export default class Home extends React.Component{
             return 'Meu Perfil'
         }else if(this.state.tipoPaciente === 'alterar-senha'){
             return 'Alterar Senha'
+        }else{
+            return this.props.match.params.email;
         }
     }
 
@@ -140,6 +143,8 @@ export default class Home extends React.Component{
             return <MeuPerfil />
         }else if(this.state.tipoPaciente === 'alterar-senha'){
             return <AlterarSenha />
+        }else{
+            return <HistoricoPaciente />
         }
     }
 

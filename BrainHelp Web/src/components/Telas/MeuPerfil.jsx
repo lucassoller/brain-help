@@ -12,7 +12,7 @@ const SELECTED_CONTENTS = {
     HOME: 'HOME'
 }
 
-export default class InformacoesPessoais extends React.Component{
+export default class MeuPerfil extends React.Component{
     constructor(){
         super()
         this.state = {

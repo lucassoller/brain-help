@@ -26,6 +26,6 @@ public class BuscarDiagnosticadosPorNomeOuEmailService {
 			return diagnosticadoRepository.findByMedico(email, nome);
 		}
 		
-		return diagnosticadoRepository.findByMedicoNotLike(email, nome);
+		return diagnosticadoRepository.findByMedicoNotLike(nome);
 	}
 }

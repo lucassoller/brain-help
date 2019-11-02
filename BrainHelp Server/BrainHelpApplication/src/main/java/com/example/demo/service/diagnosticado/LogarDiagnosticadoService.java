@@ -37,6 +37,6 @@ public class LogarDiagnosticadoService {
 		}
 
 		String token = authenticationService.authenticate(loginDto.getIdentificacao(), diagnosticado.getSenha());
-		return new LoginResponseDto(diagnosticado.getEmail(), token);
+		return new LoginResponseDto(diagnosticado.getEmail(), token, true);
 	}
 }
