@@ -31,5 +31,15 @@ export default class DiagnosticadoService {
                 'Content-Type': 'application/json',
             }
         })
+    }
+    
+    static buscarPacientePorEmail(email) {
+		return axios.get(`${CONFIG.API_URL_BASE}/diagnosticado/buscar/${email}`,
+        {
+            headers: {
+                authorization:  LoginService.getLoggedUser(),
+                'Content-Type': 'application/json',
+            }
+        })
 	}
 }

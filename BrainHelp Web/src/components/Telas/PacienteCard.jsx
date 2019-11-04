@@ -21,7 +21,9 @@ export default class PacienteCard extends React.Component{
     }
 
     onClickCard(){
-        this.setSelectedContent(SELECTED_CONTENTS.PACIENTE)
+        if(this.props.tipoPaciente === 'meus-pacientes'){
+            this.setSelectedContent(SELECTED_CONTENTS.PACIENTE)
+        }
     }
 
     setSelectedContent(content) {

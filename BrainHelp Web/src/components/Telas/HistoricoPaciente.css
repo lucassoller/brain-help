@@ -10,7 +10,6 @@
 .historico-content{
     padding: 20px;
     width: 80%;
-    height: 65%;
     display: flex;
     align-items: center;
 }
@@ -42,32 +41,6 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-}
-
-.historico-relatorios{
-    width: 100%;
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    padding: 0 20px 20px 20px;
-}
-
-.historico-atividades, .historico-conversas{
-    box-shadow: 0px 0px 3px 0.1px rgb(196, 194, 194);
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    background: white;
-    padding: 10px 0 10px 0;
-    justify-content: space-between;
-}
-
-.historico-atividades{
-    margin-right: 20px;
-}
-
-.historico-conversas{
-    margin-left: 20px;
 }
 
 .historico-form-fields{
@@ -122,15 +95,37 @@ input::-webkit-input-placeholder {
     width: 48%;
 }
 
+.historico-relatorios{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.historico-atividades, .historico-conversas{
+    box-shadow: 0px 0px 3px 0.1px rgb(196, 194, 194);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    padding: 10px 20px 20px 20px;
+    justify-content: space-between;
+}
+
+.historico-atividades{
+    margin-right: 20px;
+}
+
+.historico-conversas{
+    margin-left: 20px;
+}
+
 .historico-atividade-titulo{
     width: 100%;
     font-size: 18pt;
-    margin-left: 10px;
 }
 
 .historico-atividade-button{
-    padding-top: 12px;
-    padding-bottom: 12px;
+    margin-top: 12px;
     width: 180px;
     background: #38B6FF;
     display: flex;
@@ -138,14 +133,14 @@ input::-webkit-input-placeholder {
     justify-content: center;
     font-size: 13pt;
     cursor: pointer;
-    margin-right: 10px;
+    align-items: center;
+    padding: 12px 0 12px 0;
 }
 
 .historico-atividade-combo{
     display: flex;
     align-items: center;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin: 20px 0 20px 0;
 }
 
 .historico-atividade-data{

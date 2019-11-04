@@ -1,9 +1,11 @@
 import React from 'react'
 import './HistoricoPaciente.css'
+import DiagnosticadoService from '../../Services/DiagnosticadoService'
 export default class HistoricoPaciente extends React.Component{
     constructor(){
         super()
         this.state = {
+            paciente: {},
             nome: 'Lucas',
             email: 'email',
             idade: 19,
@@ -12,6 +14,23 @@ export default class HistoricoPaciente extends React.Component{
             estagio: 'Inicial',
             dataDiagnostico: '15/09/2000'
         }
+    }
+
+    componentWillMount(){
+        this.loadPaciente()
+    }
+
+    loadPaciente(){
+        DiagnosticadoService.buscarPacientePorEmail(this.props.match.params.email)
+        .then((result ) => {
+            this.setState({
+                paciente: result.data
+            })
+        }).catch((err) => {
+            this.setState({
+                error: err.response.data.message
+            })
+        })
     }
 
     render(){
