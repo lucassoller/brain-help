@@ -6,25 +6,31 @@ export default class HistoricoPaciente extends React.Component{
         super()
         this.state = {
             paciente: {},
-            nome: 'Lucas',
-            email: 'email',
-            idade: 19,
-            telefone: '34749413',
-            endereco: 'rua vitalino batista de andrade, 43',
-            estagio: 'Inicial',
+            endereco: {},
+            estagio: '',
             dataDiagnostico: '15/09/2000'
         }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.loadPaciente()
     }
 
     loadPaciente(){
-        DiagnosticadoService.buscarPacientePorEmail(this.props.match.params.email)
+        DiagnosticadoService.buscarPacientePorEmail(this.props.email)
         .then((result ) => {
+            var estagio = "";
+            if(result.data.estagioAlzheimer === "INICIAL"){
+                estagio = "Inicial";
+            }else if(result.data.estagioAlzheimer === "INTERMEDIARIO"){
+                estagio = "Intermediário";
+            }else{
+                estagio = "Avançado";
+            }
             this.setState({
-                paciente: result.data
+                paciente: result.data,
+                endereco: result.data.endereco,
+                estagio: estagio
             })
         }).catch((err) => {
             this.setState({
@@ -46,7 +52,7 @@ export default class HistoricoPaciente extends React.Component{
                             <input 
                                 type="text"
                                 name="nome"
-                                value={this.state.nome}
+                                value={this.state.paciente.nome}
                                 disabled={true}
                                 className="historico-input historico-half"
                             />
@@ -56,7 +62,7 @@ export default class HistoricoPaciente extends React.Component{
                             <input 
                                 type="text"
                                 name="email"
-                                value={this.state.email}
+                                value={this.state.paciente.email}
                                 className="historico-input historico-half"
                                 disabled={true}
                             />
@@ -69,7 +75,7 @@ export default class HistoricoPaciente extends React.Component{
                             <input 
                                 type="text"
                                 name="telefone"
-                                value={this.state.telefone}
+                                value={this.state.paciente.telefone}
                                 disabled={true}
                                 className="historico-input historico-half"
                             />
@@ -79,7 +85,7 @@ export default class HistoricoPaciente extends React.Component{
                             <input 
                                 type="text"
                                 name="idade"
-                                value={this.state.idade}
+                                value={this.state.paciente.idade}
                                 className="historico-input historico-half"
                                 disabled={true}
                             />
@@ -90,7 +96,8 @@ export default class HistoricoPaciente extends React.Component{
                         type="text"
                         className="historico-input"
                         name="endereco"
-                        value={this.state.endereco}
+                        value={this.state.endereco.logradouro + ", "+ this.state.endereco.numero+ " " + 
+                        this.state.endereco.estado + ", " + this.state.endereco.cidade}
                         disabled={true}
                     />      
                     <div className="historico-combo">

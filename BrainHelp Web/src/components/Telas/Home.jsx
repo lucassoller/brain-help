@@ -113,7 +113,7 @@ export default class Home extends React.Component{
         }else if(this.state.tipoPaciente === 'alterar-senha'){
             return 'Alterar Senha'
         }else{
-            return this.props.match.params.email;
+            return 'Informações do Paciente'
         }
     }
 
@@ -144,7 +144,9 @@ export default class Home extends React.Component{
         }else if(this.state.tipoPaciente === 'alterar-senha'){
             return <AlterarSenha />
         }else{
-            return <HistoricoPaciente />
+            return <HistoricoPaciente 
+            email={this.props.match.params.email}
+            />
         }
     }
 
@@ -179,6 +181,7 @@ export default class Home extends React.Component{
             window.location.reload(false);
             return <Redirect to='/home/alterar-senha' />
         }
+
         return (<div className="home-container">
                 <div className="home-navbar">
                     <div className="home-menu" onClick={this.openNav}></div>

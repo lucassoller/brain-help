@@ -74,7 +74,6 @@ export default class PacienteCard extends React.Component{
     render(){
         if(this.state.selectedContent === SELECTED_CONTENTS.PACIENTE){
             window.location.reload(false);
-
             return <Redirect to = {'/home/paciente/'+this.props.email}/>
         }
         return(<div className="pacienteCard-container" onClick={this.onClickCard}>
