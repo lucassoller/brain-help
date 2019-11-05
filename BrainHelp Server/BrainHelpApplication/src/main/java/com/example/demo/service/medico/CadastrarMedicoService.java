@@ -19,7 +19,7 @@ public class CadastrarMedicoService {
 	
 	@Autowired
 	CadastrarEnderecoService cadastrarEndereco;
-
+	
 	public void salvar(Medico medico) {
 		if (Objects.isNull(medico.getNome()) || medico.getNome().isEmpty()) {
 			throw new IllegalArgumentException("O nome não pode estar em branco");
@@ -47,7 +47,7 @@ public class CadastrarMedicoService {
 		
 		if (Objects.isNull(medico.getEndereco())) {
 			throw new IllegalArgumentException("O endereço não pode estar em branco");
-		}
+		}		   
 		
 		cadastrarEndereco.salvar(medico.getEndereco());
 		medicoRepository.save(medico);

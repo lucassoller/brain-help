@@ -47,6 +47,8 @@ public class Diagnosticado extends Usuario{
 	@Column(nullable = false)
 	private EstagioAlzheimer estagioAlzheimer;
 	
+	private String foto;
+	
 	@OneToOne
 	@JoinColumn(name="codEndereco")
 	private Endereco endereco;
@@ -235,13 +237,19 @@ public class Diagnosticado extends Usuario{
 		this.desempenhoAtual = desempenhoAtual;
 	}
 
-	
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 
 	public Diagnosticado(Integer codDiagnosticado, String nome, String sobrenome, String email, String telefone,
 			String senha, int idade, Sexo sexo, EstagioAlzheimer estagioAlzheimer, Endereco endereco,
 			String chaveSeguranca, Medico medico, List<Vinculo> vinculos, List<Medicamento> medicamentos,
 			List<Fotografia> fotografias, List<Musica> musicas, List<Tarefa> tarefas, List<Desempenho> desempenhos,
-			AvaliacaoDesempenho desempenhoAtual) {
+			AvaliacaoDesempenho desempenhoAtual, String foto) {
 		super();
 		this.codDiagnosticado = codDiagnosticado;
 		this.nome = nome;
@@ -262,6 +270,7 @@ public class Diagnosticado extends Usuario{
 		this.tarefas = tarefas;
 		this.desempenhos = desempenhos;
 		this.desempenhoAtual = desempenhoAtual;
+		this.foto = foto;
 	}
 
 	public Diagnosticado() {

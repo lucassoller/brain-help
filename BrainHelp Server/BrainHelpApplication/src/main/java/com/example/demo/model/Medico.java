@@ -33,6 +33,8 @@ public class Medico extends Usuario{
 	@Column(nullable = false)
 	private String telefone;
 	
+	private String foto;
+	
 	@OneToOne
 	@JoinColumn(name="codEndereco")
 	private Endereco endereco;
@@ -128,10 +130,17 @@ public class Medico extends Usuario{
 		this.telefone = telefone;
 	}
 
-	
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
 	public Medico(String email, String senha, String nome, String sobrenome,
 			boolean google, String telefone, Endereco endereco, String especializacao,
-			List<Diagnosticado> diagnosticados) {
+			List<Diagnosticado> diagnosticados, String foto) {
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.email = email;
@@ -141,6 +150,7 @@ public class Medico extends Usuario{
 		this.endereco = endereco;
 		this.especializacao = especializacao;
 		this.diagnosticados = diagnosticados;
+		this.foto = foto;
 	}
 
 	public Medico() {
