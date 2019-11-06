@@ -50,19 +50,25 @@ export default class Teste extends React.Component{
 
     render(){
         return(<div className="teste-container">
-                    <input 
-                        type="file"
-                        placeholder="Nome"
-                        name="nome"
-                        accept="image/png, image/jpeg"
-                        className="info-input"   
-                        id="arquivo"
-                        onChange={(e)=>this.handleFiles(e)}       
-                    />
+            <div className="teste-button">
+                    
+
+                <img id="teste-imagem" src=""/>
+                </div>
+                <input 
+                    type="file"
+                    placeholder="Nome"
+                    name="nome"
+                    accept="image/png, image/jpeg"
+                    className="info-input file_customizada"   
+                    id="arquivo"
+                    onChange={(e)=>this.handleFiles(e)}       
+                />
+                    
 
                     <input type="submit" className="teste-enviar" onClick={this.enviar}/>
 
-                    <img id="teste-imagem" src=""/>
+                    
 
                                
         </div>)
