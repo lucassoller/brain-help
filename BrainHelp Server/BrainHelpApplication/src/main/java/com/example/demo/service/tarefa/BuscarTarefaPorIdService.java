@@ -14,7 +14,7 @@ public class BuscarTarefaPorIdService {
 
 	public Tarefa buscar(Integer codTarefa) {
 		if ((Objects.isNull(codTarefa))) {
-			throw new IllegalArgumentException("O cÛdigo da tarefa n„o pode estar em branco");
+			throw new IllegalArgumentException("O c√≥digo da tarefa n√£o pode estar em branco");
 		}
 		
 		return tarefaRepository.findById(codTarefa)

@@ -20,4 +20,15 @@ export default class RegisterService {
             senha
         })
     }
+
+    static editarFoto(formData) {
+        axios({
+            url: `${CONFIG.API_URL_BASE}/public/registro/medico/editar/foto`,
+            method: "PUT",
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            },
+            data: formData
+        })
+    }
 }

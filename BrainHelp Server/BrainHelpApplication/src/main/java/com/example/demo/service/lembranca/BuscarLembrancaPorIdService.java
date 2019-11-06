@@ -14,10 +14,10 @@ public class BuscarLembrancaPorIdService {
 
 	public Lembranca buscar(Integer codLembranca) {
 		if ((Objects.isNull(codLembranca))) {
-			throw new IllegalArgumentException("O cÛdigo da lembranÁa n„o pode estar em branco");
+			throw new IllegalArgumentException("O c√≥digo da lembran√ßa n√£o pode estar em branco");
 		}
 		
 		return lembrancaRepository.findById(codLembranca)
-				.orElseThrow(() -> new IllegalArgumentException("Nenhuma lembranÁa foi encontrada"));
+				.orElseThrow(() -> new IllegalArgumentException("Nenhuma lembran√ßa foi encontrada"));
 	}
 }

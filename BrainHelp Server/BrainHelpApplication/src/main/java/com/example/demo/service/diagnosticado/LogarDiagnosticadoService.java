@@ -21,11 +21,11 @@ public class LogarDiagnosticadoService {
 	public LoginResponseDto logar(LoginRequestDto loginDto){
 		
 		if(Objects.isNull(loginDto.getIdentificacao()) || loginDto.getIdentificacao().isEmpty()){
-			throw new IllegalArgumentException("O nome de usu·rio n„o pode estar em branco");
+			throw new IllegalArgumentException("O nome de usu√°rio n√£o pode estar em branco");
 
 		}
 		if(Objects.isNull(loginDto.getSenha()) || loginDto.getSenha().isEmpty()){
-			throw new IllegalArgumentException("A senha n„o pode estar em branco");
+			throw new IllegalArgumentException("A senha n√£o pode estar em branco");
 
 		}
 
@@ -37,6 +37,6 @@ public class LogarDiagnosticadoService {
 		}
 
 		String token = authenticationService.authenticate(loginDto.getIdentificacao(), diagnosticado.getSenha());
-		return new LoginResponseDto(diagnosticado.getEmail(), token);
+		return new LoginResponseDto(diagnosticado.getEmail(), token, true);
 	}
 }

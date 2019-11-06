@@ -2,10 +2,18 @@ import React from 'react'
 import './Home.css'
 import Paciente from './Paciente'
 import {Redirect} from 'react-router-dom'
+import $ from 'jquery'
+import LoginService from '../../Services/LoginService'
+import MeuPerfil from './MeuPerfil'
+import AlterarSenha from './AlterarSenha'
+import HistoricoPaciente from './HistoricoPaciente'
 
 const SELECTED_CONTENTS = {
     MEUSPACIENTES: 'MEUSPACIENTES',
-    VINCULARPACIENTES: 'VINCULARPACINTES'
+    VINCULARPACIENTES: 'VINCULARPACINTES',
+    LOGOUT: 'LOGOUT',
+    MEUPERFIL: 'MEUPERFIL',
+    ALTERARSENHA: 'ALTERARSENHA'
 }
 export default class Home extends React.Component{
 
@@ -23,7 +31,9 @@ export default class Home extends React.Component{
         this.open = this.open.bind(this)
         this.onClickMeusPacientes = this.onClickMeusPacientes.bind(this)
         this.onClickVincularPacientes = this.onClickVincularPacientes.bind(this)
-        this.baseState = this.state 
+        this.onClickLogout = this.onClickLogout.bind(this)
+        this.onClickMeuPerfil = this.onClickMeuPerfil.bind(this)
+        this.onClickAlterarSenha = this.onClickAlterarSenha.bind(this)
     }
 
     onClickMeusPacientes(){
@@ -32,6 +42,18 @@ export default class Home extends React.Component{
 
     onClickVincularPacientes(){
         this.setSelectedContent(SELECTED_CONTENTS.VINCULARPACIENTES)
+    }
+
+    onClickLogout(){
+        this.setSelectedContent(SELECTED_CONTENTS.LOGOUT)
+    }
+
+    onClickMeuPerfil(){
+        this.setSelectedContent(SELECTED_CONTENTS.MEUPERFIL)
+    }
+
+    onClickAlterarSenha(){
+        this.setSelectedContent(SELECTED_CONTENTS.ALTERARSENHA)
     }
 
     setSelectedContent(content) {
@@ -51,19 +73,19 @@ export default class Home extends React.Component{
 
     closeNav(){
         document.getElementById("mySidenav").style.width = "0";
-      }
+    }
     
-      openNav(){
-          document.getElementById("mySidenav").style.width = "250px";
-      }
+    openNav(){
+        document.getElementById("mySidenav").style.width = "250px";
+    }
 
-      close(){
+    close(){
         document.getElementById("mySidenav2").style.width = "0";
-      }
+    }
     
-      open(){
+    open(){
         document.getElementById("mySidenav2").style.width = "250px";
-      }
+    }
 
     handdleChange(event) {  
         const target = event.target
@@ -74,50 +96,32 @@ export default class Home extends React.Component{
     }
 
     renderPacientes(){
-        if(this.state.nome !== ''){
-            // var v = $(".home-form").val();
-            return <Paciente 
-                    tipoPaciente = {this.state.tipoPaciente}
-                    nome = {this.state.nome}           
-                />
-        }
+        var nome = $(".home-form").val();
+        return <Paciente 
+                tipoPaciente = {this.state.tipoPaciente}
+                nome = {nome}           
+            />
     }
 
     renderTipo(){
         if(this.state.tipoPaciente === 'meus-pacientes'){
-            return 'Meus pacientes'
+            return 'Meus Pacientes'
         }else if(this.state.tipoPaciente === 'vincular-pacientes'){
-            return 'Vincular pacientes'
+            return 'Vincular Pacientes'
+        }else if(this.state.tipoPaciente === 'meu-perfil'){
+            return 'Meu Perfil'
+        }else if(this.state.tipoPaciente === 'alterar-senha'){
+            return 'Alterar Senha'
+        }else{
+            return 'Informações do Paciente'
         }
     }
 
-    render(){
-        if( this.state.selectedContent === SELECTED_CONTENTS.MEUSPACIENTES){
-            window.location.reload(false);
-            return <Redirect to='/home/meus-pacientes' />
-        }
-
-        if( this.state.selectedContent === SELECTED_CONTENTS.VINCULARPACIENTES){
-            window.location.reload(false);
-            return <Redirect to='/home/vincular-pacientes' />
-        }
-        return (<div className="home-container">
-                <div className="home-navbar">
-                    <div className="home-menu" onClick={this.openNav}></div>
-                    <div className="home-center">
-                        <div className="home-logo"></div>
-                        <div className="home-titulo">
-                            Brain Help Web
-                        </div>
-                    </div>
-                    <div className="home-perfil" onClick={this.open}></div>
-                </div>
-                <div className="home-content">
+    renderConteudo(){
+        if(this.state.tipoPaciente === 'meus-pacientes' || this.state.tipoPaciente === 'vincular-pacientes'){
+            return (<div className="home-content">
                     <div className="home-content-side"></div>
                     <div className="home-users">
-                        <div className="home-tipo">
-                            {this.renderTipo()}
-                        </div>
                         <div className="home-search">
                             <input 
                                 type="text"
@@ -134,20 +138,74 @@ export default class Home extends React.Component{
                         </div>
                     </div>
                     <div className="home-content-side home-abc"></div>
+                </div>)
+        }else if(this.state.tipoPaciente === 'meu-perfil'){
+            return <MeuPerfil />
+        }else if(this.state.tipoPaciente === 'alterar-senha'){
+            return <AlterarSenha />
+        }else{
+            return <HistoricoPaciente 
+            email={this.props.match.params.email}
+            />
+        }
+    }
+
+    renderBotaoAlterarSenha(){
+        if(LoginService.getLoginType() === 'false'){
+            return (<div className="nav-item" onClick={this.onClickAlterarSenha}>Alterar Senha</div>)
+        }
+    }
+
+    render(){
+        if(this.state.selectedContent === SELECTED_CONTENTS.MEUSPACIENTES){
+            window.location.reload(false);
+            return <Redirect to='/home/meus-pacientes' />
+        }
+
+        if(this.state.selectedContent === SELECTED_CONTENTS.VINCULARPACIENTES){
+            window.location.reload(false);
+            return <Redirect to='/home/vincular-pacientes' />
+        }
+        
+        if(this.state.selectedContent === SELECTED_CONTENTS.LOGOUT){
+            LoginService.logout()
+            return <Redirect to='/' />
+        }
+
+        if(this.state.selectedContent === SELECTED_CONTENTS.MEUPERFIL){
+            window.location.reload(false);
+            return <Redirect to='/home/meu-perfil' />
+        }
+
+        if(this.state.selectedContent === SELECTED_CONTENTS.ALTERARSENHA){
+            window.location.reload(false);
+            return <Redirect to='/home/alterar-senha' />
+        }
+
+        return (<div className="home-container">
+                <div className="home-navbar">
+                    <div className="home-menu" onClick={this.openNav}></div>
+                    <div className="home-center">
+                        <div className="home-logo"></div>
+                        <div className="home-titulo">
+                            Brain Help | {this.renderTipo()}
+                        </div>
+                    </div>
+                    <div className="home-perfil" onClick={this.open}></div>
                 </div>
+                {this.renderConteudo()}
                 <div id="mySidenav" className="sidenav">
                     <div className="closebtn" onClick={this.closeNav}>x</div>
-                    <div onClick={this.onClickMeusPacientes}>Página Inicial</div>
-                    <div onClick={this.onClickVincularPacientes}>Vincular Pacientes</div>
-                    <div>Relatórios Gerados</div>
+                    <div className="nav-item" onClick={this.onClickMeusPacientes}>Página Inicial</div>
+                    <div className="nav-item" onClick={this.onClickVincularPacientes}>Vincular Pacientes</div>
+                    <div className="nav-item">Relatórios Gerados</div>
                 </div>
 
                 <div id="mySidenav2" className="sidenav2">
                     <div className="closebtn" onClick={this.close}>x</div>
-                    <a href="https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav">About</a>
-                    <a href="https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav">Services</a>
-                    <a href="https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav">Clients</a>
-                    <a href="https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav">Contact</a>
+                    <div className="nav-item" onClick={this.onClickMeuPerfil}>Meu Perfil</div>
+                    {this.renderBotaoAlterarSenha()}
+                    <div className="nav-item" onClick={this.onClickLogout}>Logout</div>
                 </div>
             </div>
         )

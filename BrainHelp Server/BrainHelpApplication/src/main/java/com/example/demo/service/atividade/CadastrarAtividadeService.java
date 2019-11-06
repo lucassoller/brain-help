@@ -14,23 +14,23 @@ public class CadastrarAtividadeService {
 
 	public void salvar(Atividade atividade) {
 		if (Objects.isNull(atividade.getNome()) || atividade.getNome().isEmpty()) {
-			throw new IllegalArgumentException("O nome da atividade n„o pode estar em branco");
+			throw new IllegalArgumentException("O nome da atividade n√£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(atividade.getDescricao()) || atividade.getDescricao().isEmpty()) {
-			throw new IllegalArgumentException("A descriÁ„o da atividade n„o pode estar em branco");
+			throw new IllegalArgumentException("A descri√ß√£o da atividade n√£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(atividade.getPontuacaoTotal())) {
-			throw new IllegalArgumentException("A pontuaÁ„o da atividade n„o pode estar em branco");
+			throw new IllegalArgumentException("A pontua√ß√£o da atividade n√£o pode estar em branco");
 		}
 		
 		if (atividade.getPontuacaoTotal() <= 0) {
-			throw new IllegalArgumentException("A pontuaÁ„o da atividade n„o pode ser igual ou inferior a 0");
+			throw new IllegalArgumentException("A pontua√ß√£o da atividade n√£o pode ser igual ou inferior a 0");
 		}
 		
 		if (Objects.isNull(atividade.getTipoAtividade())) {
-			throw new IllegalArgumentException("O tipo da atividade n„o pode estar em branco");
+			throw new IllegalArgumentException("O tipo da atividade n√£o pode estar em branco");
 		}
 	}
 }

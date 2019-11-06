@@ -84,30 +84,30 @@
     height: 45px;
 }
 
-.complete{
+.info-complete{
     width: 100%;
 }
 
 
-input::-webkit-input-placeholder {
+.info-input::-webkit-input-placeholder {
     font-size: 15pt;
     color: #47BDEF;
     font-weight: 400;
  }
   
- input::-moz-placeholder { /* Firefox 18- */
+ .info-input::-moz-placeholder { /* Firefox 18- */
     font-size: 15pt;
     color: #47BDEF;
     font-weight: 400;
  }
   
- input::-moz-placeholder {  /* Firefox 19+ */
+ .info-input::-moz-placeholder {  /* Firefox 19+ */
     font-size: 15pt;
     color: #47BDEF;
     font-weight: 400;
  }
   
- input::-ms-input-placeholder {  
+ .info-input::-ms-input-placeholder {  
     font-size: 15pt;
     color: #47BDEF;
     font-weight: 400;

@@ -27,11 +27,11 @@ public class CadastrarFotografiaService {
 
 	public void salvar(Diagnosticado diagnosticado, Fotografia fotografia) {
 		if (Objects.isNull(fotografia.getLugar()) || fotografia.getLugar().isEmpty()) {
-			throw new IllegalArgumentException("O lugar n„o pode estar em branco");
+			throw new IllegalArgumentException("O lugar n√£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(fotografia.getDescricao()) || fotografia.getDescricao().isEmpty()) {
-			throw new IllegalArgumentException("A descriÁ„o da fotografia n„o pode estar em branco");
+			throw new IllegalArgumentException("A descri√ß√£o da fotografia n√£o pode estar em branco");
 		}
 		
 		fotografia.setDiagnosticado(diagnosticado);

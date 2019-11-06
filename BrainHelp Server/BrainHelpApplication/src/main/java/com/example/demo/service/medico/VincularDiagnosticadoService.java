@@ -22,10 +22,10 @@ public class VincularDiagnosticadoService {
 
 	public void vincular(String emailMedico, String emailDiagnosticado) {
 		if (Objects.isNull(emailMedico) || emailMedico.isEmpty()) {
-			throw new IllegalArgumentException("O email do mÈdico n„o pode estar em branco");
+			throw new IllegalArgumentException("O email do m√©dico n√£o pode estar em branco");
 		}
 		if (Objects.isNull(emailDiagnosticado) || emailDiagnosticado.isEmpty()) {
-			throw new IllegalArgumentException("O email do diagnosticado n„o pode estar em branco");
+			throw new IllegalArgumentException("O email do diagnosticado n√£o pode estar em branco");
 		}
 
 		Medico medico = buscarMedico.buscar(emailMedico);

@@ -1,0 +1,97 @@
+.alterar-container{
+    width: 100%;
+    height: 100vh;
+    background: #B9E5FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.alterar-content{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.alterar-titulo{
+    font-family: 'Segoe UI';
+    font-size: 24pt;
+    font-weight: 400;
+    margin-bottom: 7px;
+    text-shadow: 0px 1px 1px rgb(119, 117, 117);
+}
+
+.alterar-subtitulo{
+    margin-bottom: 17px;
+    font-size: 13pt;
+}
+
+.alterar-input{
+    width: 80%;
+}
+
+.alterar-eye{
+    width: 40px;
+    height: 30px;
+    background: url('../../imagens/eyee.png') no-repeat center;
+    background-size: 70%;
+}
+
+.alterar-form{
+    width: 88%;
+    height: 45px;
+    border: none;
+    padding-left: 10px !important;
+    color: #47BDEF;
+    font-size: 18pt;
+}
+
+.alterar-forms{
+    box-shadow: 0px 0px 3px 0.1px rgb(196, 194, 194);
+    width: 100%;
+    background: white;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+    align-items: center;
+}
+
+.alterar-form::-webkit-input-placeholder {
+    font-size: 18pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ .alterar-form:-moz-placeholder { /* Firefox 18- */
+    font-size: 15pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ .alterar-form::-moz-placeholder {  /* Firefox 19+ */
+    font-size: 15pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ .alterar-form:-ms-input-placeholder {  
+    font-size: 15pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+
+.alterar-button{
+    width: 75%;
+    height: 50px;
+    border-radius: 50px;
+    background: purple;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 18pt;
+    font-weight: 400;
+    cursor: pointer;
+}

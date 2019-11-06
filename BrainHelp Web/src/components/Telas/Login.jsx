@@ -108,7 +108,7 @@ export default class Login extends React.Component {
         }
 
         if( this.state.selectedContent === SELECTED_CONTENTS.HOME){
-            return <Redirect to='/home' />
+            return <Redirect to='/home/meus-pacientes' />
         }
 
         if( this.state.selectedContent === SELECTED_CONTENTS.ESQUECERSENHA){
@@ -153,7 +153,12 @@ export default class Login extends React.Component {
                         />
                         <div className="eye" onMouseOver={this.onShowOver} onMouseOut={this.onShowOut}></div>
                     </div>
-                    <div className="login-senha" onClick={this.onClickLinkSenha}>Esqueceu sua senha?</div>
+                    <div className="login-senha">
+                        <div className="login-link-senha" onClick={this.onClickLinkSenha}>
+                            Esqueceu sua senha?
+                        </div>
+                        <div className="login-senha-div"></div>
+                    </div>
                     <div className="login-entrar" onClick={this.onClickLinkEntrar}>Entrar</div>
                     <div className="login-footer">
                         <div>

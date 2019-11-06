@@ -1,0 +1,150 @@
+
+
+.perfil-form{
+    display: flex;
+    width: 80%;
+}
+
+.perfil-content{
+    width: 100%;
+    margin-top: 70px;
+    flex: 1;
+    background: #B9E5FF;
+    display: flex;
+    justify-content: center;
+}
+
+.perfil-foto{
+    width: 160px;
+    height: 160px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 20px 0 10px;
+    border-radius: 100%;
+    font-family: "Segoe UI";
+    font-size: 20pt;
+    font-weight: 400;
+    box-shadow: 0px 0px 3px 0.1px rgb(196, 194, 194);
+    color: #47BDEF;
+    cursor: pointer;
+}
+
+.perfil-form-fields{
+    margin-top: 10px;
+    flex: 1;
+}
+
+.perfil-input{
+    margin-bottom: 10px !important;
+    box-shadow: 0px 0px 3px 0.1px rgb(196, 194, 194);
+    width: 100%;
+    border: none;
+    color: black;
+    background: white;
+    font-size: 15pt;
+    padding: 10px !important;
+    font-weight: 400 !important;
+    height: 45px;
+}
+
+.perfil-complete{
+    width: 100%;
+}
+
+
+input::-webkit-input-placeholder {
+    font-size: 15pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ input::-moz-placeholder { /* Firefox 18- */
+    font-size: 15pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ input::-moz-placeholder {  /* Firefox 19+ */
+    font-size: 15pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ input::-ms-input-placeholder {  
+    font-size: 15pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+
+.perfil-combo{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.perfil-form-senha{
+    background: white;
+    width: 49%;
+    display: flex;
+    align-items: center;
+    box-shadow: 0px 0px 3px 0.1px rgb(196, 194, 194);
+    margin-bottom: 10px;
+}
+
+.perfil-senha{
+    flex: 1;
+    margin: 0 !important;
+    box-shadow: none;
+}
+
+.perfil-eye{
+    height: 30px;
+    width: 30px;
+    background: url('../../imagens/eyee.png') no-repeat center;
+    background-position-x: center;
+    background-size: 100%; 
+    margin: 0 10px 0 10px;
+ }
+
+ .perfil-column{
+    width: 49%;
+ }
+ .perfil-logradouro{
+    width: 79%;
+ }
+
+ .perfil-numero{
+    width: 19%;
+ }
+ .perfil-form-footer{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+ }
+
+ .perfil-button{
+    height: 40px;
+    width: 200px;
+    background: purple;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 50px;
+    font-size: 15pt;
+    font-weight: 400;
+    cursor: pointer;
+    margin-bottom: 20px;
+ }
+
+ .perfil-label{
+    font-size: 13pt;
+ }
+
+ .perfil-login{
+    margin-left: 8px;
+    text-decoration: underline;
+    cursor: pointer;
+ }

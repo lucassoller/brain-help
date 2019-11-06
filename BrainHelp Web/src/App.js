@@ -10,7 +10,8 @@ import RecuperarSenha from './components/Telas/RecuperarSenha'
 import EsquecerSenha from './components/Telas/EsquecerSenha'
 import Email from './components/Telas/Email'
 import Cadastro from './components/Telas/Cadastro'
-
+import MeuPerfil from './components/Telas/MeuPerfil'
+import Teste from './components/Telas/Teste';
 class App extends Component {
   render() {
     return (
@@ -19,11 +20,16 @@ class App extends Component {
             <Route path="/404" component={NotFound} />
             <Route path="/cadastro-inicial" component={CadastroInicial} />
             <Route path="/cadastro" component={Cadastro} />
+            <Route path="/meu-perfil" component={MeuPerfil} />
             <Route path="/home/meus-pacientes" component={Home} />
             <Route path="/home/vincular-pacientes" component={Home} />
+            <Route path="/home/meu-perfil" component={Home} />
+            <Route path="/home/alterar-senha" component={Home} />
+            <Route path="/home/paciente/:email" component={Home} />
             <Route path="/email" component={Email} />
             <Route path="/recuperarSenha/:url" component={RecuperarSenha} />
             <Route path="/esquecer" component={EsquecerSenha} />
+            <Route path="/teste" component={Teste} />
             <Route path="/" exact component={TelaInicial} />
             <Route path="/login" exact component={Login} />
             <Route path="/homepage" component={TelaInicial} />    

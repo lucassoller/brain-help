@@ -14,7 +14,7 @@ public class BuscarDesempenhoPorIdService {
 
 	public Desempenho buscar(Integer codDesempenho) {
 		if ((Objects.isNull(codDesempenho))) {
-			throw new IllegalArgumentException("O cÛdigo do desempenho n„o pode estar em branco");
+			throw new IllegalArgumentException("O c√≥digo do desempenho n√£o pode estar em branco");
 		}
 		
 		return desempenhoRepository.findById(codDesempenho)

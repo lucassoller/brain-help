@@ -14,7 +14,7 @@ public class BuscarMedicamentoPorIdService {
 
 	public Medicamento buscar(Integer codMedicamento) {
 		if ((Objects.isNull(codMedicamento))) {
-			throw new IllegalArgumentException("O cÛdigo do medicamento n„o pode estar em branco");
+			throw new IllegalArgumentException("O c√≥digo do medicamento n√£o pode estar em branco");
 		}
 		
 		return medicamentoRepository.findById(codMedicamento)

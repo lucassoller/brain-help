@@ -48,27 +48,27 @@ public class CadastrarDiagnosticadoService {
 
 	public void salvar(Diagnosticado diagnosticado) {
 		if (Objects.isNull(diagnosticado.getNome()) || diagnosticado.getNome().isEmpty()) {
-			throw new IllegalArgumentException("O nome não pode estar em branco");
+			throw new IllegalArgumentException("O nome nÃ£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(diagnosticado.getSobrenome()) || diagnosticado.getSobrenome().isEmpty()) {
-			throw new IllegalArgumentException("O sobrenome não pode estar em branco");
+			throw new IllegalArgumentException("O sobrenome nÃ£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(diagnosticado.getEmail()) || diagnosticado.getEmail().isEmpty()) {
-			throw new IllegalArgumentException("O email não pode estar em branco");
+			throw new IllegalArgumentException("O email nÃ£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(diagnosticado.getTelefone()) || diagnosticado.getTelefone().isEmpty()) {
-			throw new IllegalArgumentException("O telefone não pode estar em branco");
+			throw new IllegalArgumentException("O telefone nÃ£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(diagnosticado.getSenha()) || diagnosticado.getSenha().isEmpty()) {
-			throw new IllegalArgumentException("A senha não pode estar em branco");
+			throw new IllegalArgumentException("A senha nÃ£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(diagnosticado.getIdade())) {
-			throw new IllegalArgumentException("A idade não pode estar em branco");
+			throw new IllegalArgumentException("A idade nÃ£o pode estar em branco");
 		}
 		
 		if (diagnosticado.getIdade() > 110 || diagnosticado.getIdade() < 20) {
@@ -76,15 +76,15 @@ public class CadastrarDiagnosticadoService {
 		}
 		
 		if (Objects.isNull(diagnosticado.getSexo())) {
-			throw new IllegalArgumentException("O sexo não pode estar em branco");
+			throw new IllegalArgumentException("O sexo nÃ£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(diagnosticado.getEstagioAlzheimer())) {
-			throw new IllegalArgumentException("O estágio da doença não pode estar em branco");
+			throw new IllegalArgumentException("O estÂ´agio da doenÃ§a nÃ£o pode estar em branco");
 		}
 		
 		if (Objects.isNull(diagnosticado.getEndereco())) {
-			throw new IllegalArgumentException("O endereço não pode estar em branco");
+			throw new IllegalArgumentException("O endereÃ§o nÃ£o pode estar em branco");
 		}
 		
 		buscarEmailUsadoService.buscar(diagnosticado.getEmail());

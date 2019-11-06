@@ -28,7 +28,7 @@ public class CadastrarDesempenhoService {
 	public void salvar(String emailDiagnosticado, Integer codAtividade) {
 		
 		if (Objects.isNull(codAtividade)) {
-			throw new IllegalArgumentException("O cÛdigo da atividade n„o pode estar em branco");
+			throw new IllegalArgumentException("O c√≥digo da atividade n√£o pode estar em branco");
 		}
 		
 		Desempenho desempenho = new Desempenho();

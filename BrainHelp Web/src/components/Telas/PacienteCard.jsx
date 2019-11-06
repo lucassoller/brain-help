@@ -1,14 +1,35 @@
 import React from 'react'
 import './PacienteCard.css'
 import MedicoService from '../../Services/MedicoService'
+import $ from 'jquery'
+import {Redirect} from 'react-router-dom'
+
+const SELECTED_CONTENTS = {
+    MEUSPACIENTES: 'MEUSPACIENTES',
+    PACIENTE: 'PACIENTE'
+}
 
 export default class PacienteCard extends React.Component{
     constructor(){
         super()
         this.state = {
-            vinculado: false
+            vinculado: false,
+            selectedContent: SELECTED_CONTENTS.MEUSPACIENTES
         }
         this.onClickVincular = this.onClickVincular.bind(this)
+        this.onClickCard = this.onClickCard.bind(this)
+    }
+
+    onClickCard(){
+        if(this.props.tipoPaciente === 'meus-pacientes'){
+            this.setSelectedContent(SELECTED_CONTENTS.PACIENTE)
+        }
+    }
+
+    setSelectedContent(content) {
+        this.setState({
+            selectedContent: content
+        })
     }
 
     onClickVincular(){
@@ -34,6 +55,12 @@ export default class PacienteCard extends React.Component{
         }
     }
 
+    componentDidMount(){
+        if(this.props.tipoPaciente === 'meus-pacientes'){
+            $(".pacienteCard-container").css("cursor", "pointer");
+        }
+    }
+
     renderEstagio(){
        if(this.props.estagio === 'INICIAL'){
             return 'Inicial'
@@ -45,10 +72,14 @@ export default class PacienteCard extends React.Component{
     }
     
     render(){
-        return(<div className="pacienteCard-container">
+        if(this.state.selectedContent === SELECTED_CONTENTS.PACIENTE){
+            window.location.reload(false);
+            return <Redirect to = {'/home/paciente/'+this.props.email}/>
+        }
+        return(<div className="pacienteCard-container" onClick={this.onClickCard}>
             <div className="pacienteCard-foto"></div>
             <div className="pacienteCard-info">
-                <div className="pacienteCard-nome">{this.props.nome}</div>
+                <div className="pacienteCard-nome">{this.props.nome+" "+this.props.sobrenome}</div>
                 <div className="pacienteCard-outro">Telefone: {this.props.telefone}</div>
                 <div className="pacienteCard-outro">Estágio: {this.renderEstagio()}</div>
             </div>

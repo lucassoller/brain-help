@@ -19,10 +19,10 @@ public class EditarSenhaMedicoService {
 
 	public void editar(RedefinicaoSenhaRequestDto redefinicaoRequest) {
 		if (Objects.isNull(redefinicaoRequest.getEmail()) || redefinicaoRequest.getEmail().isEmpty()) {
-			throw new IllegalArgumentException("O email n�o pode estar em branco");
+			throw new IllegalArgumentException("O email não pode estar em branco");
 		}
 		if (Objects.isNull(redefinicaoRequest.getSenha()) || redefinicaoRequest.getSenha().isEmpty()) {
-			throw new IllegalArgumentException("A senha n�o pode estar em branco");
+			throw new IllegalArgumentException("A senha não pode estar em branco");
 		}
 		
 		Medico medico = buscarMedico.buscar(redefinicaoRequest.getEmail());

@@ -5,15 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Medico;
+import com.example.demo.model.dto.RedefinicaoSenhaRequestDto;
 import com.example.demo.model.security.UserPrincipal;
 import com.example.demo.repository.MedicoRepository;
 import com.example.demo.service.medico.BuscarMedicoPorEmailService;
+import com.example.demo.service.medico.EditarMedicoService;
+import com.example.demo.service.medico.EditarSenhaMedicoService;
 import com.example.demo.service.medico.VincularDiagnosticadoService;
 
 @RestController
@@ -29,6 +31,12 @@ public class MedicoController {
 	@Autowired
 	private BuscarMedicoPorEmailService buscarMedicoPorEmail;
 	
+	@Autowired
+	private EditarMedicoService editarMedico;
+	
+	@Autowired
+	EditarSenhaMedicoService editarSenhaMedico;
+	
 	@GetMapping("/buscar/todos")
 	public List<Medico> buscarTodos(){
 		return medicoRepository.findAll();
@@ -39,7 +47,7 @@ public class MedicoController {
 		return buscarMedicoPorEmail.buscar(email);
 	}
 	
-	@PutMapping("/vincular/{EMAIL}")
+	@GetMapping("/vincular/{EMAIL}")
 	public void vincularDiagnosticado(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("EMAIL") String email){
 		vincularDiagnosticado.vincular(userPrincipal.getEmail(), email);
 	}
@@ -47,6 +55,15 @@ public class MedicoController {
 	@GetMapping("/teste")
 	public List<Medico> medico (@AuthenticationPrincipal UserPrincipal userPrincipal){
 		return medicoRepository.findAll();
+	}
 	
+	@PutMapping("/editar/perfil")
+	public void cadastrarMedico(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Medico medico) {
+		editarMedico.editar(userPrincipal.getEmail(), medico);
+	}
+	
+	@PutMapping("/editar/senha")
+	public void editarMedico(@RequestBody RedefinicaoSenhaRequestDto redefinicao) {
+		editarSenhaMedico.editar(redefinicao);
 	}
 }
