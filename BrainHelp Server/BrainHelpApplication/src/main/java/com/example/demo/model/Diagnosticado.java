@@ -29,7 +29,7 @@ public class Diagnosticado extends Usuario{
 	@Column(nullable = false)
 	private String sobrenome;
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false, unique = true, length = 50)
 	private String email;
 	
 	@Column(nullable = false)

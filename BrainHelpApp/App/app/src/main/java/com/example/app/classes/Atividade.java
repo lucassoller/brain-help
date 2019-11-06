@@ -11,7 +11,7 @@ public class Atividade {
     private String descricao;
 
     private int pontuacaoTotal;
-
+    
     private TipoAtividade tipoAtividade;
 
     public Integer getCodAtividade() {

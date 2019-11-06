@@ -2,5 +2,5 @@ package com.example.app.enumm;
 
 public enum AvaliacaoDesempenho {
 
-    RUIM, REGULAR, BOA, EXCELENTE;
+    RUIM, REGULAR, BOA, EXCELENTE
 }
