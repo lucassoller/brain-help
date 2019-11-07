@@ -2,10 +2,12 @@ import React from 'react'
 import Alert from '../generic/Alert/Alert'
 import CadastroService from '../../Services/CadastroService'
 import LoginService from '../../Services/LoginService'
+import RegisterService from '../../Services/RegisterService'
 import './Cadastro.css'
 import {Redirect} from 'react-router-dom'
 import $ from 'jquery'
 import './Cadastro.css'
+
 
 const SELECTED_CONTENTS = {
     LOGIN: 'LOGIN',
@@ -14,7 +16,9 @@ const SELECTED_CONTENTS = {
     HOME: 'HOME'
 }
 
-export default class InformacoesPessoais extends React.Component{
+
+
+export default class Cadastro extends React.Component{
     constructor(){
         super()
         this.state = {
@@ -31,6 +35,7 @@ export default class InformacoesPessoais extends React.Component{
             estado: '',
             bairro: '',
             cep: '',
+            file: null,
             google: false,
             disabled: false,
             selectedContent: SELECTED_CONTENTS.CADASTRO
@@ -42,6 +47,32 @@ export default class InformacoesPessoais extends React.Component{
         this.onShowOutConfirmacao = this.onShowOutConfirmacao.bind(this)
         this.onClickLinkLogin = this.onClickLinkLogin.bind(this)
         this.onClickLinkCadastrar = this.onClickLinkCadastrar.bind(this)
+        this.onClickUpload = this.onClickUpload.bind(this)
+        this.enviar = this.enviar.bind(this)
+        this.handdleChange = this.handdleChange.bind(this)
+    }
+
+    handleFiles(e) {
+        this.setState({
+           file: e.target.files[0]
+        })
+        this.setarImagem(e)
+    }
+
+    setarImagem(e){
+        var reader = new FileReader();     
+        reader.onload = function(i) {
+            document.getElementById("info-imagem").setAttribute("src", reader.result )
+            document.getElementById("info-imagem").style.background = "none";
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    enviarImagem(){ 
+        var formData = new FormData();
+        formData.append("file", this.state.file)
+        formData.append("email", this.state.email) 
+        RegisterService.editarFoto(formData)
     }
 
     componentDidMount(){
@@ -55,6 +86,7 @@ export default class InformacoesPessoais extends React.Component{
             disabled: this.props.disabled
         })
         this.setColor()
+        $(".info-file").hide();
     }
 
     setColor(){
@@ -85,11 +117,16 @@ export default class InformacoesPessoais extends React.Component{
             CadastroService
             .register(account.nome, account.sobrenome, account.email, account.senha,
                 account.google, account.telefone, endereco, account.especializacao)
-            .then((result) => {
-                LoginService.login(account.email, account.senha)
-                .then((r) =>{
-                    this.setSelectedContent(SELECTED_CONTENTS.HOME)
-                })
+            .then(() => {
+                if(this.state.file !== null){
+                    this.enviarImagem()
+                    .then(() =>{
+                        this.logar()
+                    })
+                }else{
+                    this.logar()
+                }
+                
             }).catch((err) => {
                 this.setState({
                     error: err.response.data.message
@@ -98,6 +135,12 @@ export default class InformacoesPessoais extends React.Component{
         }  
     }
 
+    logar(){
+        LoginService.login(account.email, account.senha)
+        .then(() =>{
+            this.setSelectedContent(SELECTED_CONTENTS.HOME)
+        })
+    }
     onShowOver(){
         if(this.props.disabled === false){
             $(".info-senha-eye").attr("type", "text");
@@ -121,6 +164,10 @@ export default class InformacoesPessoais extends React.Component{
 
     onClickLinkLogin(){
         this.setSelectedContent(SELECTED_CONTENTS.LOGIN)
+    }
+
+    onClickUpload(){
+        $(".info-file").click();
     }
 
     setSelectedContent(content) {
@@ -153,9 +200,25 @@ export default class InformacoesPessoais extends React.Component{
                 </div>
                 <div className="info-content">
                     <div className="info-form">
-                        <div className="info-foto">
-                            Foto
+                        <div className="info-left">
+                            <div className="info-foto">
+                                <img src="" id="info-imagem" />
+                            </div>
+                            <div className="info-upload">
+                                <div onClick={this.onClickUpload}>Enviar foto</div>
+                                <input 
+                                    type="file"
+                                    placeholder="Nome"
+                                    name="nome"
+                                    accept="image/png, image/jpeg"
+                                    className="info-file"   
+                                    id="arquivo"
+                                    onChange={(e)=>this.handleFiles(e)}       
+                                />
+                            </div>
+                            
                         </div>
+                        
                         <div className="info-form-fields">
                             <div className="info-combo">
                                 <input 
@@ -179,7 +242,7 @@ export default class InformacoesPessoais extends React.Component{
                             <input 
                                 type="text"
                                 placeholder="Email"
-                                className="complete info-input info-disabled"
+                                className="info-complete info-input info-disabled"
                                 name="email"
                                 value={this.state.email}
                                 onChange={this.handdleChange}

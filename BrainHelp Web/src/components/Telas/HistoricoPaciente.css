@@ -61,25 +61,25 @@
     height: 40px;
 }
 
-input::-webkit-input-placeholder {
+.historico-input::-webkit-input-placeholder {
     font-size: 15pt;
     color: #47BDEF;
     font-weight: 400;
  }
   
- input::-moz-placeholder { /* Firefox 18- */
+ .historico-input::-moz-placeholder { /* Firefox 18- */
     font-size: 15pt;
     color: #47BDEF;
     font-weight: 400;
  }
   
- input::-moz-placeholder {  /* Firefox 19+ */
+ .historico-input::-moz-placeholder {  /* Firefox 19+ */
     font-size: 15pt;
     color: #47BDEF;
     font-weight: 400;
  }
   
- input::-ms-input-placeholder {  
+ .historico-input::-ms-input-placeholder {  
     font-size: 15pt;
     color: #47BDEF;
     font-weight: 400;

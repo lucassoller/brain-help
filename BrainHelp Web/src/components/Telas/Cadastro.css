@@ -56,14 +56,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px 20px 0 10px;
+    margin: 10px 20px 0 0;
     border-radius: 100%;
     font-family: "Segoe UI";
     font-size: 20pt;
     font-weight: 400;
     box-shadow: 0px 0px 3px 0.1px rgb(196, 194, 194);
     color: #47BDEF;
-    cursor: pointer;
+    overflow: hidden;
+}
+
+#info-imagem{
+    width: 100%;
+    height: 100%;
+    background: url("../../imagens/user-blue.png") no-repeat center;
+    background-size: 100%;
 }
 
 .info-form-fields{
@@ -184,3 +191,32 @@
     text-decoration: underline;
     cursor: pointer;
  }
+
+.info-upload{
+    margin-top: 10px;
+    width: 160px;
+    background: #38B6FF;
+    color: white;
+    border: 1px solid rgb(129, 153, 233);
+}
+
+.info-upload div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 400;
+    text-shadow: 0px 1px 1px rgb(158, 156, 156);
+    font-size: 15pt;
+    cursor: pointer;
+}
+
+.info-file{
+    position: absolute;
+    top: 0;
+    right: 5000;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    z-index: 0;
+}
