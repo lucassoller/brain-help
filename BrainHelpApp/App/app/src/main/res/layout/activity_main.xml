@@ -21,9 +21,9 @@
 
     <ImageView
         android:id="@+id/iv_logo"
-        android:layout_width="match_parent"
-        android:layout_height="406dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_above="@+id/bt_entrar"
         android:layout_marginBottom="11dp"
-        tools:srcCompat="@drawable/logo_brain" />
+        android:background="@drawable/logo_brain" />
 </RelativeLayout>

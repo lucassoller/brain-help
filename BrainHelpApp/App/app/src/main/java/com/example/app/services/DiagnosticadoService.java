@@ -15,5 +15,5 @@ public interface DiagnosticadoService {
     Call<List<Diagnosticado>> buscarTodos(@Header("Authorization") String token);
 
     @GET("desempenho/buscar/{EMAIL}")
-    Call<Diagnosticado> buscarPorEmail(@Path("EMAIL") String email);
+    Call<Diagnosticado> buscarPorEmail(@Header("Authorization") String token, @Path("EMAIL") String email);
 }
