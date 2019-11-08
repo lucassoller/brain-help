@@ -8,11 +8,11 @@
     tools:context=".activitys.MainActivity">
 
     <Button
-        android:id="@+id/bt_login"
+        android:id="@+id/bt_entrar"
         android:layout_width="match_parent"
         android:layout_height="47dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="161dp"
+        android:layout_marginBottom="136dp"
         android:background="#38B6FF"
         android:text="Login"
         android:textColor="#FFFFFF"
@@ -20,10 +20,10 @@
         tools:layout_editor_absoluteY="446dp" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iv_logo"
         android:layout_width="match_parent"
         android:layout_height="406dp"
-        android:layout_above="@+id/bt_login"
-        android:layout_marginBottom="-13dp"
+        android:layout_above="@+id/bt_entrar"
+        android:layout_marginBottom="11dp"
         tools:srcCompat="@drawable/logo_brain" />
 </RelativeLayout>

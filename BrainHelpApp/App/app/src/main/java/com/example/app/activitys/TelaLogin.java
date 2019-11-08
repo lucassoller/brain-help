@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.app.R;
@@ -26,7 +27,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TelaLogin extends AppCompatActivity {
 
-    private Button btLogin;
+    private Button btEntrar;
+    private EditText etEmail;
+    private EditText etSenha;
+
     private Retrofit retrofit;
     OkHttpClient client;
 
@@ -34,6 +38,10 @@ public class TelaLogin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_login);
+
+        btEntrar = findViewById(R.id.bt_entrar);
+        etEmail = findViewById(R.id.et_email);
+        etSenha = findViewById(R.id.et_senha);
 
         client = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.MINUTES)
@@ -47,7 +55,7 @@ public class TelaLogin extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        this.btLogin.setOnClickListener(new View.OnClickListener() {
+        this.btEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 logar();
@@ -92,4 +100,5 @@ public class TelaLogin extends AppCompatActivity {
             }
         });
     }
+
 }
