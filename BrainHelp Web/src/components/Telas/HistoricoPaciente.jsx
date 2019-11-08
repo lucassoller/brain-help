@@ -17,26 +17,28 @@ export default class HistoricoPaciente extends React.Component{
     }
 
     loadPaciente(){
-        DiagnosticadoService.buscarPacientePorEmail(this.props.email)
-        .then((result ) => {
-            var estagio = "";
-            if(result.data.estagioAlzheimer === "INICIAL"){
-                estagio = "Inicial";
-            }else if(result.data.estagioAlzheimer === "INTERMEDIARIO"){
-                estagio = "Intermediário";
-            }else{
-                estagio = "Avançado";
-            }
-            this.setState({
-                paciente: result.data,
-                endereco: result.data.endereco,
-                estagio: estagio
+        if(this.props.email !== undefined && this.props.email !== ''){
+            DiagnosticadoService.buscarPacientePorEmail(this.props.email)
+            .then((result ) => {
+                var estagio = "";
+                if(result.data.estagioAlzheimer === "INICIAL"){
+                    estagio = "Inicial";
+                }else if(result.data.estagioAlzheimer === "INTERMEDIARIO"){
+                    estagio = "Intermediário";
+                }else{
+                    estagio = "Avançado";
+                }
+                this.setState({
+                    paciente: result.data,
+                    endereco: result.data.endereco,
+                    estagio: estagio
+                })
+            }).catch((err) => {
+                this.setState({
+                    error: err.response.data.message
+                })
             })
-        }).catch((err) => {
-            this.setState({
-                error: err.response.data.message
-            })
-        })
+        }
     }
 
     render(){

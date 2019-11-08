@@ -3,6 +3,7 @@ import Alert from '../generic/Alert/Alert'
 import MedicoService from '../../Services/MedicoService'
 import './MeuPerfil.css'
 import {Redirect} from 'react-router-dom'
+import RegisterService from '../../Services/RegisterService'
 import $ from 'jquery'
 
 const SELECTED_CONTENTS = {
@@ -27,20 +28,54 @@ export default class MeuPerfil extends React.Component{
             estado: '',
             bairro: '',
             cep: '',
+            file: null,
             selectedContent: SELECTED_CONTENTS.CADASTRO
         }
         this.handdleChange = this.handdleChange.bind(this)
         this.onClickLinkEditar = this.onClickLinkEditar.bind(this)
+        this.onClickUpload = this.onClickUpload.bind(this)
     }
 
     componentDidMount(){   
         this.loadMedicoLogado()   
         this.setColor()
+        $(".perfil-file").hide();
+    }
+
+    handleFiles(e) {
+        if(e.target.files[0]){
+            this.setState({
+                file: e.target.files[0]
+            })
+     
+            this.setarImagem(e)   
+        }
+       
+    }
+
+    setarImagem(e){
+        var reader = new FileReader();     
+        reader.onload = function(i) {
+            document.getElementById("perfil-imagem").setAttribute("src", reader.result )
+            document.getElementById("perfil-imagem").style.background = "none";
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    enviarImagem(){ 
+        var formData = new FormData();
+        formData.append("file", this.state.file)
+        formData.append("email", this.state.email) 
+        RegisterService.editarFoto(formData)
     }
 
     setColor(){
         $(".perfil-disabled").css("background", "rgb(233, 232, 232)");
         $(".perfil-disabled").css("color", "rgb(78, 76, 76)");
+    }
+
+    onClickUpload(){
+        $(".perfil-file").click();
     }
 
     handdleChange(event) {
@@ -87,7 +122,10 @@ export default class MeuPerfil extends React.Component{
             MedicoService
             .editarPerfil(account.nome, account.sobrenome, account.telefone, endereco, 
                 account.especializacao)
-            .then(() => {         
+            .then(() => {     
+                if(this.state.file !== null){
+                    this.enviarImagem()
+                }   
             }).catch((err) => {
                 this.setState({
                     error: err.response.data.message
@@ -117,9 +155,24 @@ export default class MeuPerfil extends React.Component{
         return(
                 <div className="perfil-content">
                     <div className="perfil-form">
+                    <div className="perfil-left">
                         <div className="perfil-foto">
-                            Foto
+                            <img src="" id="perfil-imagem" alt=""/>
                         </div>
+                        <div className="perfil-upload">
+                            <div onClick={this.onClickUpload}>Enviar foto</div>
+                            <input 
+                                type="file"
+                                placeholder="Nome"
+                                name="nome"
+                                accept="image/png, image/jpeg"
+                                className="perfil-file"   
+                                id="perfil-arquivo"
+                                onChange={(e)=>this.handleFiles(e)}       
+                            />
+                        </div>
+                        
+                    </div>
                         <div className="perfil-form-fields">
                             <div className="perfil-combo">
                                 <div className="perfil-column">

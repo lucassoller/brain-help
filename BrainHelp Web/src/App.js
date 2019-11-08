@@ -11,7 +11,6 @@ import EsquecerSenha from './components/Telas/EsquecerSenha'
 import Email from './components/Telas/Email'
 import Cadastro from './components/Telas/Cadastro'
 import MeuPerfil from './components/Telas/MeuPerfil'
-import Teste from './components/Telas/Teste';
 class App extends Component {
   render() {
     return (
@@ -29,7 +28,6 @@ class App extends Component {
             <Route path="/email" component={Email} />
             <Route path="/recuperarSenha/:url" component={RecuperarSenha} />
             <Route path="/esquecer" component={EsquecerSenha} />
-            <Route path="/teste" component={Teste} />
             <Route path="/" exact component={TelaInicial} />
             <Route path="/login" exact component={Login} />
             <Route path="/homepage" component={TelaInicial} />    

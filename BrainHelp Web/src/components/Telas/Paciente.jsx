@@ -6,7 +6,6 @@ export default class Paciente extends React.Component{
         super()
         this.state = {
             pacientes: [],
-            // pacientes: [{nome:"Lucas", sobrenome: "Soller", estagio:"Inicial", telefone: "93214544", email:"lucassoller2000@gmail.com"}, {nome:"Carlos", sobrenome: "Silva", estagio:"Intermediario", telefone: "93214544", email:"lucassoller2000@gmail.com"}, {nome:"Paula", sobrenome: "Dias", estagio:"Avançado", telefone: "93214544", email:"lucassoller2000@gmail.com"} ],
             nome: '',
             tipoPaciente: ''
         }
@@ -52,7 +51,7 @@ export default class Paciente extends React.Component{
             }            
             
         }else if(this.props.tipoPaciente === "vincular-pacientes"){
-            if(this.props.nome !== ''){
+            if(this.props.nome !== '' && this.props.nome !== undefined){
                 DiagnosticadoService.buscarOutrosPacientesPorNome(this.props.nome)
                 .then((result => {
                     this.setState({

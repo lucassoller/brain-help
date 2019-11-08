@@ -12,9 +12,9 @@
 
  spring:
    datasource:
-     url: jdbc:mysql://localhost:3306/brain_help?useTimezone=true&serverTimezone=UTC
+     url: jdbc:mysql://localhost:3308/brain_help?useTimezone=true&serverTimezone=UTC
      username: root
-     password: ifsul2017
+     password: root
    jpa:
      hibernate:
       ddl-auto: update

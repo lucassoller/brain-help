@@ -8,15 +8,12 @@ import {Redirect} from 'react-router-dom'
 import $ from 'jquery'
 import './Cadastro.css'
 
-
 const SELECTED_CONTENTS = {
     LOGIN: 'LOGIN',
     CADASTRO: 'CADASTRO',
     CADASTROINICIAL: 'CADASTROINICIAL',
     HOME: 'HOME'
 }
-
-
 
 export default class Cadastro extends React.Component{
     constructor(){
@@ -48,7 +45,6 @@ export default class Cadastro extends React.Component{
         this.onClickLinkLogin = this.onClickLinkLogin.bind(this)
         this.onClickLinkCadastrar = this.onClickLinkCadastrar.bind(this)
         this.onClickUpload = this.onClickUpload.bind(this)
-        this.enviar = this.enviar.bind(this)
         this.handdleChange = this.handdleChange.bind(this)
     }
 
@@ -117,30 +113,22 @@ export default class Cadastro extends React.Component{
             CadastroService
             .register(account.nome, account.sobrenome, account.email, account.senha,
                 account.google, account.telefone, endereco, account.especializacao)
-            .then(() => {
+            .then((result) => {
                 if(this.state.file !== null){
                     this.enviarImagem()
-                    .then(() =>{
-                        this.logar()
-                    })
-                }else{
-                    this.logar()
                 }
-                
+                LoginService.login(this.state.email, this.state.senha)
+                .then((r) =>{
+                    this.setSelectedContent(SELECTED_CONTENTS.HOME)
+                })
             }).catch((err) => {
                 this.setState({
-                    error: err.response.data.message
+                    error: err.data.message
                 })
             })
         }  
     }
 
-    logar(){
-        LoginService.login(account.email, account.senha)
-        .then(() =>{
-            this.setSelectedContent(SELECTED_CONTENTS.HOME)
-        })
-    }
     onShowOver(){
         if(this.props.disabled === false){
             $(".info-senha-eye").attr("type", "text");
@@ -202,7 +190,7 @@ export default class Cadastro extends React.Component{
                     <div className="info-form">
                         <div className="info-left">
                             <div className="info-foto">
-                                <img src="" id="info-imagem" />
+                                <img src="" id="info-imagem" alt=""/>
                             </div>
                             <div className="info-upload">
                                 <div onClick={this.onClickUpload}>Enviar foto</div>
