@@ -32,7 +32,7 @@ public class CadastrarDesempenhoService {
 		}
 		
 		Desempenho desempenho = new Desempenho();
-		desempenho.setData(new Date());
+		desempenho.setDataRealizacao(new Date());
 		desempenho.setAvaliacaoDesempenho(AvaliacaoDesempenho.BOA);
 		desempenho.setPontuacao(0);
 		

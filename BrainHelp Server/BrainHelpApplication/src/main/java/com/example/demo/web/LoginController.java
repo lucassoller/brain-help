@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Medico;
 import com.example.demo.model.dto.LoginRequestDto;
 import com.example.demo.model.dto.LoginResponseDto;
-import com.example.demo.repository.ArquivoRepository;
 import com.example.demo.repository.DiagnosticadoRepository;
 import com.example.demo.repository.MedicoRepository;
 import com.example.demo.service.diagnosticado.LogarDiagnosticadoService;
@@ -36,9 +35,6 @@ public class LoginController {
 	@Autowired
 	MedicoRepository mr;
 	
-	@Autowired
-	ArquivoRepository arquivoRepository;
-		
 	@PostMapping("/medico")
 	public LoginResponseDto logarMedico(@RequestBody LoginRequestDto loginDto) {
 		return logarMedico.logar(loginDto);

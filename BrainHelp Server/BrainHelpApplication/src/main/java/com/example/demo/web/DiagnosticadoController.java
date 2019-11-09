@@ -50,7 +50,6 @@ public class DiagnosticadoController {
 		return buscarDiagnosticadosVinculados.buscar(userPrincipal.getEmail());
 	}
 	
-	
 	@GetMapping("/buscar/todos/desvinculados/{NOME}")
 	public List<Diagnosticado> buscarTodosNaoVinculados(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("NOME") String nome){
 		return buscarDiagnosticados.buscar(userPrincipal.getEmail(), nome, false);

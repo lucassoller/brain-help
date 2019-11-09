@@ -12,7 +12,7 @@ public class CadastrarAtividadeService {
 	@Autowired
 	AtividadeRepository atividadeRepository;
 
-	public void salvar(Atividade atividade) {
+	public void salvar(String emailDiagnosticado, Atividade atividade) {
 		if (Objects.isNull(atividade.getNome()) || atividade.getNome().isEmpty()) {
 			throw new IllegalArgumentException("O nome da atividade não pode estar em branco");
 		}

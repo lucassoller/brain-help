@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import javax.persistence.Column;
@@ -54,6 +55,8 @@ public class Diagnosticado extends Usuario{
 	private Endereco endereco;
 	
 	private String chaveSeguranca;
+	
+	private Date dataDiagnostico;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -245,12 +248,20 @@ public class Diagnosticado extends Usuario{
 		this.foto = foto;
 	}
 
-	public Diagnosticado(Integer codDiagnosticado, String nome, String sobrenome, String email, String telefone,
-			String senha, int idade, Sexo sexo, EstagioAlzheimer estagioAlzheimer, Endereco endereco,
-			String chaveSeguranca, Medico medico, List<Vinculo> vinculos, List<Medicamento> medicamentos,
-			List<Fotografia> fotografias, List<Musica> musicas, List<Tarefa> tarefas, List<Desempenho> desempenhos,
-			AvaliacaoDesempenho desempenhoAtual, String foto) {
-		super();
+	public Date getDataDiagnostico() {
+		return dataDiagnostico;
+	}
+
+	public void setDataDiagnostico(Date dataDiagnostico) {
+		this.dataDiagnostico = dataDiagnostico;
+	}
+
+	public Diagnosticado(String email, String senha, Integer codDiagnosticado, String nome, String sobrenome,
+			int idade, Sexo sexo, EstagioAlzheimer estagioAlzheimer, String telefone,
+			String foto, Endereco endereco, String chaveSeguranca, Date dataDiagnostico, Medico medico,
+			List<Vinculo> vinculos, List<Medicamento> medicamentos, List<Fotografia> fotografias, List<Musica> musicas,
+			List<Tarefa> tarefas, List<Desempenho> desempenhos, AvaliacaoDesempenho desempenhoAtual) {
+
 		this.codDiagnosticado = codDiagnosticado;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
@@ -260,8 +271,10 @@ public class Diagnosticado extends Usuario{
 		this.idade = idade;
 		this.sexo = sexo;
 		this.estagioAlzheimer = estagioAlzheimer;
+		this.foto = foto;
 		this.endereco = endereco;
 		this.chaveSeguranca = chaveSeguranca;
+		this.dataDiagnostico = dataDiagnostico;
 		this.medico = medico;
 		this.vinculos = vinculos;
 		this.medicamentos = medicamentos;
@@ -270,7 +283,6 @@ public class Diagnosticado extends Usuario{
 		this.tarefas = tarefas;
 		this.desempenhos = desempenhos;
 		this.desempenhoAtual = desempenhoAtual;
-		this.foto = foto;
 	}
 
 	public Diagnosticado() {

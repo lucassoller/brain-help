@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import com.example.demo.model.enumerated.AvaliacaoDesempenho;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -19,7 +18,7 @@ public class Desempenho {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer codDesempenho;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name="codAtividade")
 	private Atividade atividade;
 	
@@ -27,7 +26,7 @@ public class Desempenho {
 	private int pontuacao;
 	
 	@Column(nullable = false)
-	private Date data;
+	private Date dataRealizacao;
 	
 	@Column(nullable = false)
 	private AvaliacaoDesempenho avaliacaoDesempenho;
@@ -53,12 +52,12 @@ public class Desempenho {
 		this.atividade = atividade;
 	}
 
-	public Date getData() {
-		return data;
+	public Date getDataRealizacao() {
+		return dataRealizacao;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
+	public void setDataRealizacao(Date dataRealizacao) {
+		this.dataRealizacao = dataRealizacao;
 	}
 
 	public AvaliacaoDesempenho getAvaliacaoDesempenho() {
@@ -85,13 +84,13 @@ public class Desempenho {
 		this.pontuacao = pontuacao;
 	}
 
-	public Desempenho(Integer codDesempenho, Atividade atividade, int pontuacao, Date data,
+	public Desempenho(Integer codDesempenho, Atividade atividade, int pontuacao, Date dataRealizacao,
 			AvaliacaoDesempenho avaliacaoDesempenho, Diagnosticado diagnosticado) {
 		super();
 		this.codDesempenho = codDesempenho;
 		this.atividade = atividade;
 		this.pontuacao = pontuacao;
-		this.data = data;
+		this.dataRealizacao = dataRealizacao;
 		this.avaliacaoDesempenho = avaliacaoDesempenho;
 		this.diagnosticado = diagnosticado;
 	}

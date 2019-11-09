@@ -1,10 +1,14 @@
 package com.example.demo.model;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
 import com.example.demo.model.enumerated.TipoAtividade;
 
 @Entity
@@ -25,6 +29,9 @@ public class Atividade {
 	
 	@Column(nullable = false)
 	private TipoAtividade tipoAtividade;
+	
+	@OneToMany(mappedBy = "atividade")
+	private List<Desempenho> desempenhos;
 
 	public Integer getCodAtividade() {
 		return codAtividade;
@@ -66,14 +73,23 @@ public class Atividade {
 		this.tipoAtividade = tipoAtividade;
 	}
 
+	public List<Desempenho> getDesempenhos() {
+		return desempenhos;
+	}
+
+	public void setDesempenhos(List<Desempenho> desempenhos) {
+		this.desempenhos = desempenhos;
+	}
+
 	public Atividade(Integer codAtividade, String nome, String descricao, int pontuacaoTotal,
-			TipoAtividade tipoAtividade) {
+			TipoAtividade tipoAtividade, List<Desempenho> desempenhos) {
 		super();
 		this.codAtividade = codAtividade;
 		this.nome = nome;
 		this.descricao = descricao;
 		this.pontuacaoTotal = pontuacaoTotal;
 		this.tipoAtividade = tipoAtividade;
+		this.desempenhos = desempenhos;
 	}
 
 	public Atividade() {

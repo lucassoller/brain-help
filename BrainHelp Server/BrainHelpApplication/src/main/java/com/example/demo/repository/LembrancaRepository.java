@@ -11,7 +11,6 @@ public interface LembrancaRepository extends JpaRepository<Lembranca, Integer>{
 	List<Lembranca> findByFotografia(Fotografia fotografia);
 	List<Lembranca> findByMusica(Musica musica);
 	List<Lembranca> findByVinculo(Vinculo vinculo);
-	
 	List<Lembranca> findByFotografiaAndTituloContaining(Fotografia fotografia, String titulo);
 	List<Lembranca> findByMusicaAndTituloContaining(Musica musica, String titulo);
 	List<Lembranca> findByVinculoAndTituloContaining(Vinculo vinculo, String titulo);
