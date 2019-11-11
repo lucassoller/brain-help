@@ -4,6 +4,7 @@ import com.example.app.enumm.AvaliacaoDesempenho;
 import com.example.app.enumm.EstagioAlzheimer;
 import com.example.app.enumm.Sexo;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,6 +31,8 @@ public class Diagnosticado extends Usuario {
     private Endereco endereco;
 
     private String chaveSeguranca;
+
+    private Date dataDiagnostico;
 
     private Medico medico;
 
@@ -139,6 +142,14 @@ public class Diagnosticado extends Usuario {
         this.chaveSeguranca = chaveSeguranca;
     }
 
+    public Date getDataDiagnostico() {
+        return dataDiagnostico;
+    }
+
+    public void setDataDiagnostico(Date dataDiagnostico) {
+        this.dataDiagnostico = dataDiagnostico;
+    }
+
     public Medico getMedico() {
         return medico;
     }
@@ -207,7 +218,7 @@ public class Diagnosticado extends Usuario {
 
     public Diagnosticado(Integer codDiagnosticado, String nome, String sobrenome, String email, String telefone,
                          String senha, int idade, Sexo sexo, EstagioAlzheimer estagioAlzheimer, Endereco endereco,
-                         String chaveSeguranca, Medico medico, List<Vinculo> vinculos, List<Medicamento> medicamentos,
+                         String chaveSeguranca, Date dataDiagnostico, Medico medico, List<Vinculo> vinculos, List<Medicamento> medicamentos,
                          List<Fotografia> fotografias, List<Musica> musicas, List<Tarefa> tarefas, List<Desempenho> desempenhos,
                          AvaliacaoDesempenho desempenhoAtual) {
         super();
@@ -222,6 +233,7 @@ public class Diagnosticado extends Usuario {
         this.estagioAlzheimer = estagioAlzheimer;
         this.endereco = endereco;
         this.chaveSeguranca = chaveSeguranca;
+        this.dataDiagnostico = dataDiagnostico;
         this.medico = medico;
         this.vinculos = vinculos;
         this.medicamentos = medicamentos;

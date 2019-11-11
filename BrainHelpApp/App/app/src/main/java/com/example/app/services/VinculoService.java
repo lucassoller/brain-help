@@ -22,3 +22,4 @@ public interface VinculoService {
     @POST("vinculo/cadastrar")
     Call<Vinculo> cadastrarVinculo(@Header("Authorization") String token, @Body Vinculo vinculo);
 }
+ 
