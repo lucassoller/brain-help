@@ -2,7 +2,7 @@ package com.example.app.classes;
 
 import java.util.Date;
 
-public class Lembranca {
+public class Lembranca  {
 
         private Integer codLembranca;
 

@@ -4,7 +4,7 @@ import com.example.app.enumm.StatusTarefa;
 
 import java.util.Date;
 
-public class Tarefa {
+public class Tarefa  {
 
     private Integer codTarefa;
 

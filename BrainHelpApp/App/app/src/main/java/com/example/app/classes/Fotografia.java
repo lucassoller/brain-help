@@ -3,7 +3,7 @@ package com.example.app.classes;
 import java.util.Date;
 import java.util.List;
 
-public class Fotografia {
+public class Fotografia  {
 
     private Integer codFotografia;
 

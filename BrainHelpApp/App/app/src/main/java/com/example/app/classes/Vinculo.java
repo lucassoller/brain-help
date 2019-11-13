@@ -4,7 +4,7 @@ import com.example.app.enumm.Sexo;
 
 import java.util.List;
 
-public class Vinculo {
+public class Vinculo  {
 
     private Integer codVinculo;
 

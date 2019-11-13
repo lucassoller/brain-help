@@ -83,6 +83,9 @@ public class Diagnosticado extends Usuario{
 	
 	private AvaliacaoDesempenho desempenhoAtual;
 	
+	@Column(nullable = false)
+	private boolean google;
+	
 	@JsonIgnore
     public Optional<String> getRole() {
         return Optional.of("Usuario normal");
@@ -256,11 +259,19 @@ public class Diagnosticado extends Usuario{
 		this.dataDiagnostico = dataDiagnostico;
 	}
 
+	public boolean isGoogle() {
+		return google;
+	}
+
+	public void setGoogle(boolean google) {
+		this.google = google;
+	}
+
 	public Diagnosticado(String email, String senha, Integer codDiagnosticado, String nome, String sobrenome,
 			int idade, Sexo sexo, EstagioAlzheimer estagioAlzheimer, String telefone,
 			String foto, Endereco endereco, String chaveSeguranca, Date dataDiagnostico, Medico medico,
 			List<Vinculo> vinculos, List<Medicamento> medicamentos, List<Fotografia> fotografias, List<Musica> musicas,
-			List<Tarefa> tarefas, List<Desempenho> desempenhos, AvaliacaoDesempenho desempenhoAtual) {
+			List<Tarefa> tarefas, List<Desempenho> desempenhos, AvaliacaoDesempenho desempenhoAtual, boolean google) {
 
 		this.codDiagnosticado = codDiagnosticado;
 		this.nome = nome;
@@ -283,6 +294,7 @@ public class Diagnosticado extends Usuario{
 		this.tarefas = tarefas;
 		this.desempenhos = desempenhos;
 		this.desempenhoAtual = desempenhoAtual;
+		this.google = google;
 	}
 
 	public Diagnosticado() {

@@ -3,15 +3,12 @@ package com.example.app.classes;
 import com.example.app.enumm.AvaliacaoDesempenho;
 import com.example.app.enumm.EstagioAlzheimer;
 import com.example.app.enumm.Sexo;
-
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
-public class Diagnosticado extends Usuario {
+public class Diagnosticado{
 
     private Integer codDiagnosticado;
-
     private String nome;
 
     private String sobrenome;
@@ -27,6 +24,8 @@ public class Diagnosticado extends Usuario {
     private Sexo sexo;
 
     private EstagioAlzheimer estagioAlzheimer;
+
+    private String foto;
 
     private Endereco endereco;
 
@@ -50,9 +49,7 @@ public class Diagnosticado extends Usuario {
 
     private AvaliacaoDesempenho desempenhoAtual;
 
-    public Optional<String> getRole() {
-        return Optional.of("Usuario normal");
-    }
+    private boolean google;
 
     public Integer getCodDiagnosticado() {
         return codDiagnosticado;
@@ -142,14 +139,6 @@ public class Diagnosticado extends Usuario {
         this.chaveSeguranca = chaveSeguranca;
     }
 
-    public Date getDataDiagnostico() {
-        return dataDiagnostico;
-    }
-
-    public void setDataDiagnostico(Date dataDiagnostico) {
-        this.dataDiagnostico = dataDiagnostico;
-    }
-
     public Medico getMedico() {
         return medico;
     }
@@ -214,14 +203,36 @@ public class Diagnosticado extends Usuario {
         this.desempenhoAtual = desempenhoAtual;
     }
 
+    public String getFoto() {
+        return foto;
+    }
 
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
 
-    public Diagnosticado(Integer codDiagnosticado, String nome, String sobrenome, String email, String telefone,
-                         String senha, int idade, Sexo sexo, EstagioAlzheimer estagioAlzheimer, Endereco endereco,
-                         String chaveSeguranca, Date dataDiagnostico, Medico medico, List<Vinculo> vinculos, List<Medicamento> medicamentos,
-                         List<Fotografia> fotografias, List<Musica> musicas, List<Tarefa> tarefas, List<Desempenho> desempenhos,
-                         AvaliacaoDesempenho desempenhoAtual) {
-        super();
+    public Date getDataDiagnostico() {
+        return dataDiagnostico;
+    }
+
+    public void setDataDiagnostico(Date dataDiagnostico) {
+        this.dataDiagnostico = dataDiagnostico;
+    }
+
+    public boolean isGoogle() {
+        return google;
+    }
+
+    public void setGoogle(boolean google) {
+        this.google = google;
+    }
+
+    public Diagnosticado(String email, String senha, Integer codDiagnosticado, String nome, String sobrenome,
+                         int idade, Sexo sexo, EstagioAlzheimer estagioAlzheimer, String telefone,
+                         String foto, Endereco endereco, String chaveSeguranca, Date dataDiagnostico, Medico medico,
+                         List<Vinculo> vinculos, List<Medicamento> medicamentos, List<Fotografia> fotografias, List<Musica> musicas,
+                         List<Tarefa> tarefas, List<Desempenho> desempenhos, AvaliacaoDesempenho desempenhoAtual, boolean google) {
+
         this.codDiagnosticado = codDiagnosticado;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -231,6 +242,7 @@ public class Diagnosticado extends Usuario {
         this.idade = idade;
         this.sexo = sexo;
         this.estagioAlzheimer = estagioAlzheimer;
+        this.foto = foto;
         this.endereco = endereco;
         this.chaveSeguranca = chaveSeguranca;
         this.dataDiagnostico = dataDiagnostico;
@@ -242,6 +254,7 @@ public class Diagnosticado extends Usuario {
         this.tarefas = tarefas;
         this.desempenhos = desempenhos;
         this.desempenhoAtual = desempenhoAtual;
+        this.google = google;
     }
 
     public Diagnosticado() {

@@ -5,7 +5,7 @@ import com.example.app.enumm.TipoDuracao;
 
 import java.util.Date;
 
-public class Medicamento {
+public class Medicamento  {
 
     private Integer codMedicamento;
 

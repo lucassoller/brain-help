@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.example.app.R;
+
 public class TelaCadastrar extends AppCompatActivity {
 
     @Override

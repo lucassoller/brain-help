@@ -1,6 +1,6 @@
 package com.example.app.enumm;
 
-public enum AvaliacaoDesempenho {
+public enum AvaliacaoDesempenho  {
 
     RUIM, REGULAR, BOA, EXCELENTE
 }

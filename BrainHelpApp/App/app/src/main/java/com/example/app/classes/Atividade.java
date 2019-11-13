@@ -2,7 +2,7 @@ package com.example.app.classes;
 
 import com.example.app.enumm.TipoAtividade;
 
-public class Atividade {
+public class Atividade  {
 
     private Integer codAtividade;
 
