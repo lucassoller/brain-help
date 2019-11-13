@@ -65,7 +65,7 @@ public class TelaLogin extends AppCompatActivity {
 
     private void logar(){
         LoginService loginService = retrofit.create(LoginService.class);
-        loginService.logarDiagnosticado(new LoginRequestDto(etEmail.getText().toString(), etSenha.getText().toString())).enqueue(new Callback<LoginResponseDto>() {
+        loginService.logarMedico(new LoginRequestDto(etEmail.getText().toString(), etSenha.getText().toString())).enqueue(new Callback<LoginResponseDto>() {
             @Override
             public void onResponse(Call<LoginResponseDto> call, Response<LoginResponseDto> response) {
                 Toast.makeText(getApplicationContext(), response.body().getToken(), Toast.LENGTH_LONG).show();
