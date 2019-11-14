@@ -1,6 +1,6 @@
 package com.example.app.classes;
 
-import com.example.app.enumm.StatusTarefa;
+import com.example.app.enumerated.StatusTarefa;
 
 import java.util.Date;
 

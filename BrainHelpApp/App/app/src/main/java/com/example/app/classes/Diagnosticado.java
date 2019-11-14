@@ -1,8 +1,8 @@
 package com.example.app.classes;
 
-import com.example.app.enumm.AvaliacaoDesempenho;
-import com.example.app.enumm.EstagioAlzheimer;
-import com.example.app.enumm.Sexo;
+import com.example.app.enumerated.AvaliacaoDesempenho;
+import com.example.app.enumerated.EstagioAlzheimer;
+import com.example.app.enumerated.Sexo;
 import java.util.Date;
 import java.util.List;
 

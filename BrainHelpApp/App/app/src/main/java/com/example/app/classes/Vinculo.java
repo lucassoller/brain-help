@@ -1,6 +1,6 @@
 package com.example.app.classes;
 
-import com.example.app.enumm.Sexo;
+import com.example.app.enumerated.Sexo;
 
 import java.util.List;
 

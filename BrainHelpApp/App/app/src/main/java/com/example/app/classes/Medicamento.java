@@ -1,7 +1,7 @@
 package com.example.app.classes;
 
-import com.example.app.enumm.Medida;
-import com.example.app.enumm.TipoDuracao;
+import com.example.app.enumerated.Medida;
+import com.example.app.enumerated.TipoDuracao;
 
 import java.util.Date;
 

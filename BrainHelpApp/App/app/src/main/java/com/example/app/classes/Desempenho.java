@@ -1,6 +1,6 @@
 package com.example.app.classes;
 
-import com.example.app.enumm.AvaliacaoDesempenho;
+import com.example.app.enumerated.AvaliacaoDesempenho;
 
 import java.util.Date;
 

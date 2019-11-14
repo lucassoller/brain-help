@@ -5,25 +5,44 @@
     android:id="@+id/relativeLayout2"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitys.MainActivity">
+    tools:context=".activities.MainActivity">
 
     <Button
         android:id="@+id/bt_entrar"
-        android:layout_width="match_parent"
-        android:layout_height="47dp"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="136dp"
-        android:background="#38B6FF"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="154dp"
+        android:background="@drawable/button_corner"
         android:text="Login"
         android:textColor="#FFFFFF"
+        android:textSize="8pt"
         tools:layout_editor_absoluteX="233dp"
-        tools:layout_editor_absoluteY="446dp" />
+        tools:layout_editor_absoluteY="446dp"
+        />
 
     <ImageView
         android:id="@+id/iv_logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="377dp"
         android:layout_above="@+id/bt_entrar"
-        android:layout_marginBottom="11dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="9dp"
+        android:layout_marginBottom="34dp"
         android:background="@drawable/logo_brain" />
+
+    <Button
+        android:id="@+id/bt_cadastrar"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="69dp"
+        android:background="@drawable/button_corner"
+        android:text="Cadastrar"
+        android:textColor="#FFFFFF"
+        android:textSize="8pt"
+        tools:layout_editor_absoluteX="233dp"
+        tools:layout_editor_absoluteY="446dp" />
 </RelativeLayout>

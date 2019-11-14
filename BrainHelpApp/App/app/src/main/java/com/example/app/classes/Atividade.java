@@ -1,6 +1,6 @@
 package com.example.app.classes;
 
-import com.example.app.enumm.TipoAtividade;
+import com.example.app.enumerated.TipoAtividade;
 
 public class Atividade  {
 
