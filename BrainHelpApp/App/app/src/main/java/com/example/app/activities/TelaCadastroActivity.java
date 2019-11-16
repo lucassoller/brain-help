@@ -1,12 +1,10 @@
 package com.example.app.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
-
+import androidx.appcompat.app.AppCompatActivity;
 import com.example.app.R;
 
-public class TelaCadastrar extends AppCompatActivity {
+public class TelaCadastroActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

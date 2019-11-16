@@ -28,6 +28,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TelaLogin extends AppCompatActivity {
 
     private Button btEntrar;
+
     private EditText etEmail;
     private EditText etSenha;
 
@@ -37,7 +38,7 @@ public class TelaLogin extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_login);
+        setContentView(R.layout.tela_login);
 
         btEntrar = findViewById(R.id.bt_entrar);
         etEmail = findViewById(R.id.et_email);
@@ -51,7 +52,6 @@ public class TelaLogin extends AppCompatActivity {
 
         retrofit = new Retrofit.Builder()
                 .baseUrl("http://10.0.2.2:8080/")
-//                .baseUrl("http://localhost:8080/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
