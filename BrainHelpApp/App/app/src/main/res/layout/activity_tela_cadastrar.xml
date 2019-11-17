@@ -7,7 +7,7 @@
     tools:context=".activities.TelaCadastroActivity">
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/iv_contatos"
         android:layout_width="177dp"
         android:layout_height="115dp"
         android:layout_alignParentStart="true"
@@ -20,7 +20,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/iv_enderecos"
         android:layout_width="177dp"
         android:layout_height="115dp"
         android:layout_alignParentStart="true"
@@ -33,7 +33,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView8"
+        android:id="@+id/iv_medicamentos"
         android:layout_width="177dp"
         android:layout_height="115dp"
         android:layout_alignParentStart="true"
@@ -46,7 +46,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView6"
+        android:id="@+id/iv_musicas"
         android:layout_width="177dp"
         android:layout_height="115dp"
         android:layout_alignParentStart="true"
@@ -59,7 +59,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/iv_fotos"
         android:layout_width="177dp"
         android:layout_height="115dp"
         android:layout_alignParentStart="true"
@@ -72,7 +72,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/iv_jogos"
         android:layout_width="177dp"
         android:layout_height="115dp"
         android:layout_alignParentStart="true"
@@ -85,7 +85,7 @@
         tools:srcCompat="@tools:sample/avatars" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/iv_tarefas"
         android:layout_width="177dp"
         android:layout_height="115dp"
         android:layout_alignParentStart="true"
@@ -210,7 +210,7 @@
         android:text="Endereços" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iv_chatbot"
         android:layout_width="177dp"
         android:layout_height="115dp"
         android:layout_alignParentStart="true"
