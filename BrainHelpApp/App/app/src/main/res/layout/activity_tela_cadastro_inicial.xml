@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.TelaCadastroInicialActivity"
+    android:background="#B9E5FF">
+
+    <Button
+        android:id="@+id/bt_cadastrar_google"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="196dp"
+        android:background="@drawable/button_corner_white"
+        android:drawableStart="@drawable/search32"
+        android:drawableLeft="@drawable/search32"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="Cadastrar-se com o Gmail"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bt_cadastrar_google"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:text="------------------------- ou -------------------------" />
+
+    <Button
+        android:id="@+id/bt_cadastrar"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/button_corner_purple"
+        android:text="Cadastrar-se"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/tv_logar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bt_cadastrar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/has_account" />
+
+</RelativeLayout>

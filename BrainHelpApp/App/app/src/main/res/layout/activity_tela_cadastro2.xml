@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B9E5FF"
+    tools:context=".activities.TelaCadastroActivity">
+
+    <EditText
+        android:id="@+id/et_idade"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginRight="54dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Idade"
+        android:inputType="number"
+        android:padding="10dp"
+        android:textColorHint="#38B6FF" />
+
+    <EditText
+        android:id="@+id/et_telefone"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_idade"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginRight="54dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Telefone (xx) xxxxx-xxxx"
+        android:inputType="phone"
+        android:padding="10dp"
+        android:phoneNumber="true"
+        android:textColorHint="#38B6FF" />
+
+    <EditText
+        android:id="@+id/et_data_diagnostico"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_telefone"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginRight="54dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Data diagnóstico dd/MM/AAAA"
+        android:inputType="date"
+        android:padding="10dp"
+        android:phoneNumber="false"
+        android:textColorHint="#38B6FF" />
+
+    <EditText
+        android:id="@+id/et_chave_seguranca"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_data_diagnostico"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginRight="54dp"
+        android:background="#FFFFFF"
+        android:ems="10"
+        android:hint="Chave de segurança"
+        android:inputType="textPersonName"
+        android:padding="10dp"
+        android:textColorHint="#38B6FF" />
+
+
+    <Button
+        android:id="@+id/bt_continuar"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rg_estagio"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/button_corner_purple"
+        android:text="Continuar"
+        android:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/tv_logar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bt_continuar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:text="@string/has_account" />
+
+    <RadioGroup
+        android:id="@+id/rg_sexo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_sexo"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="250dp"
+        android:layout_marginLeft="250dp">
+
+        <RadioButton
+            android:id="@+id/rb_masculino"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Masculino" />
+
+        <RadioButton
+            android:id="@+id/rb_feminino"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Feminino" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_sexo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_chave_seguranca"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="250dp"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="30dp"
+        android:text="Sexo"
+        android:textSize="8pt" />
+
+    <TextView
+        android:id="@+id/tv_estagio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/et_chave_seguranca"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="54dp"
+        android:layout_marginLeft="54dp"
+        android:layout_marginTop="30dp"
+        android:text="Estágio Alzheimer"
+        android:textSize="8pt" />
+
+    <RadioGroup
+        android:id="@+id/rg_estagio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_estagio"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="54dp"
+        android:layout_marginLeft="54dp">
+
+        <RadioButton
+            android:id="@+id/rb_inicial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Inicial" />
+
+        <RadioButton
+            android:id="@+id/rb_intermediario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Intermediário" />
+
+        <RadioButton
+            android:id="@+id/rb_avancado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Avançado" />
+    </RadioGroup>
+
+
+</RelativeLayout>

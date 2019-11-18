@@ -3,19 +3,11 @@ package com.example.app.classes;
 public class Endereco {
 
     private Integer codEndereco;
-
-    private String endereco;
-
+    private String logradouro;
     private String cidade;
-
     private String estado;
-
-    private String pais;
-
     private int numero;
-
     private String bairro;
-
     private String cep;
 
     public Integer getCodEndereco() {
@@ -42,14 +34,6 @@ public class Endereco {
         this.estado = estado;
     }
 
-    public String getPais() {
-        return pais;
-    }
-
-    public void setPais(String pais) {
-        this.pais = pais;
-    }
-
     public int getNumero() {
         return numero;
     }
@@ -74,22 +58,21 @@ public class Endereco {
         this.cep = cep;
     }
 
-    public String getEndereco() {
-        return endereco;
+    public String getLogradouro() {
+        return logradouro;
     }
 
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+    public void setLogradouro(String logradouro) {
+        this.logradouro = logradouro;
     }
 
-    public Endereco(Integer codEndereco, String endereco, String cidade, String estado, String pais, int numero,
+    public Endereco(Integer codEndereco, String logradouro, String cidade, String estado, int numero,
                     String bairro, String cep) {
         super();
         this.codEndereco = codEndereco;
-        this.endereco = endereco;
+        this.logradouro = logradouro;
         this.cidade = cidade;
         this.estado = estado;
-        this.pais = pais;
         this.numero = numero;
         this.bairro = bairro;
         this.cep = cep;
@@ -99,5 +82,4 @@ public class Endereco {
         super();
         // TODO Auto-generated constructor stub
     }
-
 }

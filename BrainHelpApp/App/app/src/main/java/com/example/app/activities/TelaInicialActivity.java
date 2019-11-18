@@ -6,7 +6,14 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+
 import com.example.app.R;
+
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TelaInicialActivity extends AppCompatActivity {
 
@@ -14,6 +21,8 @@ public class TelaInicialActivity extends AppCompatActivity {
     private Button btCadastrar;
     public static SharedPreferences sp;
     public static SharedPreferences.Editor editor;
+    public static Retrofit retrofit;
+    private OkHttpClient client;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +57,18 @@ public class TelaInicialActivity extends AppCompatActivity {
     private void inicializaComponentes(){
         this.btLogin = findViewById(R.id.bt_entrar);
         this.btCadastrar = findViewById(R.id.bt_cadastrar);
-        this.sp = getSharedPreferences("brain_help", MODE_PRIVATE);
-        this.editor = this.sp.edit();
+        sp = getSharedPreferences("brain_help", MODE_PRIVATE);
+        editor = sp.edit();
+        this.client = new OkHttpClient.Builder()
+                .connectTimeout(3, TimeUnit.MINUTES)
+                .writeTimeout(3, TimeUnit.MINUTES)
+                .readTimeout(3, TimeUnit.MINUTES)
+                .build();
+
+        retrofit = new Retrofit.Builder()
+                .baseUrl("http://192.168.15.1:8080/")
+                .client(client)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
     }
 }

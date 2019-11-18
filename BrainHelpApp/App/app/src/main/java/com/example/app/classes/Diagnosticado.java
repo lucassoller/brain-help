@@ -3,52 +3,34 @@ package com.example.app.classes;
 import com.example.app.enumerated.AvaliacaoDesempenho;
 import com.example.app.enumerated.EstagioAlzheimer;
 import com.example.app.enumerated.Sexo;
+
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Diagnosticado{
+public class Diagnosticado implements Serializable {
 
     private Integer codDiagnosticado;
     private String nome;
-
     private String sobrenome;
-
     private String email;
-
     private String telefone;
-
     private String senha;
-
     private int idade;
-
     private Sexo sexo;
-
     private EstagioAlzheimer estagioAlzheimer;
-
     private String foto;
-
     private Endereco endereco;
-
     private String chaveSeguranca;
-
     private Date dataDiagnostico;
-
     private Medico medico;
-
     private List<Vinculo> vinculos;
-
     private List<Medicamento> medicamentos;
-
     private List<Fotografia> fotografias;
-
     private List<Musica> musicas;
-
     private List<Tarefa> tarefas;
-
     private List<Desempenho> desempenhos;
-
     private AvaliacaoDesempenho desempenhoAtual;
-
     private boolean google;
 
     public Integer getCodDiagnosticado() {

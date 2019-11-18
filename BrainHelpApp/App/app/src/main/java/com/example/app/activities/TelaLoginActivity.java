@@ -16,15 +16,10 @@ import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
-import com.mobsandgeeks.saripaar.annotation.Password;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class TelaLoginActivity extends AppCompatActivity implements Validator.ValidationListener {
 
@@ -34,15 +29,10 @@ public class TelaLoginActivity extends AppCompatActivity implements Validator.Va
     @NotEmpty(message = "Email é obrigatório")
     @Email(message = "Email incorreto")
     private EditText etEmail;
-
     @NotEmpty(message = "Senha é obrigatória")
-    @Password(scheme = Password.Scheme.ALPHA_NUMERIC_MIXED_CASE_SYMBOLS)
     private EditText etSenha;
-
     private TextView tvEsqueceuSenha;
     private TextView tvCadastrar;
-    private Retrofit retrofit;
-    private OkHttpClient client;
     private Validator validator;
 
     @Override
@@ -69,19 +59,7 @@ public class TelaLoginActivity extends AppCompatActivity implements Validator.Va
     }
 
     private void logar(){
-        client = new OkHttpClient.Builder()
-                .connectTimeout(3, TimeUnit.MINUTES)
-                .writeTimeout(3, TimeUnit.MINUTES)
-                .readTimeout(3, TimeUnit.MINUTES)
-                .build();
-
-        retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.15.1:8080/")
-                .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        LoginService loginService = retrofit.create(LoginService.class);
+        LoginService loginService = TelaInicialActivity.retrofit.create(LoginService.class);
         loginService.logarDiagnosticado(new LoginRequestDto(etEmail.getText().toString(), etSenha.getText().toString())).enqueue(new Callback<LoginResponseDto>() {
             @Override
             public void onResponse(Call<LoginResponseDto> call, Response<LoginResponseDto> response) {
