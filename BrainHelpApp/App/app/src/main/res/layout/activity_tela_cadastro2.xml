@@ -40,7 +40,6 @@
         android:hint="Telefone (xx) xxxxx-xxxx"
         android:inputType="phone"
         android:padding="10dp"
-        android:phoneNumber="true"
         android:textColorHint="#38B6FF" />
 
     <EditText
@@ -59,7 +58,6 @@
         android:hint="Data diagnóstico dd/MM/AAAA"
         android:inputType="date"
         android:padding="10dp"
-        android:phoneNumber="false"
         android:textColorHint="#38B6FF" />
 
     <EditText

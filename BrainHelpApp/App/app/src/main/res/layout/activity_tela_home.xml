@@ -20,6 +20,7 @@
         android:layout_marginTop="2dp"
         android:background="@drawable/image_corner_white"
         android:padding="5dp"
+        android:src="@drawable/contatos"
         tools:srcCompat="@drawable/contatos" />
 
     <ImageView
@@ -34,6 +35,7 @@
         android:layout_marginRight="19dp"
         android:padding="5dp"
         android:background="@drawable/image_corner_white"
+        android:src="@drawable/house"
         tools:srcCompat="@drawable/house" />
 
     <ImageView
@@ -48,7 +50,8 @@
         android:layout_marginTop="2dp"
         android:background="@drawable/image_corner_white"
         android:padding="5dp"
-        tools:srcCompat="@drawable/remedio" />
+        android:src="@drawable/medicine"
+        tools:srcCompat="@drawable/medicine" />
 
     <ImageView
         android:id="@+id/iv_musicas"
@@ -62,7 +65,8 @@
         android:layout_marginTop="2dp"
         android:background="@drawable/image_corner_white"
         android:padding="5dp"
-        tools:srcCompat="@drawable/musica" />
+        android:src="@drawable/music"
+        tools:srcCompat="@drawable/music" />
 
     <ImageView
         android:id="@+id/iv_fotos"
@@ -76,7 +80,8 @@
         android:layout_marginRight="19dp"
         android:background="@drawable/image_corner_white"
         android:padding="5dp"
-        tools:srcCompat="@drawable/gallery" />
+        android:src="@drawable/album"
+        tools:srcCompat="@drawable/album" />
 
     <ImageView
         android:id="@+id/iv_jogos"
@@ -92,6 +97,7 @@
         android:layout_marginLeft="10dp"
         android:background="@drawable/image_corner_white"
         android:padding="5dp"
+        android:src="@drawable/puzzle"
         tools:srcCompat="@drawable/puzzle" />
 
     <ImageView
@@ -106,6 +112,7 @@
         android:layout_marginRight="19dp"
         android:background="@drawable/image_corner_white"
         android:padding="5dp"
+        android:src="@drawable/tarefas"
         tools:srcCompat="@drawable/tarefas" />
 
     <TextView
@@ -232,5 +239,6 @@
         android:layout_marginTop="2dp"
         android:background="@drawable/image_corner_white"
         android:padding="5dp"
+        android:src="@drawable/chatbot"
         tools:srcCompat="@drawable/chatbot" />
 </RelativeLayout>

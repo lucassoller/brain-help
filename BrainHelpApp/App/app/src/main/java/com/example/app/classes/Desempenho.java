@@ -1,7 +1,6 @@
 package com.example.app.classes;
 
 import com.example.app.enumerated.AvaliacaoDesempenho;
-
 import java.util.Date;
 
 public class Desempenho {
@@ -31,7 +30,7 @@ public class Desempenho {
     }
 
     public void setAtividade(Atividade atividade) {
-        this.atividade = atividade;
+       this.atividade = atividade;
     }
 
     public Date getData() {
