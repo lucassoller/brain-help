@@ -40,7 +40,7 @@ public class TelaInicialActivity extends AppCompatActivity {
         this.btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent itTelaLogin = new Intent(TelaInicialActivity.this, TelaLoginActivity.class);
+                Intent itTelaLogin = new Intent(TelaInicialActivity.this, TelaHomeActivity.class);
                 startActivity(itTelaLogin);
             }
         });

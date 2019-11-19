@@ -2,32 +2,22 @@ package com.example.app.classes;
 
 import com.example.app.enumerated.Sexo;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Vinculo  {
+public class Vinculo implements Serializable{
 
     private Integer codVinculo;
-
     private String nome;
-
     private String telefone;
-
     private String sobrenome;
-
     private String vinculo;
-
     private Sexo sexo;
-
     private int idade;
-
     private boolean contatoEmergencia;
-
     private Endereco endereco;
-
     private List<Lembranca> lembrancas;
-
     private Diagnosticado diagnosticado;
-
     private Fotografia fotografia;
 
     public Integer getCodVinculo() {

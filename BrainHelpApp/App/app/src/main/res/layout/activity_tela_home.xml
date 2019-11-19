@@ -15,6 +15,8 @@
         android:layout_alignParentLeft="true"
         android:layout_marginStart="19dp"
         android:layout_marginLeft="19dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="2dp"
         android:background="@drawable/image_corner_white"
         android:padding="5dp"
@@ -72,8 +74,8 @@
         android:layout_marginTop="2dp"
         android:layout_marginEnd="19dp"
         android:layout_marginRight="19dp"
-        android:padding="5dp"
         android:background="@drawable/image_corner_white"
+        android:padding="5dp"
         tools:srcCompat="@drawable/gallery" />
 
     <ImageView
@@ -86,8 +88,10 @@
         android:layout_marginTop="2dp"
         android:layout_marginEnd="19dp"
         android:layout_marginRight="19dp"
-        android:padding="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp"
         android:background="@drawable/image_corner_white"
+        android:padding="5dp"
         tools:srcCompat="@drawable/puzzle" />
 
     <ImageView
@@ -226,7 +230,7 @@
         android:layout_marginStart="19dp"
         android:layout_marginLeft="19dp"
         android:layout_marginTop="2dp"
-        android:padding="5dp"
         android:background="@drawable/image_corner_white"
+        android:padding="5dp"
         tools:srcCompat="@drawable/chatbot" />
 </RelativeLayout>

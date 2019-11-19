@@ -7,7 +7,7 @@
     android:background="#B9E5FF">
 
     <Button
-        android:id="@+id/bt_google"
+        android:id="@+id/bt_adicionar_contato"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
