@@ -6,18 +6,26 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.app.R;
 import com.example.app.adapter.ContatosAdapter;
 import com.example.app.classes.Vinculo;
+import com.example.app.services.VinculoService;
+
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class TelaContatosActivity extends AppCompatActivity {
 
     private ListView lvContatos;
     private Button btAdicionarContato;
     private ArrayList<Vinculo> vinculos = new ArrayList<>();
-    private ContatosAdapter contatosAdapter;
+    public static ContatosAdapter contatosAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

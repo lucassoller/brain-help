@@ -20,6 +20,6 @@ public interface VinculoService {
     Call<Vinculo> buscarPorId(@Path("ID") Integer codVinculo);
 
     @POST("vinculo/cadastrar")
-    Call<Vinculo> cadastrarVinculo(@Header("Authorization") String token, @Body Vinculo vinculo);
+    Call<Void> cadastrarVinculo(@Header("Authorization") String token, @Body Vinculo vinculo);
 }
  

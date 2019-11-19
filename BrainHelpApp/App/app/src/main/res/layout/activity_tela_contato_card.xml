@@ -12,23 +12,18 @@
         android:layout_height="match_parent">
 
         <RelativeLayout
+            android:id="@+id/layout"
             android:layout_width="match_parent"
-            android:layout_height="1000dp">
+            android:layout_height="wrap_content">
 
             <ImageView
+                android:layout_marginTop="15dp"
                 android:id="@+id/imageView4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginStart="145dp"
-                android:layout_marginLeft="145dp"
-                android:layout_marginTop="18dp"
-                android:layout_marginEnd="138dp"
-                android:layout_marginRight="138dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/image_corner"
+                android:padding="20dp"
                 android:src="@drawable/house" />
 
             <EditText
@@ -140,10 +135,37 @@
                 android:textColorHint="#38B6FF" />
 
             <TextView
-                android:id="@+id/tv_sexo"
+                android:id="@+id/tv_idade"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/et_telefone"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Idade"
+                android:textSize="9pt" />
+
+            <EditText
+                android:id="@+id/et_idade"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_idade"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:hint="Idade"
+                android:textColorHint="#38B6FF" />
+
+            <TextView
+                android:id="@+id/tv_sexo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_idade"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentLeft="true"
                 android:layout_marginStart="30dp"
@@ -191,7 +213,7 @@
 
 
             <EditText
-                android:id="@+id/editText2"
+                android:id="@+id/et_lembrancas"
                 android:layout_width="350dp"
                 android:layout_height="120dp"
                 android:ems="10"
@@ -202,11 +224,206 @@
                 android:layout_marginTop="5dp"
                 android:background="#FFFFFF"
                 android:padding="10dp"
-                android:text="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+                android:text=""
                 android:textColorHint="#38B6FF"/>
 
+            <TextView
+                android:id="@+id/tv_logradouro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_lembrancas"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Logradouro"
+                android:textSize="9pt" />
 
+            <EditText
+                android:id="@+id/et_logradouro"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_logradouro"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:hint="Logrdouro"
+                android:textColorHint="#38B6FF" />
+
+            <TextView
+                android:id="@+id/tv_numero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_logradouro"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Número"
+                android:textSize="9pt" />
+
+            <EditText
+                android:id="@+id/et_numero"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_numero"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:hint="Número"
+                android:textColorHint="#38B6FF" />
+
+            <TextView
+                android:id="@+id/tv_estado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_numero"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Estado"
+                android:textSize="9pt" />
+
+            <Spinner
+                android:id="@+id/sp_estados"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_estado"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/tv_cidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sp_estados"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Cidade"
+                android:textSize="9pt" />
+
+            <EditText
+                android:id="@+id/et_cidade"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_cidade"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:hint="Cidade"
+                android:textColorHint="#38B6FF" />
+
+            <TextView
+                android:id="@+id/tv_bairro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_cidade"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Bairro"
+                android:textSize="9pt" />
+
+            <EditText
+                android:id="@+id/et_bairro"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_bairro"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:hint="Bairro"
+                android:textColorHint="#38B6FF" />
+
+            <TextView
+                android:id="@+id/tv_cep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_bairro"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="CEP"
+                android:textSize="9pt" />
+
+            <EditText
+                android:id="@+id/et_cep"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_cep"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:hint="xxxxx-xxx"
+                android:textColorHint="#38B6FF" />
+
+            <Button
+                android:id="@+id/bt_cadastrar"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_cep"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_corner_purple"
+                android:text="Cadastrar"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/bt_editar"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_cep"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_corner_purple"
+                android:text="Editar"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/bt_excluir"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_cep"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_corner_red"
+                android:text="Excluir"
+                android:textColor="#FFFFFF" />
         </RelativeLayout>
     </ScrollView>
-
 </RelativeLayout>

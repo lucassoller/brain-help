@@ -12,11 +12,11 @@ public class Vinculo implements Serializable{
     private String telefone;
     private String sobrenome;
     private String vinculo;
+    private String lembrancas;
     private Sexo sexo;
     private int idade;
     private boolean contatoEmergencia;
     private Endereco endereco;
-    private List<Lembranca> lembrancas;
     private Diagnosticado diagnosticado;
     private Fotografia fotografia;
 
@@ -76,20 +76,20 @@ public class Vinculo implements Serializable{
         this.idade = idade;
     }
 
-    public List<Lembranca> getLembrancas() {
-        return lembrancas;
-    }
-
-    public void setLembrancas(List<Lembranca> lembrancas) {
-        this.lembrancas = lembrancas;
-    }
-
     public Diagnosticado getDiagnosticado() {
         return diagnosticado;
     }
 
     public void setDiagnosticado(Diagnosticado diagnosticado) {
         this.diagnosticado = diagnosticado;
+    }
+
+    public String getLembrancas() {
+        return lembrancas;
+    }
+
+    public void setLembrancas(String lembrancas) {
+        this.lembrancas = lembrancas;
     }
 
     public boolean isContatoEmergencia() {
@@ -117,7 +117,7 @@ public class Vinculo implements Serializable{
     }
 
     public Vinculo(Integer codVinculo, String nome, String telefone, String sobrenome, String vinculo, Sexo sexo,
-                   int idade, boolean contatoEmergencia, Endereco endereco, List<Lembranca> lembrancas,
+                   int idade, boolean contatoEmergencia, Endereco endereco, String lembrancas,
                    Diagnosticado diagnosticado, Fotografia fotografia) {
         super();
         this.codVinculo = codVinculo;
