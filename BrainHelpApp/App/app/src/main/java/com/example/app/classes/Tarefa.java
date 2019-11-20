@@ -7,15 +7,10 @@ import java.util.Date;
 public class Tarefa  {
 
     private Integer codTarefa;
-
     private String tarefa;
-
     private String descricao;
-
     private Date dataRealizacao;
-
     private StatusTarefa statusTarefa;
-
     private Diagnosticado diagnosticado;
 
     public Integer getCodTarefa() {

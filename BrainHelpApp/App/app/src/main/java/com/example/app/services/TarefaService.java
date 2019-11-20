@@ -1,12 +1,11 @@
 package com.example.app.services;
 
 import com.example.app.classes.Tarefa;
-
 import java.util.List;
-
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 
@@ -19,5 +18,5 @@ public interface TarefaService {
     Call<Tarefa> buscarPorId(@Path("ID") Integer codTarefa);
 
     @POST("tarefa/cadastrar")
-    Call<Tarefa> cadastrarTarefa(@Body Tarefa tarefa);
+    Call<Void> cadastrarTarefa(@Header("Authorization") String token, @Body Tarefa tarefa);
 }

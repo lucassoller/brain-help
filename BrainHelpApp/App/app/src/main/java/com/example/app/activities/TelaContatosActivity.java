@@ -11,7 +11,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.app.R;
 import com.example.app.adapter.ContatosAdapter;
+import com.example.app.classes.Endereco;
 import com.example.app.classes.Vinculo;
+import com.example.app.enumerated.Sexo;
 import com.example.app.services.VinculoService;
 
 import java.util.ArrayList;
@@ -35,7 +37,19 @@ public class TelaContatosActivity extends AppCompatActivity {
         Vinculo vinculo = new Vinculo();
         vinculo.setNome("Lucas");
         vinculo.setSobrenome("Soller");
-
+        vinculo.setVinculo("pai");
+        vinculo.setTelefone("telefone");
+        vinculo.setIdade(18);
+        vinculo.setSexo(Sexo.M);
+        vinculo.setLembrancas("aaa");
+        Endereco endereco = new Endereco();
+        endereco.setLogradouro("vitalino");
+        endereco.setNumero(43);
+        endereco.setEstado("RS");
+        endereco.setCidade("Sapucaia");
+        endereco.setBairro("Centro");
+        endereco.setCep("93214-544");
+        vinculo.setEndereco(endereco);
         vinculos.add(vinculo);
         vinculos.add(vinculo);
         vinculos.add(vinculo);

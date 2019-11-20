@@ -1,6 +1,8 @@
 package com.example.app.enumerated;
 
-public enum Sexo {
+import java.io.Serializable;
+
+public enum Sexo implements Serializable {
 
     M, F
 }

@@ -20,6 +20,7 @@ import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Checked;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
+import com.mobsandgeeks.saripaar.annotation.Select;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -53,13 +54,14 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
     @Checked(message = "Sexo é obrigatório")
     private RadioGroup rgSexo;
     private RadioButton rbSexoSelecionado;
-    @Checked(message = "Estado é obrigatório")
+    @Select(message = "Estado é obrigatório")
     private Spinner spEstados;
     private Button btCadastrar;
     private Button btExcluir;
     private Button btEditar;
     private String acao;
     private Validator validator;
+    private RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +95,7 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
                 }
             }
             this.acao = "editar";
+            relativeLayout.removeView(this.btCadastrar);
         }else{
             this.vinculo = new Vinculo();
             this.rgSexo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -102,7 +105,6 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
                 }
             });
             this.acao = "cadastrar";
-            RelativeLayout relativeLayout = findViewById(R.id.layout);
             relativeLayout.removeView(this.btEditar);
             relativeLayout.removeView(this.btExcluir);
         }
@@ -147,6 +149,7 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
         this.btEditar = findViewById(R.id.bt_editar);
         this.btExcluir = findViewById(R.id.bt_excluir);
         this.validator = new Validator(this);
+        this.relativeLayout = findViewById(R.id.layout);
         validator.setValidationListener(this);
     }
 

@@ -1,11 +1,9 @@
 package com.example.app.classes;
 
 import com.example.app.enumerated.Sexo;
-
 import java.io.Serializable;
-import java.util.List;
 
-public class Vinculo implements Serializable{
+public class Vinculo implements Serializable {
 
     private Integer codVinculo;
     private String nome;

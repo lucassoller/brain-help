@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.app.R;
 
@@ -23,6 +24,8 @@ public class TelaHomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_home);
         this.inicializaComponenetes();
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setSubtitle("Bem-vindo fulano");
 
         this.ivContatos.setOnClickListener(new View.OnClickListener() {
             @Override

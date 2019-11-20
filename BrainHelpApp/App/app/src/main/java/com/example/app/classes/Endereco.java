@@ -1,6 +1,8 @@
 package com.example.app.classes;
 
-public class Endereco {
+import java.io.Serializable;
+
+public class Endereco implements Serializable {
 
     private Integer codEndereco;
     private String logradouro;
