@@ -4,9 +4,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.app.R;
+import com.example.app.StartUpBootReceiver;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class TelaHomeActivity extends AppCompatActivity {
 
@@ -26,6 +32,16 @@ public class TelaHomeActivity extends AppCompatActivity {
         this.inicializaComponenetes();
         ActionBar actionBar = getSupportActionBar();
         actionBar.setSubtitle("Bem-vindo fulano");
+        SimpleDateFormat formataData = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+        Date data = new Date();
+        String dataFormatada = formataData.format(data);
+
+        if(dataFormatada.equals("20/11/2019 15:11")){
+            Toast.makeText(this, "aaaaaaa", Toast.LENGTH_LONG).show();
+        }
+
+        StartUpBootReceiver.setAlarm(this, 15, 45);
+        StartUpBootReceiver.setAlarm(this, 3, 45);
 
         this.ivContatos.setOnClickListener(new View.OnClickListener() {
             @Override

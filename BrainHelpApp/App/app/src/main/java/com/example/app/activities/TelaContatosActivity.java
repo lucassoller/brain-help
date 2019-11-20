@@ -62,7 +62,6 @@ public class TelaContatosActivity extends AppCompatActivity {
         vinculos.add(vinculo);
         vinculos.add(vinculo);
 
-        this.contatosAdapter = new ContatosAdapter(this, R.layout.list_contatos, vinculos);
         this.lvContatos.setAdapter(contatosAdapter);
 
         this.lvContatos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -87,6 +86,6 @@ public class TelaContatosActivity extends AppCompatActivity {
     private void inicializaComponentes(){
         this.lvContatos = findViewById(R.id.lv_contatos);
         this.btAdicionarContato = findViewById(R.id.bt_adicionar_contato);
-
+        this.contatosAdapter = new ContatosAdapter(this, R.layout.list_contatos, vinculos);
     }
 }

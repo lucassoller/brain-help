@@ -46,7 +46,7 @@ public class ContatosAdapter extends ArrayAdapter<Vinculo> {
         }
 
         holder.tvNome.setText(vinculo.getNome()+" "+ vinculo.getSobrenome());
-        holder.ivFoto.setImageResource(R.drawable.puzzle);
+        holder.ivFoto.setImageResource(R.drawable.my_user);
         return convertView;
     }
 }

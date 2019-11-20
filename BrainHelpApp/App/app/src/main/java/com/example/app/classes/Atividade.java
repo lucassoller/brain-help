@@ -5,13 +5,9 @@ import com.example.app.enumerated.TipoAtividade;
 public class Atividade  {
 
     private Integer codAtividade;
-
     private String nome;
-
     private String descricao;
-
     private int pontuacaoTotal;
-    
     private TipoAtividade tipoAtividade;
 
     public Integer getCodAtividade() {
