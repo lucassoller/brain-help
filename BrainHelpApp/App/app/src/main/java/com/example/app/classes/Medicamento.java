@@ -3,9 +3,10 @@ package com.example.app.classes;
 import com.example.app.enumerated.Medida;
 import com.example.app.enumerated.TipoDuracao;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Medicamento  {
+public class Medicamento implements Serializable {
 
     private Integer codMedicamento;
 

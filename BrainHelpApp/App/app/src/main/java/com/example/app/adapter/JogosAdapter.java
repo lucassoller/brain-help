@@ -4,19 +4,18 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.text.InputType;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.example.app.R;
+import com.example.app.activities.JogoDaMemoriaActivity;
 import com.example.app.classes.Atividade;
 import java.util.List;
 
@@ -65,7 +64,9 @@ public class JogosAdapter extends ArrayAdapter<Atividade> {
         holder.ivFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(context, "oi", Toast.LENGTH_LONG).show();
+                Intent itTelaJogo = new Intent(context, JogoDaMemoriaActivity.class);
+                itTelaJogo.putExtra("atividade", atividade);
+                context.startActivity(itTelaJogo);
             }
         });
         return convertView;

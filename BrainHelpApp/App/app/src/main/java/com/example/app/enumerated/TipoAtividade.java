@@ -1,6 +1,8 @@
 package com.example.app.enumerated;
 
-public enum TipoAtividade {
+import java.io.Serializable;
+
+public enum TipoAtividade  implements Serializable {
 
     PUZZLE, QUIZ, OUTRO
 }

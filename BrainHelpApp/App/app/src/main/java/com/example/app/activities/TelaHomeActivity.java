@@ -9,7 +9,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.app.R;
-import com.example.app.StartUpBootReceiver;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -39,9 +38,6 @@ public class TelaHomeActivity extends AppCompatActivity {
         if(dataFormatada.equals("20/11/2019 15:11")){
             Toast.makeText(this, "aaaaaaa", Toast.LENGTH_LONG).show();
         }
-
-        StartUpBootReceiver.setAlarm(this, 15, 45);
-        StartUpBootReceiver.setAlarm(this, 3, 45);
 
         this.ivContatos.setOnClickListener(new View.OnClickListener() {
             @Override

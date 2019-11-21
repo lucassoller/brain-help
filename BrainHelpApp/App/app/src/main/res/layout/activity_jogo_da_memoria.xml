@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B9E5FF"
+    tools:context=".activities.JogoDaMemoriaActivity">
+
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:textColor="#000000"
+        android:textSize="8pt" />
+
+    <TextView
+        android:id="@+id/tv_nome_jogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="15dp"
+        android:textColor="#000000"
+        android:textSize="12pt"
+        android:text="Jogo da Memória" />
+
+    <Button
+        android:id="@+id/bt_iniciar"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_corner_purple"
+        android:text="Iniciar"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/bt_parar"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/button_corner_red"
+        android:text="Parar"
+        android:textColor="#FFFFFF" />
+
+
+    <ImageView
+        android:id="@+id/iv_card4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/iv_card1"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_toStartOf="@+id/iv_card5"
+        android:layout_toLeftOf="@+id/iv_card5"
+        android:background="@drawable/image_corner_white"
+        android:padding="12dp"
+        android:src="@drawable/memory_card" />
+
+    <ImageView
+        android:id="@+id/iv_card2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/tv_nome_jogo"
+        android:layout_marginTop="15dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/image_corner_white"
+        android:padding="12dp"
+        android:src="@drawable/memory_card" />
+
+    <ImageView
+        android:id="@+id/iv_card3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/tv_nome_jogo"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="15dp"
+        android:layout_toEndOf="@+id/iv_card2"
+        android:layout_toRightOf="@+id/iv_card2"
+        android:background="@drawable/image_corner_white"
+        android:padding="12dp"
+        android:src="@drawable/memory_card" />
+
+    <ImageView
+        android:id="@+id/iv_card1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/tv_nome_jogo"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_toStartOf="@+id/iv_card2"
+        android:layout_toLeftOf="@+id/iv_card2"
+        android:background="@drawable/image_corner_white"
+        android:padding="12dp"
+        android:src="@drawable/memory_card" />
+
+    <ImageView
+        android:id="@+id/iv_card5"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/iv_card2"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/image_corner_white"
+        android:padding="12dp"
+        android:src="@drawable/memory_card" />
+
+    <ImageView
+        android:id="@+id/iv_card6"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/iv_card3"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/iv_card5"
+        android:layout_toRightOf="@+id/iv_card5"
+        android:background="@drawable/image_corner_white"
+        android:padding="12dp"
+        android:src="@drawable/memory_card" />
+
+    <ImageView
+        android:id="@+id/iv_card7"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/iv_card4"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_toStartOf="@+id/iv_card8"
+        android:layout_toLeftOf="@+id/iv_card8"
+        android:background="@drawable/image_corner_white"
+        android:padding="12dp"
+        android:src="@drawable/memory_card" />
+
+    <ImageView
+        android:id="@+id/iv_card8"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/iv_card5"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/image_corner_white"
+        android:padding="12dp"
+        android:src="@drawable/memory_card" />
+
+    <ImageView
+        android:id="@+id/iv_card9"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/iv_card6"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/iv_card8"
+        android:layout_toRightOf="@+id/iv_card8"
+        android:background="@drawable/image_corner_white"
+        android:padding="12dp"
+        android:src="@drawable/memory_card" />
+
+    <ImageView
+        android:id="@+id/iv_card10"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/iv_card8"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_toStartOf="@+id/iv_card11"
+        android:layout_toLeftOf="@+id/iv_card11"
+        android:background="@drawable/image_corner_white"
+        android:padding="12dp"
+        android:src="@drawable/memory_card" />
+
+    <ImageView
+        android:id="@+id/iv_card11"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/iv_card8"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/image_corner_white"
+        android:padding="12dp"
+        android:src="@drawable/memory_card" />
+
+    <ImageView
+        android:id="@+id/iv_card12"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/iv_card9"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="20dp"
+        android:layout_toEndOf="@+id/iv_card11"
+        android:layout_toRightOf="@+id/iv_card11"
+        android:background="@drawable/image_corner_white"
+        android:padding="12dp"
+        android:src="@drawable/memory_card" />
+
+</RelativeLayout>

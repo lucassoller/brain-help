@@ -1,6 +1,8 @@
 package com.example.app.enumerated;
 
-public enum AvaliacaoDesempenho  {
+import java.io.Serializable;
+
+public enum AvaliacaoDesempenho implements Serializable {
 
     RUIM, REGULAR, BOA, EXCELENTE
 }

@@ -1,9 +1,11 @@
 package com.example.app.classes;
 
 import com.example.app.enumerated.AvaliacaoDesempenho;
+
+import java.io.Serializable;
 import java.util.Date;
 
-public class Desempenho {
+public class Desempenho implements Serializable {
 
     private Integer codDesempenho;
 

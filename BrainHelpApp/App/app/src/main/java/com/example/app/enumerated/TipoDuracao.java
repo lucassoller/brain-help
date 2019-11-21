@@ -1,6 +1,8 @@
 package com.example.app.enumerated;
 
-public enum TipoDuracao {
+import java.io.Serializable;
+
+public enum TipoDuracao implements Serializable {
 
     DIAS, MESES, SEMANAS, ANOS
 }

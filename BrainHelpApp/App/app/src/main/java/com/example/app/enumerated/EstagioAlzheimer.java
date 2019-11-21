@@ -1,6 +1,8 @@
 package com.example.app.enumerated;
 
-public enum EstagioAlzheimer {
+import java.io.Serializable;
+
+public enum EstagioAlzheimer implements Serializable {
 
     INICIAL, INTERMEDIARIO, AVANCADO
 }

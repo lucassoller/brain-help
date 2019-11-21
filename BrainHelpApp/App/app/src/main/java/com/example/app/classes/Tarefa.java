@@ -2,9 +2,10 @@ package com.example.app.classes;
 
 import com.example.app.enumerated.StatusTarefa;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Tarefa  {
+public class Tarefa implements Serializable {
 
     private Integer codTarefa;
     private String tarefa;

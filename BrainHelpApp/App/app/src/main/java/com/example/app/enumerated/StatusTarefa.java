@@ -1,6 +1,8 @@
 package com.example.app.enumerated;
 
-public enum StatusTarefa {
+import java.io.Serializable;
+
+public enum StatusTarefa implements Serializable {
 
     CONCLUIDA, NAO_CONCLUIDA, ABERTA
 }

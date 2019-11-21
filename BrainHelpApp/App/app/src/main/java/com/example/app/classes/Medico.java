@@ -1,9 +1,10 @@
 package com.example.app.classes;
 
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Medico{
+public class Medico implements Serializable {
 
     private String nome;
 

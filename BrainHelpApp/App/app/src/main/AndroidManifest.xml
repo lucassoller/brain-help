@@ -3,9 +3,6 @@
     package="com.example.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.ACCESS_NOTIFICATION_POLICY" />
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -16,15 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <receiver android:name=".StartUpBootReceiver">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
-        <service
-            android:name=".BootService"
-            android:enabled="true"
-            android:exported="true"></service>
+        <activity android:name=".activities.JogoDaMemoriaActivity"></activity>
 
         <activity android:name=".activities.TelaCadastroInicialActivity" />
         <activity android:name=".activities.TelaEnderecoCardActivity" />

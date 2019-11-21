@@ -2,7 +2,9 @@ package com.example.app.classes;
 
 import com.example.app.enumerated.TipoAtividade;
 
-public class Atividade  {
+import java.io.Serializable;
+
+public class Atividade implements Serializable {
 
     private Integer codAtividade;
     private String nome;

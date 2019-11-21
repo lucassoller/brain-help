@@ -1,8 +1,9 @@
 package com.example.app.classes;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Lembranca  {
+public class Lembranca implements Serializable {
 
         private Integer codLembranca;
 

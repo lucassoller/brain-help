@@ -1,9 +1,10 @@
 package com.example.app.classes;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Fotografia  {
+public class Fotografia   implements Serializable {
 
     private Integer codFotografia;
 
