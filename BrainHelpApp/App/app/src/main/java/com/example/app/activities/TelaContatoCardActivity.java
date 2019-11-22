@@ -1,10 +1,13 @@
 package com.example.app.activities;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
@@ -16,11 +19,15 @@ import com.example.app.classes.Endereco;
 import com.example.app.classes.Vinculo;
 import com.example.app.enumerated.Sexo;
 import com.example.app.services.VinculoService;
+import com.example.app.utils.BitmapUtils;
+import com.example.app.utils.ImagePickerUtils;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Checked;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Select;
+
+import java.io.File;
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -59,9 +66,12 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
     private Button btCadastrar;
     private Button btExcluir;
     private Button btEditar;
+    private Button btAdicionarFoto;
     private String acao;
     private Validator validator;
     private RelativeLayout relativeLayout;
+    private Bitmap foto;
+    private ImageView ivFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,6 +138,14 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
                 excluir();
             }
         });
+
+        this.btAdicionarFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = ImagePickerUtils.getPickImageIntent(TelaContatoCardActivity.this);
+                startActivityForResult(i, ImagePickerUtils.PICK_FOTO_FROM_AVATAR);
+            }
+        });
     }
 
     private void inicializaComponentes() {
@@ -150,6 +168,8 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
         this.btExcluir = findViewById(R.id.bt_excluir);
         this.validator = new Validator(this);
         this.relativeLayout = findViewById(R.id.layout);
+        this.btAdicionarFoto = findViewById(R.id.bt_adicionar_foto);
+        this.ivFoto = findViewById(R.id.iv_foto);
         validator.setValidationListener(this);
     }
 
@@ -234,5 +254,20 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
     private void excluir(){
         TelaContatosActivity.contatosAdapter.remove(vinculo);
         TelaContatosActivity.contatosAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ImagePickerUtils.PICK_FOTO_FROM_AVATAR && resultCode == RESULT_OK) {
+            try {
+                File f = ImagePickerUtils.parseReturningDataToFile(data, this);
+                Bitmap bmp = BitmapUtils.getCompressor(this).compressToBitmap(f);
+                foto = bmp;
+                ivFoto.setImageBitmap(bmp);
+            } catch (Exception e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

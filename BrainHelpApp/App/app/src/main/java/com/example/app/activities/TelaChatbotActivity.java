@@ -8,6 +8,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.renderscript.RenderScript;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -50,13 +52,16 @@ public class TelaChatbotActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(foto == null){
-                    foto = BitmapFactory.decodeResource(getResources(), R.drawable.logo_brain);
-                }
-                f = BitmapUtils.bitmapToBase64(foto);
-                Bitmap b = BitmapUtils.base64ToBitmap(f);
-                foto2.setImageBitmap(b);
-                Toast.makeText(TelaChatbotActivity.this, f, Toast.LENGTH_LONG).show();
+//                if(foto == null){
+//                    foto = BitmapFactory.decodeResource(getResources(), R.drawable.logo_brain);
+//                }
+//                f = BitmapUtils.bitmapToBase64(foto);
+//                Log.i("URI ===> ", f);
+//                Bitmap b = BitmapUtils.base64ToBitmap(f);
+//                foto2.setImageBitmap(b);
+//                Toast.makeText(TelaChatbotActivity.this, f, Toast.LENGTH_LONG).show();
+                Intent i = ImagePickerUtils.getPickImageIntent(TelaChatbotActivity.this);
+                startActivityForResult(i, ImagePickerUtils.PICK_FOTO_FROM_AVATAR);
             }
         });
     }
