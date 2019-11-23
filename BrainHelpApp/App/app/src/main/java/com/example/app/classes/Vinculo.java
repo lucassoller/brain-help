@@ -17,6 +17,7 @@ public class Vinculo implements Serializable {
     private Endereco endereco;
     private Diagnosticado diagnosticado;
     private Fotografia fotografia;
+    private String foto;
 
     public Integer getCodVinculo() {
         return codVinculo;
@@ -114,9 +115,17 @@ public class Vinculo implements Serializable {
         this.fotografia = fotografia;
     }
 
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
     public Vinculo(Integer codVinculo, String nome, String telefone, String sobrenome, String vinculo, Sexo sexo,
                    int idade, boolean contatoEmergencia, Endereco endereco, String lembrancas,
-                   Diagnosticado diagnosticado, Fotografia fotografia) {
+                   Diagnosticado diagnosticado, Fotografia fotografia, String foto) {
         super();
         this.codVinculo = codVinculo;
         this.nome = nome;
@@ -130,6 +139,7 @@ public class Vinculo implements Serializable {
         this.lembrancas = lembrancas;
         this.diagnosticado = diagnosticado;
         this.fotografia = fotografia;
+        this.foto = foto;
     }
 
     public Vinculo() {

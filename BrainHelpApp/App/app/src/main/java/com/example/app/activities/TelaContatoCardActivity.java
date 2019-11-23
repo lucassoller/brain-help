@@ -2,6 +2,7 @@ package com.example.app.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -29,6 +30,8 @@ import com.mobsandgeeks.saripaar.annotation.Select;
 
 import java.io.File;
 import java.util.List;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -66,12 +69,11 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
     private Button btCadastrar;
     private Button btExcluir;
     private Button btEditar;
-    private Button btAdicionarFoto;
     private String acao;
     private Validator validator;
     private RelativeLayout relativeLayout;
     private Bitmap foto;
-    private ImageView ivFoto;
+    private CircleImageView ivFoto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -139,7 +141,7 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
             }
         });
 
-        this.btAdicionarFoto.setOnClickListener(new View.OnClickListener() {
+        this.ivFoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = ImagePickerUtils.getPickImageIntent(TelaContatoCardActivity.this);
@@ -168,7 +170,6 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
         this.btExcluir = findViewById(R.id.bt_excluir);
         this.validator = new Validator(this);
         this.relativeLayout = findViewById(R.id.layout);
-        this.btAdicionarFoto = findViewById(R.id.bt_adicionar_foto);
         this.ivFoto = findViewById(R.id.iv_foto);
         validator.setValidationListener(this);
     }
@@ -198,7 +199,12 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
         endereco.setCidade(this.etCidade.getText().toString());
         endereco.setBairro(this.etBairro.getText().toString());
         endereco.setCep(this.etCep.getText().toString());
+        endereco.setTitulo("Endereço de "+ vinculo.getNome());
         this.vinculo.setEndereco(endereco);
+        if(foto == null){
+            foto = BitmapFactory.decodeResource(getResources(), R.drawable.my_user);
+        }
+        this.vinculo.setFoto(BitmapUtils.bitmapToBase64(foto));
         if(this.acao.equals("cadastrar")){
             this.cadastrar();
         }else{

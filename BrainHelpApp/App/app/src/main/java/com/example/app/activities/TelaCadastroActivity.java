@@ -1,11 +1,14 @@
 package com.example.app.activities;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -22,6 +25,8 @@ import com.example.app.enumerated.EstagioAlzheimer;
 import com.example.app.enumerated.Sexo;
 import com.example.app.services.LoginService;
 import com.example.app.services.RegistroService;
+import com.example.app.utils.BitmapUtils;
+import com.example.app.utils.ImagePickerUtils;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Checked;
@@ -30,9 +35,11 @@ import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 
+import java.io.File;
 import java.util.Date;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -81,6 +88,8 @@ public class TelaCadastroActivity extends AppCompatActivity implements Validator
     private String [] strEstados = {"AC", "AL", "AM", "AP", "BA", "CE", "DF", "ES", "GO", "MA", "MG", "MT", "MS", "PA",
             "PB", "PE", "PI", "PR", "RJ", "RN", "RO", "RS", "RR", "SC", "SE", "SP", "TO"};
     private Spinner spEstados;
+    private CircleImageView ivFoto;
+    private Bitmap foto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,6 +127,14 @@ public class TelaCadastroActivity extends AppCompatActivity implements Validator
                 rbSexoSelecionado = findViewById(i);
             }
         });
+
+        this.ivFoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = ImagePickerUtils.getPickImageIntent(TelaCadastroActivity.this);
+                startActivityForResult(i, ImagePickerUtils.PICK_FOTO_FROM_AVATAR);
+            }
+        });
     }
 
     private void inicializaComponentes(){
@@ -140,6 +157,7 @@ public class TelaCadastroActivity extends AppCompatActivity implements Validator
         this.btCadastrar = findViewById(R.id.bt_cadastrar);
         this.tvLogar = findViewById(R.id.tv_logar);
         this.spEstados = findViewById(R.id.sp_estados);
+        this.ivFoto = findViewById(R.id.iv_foto);
         this.validator = new Validator(this);
         validator.setValidationListener(this);
     }
@@ -186,6 +204,10 @@ public class TelaCadastroActivity extends AppCompatActivity implements Validator
         endereco.setBairro(etBairro.getText().toString());
         endereco.setCep(etCep.getText().toString());
         diagnosticado.setEndereco(endereco);
+        if(foto == null){
+            foto = BitmapFactory.decodeResource(getResources(), R.drawable.my_user);
+        }
+        diagnosticado.setFoto(BitmapUtils.bitmapToBase64(foto));
         cadastrar();
     }
 
@@ -238,5 +260,20 @@ public class TelaCadastroActivity extends AppCompatActivity implements Validator
                 Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == ImagePickerUtils.PICK_FOTO_FROM_AVATAR && resultCode == RESULT_OK) {
+            try {
+                File f = ImagePickerUtils.parseReturningDataToFile(data, this);
+                Bitmap bmp = BitmapUtils.getCompressor(this).compressToBitmap(f);
+                foto = bmp;
+                ivFoto.setImageBitmap(bmp);
+            } catch (Exception e) {
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }
