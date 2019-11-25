@@ -1,9 +1,7 @@
 package com.example.demo.web;
 
-import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Atividade;
-import com.example.demo.model.security.UserPrincipal;
 import com.example.demo.repository.AtividadeRepository;
 import com.example.demo.service.atividade.BuscarAtividadePorIdService;
 import com.example.demo.service.atividade.CadastrarAtividadeService;
@@ -40,7 +37,7 @@ public class AtividadeController {
 	}
 	
 	@PostMapping("/cadastrar")
-	public void cadastrarAtividade(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Atividade atividade) {
-		cadastrarAtividade.salvar(userPrincipal.getEmail(), atividade);
+	public void cadastrarAtividade(@RequestBody Atividade atividade) {
+		cadastrarAtividade.salvar(atividade);
 	}
 }

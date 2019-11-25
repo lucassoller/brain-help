@@ -31,8 +31,7 @@ public class Fotografia {
 	@OneToMany(mappedBy = "fotografia")
 	private List<Vinculo> vinculos;
 	
-	@OneToMany(mappedBy = "fotografia")
-	private List<Lembranca> lembrancas;
+	private String lembrancas;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -79,14 +78,6 @@ public class Fotografia {
 		this.vinculos = vinculos;
 	}
 
-	public List<Lembranca> getLembrancas() {
-		return lembrancas;
-	}
-
-	public void setLembrancas(List<Lembranca> lembrancas) {
-		this.lembrancas = lembrancas;
-	}
-
 	public Diagnosticado getDiagnosticado() {
 		return diagnosticado;
 	}
@@ -95,8 +86,16 @@ public class Fotografia {
 		this.diagnosticado = diagnosticado;
 	}
 
+	public String getLembrancas() {
+		return lembrancas;
+	}
+
+	public void setLembrancas(String lembrancas) {
+		this.lembrancas = lembrancas;
+	}
+
 	public Fotografia(Integer codFotografia, String lugar, String descricao, Date data, List<Vinculo> vinculos,
-			List<Lembranca> lembrancas, Diagnosticado diagnosticado) {
+			String lembrancas, Diagnosticado diagnosticado) {
 		super();
 		this.codFotografia = codFotografia;
 		this.lugar = lugar;

@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import com.example.demo.model.enumerated.Sexo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -37,25 +35,19 @@ public class Vinculo {
 	
 	@Column(nullable = false)
 	private int idade;
-	
-	private boolean contatoEmergencia;
-	
+		
 	@OneToOne
 	@JoinColumn(name="codEndereco")
 	private Endereco endereco;
 	
-	@OneToMany(mappedBy = "vinculo")
-	private List<Lembranca> lembrancas;
+	private String lembrancas;
 	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "codDiagnosticado")
 	private Diagnosticado diagnosticado;
 	
-	@JsonIgnore
-	@ManyToOne
-	@JoinColumn(name = "codFotografia")
-	private Fotografia fotografia;
+	private String foto;
 
 	public Integer getCodVinculo() {
 		return codVinculo;
@@ -113,11 +105,11 @@ public class Vinculo {
 		this.idade = idade;
 	}
 
-	public List<Lembranca> getLembrancas() {
+	public String getLembrancas() {
 		return lembrancas;
 	}
 
-	public void setLembrancas(List<Lembranca> lembrancas) {
+	public void setLembrancas(String lembrancas) {
 		this.lembrancas = lembrancas;
 	}
 
@@ -129,14 +121,6 @@ public class Vinculo {
 		this.diagnosticado = diagnosticado;
 	}
 
-	public boolean isContatoEmergencia() {
-		return contatoEmergencia;
-	}
-
-	public void setContatoEmergencia(boolean contatoEmergencia) {
-		this.contatoEmergencia = contatoEmergencia;
-	}
-
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -145,17 +129,17 @@ public class Vinculo {
 		this.endereco = endereco;
 	}
 
-	public Fotografia getFotografia() {
-		return fotografia;
+	public String getFoto() {
+		return foto;
 	}
 
-	public void setFotografia(Fotografia fotografia) {
-		this.fotografia = fotografia;
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	public Vinculo(Integer codVinculo, String nome, String telefone, String sobrenome, String vinculo, Sexo sexo,
-			int idade, boolean contatoEmergencia, Endereco endereco, List<Lembranca> lembrancas,
-			Diagnosticado diagnosticado, Fotografia fotografia) {
+			int idade, boolean contatoEmergencia, Endereco endereco, String lembrancas,
+			Diagnosticado diagnosticado, String foto) {
 		super();
 		this.codVinculo = codVinculo;
 		this.nome = nome;
@@ -164,11 +148,10 @@ public class Vinculo {
 		this.vinculo = vinculo;
 		this.sexo = sexo;
 		this.idade = idade;
-		this.contatoEmergencia = contatoEmergencia;
 		this.endereco = endereco;
 		this.lembrancas = lembrancas;
 		this.diagnosticado = diagnosticado;
-		this.fotografia = fotografia;
+		this.foto = foto;
 	}
 
 	public Vinculo() {

@@ -3,6 +3,8 @@ package com.example.demo.model;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -50,7 +52,7 @@ public class Diagnosticado extends Usuario{
 	
 	private String foto;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="codEndereco")
 	private Endereco endereco;
 	
@@ -59,26 +61,26 @@ public class Diagnosticado extends Usuario{
 	private Date dataDiagnostico;
 	
 	@JsonIgnore
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name = "codMedico")
 	private Medico medico;
 
-	@OneToMany(mappedBy = "diagnosticado")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "diagnosticado")
 	private List<Vinculo> vinculos;
 	
-	@OneToMany(mappedBy = "diagnosticado")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "diagnosticado")
 	private List<Medicamento> medicamentos;
 	
-	@OneToMany(mappedBy = "diagnosticado")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "diagnosticado")
 	private List<Fotografia> fotografias;
 	
-	@OneToMany(mappedBy = "diagnosticado")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "diagnosticado")
 	private List<Musica> musicas;
 	
-	@OneToMany(mappedBy = "diagnosticado")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "diagnosticado")
 	private List<Tarefa> tarefas;
 	
-	@OneToMany(mappedBy = "diagnosticado")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "diagnosticado")
 	private List<Desempenho> desempenhos;
 	
 	private AvaliacaoDesempenho desempenhoAtual;

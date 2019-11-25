@@ -1,17 +1,13 @@
 package com.example.demo.service.vinculo;
 
-import java.util.List;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.demo.model.Diagnosticado;
-import com.example.demo.model.Lembranca;
 import com.example.demo.model.Vinculo;
 import com.example.demo.repository.VinculoRepository;
 import com.example.demo.service.diagnosticado.BuscarDiagnosticadoPorEmailService;
 import com.example.demo.service.endereco.CadastrarEnderecoService;
-import com.example.demo.service.lembranca.CadastrarLembrancaService;
 
 @Service
 public class CadastrarVinculoService {
@@ -21,9 +17,6 @@ public class CadastrarVinculoService {
 	
 	@Autowired
 	CadastrarEnderecoService cadastrarEndereco;
-	
-	@Autowired
-	CadastrarLembrancaService cadastrarLembranca;	
 	
 	@Autowired
 	BuscarDiagnosticadoPorEmailService buscarDiagnosticado;
@@ -63,13 +56,6 @@ public class CadastrarVinculoService {
 		
 		vinculo.setDiagnosticado(diagnosticado);
 		vinculoRepository.save(vinculo);
-		
-		List<Lembranca> lembrancas = vinculo.getLembrancas();
-		if(!Objects.isNull(lembrancas) && !lembrancas.isEmpty()) {
-			for(Lembranca lembranca : lembrancas) {
-				cadastrarLembranca.salvar(lembranca, vinculo);
-			}
-		}
 	}
 	
 	public void salvar(String emailDiagnosticado, Vinculo vinculo) {

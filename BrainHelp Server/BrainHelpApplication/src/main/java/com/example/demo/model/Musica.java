@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -25,8 +23,7 @@ public class Musica {
 	@Column(nullable = false)
 	private String cantor;
 	
-	@OneToMany(mappedBy = "musica")
-	private List<Lembranca> lembrancas;
+	private String lembrancas;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -57,11 +54,11 @@ public class Musica {
 		this.cantor = cantor;
 	}
 
-	public List<Lembranca> getLembrancas() {
+	public String getLembrancas() {
 		return lembrancas;
 	}
 
-	public void setLembrancas(List<Lembranca> lembrancas) {
+	public void setLembrancas(String lembrancas) {
 		this.lembrancas = lembrancas;
 	}
 
@@ -73,7 +70,7 @@ public class Musica {
 		this.diagnosticado = diagnosticado;
 	}
 
-	public Musica(Integer codMusica, String nome, String cantor, List<Lembranca> lembrancas,
+	public Musica(Integer codMusica, String nome, String cantor, String lembrancas,
 			Diagnosticado diagnosticado) {
 		super();
 		this.codMusica = codMusica;

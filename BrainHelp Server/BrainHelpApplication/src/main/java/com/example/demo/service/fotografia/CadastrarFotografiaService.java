@@ -1,25 +1,18 @@
 package com.example.demo.service.fotografia;
 
-import java.util.List;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.demo.model.Diagnosticado;
 import com.example.demo.model.Fotografia;
-import com.example.demo.model.Lembranca;
 import com.example.demo.repository.FotografiaRepository;
 import com.example.demo.service.diagnosticado.BuscarDiagnosticadoPorEmailService;
-import com.example.demo.service.lembranca.CadastrarLembrancaService;
 
 @Service
 public class CadastrarFotografiaService {
 	
 	@Autowired
 	FotografiaRepository fotografiaRepository;
-
-	@Autowired
-	CadastrarLembrancaService cadastrarLembrancaService;
 	
 	@Autowired
 	BuscarDiagnosticadoPorEmailService buscarDiagnosticado;
@@ -36,13 +29,6 @@ public class CadastrarFotografiaService {
 		
 		fotografia.setDiagnosticado(diagnosticado);
 		fotografiaRepository.save(fotografia);
-
-		List<Lembranca> lembrancas = fotografia.getLembrancas();
-		if(!Objects.isNull(lembrancas) && !lembrancas.isEmpty()) {
-			for(Lembranca lembranca : lembrancas) {
-				cadastrarLembrancaService.salvar(lembranca, fotografia);
-			}
-		}
 	}
 	
 	public void salvar(String emailDiagnosticado, Fotografia fotografia) {
