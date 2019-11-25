@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import java.util.Date;
-import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -27,9 +25,6 @@ public class Fotografia {
 	private String descricao;
 	
 	private Date data;
-	
-	@OneToMany(mappedBy = "fotografia")
-	private List<Vinculo> vinculos;
 	
 	private String lembrancas;
 	
@@ -70,14 +65,6 @@ public class Fotografia {
 		this.data = data;
 	}
 
-	public List<Vinculo> getVinculos() {
-		return vinculos;
-	}
-
-	public void setVinculos(List<Vinculo> vinculos) {
-		this.vinculos = vinculos;
-	}
-
 	public Diagnosticado getDiagnosticado() {
 		return diagnosticado;
 	}
@@ -94,14 +81,13 @@ public class Fotografia {
 		this.lembrancas = lembrancas;
 	}
 
-	public Fotografia(Integer codFotografia, String lugar, String descricao, Date data, List<Vinculo> vinculos,
+	public Fotografia(Integer codFotografia, String lugar, String descricao, Date data,
 			String lembrancas, Diagnosticado diagnosticado) {
 		super();
 		this.codFotografia = codFotografia;
 		this.lugar = lugar;
 		this.descricao = descricao;
 		this.data = data;
-		this.vinculos = vinculos;
 		this.lembrancas = lembrancas;
 		this.diagnosticado = diagnosticado;
 	}

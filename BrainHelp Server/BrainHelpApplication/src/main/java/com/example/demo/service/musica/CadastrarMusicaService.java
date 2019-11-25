@@ -17,7 +17,8 @@ public class CadastrarMusicaService {
 	@Autowired
 	BuscarDiagnosticadoPorEmailService buscarDiagnosticado;
 
-	public void salvar(Diagnosticado diagnosticado, Musica musica) {
+	public void salvar(String emailDiagnosticado, Musica musica) {
+		
 		if (Objects.isNull(musica.getNome()) || musica.getNome().isEmpty()) {
 			throw new IllegalArgumentException("O nome da música não pode estar em branco");
 		}
@@ -26,12 +27,8 @@ public class CadastrarMusicaService {
 			throw new IllegalArgumentException("O nome do cantor não pode estar em branco");
 		}
 		
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
 		musica.setDiagnosticado(diagnosticado);
 		musicaRepository.save(musica);
-	}
-	
-	public void salvar(String emailDiagnosticado, Musica musica) {
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
-		salvar(diagnosticado, musica);
 	}
 }

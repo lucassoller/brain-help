@@ -18,7 +18,7 @@ public class CadastrarFotografiaService {
 	BuscarDiagnosticadoPorEmailService buscarDiagnosticado;
 	
 
-	public void salvar(Diagnosticado diagnosticado, Fotografia fotografia) {
+	public void salvar(String emailDiagnosticado, Fotografia fotografia) {
 		if (Objects.isNull(fotografia.getLugar()) || fotografia.getLugar().isEmpty()) {
 			throw new IllegalArgumentException("O lugar não pode estar em branco");
 		}
@@ -27,12 +27,9 @@ public class CadastrarFotografiaService {
 			throw new IllegalArgumentException("A descrição da fotografia não pode estar em branco");
 		}
 		
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
+		
 		fotografia.setDiagnosticado(diagnosticado);
 		fotografiaRepository.save(fotografia);
-	}
-	
-	public void salvar(String emailDiagnosticado, Fotografia fotografia) {
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
-		salvar(diagnosticado, fotografia);
 	}
 }

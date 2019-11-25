@@ -3,7 +3,6 @@ package com.example.demo.service.tarefa;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.demo.model.Diagnosticado;
 import com.example.demo.model.Tarefa;
 import com.example.demo.model.enumerated.StatusTarefa;
@@ -19,7 +18,7 @@ public class CadastrarTarefaService {
 	@Autowired
 	BuscarDiagnosticadoPorEmailService buscarDiagnosticado;
 	
-	public void salvar(Diagnosticado diagnosticado, Tarefa tarefa) {
+	public void salvar(String emailDiagnosticado, Tarefa tarefa) {
 		if (Objects.isNull(tarefa.getTarefa()) || tarefa.getTarefa().isEmpty()) {
 			throw new IllegalArgumentException("A tarefa não pode estar em branco");
 		}
@@ -31,14 +30,11 @@ public class CadastrarTarefaService {
 		if (Objects.isNull(tarefa.getDataRealizacao())) {
 			throw new IllegalArgumentException("A data da realização da tarefa não pode estar em branco");
 		}
+		
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
 				
 		tarefa.setStatusTarefa(StatusTarefa.ABERTA);
 		tarefa.setDiagnosticado(diagnosticado);
 		tarefaRepository.save(tarefa);
-	}
-	
-	public void salvar(String emailDiagnosticado, Tarefa tarefa) {
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
-		salvar(diagnosticado, tarefa);
 	}
 }

@@ -3,9 +3,11 @@ package com.example.demo.web;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -29,7 +31,7 @@ public class VinculoController {
 	BuscarVinculoPorIdService buscarVinculoPorId;
 	
 	@GetMapping("/buscar/todos")
-	public List<Vinculo> buscarTodos(){
+	public List<Vinculo> buscarTodosVinculos(){
 		return vinculoRepository.findAll();
 	}
 	
@@ -41,5 +43,15 @@ public class VinculoController {
 	@PostMapping("/cadastrar")
 	public void cadastrarVinculo(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Vinculo vinculo) {
 		cadastrarVinculo.salvar(userPrincipal.getEmail(), vinculo);
+	}
+	
+	@PutMapping("/editar/{ID}")
+	public void editarVinculo(@PathVariable("ID") Integer codVinculo,  @RequestBody Vinculo vinculo) {
+		
+	}
+	
+	@DeleteMapping("/deletar/{ID}")
+	public void deletarVinculo(@PathVariable("ID") Integer codVinculo) {
+		
 	}
 }

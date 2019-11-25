@@ -18,7 +18,7 @@ public class CadastrarMedicamentoService {
 	@Autowired
 	BuscarDiagnosticadoPorEmailService buscarDiagnosticado;
 
-	public void salvar(Diagnosticado diagnosticado, Medicamento medicamento) {
+	public void salvar(String emailDiagnosticado, Medicamento medicamento) {
 		if (Objects.isNull(medicamento.getNomeMedicamento()) || medicamento.getNomeMedicamento().isEmpty()) {
 			throw new IllegalArgumentException("O nome do medicamento não pode estar em branco");
 		}
@@ -47,12 +47,8 @@ public class CadastrarMedicamentoService {
 			throw new IllegalArgumentException("O tipo da duração do medicamento não pode estar em branco");
 		}
 		
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
 		medicamento.setDiagnosticado(diagnosticado);
 		medicamentoRepository.save(medicamento);
-	}
-	
-	public void salvar(String emailDiagnosticado, Medicamento medicamento) {
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
-		salvar(diagnosticado, medicamento);
 	}
 }

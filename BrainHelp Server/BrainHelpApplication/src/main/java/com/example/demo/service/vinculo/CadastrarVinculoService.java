@@ -21,7 +21,9 @@ public class CadastrarVinculoService {
 	@Autowired
 	BuscarDiagnosticadoPorEmailService buscarDiagnosticado;
 
-	public void salvar(Diagnosticado diagnosticado, Vinculo vinculo) {
+	public void salvar(String emailDiagnosticado, Vinculo vinculo) {
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
+		
 		if (Objects.isNull(vinculo.getNome()) || vinculo.getNome().isEmpty()) {
 			throw new IllegalArgumentException("O nome não pode estar em branco");
 		}
@@ -56,10 +58,5 @@ public class CadastrarVinculoService {
 		
 		vinculo.setDiagnosticado(diagnosticado);
 		vinculoRepository.save(vinculo);
-	}
-	
-	public void salvar(String emailDiagnosticado, Vinculo vinculo) {
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
-		salvar(diagnosticado, vinculo);
 	}
 }
