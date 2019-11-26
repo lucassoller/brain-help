@@ -16,6 +16,8 @@ import com.example.demo.model.security.UserPrincipal;
 import com.example.demo.repository.VinculoRepository;
 import com.example.demo.service.vinculo.BuscarVinculoPorIdService;
 import com.example.demo.service.vinculo.CadastrarVinculoService;
+import com.example.demo.service.vinculo.DeletarVinculoService;
+import com.example.demo.service.vinculo.EditarVinculoService;
 
 @RestController
 @RequestMapping("/vinculo")
@@ -29,6 +31,12 @@ public class VinculoController {
 	
 	@Autowired
 	BuscarVinculoPorIdService buscarVinculoPorId;
+	
+	@Autowired
+	private EditarVinculoService editarVinculo;
+	
+	@Autowired
+	private DeletarVinculoService deletarVinculo;
 	
 	@GetMapping("/buscar/todos")
 	public List<Vinculo> buscarTodosVinculos(){
@@ -47,11 +55,11 @@ public class VinculoController {
 	
 	@PutMapping("/editar/{ID}")
 	public void editarVinculo(@PathVariable("ID") Integer codVinculo,  @RequestBody Vinculo vinculo) {
-		
+		editarVinculo.editar(codVinculo, vinculo);
 	}
 	
 	@DeleteMapping("/deletar/{ID}")
 	public void deletarVinculo(@PathVariable("ID") Integer codVinculo) {
-		
+		deletarVinculo.deletar(codVinculo);
 	}
 }

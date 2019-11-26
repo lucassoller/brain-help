@@ -25,6 +25,9 @@ public class Musica {
 	
 	private String lembrancas;
 	
+	@Column(nullable = false)
+	private String musica;
+	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "codDiagnosticado")
@@ -70,14 +73,23 @@ public class Musica {
 		this.diagnosticado = diagnosticado;
 	}
 
+	public String getMusica() {
+		return musica;
+	}
+
+	public void setMusica(String musica) {
+		this.musica = musica;
+	}
+
 	public Musica(Integer codMusica, String nome, String cantor, String lembrancas,
-			Diagnosticado diagnosticado) {
+			Diagnosticado diagnosticado, String musica) {
 		super();
 		this.codMusica = codMusica;
 		this.nome = nome;
 		this.cantor = cantor;
 		this.lembrancas = lembrancas;
 		this.diagnosticado = diagnosticado;
+		this.musica = musica;
 	}
 
 	public Musica() {

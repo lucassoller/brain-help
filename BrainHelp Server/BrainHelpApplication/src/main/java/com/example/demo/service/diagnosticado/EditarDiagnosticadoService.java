@@ -4,6 +4,7 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.model.Diagnosticado;
+import com.example.demo.repository.DiagnosticadoRepository;
 import com.example.demo.service.endereco.EditarEnderecoService;
 
 @Service
@@ -14,6 +15,9 @@ public class EditarDiagnosticadoService {
 	
 	@Autowired
 	EditarEnderecoService editarEndereco;
+	
+	@Autowired
+	DiagnosticadoRepository diagnosticadoRepository;
 	
 	public void editar(String emailDiagnosticado, Diagnosticado diagnosticado) {
 		Diagnosticado diagnosticadoParaEditar = buscarDiagnosticado.buscar(emailDiagnosticado);
@@ -57,5 +61,7 @@ public class EditarDiagnosticadoService {
 		if (!Objects.isNull(diagnosticado.getEndereco())) {
 			editarEndereco.editar(diagnosticadoParaEditar.getEndereco(), diagnosticado.getEndereco());		
 		}
+		
+		diagnosticadoRepository.save(diagnosticadoParaEditar);
 	}
 }

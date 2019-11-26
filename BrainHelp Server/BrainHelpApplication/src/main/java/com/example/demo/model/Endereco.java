@@ -30,6 +30,8 @@ public class Endereco {
 	
 	@Column(nullable = false)
 	private String cep;
+	
+	private String foto;
 
 	public Integer getCodEndereco() {
 		return codEndereco;
@@ -87,9 +89,16 @@ public class Endereco {
 		this.logradouro = logradouro;
 	}
 
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
 
 	public Endereco(Integer codEndereco, String logradouro, String cidade, String estado, int numero, String bairro,
-			String cep) {
+			String cep, String foto) {
 		super();
 		this.codEndereco = codEndereco;
 		this.logradouro = logradouro;
@@ -98,12 +107,11 @@ public class Endereco {
 		this.numero = numero;
 		this.bairro = bairro;
 		this.cep = cep;
+		this.foto = foto;
 	}
 
 	public Endereco() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 }

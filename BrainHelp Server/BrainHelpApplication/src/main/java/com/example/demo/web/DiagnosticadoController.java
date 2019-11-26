@@ -71,8 +71,8 @@ public class DiagnosticadoController {
 		editarDiagnosticado.editar(userPrincipal.getEmail(), diagnosticado);
 	}
 	
-	@DeleteMapping("/excluir")
-	public void excluirDiagnosticado(@AuthenticationPrincipal UserPrincipal userPrincipal){
+	@DeleteMapping("/deletar")
+	public void deletarDiagnosticado(@AuthenticationPrincipal UserPrincipal userPrincipal){
 		deletarDiagnosticado.deletar(userPrincipal.getEmail());
 	}
 }

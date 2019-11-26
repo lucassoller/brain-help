@@ -11,6 +11,9 @@ public class EditarEnderecoService {
 
 	@Autowired
 	EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	BuscarEnderecoPorIdService buscarEndereco;
 
 	public void editar(Endereco enderecoParaEditar, Endereco endereco) {
 		if (!Objects.isNull(endereco.getLogradouro()) && !endereco.getLogradouro().isEmpty()) {
@@ -37,6 +40,15 @@ public class EditarEnderecoService {
 			enderecoParaEditar.setCep(endereco.getCep());
 		}
 		
+		if (!Objects.isNull(endereco.getFoto()) && !endereco.getFoto().isEmpty()) {
+			enderecoParaEditar.setFoto(endereco.getFoto());
+		}
+		
 		enderecoRepository.save(enderecoParaEditar);
+	}
+	
+	public void editar(Integer codEndereco, Endereco endereco) {
+		Endereco enderecoParaEditar = buscarEndereco.buscar(codEndereco);
+		editar(enderecoParaEditar, endereco);
 	}
 }

@@ -3,6 +3,7 @@ package com.example.demo.web;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -14,6 +15,7 @@ import com.example.demo.model.dto.RedefinicaoSenhaRequestDto;
 import com.example.demo.model.security.UserPrincipal;
 import com.example.demo.repository.MedicoRepository;
 import com.example.demo.service.medico.BuscarMedicoPorEmailService;
+import com.example.demo.service.medico.DeletarMedicoService;
 import com.example.demo.service.medico.EditarMedicoService;
 import com.example.demo.service.medico.EditarSenhaMedicoService;
 import com.example.demo.service.medico.VincularDiagnosticadoService;
@@ -37,6 +39,9 @@ public class MedicoController {
 	@Autowired
 	EditarSenhaMedicoService editarSenhaMedico;
 	
+	@Autowired
+	private DeletarMedicoService deletarMedico;
+	
 	@GetMapping("/buscar/todos")
 	public List<Medico> buscarTodos(){
 		return medicoRepository.findAll();
@@ -57,7 +62,7 @@ public class MedicoController {
 		return medicoRepository.findAll();
 	}
 	
-	@PutMapping("/editar/perfil")
+	@PutMapping("/editar")
 	public void cadastrarMedico(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Medico medico) {
 		editarMedico.editar(userPrincipal.getEmail(), medico);
 	}
@@ -65,5 +70,10 @@ public class MedicoController {
 	@PutMapping("/editar/senha")
 	public void editarMedico(@RequestBody RedefinicaoSenhaRequestDto redefinicao) {
 		editarSenhaMedico.editar(redefinicao);
+	}
+	
+	@DeleteMapping("/deletar")
+	public void deletarMedicamento(@AuthenticationPrincipal UserPrincipal userPrincipal) {
+		deletarMedico.deletar(userPrincipal.getEmail());
 	}
 }

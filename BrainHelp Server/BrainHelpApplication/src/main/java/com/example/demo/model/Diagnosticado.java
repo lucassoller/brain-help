@@ -61,7 +61,7 @@ public class Diagnosticado extends Usuario{
 	private Date dataDiagnostico;
 	
 	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.REMOVE)
+	@ManyToOne
 	@JoinColumn(name = "codMedico")
 	private Medico medico;
 

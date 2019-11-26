@@ -28,6 +28,9 @@ public class Fotografia {
 	
 	private String lembrancas;
 	
+	@Column(nullable = false)
+	private String foto;
+	
 	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name = "codDiagnosticado")
@@ -81,8 +84,16 @@ public class Fotografia {
 		this.lembrancas = lembrancas;
 	}
 
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
 	public Fotografia(Integer codFotografia, String lugar, String descricao, Date data,
-			String lembrancas, Diagnosticado diagnosticado) {
+			String lembrancas, Diagnosticado diagnosticado, String foto) {
 		super();
 		this.codFotografia = codFotografia;
 		this.lugar = lugar;
@@ -90,6 +101,7 @@ public class Fotografia {
 		this.data = data;
 		this.lembrancas = lembrancas;
 		this.diagnosticado = diagnosticado;
+		this.foto = foto;
 	}
 
 	public Fotografia() {
