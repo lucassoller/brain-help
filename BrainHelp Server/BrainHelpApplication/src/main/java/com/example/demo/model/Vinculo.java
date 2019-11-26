@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class Vinculo {
 	@Column(nullable = false)
 	private int idade;
 		
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name="codEndereco")
 	private Endereco endereco;
 	

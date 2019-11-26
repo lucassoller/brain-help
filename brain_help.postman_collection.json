@@ -1,0 +1,852 @@
+{
+	"info": {
+		"_postman_id": "89f06881-3e49-4d3d-9b4d-69ae2f1997d2",
+		"name": "brain_help",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "atividade",
+			"item": [
+				{
+					"name": "/buscar/todos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJpYXQiOjE1Njk2NDIyMzIsImV4cCI6MTU2OTcyODYzMiwiZW1haWwiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJtZWRpY28iOmZhbHNlfQ.8-Jh95H8Ai1NuJZcgcxPrLcaZltma6F4RqRETjKdDPGOQwgeoW8F_CEKMPUPZSrr1c4NR-F5aXQ5xI-u4uKXBg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/atividade/buscar/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"atividade",
+								"buscar",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "desempenho",
+			"item": [
+				{
+					"name": "/buscar/todos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJpYXQiOjE1Njk2NDIyMzIsImV4cCI6MTU2OTcyODYzMiwiZW1haWwiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJtZWRpY28iOmZhbHNlfQ.8-Jh95H8Ai1NuJZcgcxPrLcaZltma6F4RqRETjKdDPGOQwgeoW8F_CEKMPUPZSrr1c4NR-F5aXQ5xI-u4uKXBg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/desempenho/buscar/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"desempenho",
+								"buscar",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsdWNhczEyMyIsImlhdCI6MTU2OTc4ODM3NiwiZXhwIjoxNTY5ODc0Nzc2LCJlbWFpbCI6Imx1Y2FzMTIzIiwibWVkaWNvIjpmYWxzZX0.hDcX61yC9g7MlZIcyQS5jRGzDApVDevOv91nomPOxSCpMJ-3L2V08yEvyWQ0otpdNKUrealvceGq4dNfxJTE8Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/desempenho/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"desempenho",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "diagnosticado",
+			"item": [
+				{
+					"name": "/public/registro/diagnosticado",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"lucas\",\n\t\"sobrenome\": \"soller\",\n\t\"email\": \"5\",\n\t\"telefone\": \"996139667\",\n\t\"senha\": \"123\",\n\t\"idade\": 80,\n\t\"sexo\": \"M\",\n\t\"estagioAlzheimer\": \"INICIAL\",\n\t\"endereco\": {\n\t\t\"endereco\": \"vitalino batista de andrade\",\n\t\t\"numero\": 43,\n\t\t\"cidade\": \"sapucaia do sul\",\n\t\t\"estado\": \"rio grande do sul\",\n\t\t\"pais\": \"brasil\",\n\t\t\"bairro\": \"santa catarina\",\n\t\t\"cep\": \"93214544\"\n\t},\n\t\"chaveSeguranca\": \"123chave\",\n\t\"vinculos\": [\n\t\t{\n\t\t\t\"nome\": \"ananda\",\n\t\t\t\"sobrenome\": \"lisboa\",\n\t\t\t\"telefone\": \"123\",\n\t\t\t\"parentesco\": \"amiga\",\n\t\t\t\"sexo\": \"F\",\n\t\t\t\"idade\": 18,\n\t\t\t\"endereco\": {\n\t\t\t\t\"endereco\": \"n sei\",\n\t\t\t\t\"numero\": 43,\n\t\t\t\t\"cidade\": \"sapucaia do sul\",\n\t\t\t\t\"estado\": \"rio grande do sul\",\n\t\t\t\t\"pais\": \"brasil\",\n\t\t\t\t\"bairro\": \"santa catarina\",\n\t\t\t\t\"cep\": \"93214544\"\n\t\t\t},\n\t\t\t\"lembrancas\":[\n\t\t\t\t{\n\t\t\t\t\t\"titulo\": \"ontem\",\n\t\t\t\t\t\"lembranca\": \"tive aula com ela\"\n\t\t\t\t}\n\t\t\t]\n\t\t}\n\t],\n\t\"medicamentos\":[\n\t\t{}\n\t]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/public/registro/diagnosticado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"public",
+								"registro",
+								"diagnosticado"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/public/login/diagnosticado",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/public/login/medico",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"public",
+								"login",
+								"medico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/buscar/todos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJpYXQiOjE1Njk2NDIyMzIsImV4cCI6MTU2OTcyODYzMiwiZW1haWwiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJtZWRpY28iOmZhbHNlfQ.8-Jh95H8Ai1NuJZcgcxPrLcaZltma6F4RqRETjKdDPGOQwgeoW8F_CEKMPUPZSrr1c4NR-F5aXQ5xI-u4uKXBg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/diagnosticado/buscar/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"diagnosticado",
+								"buscar",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/buscar/todos Copy",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJpYXQiOjE1Njk2NDIyMzIsImV4cCI6MTU2OTcyODYzMiwiZW1haWwiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJtZWRpY28iOmZhbHNlfQ.8-Jh95H8Ai1NuJZcgcxPrLcaZltma6F4RqRETjKdDPGOQwgeoW8F_CEKMPUPZSrr1c4NR-F5aXQ5xI-u4uKXBg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/diagnosticado/buscar/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"diagnosticado",
+								"buscar",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/diagnosticado/deletar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"diagnosticado",
+								"deletar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "endereco",
+			"item": [
+				{
+					"name": "/buscar/todos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJpYXQiOjE1Njk2NDIyMzIsImV4cCI6MTU2OTcyODYzMiwiZW1haWwiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJtZWRpY28iOmZhbHNlfQ.8-Jh95H8Ai1NuJZcgcxPrLcaZltma6F4RqRETjKdDPGOQwgeoW8F_CEKMPUPZSrr1c4NR-F5aXQ5xI-u4uKXBg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/endereco/buscar/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"endereco",
+								"buscar",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "fotografia",
+			"item": [
+				{
+					"name": "/buscar/todos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJpYXQiOjE1Njk2NDIyMzIsImV4cCI6MTU2OTcyODYzMiwiZW1haWwiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJtZWRpY28iOmZhbHNlfQ.8-Jh95H8Ai1NuJZcgcxPrLcaZltma6F4RqRETjKdDPGOQwgeoW8F_CEKMPUPZSrr1c4NR-F5aXQ5xI-u4uKXBg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/fotografia/buscar/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fotografia",
+								"buscar",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsdWNhczEyMyIsImlhdCI6MTU2OTc4ODM3NiwiZXhwIjoxNTY5ODc0Nzc2LCJlbWFpbCI6Imx1Y2FzMTIzIiwibWVkaWNvIjpmYWxzZX0.hDcX61yC9g7MlZIcyQS5jRGzDApVDevOv91nomPOxSCpMJ-3L2V08yEvyWQ0otpdNKUrealvceGq4dNfxJTE8Q",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\n\t\"lugar\": \"praia\",\n\t\"descricao\": \"foi legal\",\n\t\"data\": \"2019-09-15\",\n\t\"lembrancas\":[\n\t\t{\n\t\t\t\"titulo\": \"ontem\",\n\t\t\t\"lembranca\": \"tive aula com ela\"\n\t\t}\n\t]\n\t\t\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/fotografia/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"fotografia",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "lembranca",
+			"item": [
+				{
+					"name": "/buscar/todos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJpYXQiOjE1Njk2NDIyMzIsImV4cCI6MTU2OTcyODYzMiwiZW1haWwiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJtZWRpY28iOmZhbHNlfQ.8-Jh95H8Ai1NuJZcgcxPrLcaZltma6F4RqRETjKdDPGOQwgeoW8F_CEKMPUPZSrr1c4NR-F5aXQ5xI-u4uKXBg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/lembranca/buscar/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"lembranca",
+								"buscar",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "medicamento",
+			"item": [
+				{
+					"name": "/buscar/todos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJpYXQiOjE1Njk2NDIyMzIsImV4cCI6MTU2OTcyODYzMiwiZW1haWwiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJtZWRpY28iOmZhbHNlfQ.8-Jh95H8Ai1NuJZcgcxPrLcaZltma6F4RqRETjKdDPGOQwgeoW8F_CEKMPUPZSrr1c4NR-F5aXQ5xI-u4uKXBg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/medicamento/buscar/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medicamento",
+								"buscar",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsdWNhczEyMyIsImlhdCI6MTU2OTc4ODM3NiwiZXhwIjoxNTY5ODc0Nzc2LCJlbWFpbCI6Imx1Y2FzMTIzIiwibWVkaWNvIjpmYWxzZX0.hDcX61yC9g7MlZIcyQS5jRGzDApVDevOv91nomPOxSCpMJ-3L2V08yEvyWQ0otpdNKUrealvceGq4dNfxJTE8Q",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nomeMedicamento\": \"dorflex\",\n\t\"quantidade\": 2,\n\t\"medida\": \"COMPRIMIDOS\",\n\t\"frequenciaDiaria\": 1,\n\t\"funcao\": \"dor de cabeça\",\n\t\"contraIndicacoes\": \"tomar com leite\",\n\t\"efeitosColaterais\": \"tontura\",\n\t\"duracao\": 1,\n\t\"tipoDuracao\": \"DIAS\",\n\t\"proximoHorario\": \"2019-09-28T23:00\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/medicamento/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medicamento",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "medico",
+			"item": [
+				{
+					"name": "/public/login/medico",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"identificacao\": \"123\",\n\t\"senha\": \"123\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/public/login/medico",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"public",
+								"login",
+								"medico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/public/registro/medico",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"codMedico\": \"123\",\n\t\"nome\": \"lucas\",\n\t\"email\": \"lucas\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/public/registro/medico",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"public",
+								"registro",
+								"medico"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/buscar/todos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJpYXQiOjE1Njk2NDIyMzIsImV4cCI6MTU2OTcyODYzMiwiZW1haWwiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJtZWRpY28iOmZhbHNlfQ.8-Jh95H8Ai1NuJZcgcxPrLcaZltma6F4RqRETjKdDPGOQwgeoW8F_CEKMPUPZSrr1c4NR-F5aXQ5xI-u4uKXBg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/medico/buscar/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medico",
+								"buscar",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/vincular",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsdWNhc3MiLCJpYXQiOjE1NzQ3MzQyMzYsImV4cCI6MTU3NDgyMDYzNiwiZW1haWwiOiJsdWNhc3MifQ.pendlMjhv6U5ZB86dyUUCjNM-ROsYOtxajl6s1iPnIzyQHlhTlOPgM2cOZhiSzBszX86aTgE6tUN2GXRvj0bgg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/medico/vincular/lucas",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"medico",
+								"vincular",
+								"lucas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/deletar",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "musica",
+			"item": [
+				{
+					"name": "/buscar/todos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJpYXQiOjE1Njk2NDIyMzIsImV4cCI6MTU2OTcyODYzMiwiZW1haWwiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJtZWRpY28iOmZhbHNlfQ.8-Jh95H8Ai1NuJZcgcxPrLcaZltma6F4RqRETjKdDPGOQwgeoW8F_CEKMPUPZSrr1c4NR-F5aXQ5xI-u4uKXBg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/musica/buscar/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"musica",
+								"buscar",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsdWNhczEyMyIsImlhdCI6MTU2OTc4ODM3NiwiZXhwIjoxNTY5ODc0Nzc2LCJlbWFpbCI6Imx1Y2FzMTIzIiwibWVkaWNvIjpmYWxzZX0.hDcX61yC9g7MlZIcyQS5jRGzDApVDevOv91nomPOxSCpMJ-3L2V08yEvyWQ0otpdNKUrealvceGq4dNfxJTE8Q",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"demons\",\n\t\"cantor\": \"imagine dragons\",\n\t\"lembrancas\":[\n\t\t{\n\t\t\t\"titulo\": \"ontem\",\n\t\t\t\"lembranca\": \"tive aula com ela\"\n\t\t},\n\t\t{\n\t\t\t\"titulo\": \"ontem\",\n\t\t\t\"lembranca\": \"tive aula com ela\"\n\t\t}\n\t]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/musica/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"musica",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "tarefa",
+			"item": [
+				{
+					"name": "/buscar/todos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJpYXQiOjE1Njk2NDIyMzIsImV4cCI6MTU2OTcyODYzMiwiZW1haWwiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJtZWRpY28iOmZhbHNlfQ.8-Jh95H8Ai1NuJZcgcxPrLcaZltma6F4RqRETjKdDPGOQwgeoW8F_CEKMPUPZSrr1c4NR-F5aXQ5xI-u4uKXBg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/tarefa/buscar/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tarefa",
+								"buscar",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsdWNhczEyMyIsImlhdCI6MTU2OTc4ODM3NiwiZXhwIjoxNTY5ODc0Nzc2LCJlbWFpbCI6Imx1Y2FzMTIzIiwibWVkaWNvIjpmYWxzZX0.hDcX61yC9g7MlZIcyQS5jRGzDApVDevOv91nomPOxSCpMJ-3L2V08yEvyWQ0otpdNKUrealvceGq4dNfxJTE8Q",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"tarefa\": \"limpar casa\",\n\t\"descricao\": \"com a vassoura\",\n\t\"dataRealizacao\": \"2019-09-29T12:00\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/tarefa/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"tarefa",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "vinculo",
+			"item": [
+				{
+					"name": "/buscar/todos",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJpYXQiOjE1Njk2NDIyMzIsImV4cCI6MTU2OTcyODYzMiwiZW1haWwiOiJzb2xsZXJsdWNhc0BnbWFpbC5jb20iLCJtZWRpY28iOmZhbHNlfQ.8-Jh95H8Ai1NuJZcgcxPrLcaZltma6F4RqRETjKdDPGOQwgeoW8F_CEKMPUPZSrr1c4NR-F5aXQ5xI-u4uKXBg",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:8080/diagnosticado/buscar/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"diagnosticado",
+								"buscar",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/cadastrar",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJsdWNhcyIsImlhdCI6MTU3NDczMzAwNywiZXhwIjoxNTc0ODE5NDA3LCJlbWFpbCI6Imx1Y2FzIn0.RBisNKsIs-X8otueTUnsTayH1RIB2UyudC_RlI1X4AWm1w62qBrhn0ugyqrL2lpeMPK5aJFCw8OFx_WAtHsFMA",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"nome\": \"ananda\",\n\t\"sobrenome\": \"lisboa\",\n\t\"telefone\": \"123\",\n\t\"vinculo\": \"amiga\",\n\t\"sexo\": \"F\",\n\t\"idade\": 18,\n\t\"endereco\": {\n\t\t\"endereco\": \"n sei\",\n\t\t\"numero\": 43,\n\t\t\"cidade\": \"sapucaia do sul\",\n\t\t\"estado\": \"rio grande do sul\",\n\t\t\"pais\": \"brasil\",\n\t\t\"bairro\": \"santa catarina\",\n\t\t\"cep\": \"93214544\"\n\t},\n\t\"lembrancas\":\"tive aula com ela\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/vinculo/cadastrar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"vinculo",
+								"cadastrar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

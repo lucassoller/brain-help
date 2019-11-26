@@ -52,7 +52,7 @@ public class Diagnosticado extends Usuario{
 	
 	private String foto;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name="codEndereco")
 	private Endereco endereco;
 	
@@ -65,22 +65,22 @@ public class Diagnosticado extends Usuario{
 	@JoinColumn(name = "codMedico")
 	private Medico medico;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "diagnosticado")
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "diagnosticado")
 	private List<Vinculo> vinculos;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "diagnosticado")
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "diagnosticado")
 	private List<Medicamento> medicamentos;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "diagnosticado")
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "diagnosticado")
 	private List<Fotografia> fotografias;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "diagnosticado")
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "diagnosticado")
 	private List<Musica> musicas;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "diagnosticado")
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "diagnosticado")
 	private List<Tarefa> tarefas;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "diagnosticado")
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "diagnosticado")
 	private List<Desempenho> desempenhos;
 	
 	private AvaliacaoDesempenho desempenhoAtual;

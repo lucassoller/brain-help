@@ -2,13 +2,13 @@ package com.example.demo.model;
 
 import java.util.List;
 import java.util.Optional;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
@@ -35,14 +35,14 @@ public class Medico extends Usuario{
 	
 	private String foto;
 	
-	@OneToOne
+	@OneToOne(cascade = CascadeType.REMOVE)
 	@JoinColumn(name="codEndereco")
 	private Endereco endereco;
 	
 	@Column(nullable = false)
 	private String especializacao;
 	
-	@OneToMany(mappedBy = "medico")
+	@OneToMany(cascade = CascadeType.REFRESH, mappedBy = "medico")
 	private List<Diagnosticado> diagnosticados;
 	
     @JsonIgnore
