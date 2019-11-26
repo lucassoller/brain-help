@@ -5,13 +5,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import com.example.app.R;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import com.example.app.classes.Diagnosticado;
+import com.example.app.services.DiagnosticadoService;
+import com.google.gson.Gson;
 
 public class TelaHomeActivity extends AppCompatActivity {
 
@@ -23,20 +24,25 @@ public class TelaHomeActivity extends AppCompatActivity {
     private ImageView ivFotos;
     private ImageView ivMedicamentos;
     private ImageView ivEnderecos;
+    private String diagnosticadoJson;
+    private Diagnosticado diagnosticado;
+    private Gson gson;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_home);
         this.inicializaComponenetes();
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setSubtitle("Bem-vindo fulano");
-        SimpleDateFormat formataData = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-        Date data = new Date();
-        String dataFormatada = formataData.format(data);
 
-        if(dataFormatada.equals("20/11/2019 15:11")){
-            Toast.makeText(this, "aaaaaaa", Toast.LENGTH_LONG).show();
+        diagnosticadoJson = TelaInicialActivity.sp.getString("diagnosticado" , null);
+
+        if(diagnosticadoJson == null){
+            getDiagnosticado();
+        }
+        else{
+            diagnosticado = gson.fromJson(diagnosticadoJson, Diagnosticado.class);
+            Toast.makeText(TelaHomeActivity.this, diagnosticado.getNome(), Toast.LENGTH_SHORT).show();
+
         }
 
         this.ivContatos.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +110,23 @@ public class TelaHomeActivity extends AppCompatActivity {
         });
     }
 
+    private void getDiagnosticado(){
+        DiagnosticadoService diagnosticadoService = TelaInicialActivity.retrofit.create(DiagnosticadoService.class);
+        diagnosticadoService.buscarLogado(TelaInicialActivity.sp.getString("token", null)).enqueue(new Callback<Diagnosticado>() {
+            @Override
+            public void onResponse(Call<Diagnosticado> call, Response<Diagnosticado> response) {
+                String usuarioJson = gson.toJson(response.body());
+                TelaInicialActivity.editor.putString("diagnosticado", usuarioJson);
+                TelaInicialActivity.editor.commit();
+            }
+
+            @Override
+            public void onFailure(Call<Diagnosticado> call, Throwable t) {
+
+            }
+        });
+    }
+
     private void inicializaComponenetes(){
         this.ivContatos = findViewById(R.id.iv_contatos);
         this.ivJogos = findViewById(R.id.iv_jogos);
@@ -113,5 +136,6 @@ public class TelaHomeActivity extends AppCompatActivity {
         this.ivFotos = findViewById(R.id.iv_fotos);
         this.ivMedicamentos = findViewById(R.id.iv_medicamentos);
         this.ivEnderecos = findViewById(R.id.iv_enderecos);
+        this.gson = new Gson();
     }
 }

@@ -204,10 +204,6 @@ public class TelaCadastroActivity extends AppCompatActivity implements Validator
         endereco.setBairro(etBairro.getText().toString());
         endereco.setCep(etCep.getText().toString());
         diagnosticado.setEndereco(endereco);
-        if(foto == null){
-            foto = BitmapFactory.decodeResource(getResources(), R.drawable.my_user);
-        }
-        diagnosticado.setFoto(BitmapUtils.bitmapToBase64(foto));
         cadastrar();
     }
 
@@ -231,7 +227,7 @@ public class TelaCadastroActivity extends AppCompatActivity implements Validator
         registroService.cadastrarDiagnosticado(diagnosticado).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(getApplicationContext(), "Cadastro conluído! Fazendo login...", Toast.LENGTH_LONG).show();
+                Toast.makeText(TelaCadastroActivity.this, "cadastrado!", Toast.LENGTH_SHORT).show();
                 logar();
             }
 

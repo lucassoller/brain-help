@@ -51,6 +51,11 @@ public class DiagnosticadoController {
 		return buscarDiagnosticadoPorEmail.buscar(email);
 	}
 	
+	@GetMapping("/buscar/logado")
+	public Diagnosticado buscarLogado(@AuthenticationPrincipal UserPrincipal userPrincipal){
+		return buscarDiagnosticadoPorEmail.buscar(userPrincipal.getEmail());
+	}
+	
 	@GetMapping("/buscar/todos/vinculados/{NOME}")
 	public List<Diagnosticado> buscarTodosVinculadosPorNome(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("NOME") String nome){
 		return buscarDiagnosticados.buscar(userPrincipal.getEmail(), nome, true);

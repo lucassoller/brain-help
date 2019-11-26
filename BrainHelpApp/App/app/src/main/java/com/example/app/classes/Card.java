@@ -34,6 +34,6 @@ public class Card {
         this.virada = virada;
     }
 
-    public Card() {
+    public Card(){
     }
 }

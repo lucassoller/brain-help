@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.app.R;
+import com.google.gson.GsonBuilder;
 
 import java.util.concurrent.TimeUnit;
 
@@ -66,9 +67,9 @@ public class TelaInicialActivity extends AppCompatActivity {
                 .build();
 
         retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.15.1:8080/")
+                .baseUrl("http://10.0.2.2:8080/")
                 .client(client)
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS").create()))
                 .build();
     }
 }
