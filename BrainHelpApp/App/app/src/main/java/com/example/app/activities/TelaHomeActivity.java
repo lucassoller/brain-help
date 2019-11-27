@@ -12,6 +12,7 @@ import retrofit2.Response;
 import com.example.app.R;
 import com.example.app.classes.Diagnosticado;
 import com.example.app.services.DiagnosticadoService;
+import com.example.app.utils.RetrofitUtils;
 import com.google.gson.Gson;
 
 public class TelaHomeActivity extends AppCompatActivity {
@@ -35,10 +36,10 @@ public class TelaHomeActivity extends AppCompatActivity {
         this.inicializaComponenetes();
 
         diagnosticadoJson = TelaInicialActivity.sp.getString("diagnosticado" , null);
-
         if(diagnosticadoJson == null){
-            getDiagnosticado();
+            RetrofitUtils.getDiagnosticado();
         }
+
         else{
             diagnosticado = gson.fromJson(diagnosticadoJson, Diagnosticado.class);
             Toast.makeText(TelaHomeActivity.this, diagnosticado.getNome(), Toast.LENGTH_SHORT).show();
@@ -106,23 +107,6 @@ public class TelaHomeActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent itTelaEnderecos = new Intent(TelaHomeActivity.this, TelaEnderecosActivity.class);
                 startActivity(itTelaEnderecos);
-            }
-        });
-    }
-
-    private void getDiagnosticado(){
-        DiagnosticadoService diagnosticadoService = TelaInicialActivity.retrofit.create(DiagnosticadoService.class);
-        diagnosticadoService.buscarLogado(TelaInicialActivity.sp.getString("token", null)).enqueue(new Callback<Diagnosticado>() {
-            @Override
-            public void onResponse(Call<Diagnosticado> call, Response<Diagnosticado> response) {
-                String usuarioJson = gson.toJson(response.body());
-                TelaInicialActivity.editor.putString("diagnosticado", usuarioJson);
-                TelaInicialActivity.editor.commit();
-            }
-
-            @Override
-            public void onFailure(Call<Diagnosticado> call, Throwable t) {
-
             }
         });
     }

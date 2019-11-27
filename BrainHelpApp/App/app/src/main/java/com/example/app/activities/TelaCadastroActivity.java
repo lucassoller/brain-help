@@ -2,13 +2,11 @@ package com.example.app.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -23,10 +21,11 @@ import com.example.app.classes.dto.LoginRequestDto;
 import com.example.app.classes.dto.LoginResponseDto;
 import com.example.app.enumerated.EstagioAlzheimer;
 import com.example.app.enumerated.Sexo;
+import com.example.app.services.DiagnosticadoService;
 import com.example.app.services.LoginService;
-import com.example.app.services.RegistroService;
 import com.example.app.utils.BitmapUtils;
 import com.example.app.utils.ImagePickerUtils;
+import com.example.app.utils.RetrofitUtils;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Checked;
@@ -223,8 +222,8 @@ public class TelaCadastroActivity extends AppCompatActivity implements Validator
     }
 
     private void cadastrar(){
-        RegistroService registroService = TelaInicialActivity.retrofit.create(RegistroService.class);
-        registroService.cadastrarDiagnosticado(diagnosticado).enqueue(new Callback<Void>() {
+        DiagnosticadoService diagnosticadoService = RetrofitUtils.retrofit.create(DiagnosticadoService.class);
+        diagnosticadoService.cadastrarDiagnosticado(diagnosticado).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Toast.makeText(TelaCadastroActivity.this, "cadastrado!", Toast.LENGTH_SHORT).show();
@@ -239,7 +238,7 @@ public class TelaCadastroActivity extends AppCompatActivity implements Validator
     }
 
     private void logar(){
-        LoginService loginService = TelaInicialActivity.retrofit.create(LoginService.class);
+        LoginService loginService = RetrofitUtils.retrofit.create(LoginService.class);
         loginService.logarDiagnosticado(new LoginRequestDto(diagnosticado.getEmail(), diagnosticado.getSenha())).enqueue(new Callback<LoginResponseDto>() {
             @Override
             public void onResponse(Call<LoginResponseDto> call, Response<LoginResponseDto> response) {

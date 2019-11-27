@@ -16,12 +16,16 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.app.R;
+import com.example.app.classes.Diagnosticado;
 import com.example.app.classes.Endereco;
 import com.example.app.classes.Vinculo;
 import com.example.app.enumerated.Sexo;
+import com.example.app.services.DiagnosticadoService;
 import com.example.app.services.VinculoService;
 import com.example.app.utils.BitmapUtils;
 import com.example.app.utils.ImagePickerUtils;
+import com.example.app.utils.RetrofitUtils;
+import com.google.gson.Gson;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Checked;
@@ -204,7 +208,6 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
         if(foto == null){
             foto = BitmapFactory.decodeResource(getResources(), R.drawable.my_user);
         }
-        this.vinculo.setFoto(BitmapUtils.bitmapToBase64(foto));
         if(this.acao.equals("cadastrar")){
             this.cadastrar();
         }else{
@@ -228,11 +231,12 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
     }
 
     private void cadastrar(){
-        VinculoService vinculoService = TelaInicialActivity.retrofit.create(VinculoService.class);
+        VinculoService vinculoService = RetrofitUtils.retrofit.create(VinculoService.class);
         vinculoService.cadastrarVinculo(TelaInicialActivity.sp.getString("token", null), vinculo).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Toast.makeText(getApplicationContext(), "Cadastro concluído", Toast.LENGTH_LONG).show();
+                getDiagnosticado();
             }
 
             @Override
@@ -243,11 +247,12 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
     }
 
     private void editar(){
-        VinculoService vinculoService = TelaInicialActivity.retrofit.create(VinculoService.class);
+        VinculoService vinculoService = RetrofitUtils.retrofit.create(VinculoService.class);
         vinculoService.cadastrarVinculo(TelaInicialActivity.sp.getString("token", null), vinculo).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Toast.makeText(getApplicationContext(), "Edição concluída", Toast.LENGTH_LONG).show();
+                getDiagnosticado();
             }
 
             @Override
@@ -275,5 +280,26 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    public void getDiagnosticado(){
+        DiagnosticadoService diagnosticadoService = RetrofitUtils.retrofit.create(DiagnosticadoService.class);
+        diagnosticadoService.buscarLogado(TelaInicialActivity.sp.getString("token", null)).enqueue(new Callback<Diagnosticado>() {
+            @Override
+            public void onResponse(Call<Diagnosticado> call, Response<Diagnosticado> response) {
+                String usuarioJson = new Gson().toJson(response.body());
+                TelaInicialActivity.editor.remove("diagnosticado");
+                TelaInicialActivity.editor.putString("diagnosticado", usuarioJson);
+                TelaInicialActivity.editor.commit();
+                Toast.makeText(getApplicationContext(), response.body().getNome(), Toast.LENGTH_SHORT).show();
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Diagnosticado> call, Throwable t) {
+
+            }
+        });
     }
 }

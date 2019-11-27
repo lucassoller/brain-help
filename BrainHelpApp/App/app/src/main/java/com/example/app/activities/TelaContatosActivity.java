@@ -65,6 +65,5 @@ public class TelaContatosActivity extends AppCompatActivity {
         this.btAdicionarContato = findViewById(R.id.bt_adicionar_contato);
         this.contatosAdapter = new ContatosAdapter(this, R.layout.list_contatos, vinculos);
         this.lvContatos.setAdapter(contatosAdapter);
-
     }
 }

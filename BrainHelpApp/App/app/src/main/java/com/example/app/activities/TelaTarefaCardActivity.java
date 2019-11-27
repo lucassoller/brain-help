@@ -13,6 +13,7 @@ import com.example.app.R;
 import com.example.app.classes.Tarefa;
 import com.example.app.enumerated.StatusTarefa;
 import com.example.app.services.TarefaService;
+import com.example.app.utils.RetrofitUtils;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
@@ -131,7 +132,7 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
     }
 
     private void cadastrar(){
-        TarefaService tarefaService = TelaInicialActivity.retrofit.create(TarefaService.class);
+        TarefaService tarefaService = RetrofitUtils.retrofit.create(TarefaService.class);
         tarefaService.cadastrarTarefa(TelaInicialActivity.sp.getString("token", null), tarefa).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
@@ -146,7 +147,7 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
     }
 
     private void editar(){
-        TarefaService tarefaService = TelaInicialActivity.retrofit.create(TarefaService.class);
+        TarefaService tarefaService = RetrofitUtils.retrofit.create(TarefaService.class);
         tarefaService.cadastrarTarefa(TelaInicialActivity.sp.getString("token", null), tarefa).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {

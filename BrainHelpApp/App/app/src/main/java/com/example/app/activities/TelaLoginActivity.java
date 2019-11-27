@@ -12,6 +12,7 @@ import com.example.app.R;
 import com.example.app.classes.dto.LoginRequestDto;
 import com.example.app.classes.dto.LoginResponseDto;
 import com.example.app.services.LoginService;
+import com.example.app.utils.RetrofitUtils;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
@@ -59,7 +60,7 @@ public class TelaLoginActivity extends AppCompatActivity implements Validator.Va
     }
 
     private void logar(){
-        LoginService loginService = TelaInicialActivity.retrofit.create(LoginService.class);
+        LoginService loginService = RetrofitUtils.retrofit.create(LoginService.class);
         loginService.logarDiagnosticado(new LoginRequestDto(etEmail.getText().toString(), etSenha.getText().toString())).enqueue(new Callback<LoginResponseDto>() {
             @Override
             public void onResponse(Call<LoginResponseDto> call, Response<LoginResponseDto> response) {

@@ -250,7 +250,7 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:padding="10dp"
-                android:hint="Logrdouro"
+                android:hint="Logradouro"
                 android:textColorHint="#38B6FF" />
 
             <TextView
