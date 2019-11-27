@@ -38,12 +38,9 @@ public class TelaHomeActivity extends AppCompatActivity {
         diagnosticadoJson = TelaInicialActivity.sp.getString("diagnosticado" , null);
         if(diagnosticadoJson == null){
             RetrofitUtils.getDiagnosticado();
-        }
-
-        else{
+        }else{
             diagnosticado = gson.fromJson(diagnosticadoJson, Diagnosticado.class);
             Toast.makeText(TelaHomeActivity.this, diagnosticado.getNome(), Toast.LENGTH_SHORT).show();
-
         }
 
         this.ivContatos.setOnClickListener(new View.OnClickListener() {

@@ -16,6 +16,9 @@ public interface VinculoService {
     @GET("vinculo/buscar/todos")
     Call<List<Vinculo>> buscarTodosVinculos(@Header("Authorization") String token);
 
+    @GET("vinculo/buscar/todos/usuario")
+    Call<List<Vinculo>> buscarTodosVinculosDoUsuario(@Header("Authorization") String token);
+
     @GET("vinculo/buscar/{ID}")
     Call<Vinculo> buscarVinculoPorId(@Header("Authorization") String token, @Path("ID") Integer codVinculo);
 

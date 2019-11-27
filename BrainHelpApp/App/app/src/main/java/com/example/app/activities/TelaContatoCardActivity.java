@@ -236,7 +236,6 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 Toast.makeText(getApplicationContext(), "Cadastro concluído", Toast.LENGTH_LONG).show();
-                getDiagnosticado();
             }
 
             @Override

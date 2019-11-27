@@ -16,6 +16,7 @@ import com.example.app.classes.Endereco;
 import com.example.app.classes.Vinculo;
 import com.example.app.enumerated.Sexo;
 import com.example.app.services.VinculoService;
+import com.example.app.utils.RetrofitUtils;
 import com.google.gson.Gson;
 import java.util.List;
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class TelaContatosActivity extends AppCompatActivity {
 
     private ListView lvContatos;
     private Button btAdicionarContato;
-    private List<Vinculo> vinculos;
+    private List<Vinculo> vinculos = new ArrayList<>();
     public static ContatosAdapter contatosAdapter;
 
     @Override
@@ -56,14 +57,32 @@ public class TelaContatosActivity extends AppCompatActivity {
         });
     }
 
-    private void inicializaComponentes(){
-        String diagnosticadoJson = TelaInicialActivity.sp.getString("diagnosticado" , null);
-        Diagnosticado diagnosticado = new Gson().fromJson(diagnosticadoJson, Diagnosticado.class);
-        vinculos = diagnosticado.getVinculos();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getVinculos();
+    }
 
+    private void inicializaComponentes(){
+        getVinculos();
         this.lvContatos = findViewById(R.id.lv_contatos);
         this.btAdicionarContato = findViewById(R.id.bt_adicionar_contato);
         this.contatosAdapter = new ContatosAdapter(this, R.layout.list_contatos, vinculos);
         this.lvContatos.setAdapter(contatosAdapter);
+    }
+
+    private void getVinculos(){
+        VinculoService vinculoService = RetrofitUtils.retrofit.create(VinculoService.class);
+        vinculoService.buscarTodosVinculosDoUsuario(TelaInicialActivity.sp.getString("token", null)).enqueue(new Callback<List<Vinculo>>() {
+            @Override
+            public void onResponse(Call<List<Vinculo>> call, Response<List<Vinculo>> response) {
+                vinculos = response.body();
+            }
+
+            @Override
+            public void onFailure(Call<List<Vinculo>> call, Throwable t) {
+
+            }
+        });
     }
 }

@@ -15,6 +15,7 @@ import com.example.demo.model.Vinculo;
 import com.example.demo.model.security.UserPrincipal;
 import com.example.demo.repository.VinculoRepository;
 import com.example.demo.service.vinculo.BuscarVinculoPorIdService;
+import com.example.demo.service.vinculo.BuscarVinculosDoUsuarioService;
 import com.example.demo.service.vinculo.CadastrarVinculoService;
 import com.example.demo.service.vinculo.DeletarVinculoService;
 import com.example.demo.service.vinculo.EditarVinculoService;
@@ -38,9 +39,17 @@ public class VinculoController {
 	@Autowired
 	private DeletarVinculoService deletarVinculo;
 	
+	@Autowired
+	private BuscarVinculosDoUsuarioService buscarVinculosDoUsuario;
+	
 	@GetMapping("/buscar/todos")
 	public List<Vinculo> buscarTodosVinculos(){
 		return vinculoRepository.findAll();
+	}
+	
+	@GetMapping("/buscar/todos/usuario")
+	public List<Vinculo> buscarTodosVinculosDoUsuario(@AuthenticationPrincipal UserPrincipal userPrincipal){
+		return buscarVinculosDoUsuario.buscar(userPrincipal.getEmail());
 	}
 	
 	@GetMapping("/buscar/{ID}")
