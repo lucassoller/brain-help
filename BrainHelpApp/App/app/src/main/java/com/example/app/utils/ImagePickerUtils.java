@@ -21,7 +21,6 @@ public class ImagePickerUtils {
 
     public static String finalImageName = null;
     public static final int PICK_FOTO_FROM_AVATAR = 22;
-
     public static Intent getPickImageIntent(Context ctx){
         Intent chooserIntent = null;
         List<Intent> intentList = new ArrayList<>();

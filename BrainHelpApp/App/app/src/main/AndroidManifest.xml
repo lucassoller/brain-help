@@ -30,6 +30,7 @@
         <activity android:name=".activities.TelaJogosActivity" />
         <activity android:name=".activities.TelaContatoCardActivity" />
         <activity android:name=".activities.TelaContatosActivity" />
+        <activity android:name=".activities.TelaPerfilActivity" />
         <activity android:name=".activities.TelaHomeActivity" />
         <activity android:name=".activities.TelaCadastroActivity" />
         <activity android:name=".activities.TelaLoginActivity" />

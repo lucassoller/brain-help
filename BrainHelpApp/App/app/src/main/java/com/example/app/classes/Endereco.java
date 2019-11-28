@@ -3,7 +3,6 @@ package com.example.app.classes;
 import java.io.Serializable;
 
 public class Endereco implements Serializable {
-
     private Integer codEndereco;
     private String logradouro;
     private String cidade;

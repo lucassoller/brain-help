@@ -14,6 +14,7 @@ import retrofit2.http.Path;
 
 public interface DiagnosticadoService {
 
+
     @GET("diagnosticado/buscar/todos")
     Call<List<Diagnosticado>> buscarTodos(@Header("Authorization") String token);
 
@@ -27,7 +28,7 @@ public interface DiagnosticadoService {
     Call<Void> cadastrarDiagnosticado(@Body Diagnosticado diagnosticado);
 
     @PUT("diagnosticado/editar")
-    Call<Void> editarDiagnosticado(@Header("Authorization") String token);
+    Call<Void> editarDiagnosticado(@Header("Authorization") String token, @Body Diagnosticado diagnosticado);
 
     @DELETE("diagnosticado/deletar}")
     Call<Void> deletarDiagnosticado(@Header("Authorization") String token);

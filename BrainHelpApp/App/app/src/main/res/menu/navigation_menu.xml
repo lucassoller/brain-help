@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:icon="@drawable/tarefas">
 
     <item android:id="@+id/account"
         android:icon="@drawable/user"
-        android:title="My Account"/>
-    <item android:id="@+id/settings"
+        android:title="Meu perfil"/>
+    <item android:id="@+id/exit"
         android:icon="@drawable/user"
-        android:title="Settings"/>
-    <item android:id="@+id/mycart"
-        android:icon="@drawable/user"
-        android:title="My Cart"/>
+        android:title="Sair"/>
 
 </menu>

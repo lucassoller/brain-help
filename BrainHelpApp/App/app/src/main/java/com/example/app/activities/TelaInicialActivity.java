@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import com.example.app.R;
 
-public class TelaInicialActivity extends AppCompatActivity {
+public class TelaInicialActivity extends AppCompatActivity{
 
     private Button btLogin;
     private Button btCadastrar;
@@ -21,12 +21,12 @@ public class TelaInicialActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         this.inicializaComponentes();
 
-        String emailLogado = this.sp.getString("email", null);
-        if(emailLogado != null){
-            Intent itTelaLogado = new Intent(TelaInicialActivity.this, TelaHomeActivity.class);
-            startActivity(itTelaLogado);
-            finish();
-        }
+//        String emailLogado = this.sp.getString("email", null);
+//        if(emailLogado != null){
+//            Intent itTelaLogado = new Intent(TelaInicialActivity.this, TelaHomeActivity.class);
+//            startActivity(itTelaLogado);
+//            finish();
+//        }
 
         this.btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +43,9 @@ public class TelaInicialActivity extends AppCompatActivity {
                 startActivity(itTelaCadastro);
             }
         });
+
+
+
     }
 
     private void inicializaComponentes(){
@@ -51,4 +54,5 @@ public class TelaInicialActivity extends AppCompatActivity {
         sp = getSharedPreferences("brain_help", MODE_PRIVATE);
         editor = sp.edit();
     }
+
 }
