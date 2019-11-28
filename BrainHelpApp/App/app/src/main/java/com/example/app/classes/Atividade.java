@@ -10,7 +10,7 @@ public class Atividade implements Serializable {
     private String nome;
     private String descricao;
     private int pontuacaoTotal;
-    private TipoAtividade tipoAtividade ;
+    private TipoAtividade tipoAtividade;
 
     public Integer getCodAtividade() {
         return codAtividade;

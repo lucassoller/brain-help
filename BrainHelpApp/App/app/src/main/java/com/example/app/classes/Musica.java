@@ -1,8 +1,5 @@
 package com.example.app.classes;
 
-import com.example.app.classes.Diagnosticado;
-import com.example.app.classes.Lembranca;
-
 import java.io.Serializable;
 import java.util.List;
 

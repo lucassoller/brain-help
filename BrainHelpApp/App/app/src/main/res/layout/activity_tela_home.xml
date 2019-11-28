@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:background="#B9E5FF"
     tools:context=".activities.TelaHomeActivity">
-
     <ImageView
         android:id="@+id/iv_contatos"
         android:layout_width="177dp"

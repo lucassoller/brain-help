@@ -13,7 +13,6 @@ import java.io.ByteArrayOutputStream;
 import id.zelory.compressor.Compressor;
 
 public class BitmapUtils {
-
     public static Bitmap cropBitmapToCircle(Bitmap bitmap) {
         Bitmap toReturn = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(toReturn);

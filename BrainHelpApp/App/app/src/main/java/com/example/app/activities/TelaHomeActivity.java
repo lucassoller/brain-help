@@ -2,10 +2,16 @@ package com.example.app.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -13,6 +19,7 @@ import com.example.app.R;
 import com.example.app.classes.Diagnosticado;
 import com.example.app.services.DiagnosticadoService;
 import com.example.app.utils.RetrofitUtils;
+import com.google.android.material.navigation.NavigationView;
 import com.google.gson.Gson;
 
 public class TelaHomeActivity extends AppCompatActivity {
@@ -35,13 +42,13 @@ public class TelaHomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_tela_home);
         this.inicializaComponenetes();
 
-        diagnosticadoJson = TelaInicialActivity.sp.getString("diagnosticado" , null);
-        if(diagnosticadoJson == null){
-            RetrofitUtils.getDiagnosticado();
-        }else{
-            diagnosticado = gson.fromJson(diagnosticadoJson, Diagnosticado.class);
-            Toast.makeText(TelaHomeActivity.this, diagnosticado.getNome(), Toast.LENGTH_SHORT).show();
-        }
+//        diagnosticadoJson = TelaInicialActivity.sp.getString("diagnosticado" , null);
+//        if(diagnosticadoJson == null){
+//            RetrofitUtils.getDiagnosticado();
+//        }else{
+//            diagnosticado = gson.fromJson(diagnosticadoJson, Diagnosticado.class);
+//            Toast.makeText(TelaHomeActivity.this, diagnosticado.getNome(), Toast.LENGTH_SHORT).show();
+//        }
 
         this.ivContatos.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,6 +114,14 @@ public class TelaHomeActivity extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void inicializaComponenetes(){
         this.ivContatos = findViewById(R.id.iv_contatos);

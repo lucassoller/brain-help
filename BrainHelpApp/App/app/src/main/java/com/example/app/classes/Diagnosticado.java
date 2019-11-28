@@ -3,7 +3,6 @@ package com.example.app.classes;
 import com.example.app.enumerated.AvaliacaoDesempenho;
 import com.example.app.enumerated.EstagioAlzheimer;
 import com.example.app.enumerated.Sexo;
-
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;

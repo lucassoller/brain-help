@@ -37,48 +37,6 @@ public class TelaChatbotActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_chatbot);
-        ibAddImgReceita = findViewById(R.id.foto);
-        button = findViewById(R.id.button);
-        foto2 = findViewById(R.id.foto2);
-
-        ibAddImgReceita.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = ImagePickerUtils.getPickImageIntent(TelaChatbotActivity.this);
-                startActivityForResult(i, ImagePickerUtils.PICK_FOTO_FROM_AVATAR);
-            }
-        });
-
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                if(foto == null){
-//                    foto = BitmapFactory.decodeResource(getResources(), R.drawable.logo_brain);
-//                }
-//                f = BitmapUtils.bitmapToBase64(foto);
-//                Log.i("URI ===> ", f);
-//                Bitmap b = BitmapUtils.base64ToBitmap(f);
-//                foto2.setImageBitmap(b);
-//                Toast.makeText(TelaChatbotActivity.this, f, Toast.LENGTH_LONG).show();
-                Intent i = ImagePickerUtils.getPickImageIntent(TelaChatbotActivity.this);
-                startActivityForResult(i, ImagePickerUtils.PICK_FOTO_FROM_AVATAR);
-            }
-        });
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == ImagePickerUtils.PICK_FOTO_FROM_AVATAR && resultCode == RESULT_OK) {
-            try {
-                File f = ImagePickerUtils.parseReturningDataToFile(data, this);
-                Bitmap bmp = BitmapUtils.getCompressor(this).compressToBitmap(f);
-                foto = bmp;
-                ibAddImgReceita.setImageBitmap(bmp);
-            } catch (Exception e) {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }
     }
 
 }

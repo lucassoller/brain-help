@@ -37,7 +37,12 @@ public class TelaContatosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_contatos);
         this.inicializaComponentes();
+    }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getVinculos();
         this.lvContatos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -57,18 +62,10 @@ public class TelaContatosActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getVinculos();
-    }
-
     private void inicializaComponentes(){
         getVinculos();
         this.lvContatos = findViewById(R.id.lv_contatos);
         this.btAdicionarContato = findViewById(R.id.bt_adicionar_contato);
-        this.contatosAdapter = new ContatosAdapter(this, R.layout.list_contatos, vinculos);
-        this.lvContatos.setAdapter(contatosAdapter);
     }
 
     private void getVinculos(){
@@ -76,7 +73,13 @@ public class TelaContatosActivity extends AppCompatActivity {
         vinculoService.buscarTodosVinculosDoUsuario(TelaInicialActivity.sp.getString("token", null)).enqueue(new Callback<List<Vinculo>>() {
             @Override
             public void onResponse(Call<List<Vinculo>> call, Response<List<Vinculo>> response) {
-                vinculos = response.body();
+                if(response.isSuccessful()){
+                    vinculos = response.body();
+                    contatosAdapter = new ContatosAdapter(TelaContatosActivity.this, R.layout.list_contatos, vinculos);
+                    lvContatos.setAdapter(contatosAdapter);
+                }else{
+                    Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override

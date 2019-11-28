@@ -1,62 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activities.TelaChatbotActivity"
-    android:background="#B9E5FF"
-    android:fitsSystemWindows="true"
-    android:id="@+id/rv_container_recipe_register">
-
-
-    <ImageButton
-        android:id="@+id/foto"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="21dp"
-        android:adjustViewBounds="true"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/add_photo" />
-
-    <EditText
-        android:id="@+id/et_titulo_receita"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/foto"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:ems="10"
-        android:gravity="center_vertical|center_horizontal"
-        android:hint="hint"
-        android:inputType="textMultiLine"
-        android:maxWidth="300dp"
-        android:maxLines="3"
-        android:scrollHorizontally="false"
-        android:textColor="@color/colorAccent" />
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/et_titulo_receita"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:text="Button" />
-
-    <ImageButton
-        android:id="@+id/foto2"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="361dp"
-        android:adjustViewBounds="true"
-        android:background="@android:color/transparent"
-        android:scaleType="fitCenter"
-        android:src="@drawable/add_photo" />
-
-
+    android:layout_height="match_parent">
 </RelativeLayout>

@@ -13,4 +13,8 @@
     <string name="forget_password"><u>Esqueceu sua senha?</u></string>
     <string name="no_account">Não possui uma conta? <u>Cadastre-se</u></string>
     <string name="has_account">Já possui uma conta? <u>Faça o login</u></string>
+    <string name="open">Abrir</string>
+
+    <string name="close">Fechar</string>
+
 </resources>

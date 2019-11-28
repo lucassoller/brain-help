@@ -21,7 +21,7 @@ public class Card {
         this.idFoto = idFoto;
     }
 
-    public Card(String id, int idFoto) {
+    public Card(String id, int idFoto){
         this.id = id;
         this.idFoto = idFoto;
     }

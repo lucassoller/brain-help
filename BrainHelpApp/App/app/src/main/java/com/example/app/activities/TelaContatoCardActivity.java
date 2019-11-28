@@ -208,6 +208,7 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
         if(foto == null){
             foto = BitmapFactory.decodeResource(getResources(), R.drawable.my_user);
         }
+
         if(this.acao.equals("cadastrar")){
             this.cadastrar();
         }else{
@@ -235,7 +236,12 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
         vinculoService.cadastrarVinculo(TelaInicialActivity.sp.getString("token", null), vinculo).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(getApplicationContext(), "Cadastro concluído", Toast.LENGTH_LONG).show();
+                if(response.isSuccessful()){
+                    Toast.makeText(getApplicationContext(), "Cadastro concluído", Toast.LENGTH_LONG).show();
+                    finish();
+                }else{
+                    Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
@@ -250,8 +256,12 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
         vinculoService.cadastrarVinculo(TelaInicialActivity.sp.getString("token", null), vinculo).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(getApplicationContext(), "Edição concluída", Toast.LENGTH_LONG).show();
-                getDiagnosticado();
+                if(response.isSuccessful()){
+                    Toast.makeText(getApplicationContext(), "Edição concluída", Toast.LENGTH_LONG).show();
+                    finish();
+                }else{
+                    Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                }
             }
 
             @Override
@@ -262,8 +272,24 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
     }
 
     private void excluir(){
-        TelaContatosActivity.contatosAdapter.remove(vinculo);
-        TelaContatosActivity.contatosAdapter.notifyDataSetChanged();
+        VinculoService vinculoService = RetrofitUtils.retrofit.create(VinculoService.class);
+        vinculoService.deletarVinculo(TelaInicialActivity.sp.getString("token", null), vinculo.getCodVinculo()).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(getApplicationContext(), "Exclusão concluída", Toast.LENGTH_LONG).show();
+                    finish();
+
+                }else{
+                    Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override

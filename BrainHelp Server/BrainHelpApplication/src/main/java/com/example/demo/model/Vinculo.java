@@ -48,6 +48,7 @@ public class Vinculo {
 	@JoinColumn(name = "codDiagnosticado")
 	private Diagnosticado diagnosticado;
 	
+	@Column(length = 2000)
 	private String foto;
 
 	public Integer getCodVinculo() {
