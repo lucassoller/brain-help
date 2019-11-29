@@ -9,11 +9,11 @@ public class Desempenho implements Serializable {
 
     private Integer codDesempenho;
 
-    private Atividade atividade;
+    private String atividade;
 
     private int pontuacao;
 
-    private Date data;
+    private Date dataRealizacao;
 
     private AvaliacaoDesempenho avaliacaoDesempenho;
 
@@ -27,20 +27,20 @@ public class Desempenho implements Serializable {
         this.codDesempenho = codDesempenho;
     }
 
-    public Atividade getAtividade() {
+    public String getAtividade() {
         return atividade;
     }
 
-    public void setAtividade(Atividade atividade) {
+    public void setAtividade(String atividade) {
        this.atividade = atividade;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDataRealizacao() {
+        return dataRealizacao;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDataRealizacao(Date dataRealizacao) {
+        this.dataRealizacao = dataRealizacao;
     }
 
     public AvaliacaoDesempenho getAvaliacaoDesempenho() {
@@ -67,13 +67,13 @@ public class Desempenho implements Serializable {
         this.pontuacao = pontuacao;
     }
 
-    public Desempenho(Integer codDesempenho, Atividade atividade, int pontuacao, Date data,
+    public Desempenho(Integer codDesempenho, String atividade, int pontuacao, Date dataRealizacao,
                       AvaliacaoDesempenho avaliacaoDesempenho, Diagnosticado diagnosticado) {
         super();
         this.codDesempenho = codDesempenho;
         this.atividade = atividade;
         this.pontuacao = pontuacao;
-        this.data = data;
+        this.dataRealizacao = dataRealizacao;
         this.avaliacaoDesempenho = avaliacaoDesempenho;
         this.diagnosticado = diagnosticado;
     }

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#B9E5FF"
+    tools:context=".activities.TelaDesempenhosActivity">
+
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/border"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_jogos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Meus desempenhos"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:layout_marginBottom="10dp"
+            android:textSize="15pt" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout" />
+</RelativeLayout>

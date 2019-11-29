@@ -119,16 +119,27 @@ public class TelaHomeActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.account:
+            case R.id.perfil:
                 Intent itTelaUsuario = new Intent(TelaHomeActivity.this, TelaPerfilActivity.class);
                 itTelaUsuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(itTelaUsuario);
                 return true;
-            case R.id.exit:
-                finish();
+            case R.id.alterar_senha:
+                Intent itTelaSenha = new Intent(TelaHomeActivity.this, TelaAlterarSenhaActivity.class);
+                itTelaSenha.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaSenha);
+                return true;
+            case R.id.desempenhos:
+                return true;
+            case R.id.sair:
                 TelaInicialActivity.editor.remove("token");
                 TelaInicialActivity.editor.remove("email");
                 TelaInicialActivity.editor.commit();
+
+                Intent itTelaHome = new Intent(TelaHomeActivity.this, TelaInicialActivity.class);
+                itTelaHome.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaHome);
+                finish();
                 return true;
         }
         return false;

@@ -297,6 +297,9 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(TelaPerfilActivity.this, "Exclusão concluída!", Toast.LENGTH_SHORT).show();
+                    TelaInicialActivity.editor.remove("token");
+                    TelaInicialActivity.editor.remove("email");
+                    TelaInicialActivity.editor.commit();
                     Intent itTelaInicial = new Intent(TelaPerfilActivity.this, TelaInicialActivity.class);
                     itTelaInicial.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(itTelaInicial);

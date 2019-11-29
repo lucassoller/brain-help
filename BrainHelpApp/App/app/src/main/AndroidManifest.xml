@@ -13,8 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activities.JogoDaMemoriaActivity"></activity>
-
+        <activity android:name=".activities.TelaDesempenhosActivity"></activity>
+        <activity android:name=".activities.TelaAlterarSenhaActivity" />
+        <activity android:name=".activities.JogoDaMemoriaActivity" />
         <activity android:name=".activities.TelaCadastroInicialActivity" />
         <activity android:name=".activities.TelaEnderecoCardActivity" />
         <activity android:name=".activities.TelaEnderecosActivity" />
@@ -42,6 +43,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.app"

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.model.Diagnosticado;
+import com.example.demo.model.dto.RedefinicaoSenhaRequestDto;
 import com.example.demo.model.security.UserPrincipal;
 import com.example.demo.repository.DiagnosticadoRepository;
 import com.example.demo.service.diagnosticado.BuscarDiagnosticadoPorEmailService;
@@ -18,6 +19,7 @@ import com.example.demo.service.diagnosticado.BuscarDiagnosticadosPorNomeOuEmail
 import com.example.demo.service.diagnosticado.BuscarDiagnosticadosVinculadosService;
 import com.example.demo.service.diagnosticado.DeletarDiagnosticadoService;
 import com.example.demo.service.diagnosticado.EditarDiagnosticadoService;
+import com.example.demo.service.diagnosticado.EditarSenhaDiagnosticadoService;
 
 @RestController
 @RequestMapping("/diagnosticado")
@@ -40,6 +42,9 @@ public class DiagnosticadoController {
 	
 	@Autowired
 	private DeletarDiagnosticadoService deletarDiagnosticado;
+	
+	@Autowired
+	private EditarSenhaDiagnosticadoService editarSenha;
 	
 	@GetMapping("/buscar/todos")
 	public List<Diagnosticado> buscarTodos(){
@@ -74,6 +79,12 @@ public class DiagnosticadoController {
 	@PutMapping("/editar")
 	public void editarDiagnosticado(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Diagnosticado diagnosticado) {
 		editarDiagnosticado.editar(userPrincipal.getEmail(), diagnosticado);
+	}
+	
+	
+	@PutMapping("/editar/senha")
+	public void editarDiagnosticado(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody RedefinicaoSenhaRequestDto redefinicaoSenha) {
+		editarSenha.editar(userPrincipal.getEmail(), redefinicaoSenha);
 	}
 	
 	@DeleteMapping("/deletar")

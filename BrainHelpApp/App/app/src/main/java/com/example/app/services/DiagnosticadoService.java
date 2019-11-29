@@ -1,6 +1,8 @@
 package com.example.app.services;
 
 import com.example.app.classes.Diagnosticado;
+import com.example.app.classes.dto.RedefinicaoSenhaRequestDto;
+
 import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -29,6 +31,9 @@ public interface DiagnosticadoService {
 
     @PUT("diagnosticado/editar")
     Call<Void> editarDiagnosticado(@Header("Authorization") String token, @Body Diagnosticado diagnosticado);
+
+    @PUT("diagnosticado/editar/senha")
+    Call<Void> editarSenhaDiagnosticado(@Header("Authorization") String token, @Body RedefinicaoSenhaRequestDto redefinicaoSenha);
 
     @DELETE("diagnosticado/deletar")
     Call<Void> deletarDiagnosticado(@Header("Authorization") String token);

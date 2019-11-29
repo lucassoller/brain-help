@@ -75,12 +75,12 @@ public class TelaContatosActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.account:
+            case R.id.perfil:
                 Intent itTelaUsuario = new Intent(TelaContatosActivity.this, TelaPerfilActivity.class);
                 itTelaUsuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(itTelaUsuario);
                 return true;
-            case R.id.exit:
+            case R.id.sair:
                 finish();
                 TelaInicialActivity.editor.remove("token");
                 TelaInicialActivity.editor.remove("email");

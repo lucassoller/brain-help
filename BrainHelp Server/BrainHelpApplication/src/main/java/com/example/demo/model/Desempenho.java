@@ -18,9 +18,8 @@ public class Desempenho {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer codDesempenho;
 	
-	@ManyToOne
-	@JoinColumn(name="codAtividade")
-	private Atividade atividade;
+	@Column(nullable = false)
+	private String atividade;
 	
 	@Column(nullable = false)
 	private int pontuacao;
@@ -44,11 +43,11 @@ public class Desempenho {
 		this.codDesempenho = codDesempenho;
 	}
 
-	public Atividade getAtividade() {
+	public String getAtividade() {
 		return atividade;
 	}
 
-	public void setAtividade(Atividade atividade) {
+	public void setAtividade(String atividade) {
 		this.atividade = atividade;
 	}
 
@@ -84,7 +83,7 @@ public class Desempenho {
 		this.pontuacao = pontuacao;
 	}
 
-	public Desempenho(Integer codDesempenho, Atividade atividade, int pontuacao, Date dataRealizacao,
+	public Desempenho(Integer codDesempenho, String atividade, int pontuacao, Date dataRealizacao,
 			AvaliacaoDesempenho avaliacaoDesempenho, Diagnosticado diagnosticado) {
 		super();
 		this.codDesempenho = codDesempenho;

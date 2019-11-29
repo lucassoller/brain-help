@@ -1,16 +1,11 @@
 package com.example.demo.service.desempenho;
 
-import java.util.Date;
 import java.util.Objects;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.demo.model.Atividade;
 import com.example.demo.model.Desempenho;
 import com.example.demo.model.Diagnosticado;
-import com.example.demo.model.enumerated.AvaliacaoDesempenho;
 import com.example.demo.repository.DesempenhoRepository;
-import com.example.demo.service.atividade.BuscarAtividadePorIdService;
 import com.example.demo.service.diagnosticado.BuscarDiagnosticadoPorEmailService;
 
 @Service
@@ -20,24 +15,21 @@ public class CadastrarDesempenhoService {
 	DesempenhoRepository desempenhoRepository;
 	
 	@Autowired
-	BuscarAtividadePorIdService buscarAtividadeService;
-	
-	@Autowired
 	BuscarDiagnosticadoPorEmailService buscarDiagnosticado;
 	
-	public void salvar(String emailDiagnosticado, Integer codAtividade) {
+	public void salvar(String emailDiagnosticado, Desempenho desempenho) {
 		
-		if (Objects.isNull(codAtividade)) {
+		if (Objects.isNull(desempenho.getAtividade()) || desempenho.getAtividade().isEmpty()) {
 			throw new IllegalArgumentException("O código da atividade não pode estar em branco");
 		}
 		
-		Desempenho desempenho = new Desempenho();
-		desempenho.setDataRealizacao(new Date());
-		desempenho.setAvaliacaoDesempenho(AvaliacaoDesempenho.BOA);
-		desempenho.setPontuacao(0);
+		if(desempenho.getPontuacao() < 0 || desempenho.getPontuacao() > 100) {
+			throw new IllegalArgumentException("A pontuação do desempenho deve estar entre 0 e 100 pontos");
+		}
 		
-		Atividade atividade = buscarAtividadeService.buscar(codAtividade);
-		desempenho.setAtividade(atividade);
+		if(Objects.isNull(desempenho.getAvaliacaoDesempenho())) {
+			throw new IllegalArgumentException("A avaliação do desempenho não pode estar em branco");
+		}
 		
 		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
 		desempenho.setDiagnosticado(diagnosticado);

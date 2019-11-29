@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/account"
-        android:icon="@drawable/user"
+    <item android:id="@+id/perfil"
         android:title="Meu perfil"/>
-    <item android:id="@+id/exit"
-        android:icon="@drawable/user"
+    <item android:id="@+id/alterar_senha"
+        android:title="Alterar senha"/>
+    <item android:id="@+id/desempenhos"
+        android:title="Meus desempenhos"/>
+    <item android:id="@+id/sair"
         android:title="Sair"/>
 
 </menu>

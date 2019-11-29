@@ -3,6 +3,7 @@ package com.example.demo.model.dto;
 public class RedefinicaoSenhaRequestDto {
 	private String email;
 	private String senha;
+	private String senhaAtual;
 	
 	public String getEmail() {
 		return email;
@@ -17,10 +18,17 @@ public class RedefinicaoSenhaRequestDto {
 		this.senha = senha;
 	}
 	
-	public RedefinicaoSenhaRequestDto(String email, String senha) {
+	public String getSenhaAtual() {
+		return senhaAtual;
+	}
+	public void setSenhaAtual(String senhaAtual) {
+		this.senhaAtual = senhaAtual;
+	}
+	public RedefinicaoSenhaRequestDto(String email, String senha, String senhaAtual) {
 		super();
 		this.email = email;
 		this.senha = senha;
+		this.senhaAtual = senhaAtual;
 	}
 	
 	public RedefinicaoSenhaRequestDto() {

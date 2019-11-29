@@ -26,7 +26,7 @@ public class DesempenhoController {
 	private DesempenhoRepository desempenhoRepository;
 	
 	@Autowired
-	private CadastrarDesempenhoService cadastrarDesemepenho;
+	private CadastrarDesempenhoService cadastrarDesempenho;
 	
 	@Autowired
 	private BuscarDesempenhoPorIdService buscarDesempenhoPorId;
@@ -50,7 +50,7 @@ public class DesempenhoController {
 	}
 	
 	@PostMapping("/cadastrar")
-	public void cadastrarDesempenho(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Integer codAtividade) {
-		cadastrarDesemepenho.salvar(userPrincipal.getEmail(), codAtividade);
+	public void cadastrarDesempenho(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Desempenho desempenho) {
+		cadastrarDesempenho.salvar(userPrincipal.getEmail(), desempenho);
 	}
 }
