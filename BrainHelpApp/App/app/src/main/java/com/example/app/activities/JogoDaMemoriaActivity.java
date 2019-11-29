@@ -1,5 +1,7 @@
 package com.example.app.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
@@ -12,6 +14,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.app.R;
 import com.example.app.classes.Atividade;
 import com.example.app.classes.Card;
+import com.example.app.enumerated.AvaliacaoDesempenho;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -29,6 +33,7 @@ public class JogoDaMemoriaActivity extends AppCompatActivity {
     private ImageView iv1;
     private ImageView iv2;
     private Card c1;
+    private AlertDialog alerta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,20 +41,12 @@ public class JogoDaMemoriaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_jogo_da_memoria);
         this.inicializaComponentes();
         this.tvNomeJogo.setText(atividade.getNome());
-
         this.btParar.setClickable(false);
         this.btParar.setVisibility(View.INVISIBLE);
-
         this.btIniciar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                cronometro.setBase(SystemClock.elapsedRealtime());
-                cronometro.start();
-                cronometro.setActivated(true);
-                btParar.setClickable(true);
-                btParar.setVisibility(View.VISIBLE);
-                btIniciar.setClickable(false);
-                btIniciar.setVisibility(View.INVISIBLE);
+                iniciar();
             }
         });
 
@@ -103,7 +100,7 @@ public class JogoDaMemoriaActivity extends AppCompatActivity {
                             c1 = null;
                             totalCartasViradas = 0;
                             cartasViradas = 0;
-                            reiniciar();
+                            showDialog();
                         }
                     }
                 }
@@ -144,21 +141,62 @@ public class JogoDaMemoriaActivity extends AppCompatActivity {
         this.cards.add(new Card("E", R.drawable.puzzle));
         this.cards.add(new Card("F", R.drawable.logo_brain));
         this.cards.add(new Card("F", R.drawable.logo_brain));
-
-        Collections.shuffle(this.cards);
     }
 
     private void reiniciar(){
-        Collections.shuffle(this.cards);
         cronometro.stop();
         cronometro.setActivated(false);
         btParar.setClickable(false);
         btParar.setVisibility(View.INVISIBLE);
         btIniciar.setClickable(true);
         btIniciar.setVisibility(View.VISIBLE);
+    }
+
+    private void iniciar(){
+        Collections.shuffle(this.cards);
         for (int i = 0; i < 12; i++) {
             this.ivCards.get(i).setImageResource(idJogoMemoria);
             this.cards.get(i).setVirada(false);
         }
+        cronometro.setBase(SystemClock.elapsedRealtime());
+        cronometro.start();
+        cronometro.setActivated(true);
+        btParar.setClickable(true);
+        btParar.setVisibility(View.VISIBLE);
+        btIniciar.setClickable(false);
+        btIniciar.setVisibility(View.INVISIBLE);
+    }
+
+    private String calcularDesempenho(){
+        String [] tempo = cronometro.getText().toString().split(":");
+        int minutos = Integer.parseInt(tempo[0]);
+        int segundos = Integer.parseInt(tempo[1]);
+
+        segundos = segundos + (minutos * 60);
+
+        int pontuacao = (segundos * 100) / 15;
+        if(pontuacao <= 100/4){
+            return AvaliacaoDesempenho.RUIM.toString() + pontuacao;
+        }else if(pontuacao > (100 * 2)/4 && pontuacao <= (100 * 3) / 4) {
+            return AvaliacaoDesempenho.REGULAR.toString() + pontuacao;
+        }else if(pontuacao > (100 * 3)/4 && pontuacao <= (100 * 4) / 4) {
+            return AvaliacaoDesempenho.BOA.toString() + pontuacao;
+        }else{
+            return AvaliacaoDesempenho.EXCELENTE.toString() + pontuacao;
+        }
+    }
+
+    private void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+        builder.setTitle("Desempenho");
+        builder.setMessage(calcularDesempenho());
+        builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface arg0, int arg1) {
+
+            }
+        });
+
+        alerta = builder.create();
+        alerta.show();
     }
 }

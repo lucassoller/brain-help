@@ -110,39 +110,28 @@ public class TelaHomeActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAffinity();
+        finish();
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.account:
                 Intent itTelaUsuario = new Intent(TelaHomeActivity.this, TelaPerfilActivity.class);
-                itTelaUsuario.putExtra("diagnosticado", diagnosticado);
+                itTelaUsuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(itTelaUsuario);
                 return true;
             case R.id.exit:
+                finish();
+                TelaInicialActivity.editor.remove("token");
                 TelaInicialActivity.editor.remove("email");
                 TelaInicialActivity.editor.commit();
-                finish();
                 return true;
         }
         return false;
-    }
-
-    private void getDiagnosticado(){
-        DiagnosticadoService diagnosticadoService = RetrofitUtils.retrofit.create(DiagnosticadoService.class);
-        diagnosticadoService.buscarLogado(TelaInicialActivity.sp.getString("token", null)).enqueue(new Callback<Diagnosticado>() {
-            @Override
-            public void onResponse(Call<Diagnosticado> call, Response<Diagnosticado> response) {
-               if(response.isSuccessful()){
-                   diagnosticado = response.body();
-               }else{
-                   Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
-               }
-            }
-
-            @Override
-            public void onFailure(Call<Diagnosticado> call, Throwable t) {
-
-            }
-        });
     }
 
 
@@ -156,6 +145,5 @@ public class TelaHomeActivity extends AppCompatActivity {
         this.ivFotos = findViewById(R.id.iv_fotos);
         this.ivMedicamentos = findViewById(R.id.iv_medicamentos);
         this.ivEnderecos = findViewById(R.id.iv_enderecos);
-        this.getDiagnosticado();
     }
 }

@@ -21,12 +21,12 @@ public class TelaInicialActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
         this.inicializaComponentes();
 
-//        String emailLogado = this.sp.getString("email", null);
-//        if(emailLogado != null){
-//            Intent itTelaLogado = new Intent(TelaInicialActivity.this, TelaHomeActivity.class);
-//            startActivity(itTelaLogado);
-//            finish();
-//        }
+        String emailLogado = this.sp.getString("email", null);
+        if(emailLogado != null){
+            Intent itTelaLogado = new Intent(TelaInicialActivity.this, TelaHomeActivity.class);
+            startActivity(itTelaLogado);
+            finish();
+        }
 
         this.btLogin.setOnClickListener(new View.OnClickListener() {
             @Override

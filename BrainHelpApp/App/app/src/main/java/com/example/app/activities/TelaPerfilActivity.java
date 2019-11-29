@@ -26,8 +26,11 @@ import com.mobsandgeeks.saripaar.annotation.Checked;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
+
 import androidx.appcompat.app.AppCompatActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -81,7 +84,6 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_edicao);
         this.inicializaComponentes();
-        this.inicializaEditText();
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strEstados);
         this.spEstados.setAdapter(adapter);
 
@@ -123,7 +125,7 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
     }
 
     private void inicializaComponentes(){
-        this.diagnosticado = (Diagnosticado) getIntent().getSerializableExtra("diagnosticado");
+        getDiagnosticado();
         this.etNome = findViewById(R.id.et_nome);
         this.etSobrenome = findViewById(R.id.et_sobrenome);
         this.etEmail = findViewById(R.id.et_email);
@@ -152,7 +154,11 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
         this.etEmail.setText(diagnosticado.getEmail());
         this.etIdade.setText(String.valueOf(diagnosticado.getIdade()));
         this.etTelefone.setText(diagnosticado.getTelefone());
-        this.etDataDiagnostico.setText(String.valueOf(diagnosticado.getDataDiagnostico()));
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
+        String data = dateFormat.format(diagnosticado.getDataDiagnostico());
+
+        this.etDataDiagnostico.setText(data);
         this.etChaveSeguranca.setText(diagnosticado.getChaveSeguranca());
         if(this.diagnosticado.getSexo().equals(Sexo.M)){
             rbSexoSelecionado = findViewById(R.id.rb_masculino);
@@ -167,14 +173,14 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
             }
         }
         if(diagnosticado.getEstagioAlzheimer().equals(EstagioAlzheimer.INICIAL)){
-            rbSexoSelecionado = findViewById(R.id.rb_inicial);
-            rbSexoSelecionado.setChecked(true);
+            rbEstagioSelecionado = findViewById(R.id.rb_inicial);
+            rbEstagioSelecionado.setChecked(true);
         }else if (diagnosticado.getEstagioAlzheimer().equals(EstagioAlzheimer.INTERMEDIARIO)){
-            rbSexoSelecionado = findViewById(R.id.rb_intermediario);
-            rbSexoSelecionado.setChecked(true);
+            rbEstagioSelecionado = findViewById(R.id.rb_intermediario);
+            rbEstagioSelecionado.setChecked(true);
         }else{
-            rbSexoSelecionado = findViewById(R.id.rb_avancado);
-            rbSexoSelecionado.setChecked(true);
+            rbEstagioSelecionado = findViewById(R.id.rb_avancado);
+            rbEstagioSelecionado.setChecked(true);
         }
         this.etLogradouro.setText(diagnosticado.getEndereco().getLogradouro());
         this.etNumero.setText(String.valueOf(diagnosticado.getEndereco().getNumero()));
@@ -196,18 +202,18 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
             diagnosticado.setChaveSeguranca(etChaveSeguranca.getText().toString());
         }
 
+        if(rbSexoSelecionado.getText().toString().equals("Masculino")){
+            diagnosticado.setSexo(Sexo.M);
+        }else{
+            diagnosticado.setSexo(Sexo.F);
+        }
+
         if(rbEstagioSelecionado.getText().toString().equals("Inicial")){
             diagnosticado.setEstagioAlzheimer(EstagioAlzheimer.INICIAL);
         }else if (rbEstagioSelecionado.getText().toString().equals("Intermediário")){
             diagnosticado.setEstagioAlzheimer(EstagioAlzheimer.INTERMEDIARIO);
         }else{
             diagnosticado.setEstagioAlzheimer(EstagioAlzheimer.AVANCADO);
-        }
-
-        if(rbSexoSelecionado.getText().toString().equals("Masculino")){
-            diagnosticado.setSexo(Sexo.M);
-        }else{
-            diagnosticado.setSexo(Sexo.F);
         }
 
         String dataDiagnosticoVet [] = etDataDiagnostico.getText().toString().split("/");
@@ -256,13 +262,25 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent itTelaInicial = new Intent(TelaPerfilActivity.this, TelaHomeActivity.class);
+        itTelaInicial.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(itTelaInicial);
+        finish();
+    }
 
     private void editar(){
         DiagnosticadoService diagnosticadoService = RetrofitUtils.retrofit.create(DiagnosticadoService.class);
         diagnosticadoService.editarDiagnosticado(TelaInicialActivity.sp.getString("token", null), diagnosticado).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(TelaPerfilActivity.this, "Edição concluída!", Toast.LENGTH_SHORT).show();
+                if(response.isSuccessful()){
+                    Toast.makeText(TelaPerfilActivity.this, "Edição concluída!", Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(TelaPerfilActivity.this, response.errorBody().toString(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -277,13 +295,42 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
         diagnosticadoService.deletarDiagnosticado(TelaInicialActivity.sp.getString("token", null)).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(TelaPerfilActivity.this, "Exclusão concluída!", Toast.LENGTH_SHORT).show();
-                finish();
+                if(response.isSuccessful()){
+                    Toast.makeText(TelaPerfilActivity.this, "Exclusão concluída!", Toast.LENGTH_SHORT).show();
+                    Intent itTelaInicial = new Intent(TelaPerfilActivity.this, TelaInicialActivity.class);
+                    itTelaInicial.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(itTelaInicial);
+                    finish();
+                }else{
+                    Toast.makeText(TelaPerfilActivity.this, response.errorBody().toString(), Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+
+    private void getDiagnosticado(){
+        DiagnosticadoService diagnosticadoService = RetrofitUtils.retrofit.create(DiagnosticadoService.class);
+        diagnosticadoService.buscarLogado(TelaInicialActivity.sp.getString("token", null)).enqueue(new Callback<Diagnosticado>() {
+            @Override
+            public void onResponse(Call<Diagnosticado> call, Response<Diagnosticado> response) {
+                if(response.isSuccessful()){
+                    diagnosticado = response.body();
+                    inicializaEditText();
+                }else{
+                    Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Diagnosticado> call, Throwable t) {
+
             }
         });
     }

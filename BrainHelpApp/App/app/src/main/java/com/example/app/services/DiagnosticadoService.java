@@ -24,12 +24,12 @@ public interface DiagnosticadoService {
     @GET("diagnosticado/buscar/logado")
     Call<Diagnosticado> buscarLogado(@Header("Authorization") String token);
 
-    @POST("public/registro/diagnosticado/")
+    @POST("public/registro/diagnosticado")
     Call<Void> cadastrarDiagnosticado(@Body Diagnosticado diagnosticado);
 
     @PUT("diagnosticado/editar")
     Call<Void> editarDiagnosticado(@Header("Authorization") String token, @Body Diagnosticado diagnosticado);
 
-    @DELETE("diagnosticado/deletar}")
+    @DELETE("diagnosticado/deletar")
     Call<Void> deletarDiagnosticado(@Header("Authorization") String token);
 }

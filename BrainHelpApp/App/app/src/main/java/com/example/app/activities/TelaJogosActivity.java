@@ -29,13 +29,6 @@ public class TelaJogosActivity extends AppCompatActivity {
         atividade.setTipoAtividade(TipoAtividade.PUZZLE);
         atividade.setDescricao("Um jogo em que deve ser encontradas todas a peças iguais");
         jogos.add(atividade);
-        jogos.add(atividade);
-        jogos.add(atividade);
-        jogos.add(atividade);
-        jogos.add(atividade);
-        jogos.add(atividade);
-        jogos.add(atividade);
-        jogos.add(atividade);
     }
 
     private void inicializaComponentes(){
