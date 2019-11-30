@@ -25,7 +25,8 @@
             android:textSize="15pt" />
     </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ListView
+        android:id="@+id/lv_desempenhos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/layout" />

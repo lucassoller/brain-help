@@ -14,7 +14,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-
 import com.example.app.R;
 import com.example.app.classes.Atividade;
 import com.example.app.classes.Card;
@@ -22,7 +21,6 @@ import com.example.app.classes.Desempenho;
 import com.example.app.enumerated.AvaliacaoDesempenho;
 import com.example.app.services.DesempenhoService;
 import com.example.app.utils.RetrofitUtils;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -43,7 +41,6 @@ public class JogoDaMemoriaActivity extends AppCompatActivity {
     private Card c1;
     private AlertDialog alerta;
     private int pontuacao = 0;
-    private String avaliacao;
     private Desempenho desempenho;
 
     @Override
@@ -67,7 +64,6 @@ public class JogoDaMemoriaActivity extends AppCompatActivity {
                 reiniciar();
             }
         });
-
 
         for (int i = 0; i < 12; i++) {
             final int y = i;

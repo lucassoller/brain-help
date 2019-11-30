@@ -9,7 +9,11 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.example.app.R;
 import com.example.app.classes.Desempenho;
+
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -48,10 +52,13 @@ public class DesempenhosAdapter extends ArrayAdapter<Desempenho> {
             holder = (ViewHolder) convertView.getTag();
         }
 
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm", new Locale("pt", "BR"));
+        String data = dateFormat.format(desempenho.getDataRealizacao());
+
         holder.tvAtividade.setText("Atividade: "+desempenho.getAtividade());
         holder.tvPontuacao.setText("Pontuação: "+desempenho.getPontuacao()+ " pontos");
         holder.tvDesempenho.setText("Desempenho: "+desempenho.getAvaliacaoDesempenho());
-        holder.tvDataRealizacao.setText("Data realização: "+desempenho.getDataRealizacao());
+        holder.tvDataRealizacao.setText("Data realização: "+data);
         return convertView;
     }
 }

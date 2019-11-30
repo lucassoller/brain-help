@@ -130,6 +130,9 @@ public class TelaHomeActivity extends AppCompatActivity {
                 startActivity(itTelaSenha);
                 return true;
             case R.id.desempenhos:
+                Intent itTelaDesempenho = new Intent(TelaHomeActivity.this, TelaDesempenhosActivity.class);
+                itTelaDesempenho.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaDesempenho);
                 return true;
             case R.id.sair:
                 TelaInicialActivity.editor.remove("token");

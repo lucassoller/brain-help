@@ -40,12 +40,6 @@ public class TelaContatosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_contatos);
         this.inicializaComponentes();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        getVinculos();
         this.lvContatos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
