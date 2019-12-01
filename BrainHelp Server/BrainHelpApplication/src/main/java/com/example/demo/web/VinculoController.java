@@ -58,7 +58,7 @@ public class VinculoController {
 	}
 	
 	@PostMapping("/cadastrar")
-	public void cadastrarVinculo(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Vinculo vinculo) {
+	public void cadastrarVinculo(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Vinculo vinculo) throws Exception {
 		cadastrarVinculo.salvar(userPrincipal.getEmail(), vinculo);
 	}
 	

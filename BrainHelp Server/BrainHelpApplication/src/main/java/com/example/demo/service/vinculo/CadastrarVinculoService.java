@@ -8,6 +8,7 @@ import com.example.demo.model.Vinculo;
 import com.example.demo.repository.VinculoRepository;
 import com.example.demo.service.diagnosticado.BuscarDiagnosticadoPorEmailService;
 import com.example.demo.service.endereco.CadastrarEnderecoService;
+import com.example.demo.utils.ImageFileWriter;
 
 @Service
 public class CadastrarVinculoService {
@@ -21,7 +22,7 @@ public class CadastrarVinculoService {
 	@Autowired
 	BuscarDiagnosticadoPorEmailService buscarDiagnosticado;
 
-	public void salvar(String emailDiagnosticado, Vinculo vinculo) {
+	public void salvar(String emailDiagnosticado, Vinculo vinculo) throws Exception {
 		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
 		
 		if (Objects.isNull(vinculo.getNome()) || vinculo.getNome().isEmpty()) {
@@ -55,7 +56,8 @@ public class CadastrarVinculoService {
 		if(!Objects.isNull(vinculo.getEndereco())){
 			cadastrarEndereco.salvar(vinculo.getEndereco());
 		}
-		
+		String base64 = vinculo.getFoto();
+		vinculo.setFoto(ImageFileWriter.saveImageToFolder(null, base64));
 		vinculo.setDiagnosticado(diagnosticado);
 		vinculoRepository.save(vinculo);
 	}

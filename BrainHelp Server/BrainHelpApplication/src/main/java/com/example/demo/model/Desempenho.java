@@ -12,7 +12,7 @@ import com.example.demo.model.enumerated.AvaliacaoDesempenho;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Desempenho {
+public class Desempenho{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

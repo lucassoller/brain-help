@@ -209,6 +209,8 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
             foto = BitmapFactory.decodeResource(getResources(), R.drawable.my_user);
         }
 
+        vinculo.setFoto(BitmapUtils.bitmapToBase64(foto));
+
         if(this.acao.equals("cadastrar")){
             this.cadastrar();
         }else{
