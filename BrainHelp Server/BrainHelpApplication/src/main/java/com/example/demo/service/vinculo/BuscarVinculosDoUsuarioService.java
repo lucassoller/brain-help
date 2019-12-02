@@ -9,6 +9,7 @@ import com.example.demo.model.Diagnosticado;
 import com.example.demo.model.Vinculo;
 import com.example.demo.repository.VinculoRepository;
 import com.example.demo.service.diagnosticado.BuscarDiagnosticadoPorEmailService;
+import com.example.demo.utils.ImageFileWriter;
 
 @Service
 public class BuscarVinculosDoUsuarioService {
@@ -24,7 +25,17 @@ public class BuscarVinculosDoUsuarioService {
 			throw new IllegalArgumentException("O email do diagnosticado não pode estar em branco");
 		}
 		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
-		
-		return vinculoRepository.findByDiagnosticado(diagnosticado);
+		List<Vinculo> vinculos = vinculoRepository.findByDiagnosticado(diagnosticado);
+		vinculos.stream().forEach(vinculo ->{
+			try {
+				if(!Objects.isNull(vinculo.getFoto()) && !vinculo.getFoto().isEmpty()) {
+					vinculo.setFoto(ImageFileWriter.returnBase64FromFile(vinculo.getFoto()));
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+		return vinculos;
 	}
 }

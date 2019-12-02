@@ -35,4 +35,10 @@ public class ImageFileWriter {
         
         return Base64.getMimeEncoder().encodeToString(Files.readAllBytes(path));
     }
+    
+    public static void deleteFile(String imageName) {
+    	String imagePath = BASE_PATH + imageName + ".png";
+        File f = new File(imagePath);
+        f.delete();
+    }
 }

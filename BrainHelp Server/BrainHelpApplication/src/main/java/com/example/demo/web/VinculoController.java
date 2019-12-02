@@ -63,7 +63,7 @@ public class VinculoController {
 	}
 	
 	@PutMapping("/editar/{ID}")
-	public void editarVinculo(@PathVariable("ID") Integer codVinculo,  @RequestBody Vinculo vinculo) {
+	public void editarVinculo(@PathVariable("ID") Integer codVinculo,  @RequestBody Vinculo vinculo) throws Exception {
 		editarVinculo.editar(codVinculo, vinculo);
 	}
 	

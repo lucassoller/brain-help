@@ -56,8 +56,11 @@ public class CadastrarVinculoService {
 		if(!Objects.isNull(vinculo.getEndereco())){
 			cadastrarEndereco.salvar(vinculo.getEndereco());
 		}
-		String base64 = vinculo.getFoto();
-		vinculo.setFoto(ImageFileWriter.saveImageToFolder(null, base64));
+		
+		if(!Objects.isNull(vinculo.getFoto()) && !vinculo.getFoto().isEmpty()) {
+			String base64 = vinculo.getFoto();
+			vinculo.setFoto(ImageFileWriter.saveImageToFolder(null, base64));
+		}
 		vinculo.setDiagnosticado(diagnosticado);
 		vinculoRepository.save(vinculo);
 	}

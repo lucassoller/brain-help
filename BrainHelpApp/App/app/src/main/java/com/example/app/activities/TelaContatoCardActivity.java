@@ -87,6 +87,9 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, strEstados);
         this.spEstados.setAdapter(adapter);
         if(vinculo != null){
+            if(vinculo.getFoto() != null && !vinculo.getFoto().isEmpty()){
+                ivFoto.setImageBitmap(BitmapUtils.base64ToBitmap(vinculo.getFoto()));
+            }
             this.etNome.setText(this.vinculo.getNome());
             this.etSobrenome.setText(this.vinculo.getSobrenome());
             this.etVinculo.setText(this.vinculo.getVinculo());
@@ -205,11 +208,9 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
         endereco.setCep(this.etCep.getText().toString());
         endereco.setTitulo("Endereço de "+ vinculo.getNome());
         this.vinculo.setEndereco(endereco);
-        if(foto == null){
-            foto = BitmapFactory.decodeResource(getResources(), R.drawable.my_user);
+        if(foto != null){
+            vinculo.setFoto(BitmapUtils.bitmapToBase64(foto));
         }
-
-        vinculo.setFoto(BitmapUtils.bitmapToBase64(foto));
 
         if(this.acao.equals("cadastrar")){
             this.cadastrar();

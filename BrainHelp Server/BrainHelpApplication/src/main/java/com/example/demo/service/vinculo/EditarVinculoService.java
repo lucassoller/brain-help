@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.model.Vinculo;
 import com.example.demo.repository.VinculoRepository;
 import com.example.demo.service.endereco.EditarEnderecoService;
+import com.example.demo.utils.ImageFileWriter;
 
 @Service
 public class EditarVinculoService {
@@ -19,7 +20,7 @@ public class EditarVinculoService {
 	@Autowired
 	VinculoRepository vinculoRepository;
 	
-	public void editar(Integer codVinculo, Vinculo vinculo) {
+	public void editar(Integer codVinculo, Vinculo vinculo) throws Exception {
 		Vinculo vinculoParaEditar = buscarVinculo.buscar(codVinculo);
 		
 		if (!Objects.isNull(vinculo.getNome()) && !vinculo.getNome().isEmpty()) {
@@ -43,7 +44,11 @@ public class EditarVinculoService {
 		}
 		
 		if (!Objects.isNull(vinculo.getFoto()) && !vinculo.getFoto().isEmpty()) {
-			vinculoParaEditar.setFoto(vinculo.getFoto());
+			if(!vinculoParaEditar.getFoto().isEmpty()) {
+				ImageFileWriter.deleteFile(vinculoParaEditar.getFoto());
+			}
+			String base64 = vinculo.getFoto();
+			vinculoParaEditar.setFoto(ImageFileWriter.saveImageToFolder(null, base64));
 		}
 		
 		if (!Objects.isNull(vinculo.getSexo())) {

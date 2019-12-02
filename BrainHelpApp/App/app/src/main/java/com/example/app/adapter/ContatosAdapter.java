@@ -12,8 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.example.app.R;
 import com.example.app.classes.Vinculo;
+import com.example.app.utils.BitmapUtils;
 
 import java.util.List;
+import java.util.Objects;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ContatosAdapter extends ArrayAdapter<Vinculo> {
 
@@ -25,7 +29,7 @@ public class ContatosAdapter extends ArrayAdapter<Vinculo> {
     }
 
     private class ViewHolder{
-        ImageView ivFoto;
+        CircleImageView ivFoto;
         TextView tvNome;
     }
 
@@ -46,7 +50,11 @@ public class ContatosAdapter extends ArrayAdapter<Vinculo> {
         }
 
         holder.tvNome.setText(vinculo.getNome()+" "+ vinculo.getSobrenome());
-        holder.ivFoto.setImageResource(R.drawable.my_user);
+        if(vinculo.getFoto() != null && !vinculo.getFoto().isEmpty()){
+            holder.ivFoto.setImageBitmap(BitmapUtils.base64ToBitmap(vinculo.getFoto()));
+        }else{
+            holder.ivFoto.setImageResource(R.drawable.my_user);
+        }
         return convertView;
     }
 }
