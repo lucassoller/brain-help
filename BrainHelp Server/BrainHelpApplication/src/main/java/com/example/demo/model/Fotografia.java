@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,7 +29,8 @@ public class Fotografia {
 	
 	private String lembrancas;
 	
-	@Column(nullable = false)
+	@Lob
+	@Column(nullable = false, length = 2000)
 	private String foto;
 	
 	@JsonIgnore

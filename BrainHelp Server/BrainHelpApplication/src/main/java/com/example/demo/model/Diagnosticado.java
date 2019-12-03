@@ -3,7 +3,6 @@ package com.example.demo.model;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,9 +10,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
 import com.example.demo.model.enumerated.AvaliacaoDesempenho;
 import com.example.demo.model.enumerated.EstagioAlzheimer;
 import com.example.demo.model.enumerated.Sexo;
@@ -50,11 +51,9 @@ public class Diagnosticado extends Usuario{
 	@Column(nullable = false)
 	private EstagioAlzheimer estagioAlzheimer;
 	
+	@Lob
+	@Column(length = 2000)
 	private String foto;
-	
-	@OneToOne(cascade = CascadeType.REMOVE)
-	@JoinColumn(name="codEndereco")
-	private Endereco endereco;
 	
 	private String chaveSeguranca;
 	
@@ -64,7 +63,14 @@ public class Diagnosticado extends Usuario{
 	@ManyToOne
 	@JoinColumn(name = "codMedico")
 	private Medico medico;
+	
+	@OneToOne(cascade = CascadeType.REMOVE)
+	@JoinColumn(name = "codEndereco")
+	private Endereco endereco;
 
+	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "diagnosticado")
+	private List<Endereco> enderecos;
+	
 	@OneToMany(cascade = CascadeType.REMOVE, mappedBy = "diagnosticado")
 	private List<Vinculo> vinculos;
 	
@@ -165,12 +171,12 @@ public class Diagnosticado extends Usuario{
 		this.estagioAlzheimer = estagioAlzheimer;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
+	public List<Endereco> getEnderecos() {
+		return enderecos;
 	}
 
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
 	}
 
 	public String getChaveSeguranca() {
@@ -269,12 +275,21 @@ public class Diagnosticado extends Usuario{
 		this.google = google;
 	}
 
-	public Diagnosticado(String email, String senha, Integer codDiagnosticado, String nome, String sobrenome,
-			int idade, Sexo sexo, EstagioAlzheimer estagioAlzheimer, String telefone,
-			String foto, Endereco endereco, String chaveSeguranca, Date dataDiagnostico, Medico medico,
-			List<Vinculo> vinculos, List<Medicamento> medicamentos, List<Fotografia> fotografias, List<Musica> musicas,
-			List<Tarefa> tarefas, List<Desempenho> desempenhos, AvaliacaoDesempenho desempenhoAtual, boolean google) {
+	public Endereco getEndereco() {
+		return endereco;
+	}
 
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public Diagnosticado(String email, String senha, Integer codDiagnosticado, String nome, String sobrenome,
+			String telefone, int idade, Sexo sexo, EstagioAlzheimer estagioAlzheimer,
+			String foto, String chaveSeguranca, Date dataDiagnostico, Medico medico, Endereco endereco,
+			List<Endereco> enderecos, List<Vinculo> vinculos, List<Medicamento> medicamentos,
+			List<Fotografia> fotografias, List<Musica> musicas, List<Tarefa> tarefas, List<Desempenho> desempenhos,
+			AvaliacaoDesempenho desempenhoAtual, boolean google) {
+		super();
 		this.codDiagnosticado = codDiagnosticado;
 		this.nome = nome;
 		this.sobrenome = sobrenome;
@@ -285,10 +300,11 @@ public class Diagnosticado extends Usuario{
 		this.sexo = sexo;
 		this.estagioAlzheimer = estagioAlzheimer;
 		this.foto = foto;
-		this.endereco = endereco;
 		this.chaveSeguranca = chaveSeguranca;
 		this.dataDiagnostico = dataDiagnostico;
 		this.medico = medico;
+		this.endereco = endereco;
+		this.enderecos = enderecos;
 		this.vinculos = vinculos;
 		this.medicamentos = medicamentos;
 		this.fotografias = fotografias;

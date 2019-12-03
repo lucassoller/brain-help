@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
 import com.example.demo.model.enumerated.TipoDuracao;
@@ -43,6 +44,10 @@ public class Medicamento {
 	private int duracao;
 	
 	private TipoDuracao tipoDuracao;
+	
+	@Lob
+	@Column(length = 2000)
+	private String foto;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -145,9 +150,17 @@ public class Medicamento {
 		this.tipoDuracao = tipoDuracao;
 	}
 
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
+	}
+
 	public Medicamento(Integer codMedicamento, String nomeMedicamento, String funcao, String contraIndicacoes,
 			String efeitosColaterais, int quantidade, Medida medida, int frequenciaDiaria, Date proximoHorario,
-			int duracao, TipoDuracao tipoDuracao, Diagnosticado diagnosticado) {
+			int duracao, TipoDuracao tipoDuracao, String foto, Diagnosticado diagnosticado) {
 		super();
 		this.codMedicamento = codMedicamento;
 		this.nomeMedicamento = nomeMedicamento;
@@ -160,6 +173,7 @@ public class Medicamento {
 		this.proximoHorario = proximoHorario;
 		this.duracao = duracao;
 		this.tipoDuracao = tipoDuracao;
+		this.foto = foto;
 		this.diagnosticado = diagnosticado;
 	}
 

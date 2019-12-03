@@ -5,6 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Endereco {
@@ -31,7 +36,16 @@ public class Endereco {
 	@Column(nullable = false)
 	private String cep;
 	
+	@Lob
+	@Column(length = 2000)
 	private String foto;
+	
+	private boolean enderecoDoUsuario;
+	
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name = "codDiagnosticado")
+	private Diagnosticado diagnosticado;
 
 	public Integer getCodEndereco() {
 		return codEndereco;
@@ -97,8 +111,24 @@ public class Endereco {
 		this.foto = foto;
 	}
 
+	public boolean isEnderecoDoUsuario() {
+		return enderecoDoUsuario;
+	}
+
+	public void setEnderecoDoUsuario(boolean enderecoDoUsuario) {
+		this.enderecoDoUsuario = enderecoDoUsuario;
+	}
+
+	public Diagnosticado getDiagnosticado() {
+		return diagnosticado;
+	}
+
+	public void setDiagnosticado(Diagnosticado diagnosticado) {
+		this.diagnosticado = diagnosticado;
+	}
+
 	public Endereco(Integer codEndereco, String logradouro, String cidade, String estado, int numero, String bairro,
-			String cep, String foto) {
+			String cep, String foto, boolean enderecoDoUsuario, Diagnosticado diagnosticado) {
 		super();
 		this.codEndereco = codEndereco;
 		this.logradouro = logradouro;
@@ -108,6 +138,8 @@ public class Endereco {
 		this.bairro = bairro;
 		this.cep = cep;
 		this.foto = foto;
+		this.enderecoDoUsuario = enderecoDoUsuario;
+		this.diagnosticado = diagnosticado;
 	}
 
 	public Endereco() {
