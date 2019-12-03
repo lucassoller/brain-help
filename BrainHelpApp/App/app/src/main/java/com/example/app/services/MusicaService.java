@@ -16,14 +16,17 @@ public interface MusicaService {
     @GET("musica/buscar/todos")
     Call<List<Musica>> buscarTodasMusicas(@Header("Authorization") String token);
 
+    @GET("musica/buscar/todos/usuario")
+    Call<List<Musica>> buscarTodasMusicasDoUsuario(@Header("Authorization") String token);
+
     @GET("musica/buscar/{ID}")
     Call<Musica> buscarMusicaPorId(@Header("Authorization") String token, @Path("ID") Integer codMusica);
 
     @POST("musica/cadastrar")
     Call<Void> cadastrarMusica(@Header("Authorization") String token, @Body Musica musica);
 
-    @PUT("musica/editar/{ID}")
-    Call<Void> editarMusica(@Header("Authorization") String token, @Path("ID") Integer codMusica, @Body Musica musica);
+    @PUT("musica/editar")
+    Call<Void> editarMusica(@Header("Authorization") String token, @Body Musica musica);
 
     @DELETE("musica/deletar/{ID}")
     Call<Void> deletarMusica(@Header("Authorization") String token, @Path("ID") Integer codMusica);

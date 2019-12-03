@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.model.Diagnosticado;
 import com.example.demo.repository.DiagnosticadoRepository;
+import com.example.demo.utils.ImageFileWriter;
 
 @Service
 public class BuscarDiagnosticadoPorEmailService {
@@ -16,8 +17,18 @@ public class BuscarDiagnosticadoPorEmailService {
 		if ((Objects.isNull(email) || email.isEmpty())) {
 			throw new IllegalArgumentException("O email não pode estar em branco");
 		}
+	
+		Diagnosticado diagnosticado = diagnosticadoRepository.findByEmail(email)
+				.orElseThrow(() -> new IllegalArgumentException("Nenhum diagnosticado foi encontrado"));
 		
-		return diagnosticadoRepository.findByEmail(email)
-				.orElseThrow(() -> new IllegalArgumentException("Nenhum diagnosticado foi encontrado" + email));
+		if(!Objects.isNull(diagnosticado.getFoto()) && !diagnosticado.getFoto().isEmpty()) {
+			try {
+				diagnosticado.setFoto(ImageFileWriter.returnBase64FromFile(diagnosticado.getFoto()));
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return diagnosticado;
 	}
 }

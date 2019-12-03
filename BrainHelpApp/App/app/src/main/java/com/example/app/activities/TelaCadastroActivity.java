@@ -78,7 +78,6 @@ public class TelaCadastroActivity extends AppCompatActivity implements Validator
     private EditText etCidade;
     @NotEmpty(message = "Bairro é obrigatório")
     private EditText etBairro;
-    @NotEmpty(message = "CEP é obrigatório")
     private EditText etCep;
     private Button btCadastrar;
     private TextView tvLogar;

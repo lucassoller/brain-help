@@ -15,8 +15,8 @@ public class EditarTarefaService {
 	@Autowired
 	TarefaRepository tarefaRepository;
 	
-	public void editar(Integer codTarefa, Tarefa tarefa) {
-		Tarefa tarefaParaEditar = buscarTarefa.buscar(codTarefa);
+	public void editar(Tarefa tarefa) {
+		Tarefa tarefaParaEditar = buscarTarefa.buscar(tarefa.getCodTarefa());
 		
 		if (!Objects.isNull(tarefa.getTarefa()) && !tarefa.getTarefa().isEmpty()) {
 			tarefaParaEditar.setTarefa(tarefa.getTarefa());

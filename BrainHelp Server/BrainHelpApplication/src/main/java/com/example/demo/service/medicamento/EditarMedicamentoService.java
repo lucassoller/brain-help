@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.model.Medicamento;
 import com.example.demo.repository.MedicamentoRepository;
+import com.example.demo.utils.ImageFileWriter;
 
 @Service
 public class EditarMedicamentoService {
@@ -15,8 +16,8 @@ public class EditarMedicamentoService {
 	@Autowired
 	MedicamentoRepository medicamentoRepository;
 	
-	public void editar(Integer codMedicamento, Medicamento medicamento) {
-		Medicamento medicamentoParaEditar = buscarMedicamento.buscar(codMedicamento);
+	public void editar(Medicamento medicamento) throws Exception {
+		Medicamento medicamentoParaEditar = buscarMedicamento.buscar(medicamento.getCodMedicamento());
 		
 		if (!Objects.isNull(medicamento.getNomeMedicamento()) && !medicamento.getNomeMedicamento().isEmpty()) {
 			medicamentoParaEditar.setNomeMedicamento(medicamento.getNomeMedicamento());
@@ -56,6 +57,14 @@ public class EditarMedicamentoService {
 		
 		if (!Objects.isNull(medicamento.getTipoDuracao())) {
 			medicamentoParaEditar.setTipoDuracao(medicamento.getTipoDuracao());		
+		}
+		
+		if (!Objects.isNull(medicamento.getFoto()) && !medicamento.getFoto().isEmpty()) {
+			if(!medicamentoParaEditar.getFoto().isEmpty()) {
+				ImageFileWriter.deleteFile(medicamentoParaEditar.getFoto());
+			}
+			String base64 = medicamento.getFoto();
+			medicamentoParaEditar.setFoto(ImageFileWriter.saveImageToFolder(null, base64));
 		}
 		
 		medicamentoRepository.save(medicamentoParaEditar);

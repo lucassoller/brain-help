@@ -15,6 +15,7 @@ import com.example.demo.model.Musica;
 import com.example.demo.model.security.UserPrincipal;
 import com.example.demo.repository.MusicaRepository;
 import com.example.demo.service.musica.BuscarMusicaPorIdService;
+import com.example.demo.service.musica.BuscarMusicasDoUsuarioService;
 import com.example.demo.service.musica.CadastrarMusicaService;
 import com.example.demo.service.musica.DeletarMusicaService;
 import com.example.demo.service.musica.EditarMusicaService;
@@ -38,9 +39,17 @@ public class MusicaController {
 	@Autowired
 	private DeletarMusicaService deletarMusica;
 	
+	@Autowired
+	private BuscarMusicasDoUsuarioService buscarMusicasDoUsuario;
+	
 	@GetMapping("/buscar/todos")
 	public List<Musica> buscarTodos(){
 		return musicaRepository.findAll();
+	}
+	
+	@GetMapping("/buscar/todos/usuario")
+	public List<Musica> buscarTodosDoUsuario(@AuthenticationPrincipal UserPrincipal userPrincipal){
+		return buscarMusicasDoUsuario.buscar(userPrincipal.getEmail());
 	}
 	
 	@GetMapping("/buscar/{ID}")
@@ -53,9 +62,9 @@ public class MusicaController {
 		cadastrarMusica.salvar(userPrincipal.getEmail(), musica);
 	}
 	
-	@PutMapping("/editar/{ID}")
-	public void editarMusica(@PathVariable("ID") Integer codMusica, @RequestBody Musica musica) {
-		editarMusica.editar(codMusica, musica);
+	@PutMapping("/editar")
+	public void editarMusica(@RequestBody Musica musica) {
+		editarMusica.editar(musica);
 	}
 	
 	@DeleteMapping("/deletar/{ID}")

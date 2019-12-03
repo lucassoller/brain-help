@@ -16,14 +16,17 @@ public interface MedicamentoService {
     @GET("medicamento/buscar/todos")
     Call<List<Medicamento>> buscarTodosMedicamentos(@Header("Authorization") String token);
 
+    @GET("medicamento/buscar/todos/usuario")
+    Call<List<Medicamento>> buscarTodosMedicamentosDoUsuario(@Header("Authorization") String token);
+
     @GET("medicamento/buscar/{ID}")
     Call<Medicamento> buscarMedicamentoPorId(@Header("Authorization") String token, @Path("ID") Integer codMedicamento);
 
     @POST("medicamento/cadastrar")
     Call<Void> cadastrarMedicamento(@Header("Authorization") String token, @Body Medicamento medicamento);
 
-    @PUT("medicamento/editar/{ID}")
-    Call<Void> editarMedicamento(@Header("Authorization") String token, @Path("ID") Integer codMedicamento, @Body Medicamento medicamento);
+    @PUT("medicamento/editar")
+    Call<Void> editarMedicamento(@Header("Authorization") String token, @Body Medicamento medicamento);
 
     @DELETE("medicamento/deletar/{ID}")
     Call<Void> deletarMedicamento(@Header("Authorization") String token, @Path("ID") Integer codMedicamento);

@@ -32,6 +32,16 @@ public class Medicamento implements Serializable {
 
     private Diagnosticado diagnosticado;
 
+    private String foto;
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+
     public Integer getCodMedicamento() {
         return codMedicamento;
     }
@@ -128,10 +138,7 @@ public class Medicamento implements Serializable {
         this.tipoDuracao = tipoDuracao;
     }
 
-    public Medicamento(Integer codMedicamento, String nomeMedicamento, String funcao, String contraIndicacoes,
-                       String efeitosColaterais, int quantidade, Medida medida, int frequenciaDiaria, Date proximoHorario,
-                       int duracao, TipoDuracao tipoDuracao, Diagnosticado diagnosticado) {
-        super();
+    public Medicamento(Integer codMedicamento, String nomeMedicamento, String funcao, String contraIndicacoes, String efeitosColaterais, int quantidade, Medida medida, int frequenciaDiaria, Date proximoHorario, int duracao, TipoDuracao tipoDuracao, com.example.app.classes.Diagnosticado diagnosticado, String foto) {
         this.codMedicamento = codMedicamento;
         this.nomeMedicamento = nomeMedicamento;
         this.funcao = funcao;
@@ -144,6 +151,7 @@ public class Medicamento implements Serializable {
         this.duracao = duracao;
         this.tipoDuracao = tipoDuracao;
         this.diagnosticado = diagnosticado;
+        this.foto = foto;
     }
 
     public Medicamento() {

@@ -63,7 +63,7 @@ public class MedicoController {
 	}
 	
 	@PutMapping("/editar")
-	public void cadastrarMedico(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Medico medico) {
+	public void cadastrarMedico(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Medico medico) throws Exception {
 		editarMedico.editar(userPrincipal.getEmail(), medico);
 	}
 	

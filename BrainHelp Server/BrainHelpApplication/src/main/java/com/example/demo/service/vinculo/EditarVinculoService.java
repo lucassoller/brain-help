@@ -20,8 +20,8 @@ public class EditarVinculoService {
 	@Autowired
 	VinculoRepository vinculoRepository;
 	
-	public void editar(Integer codVinculo, Vinculo vinculo) throws Exception {
-		Vinculo vinculoParaEditar = buscarVinculo.buscar(codVinculo);
+	public void editar(Vinculo vinculo) throws Exception {
+		Vinculo vinculoParaEditar = buscarVinculo.buscar(vinculo.getCodVinculo());
 		
 		if (!Objects.isNull(vinculo.getNome()) && !vinculo.getNome().isEmpty()) {
 			vinculoParaEditar.setNome(vinculo.getNome());
@@ -60,7 +60,7 @@ public class EditarVinculoService {
 		}
 		
 		if (!Objects.isNull(vinculo.getEndereco())) {
-			editarEndereco.editar(vinculoParaEditar.getEndereco(), vinculo.getEndereco());		
+			editarEndereco.editar(vinculo.getEndereco());		
 		}
 		
 		vinculoRepository.save(vinculoParaEditar);

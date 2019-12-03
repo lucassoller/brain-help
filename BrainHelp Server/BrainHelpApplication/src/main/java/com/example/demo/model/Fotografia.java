@@ -22,11 +22,9 @@ public class Fotografia {
 	@Column(nullable = false)
 	private String lugar;
 	
-	@Column(nullable = false)
-	private String descricao;
-	
 	private Date data;
 	
+	@Column(nullable = false)
 	private String lembrancas;
 	
 	@Lob
@@ -52,14 +50,6 @@ public class Fotografia {
 
 	public void setLugar(String lugar) {
 		this.lugar = lugar;
-	}
-
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
 	}
 
 	public Date getData() {
@@ -94,12 +84,11 @@ public class Fotografia {
 		this.foto = foto;
 	}
 
-	public Fotografia(Integer codFotografia, String lugar, String descricao, Date data,
+	public Fotografia(Integer codFotografia, String lugar, Date data,
 			String lembrancas, Diagnosticado diagnosticado, String foto) {
 		super();
 		this.codFotografia = codFotografia;
 		this.lugar = lugar;
-		this.descricao = descricao;
 		this.data = data;
 		this.lembrancas = lembrancas;
 		this.diagnosticado = diagnosticado;

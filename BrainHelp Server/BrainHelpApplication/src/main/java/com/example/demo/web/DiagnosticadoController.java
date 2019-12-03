@@ -77,7 +77,7 @@ public class DiagnosticadoController {
 	}
 	
 	@PutMapping("/editar")
-	public void editarDiagnosticado(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Diagnosticado diagnosticado) {
+	public void editarDiagnosticado(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Diagnosticado diagnosticado) throws Exception {
 		editarDiagnosticado.editar(userPrincipal.getEmail(), diagnosticado);
 	}
 	

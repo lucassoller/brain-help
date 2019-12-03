@@ -2,7 +2,6 @@ package com.example.app.classes;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 public class Fotografia   implements Serializable {
 
@@ -10,15 +9,21 @@ public class Fotografia   implements Serializable {
 
     private String lugar;
 
-    private String descricao;
-
     private Date data;
 
-    private List<Vinculo> vinculos;
-
-    private List<Lembranca> lembrancas;
+    private String lembrancas;
 
     private Diagnosticado diagnosticado;
+
+    private String foto;
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
 
     public Integer getCodFotografia() {
         return codFotografia;
@@ -36,14 +41,6 @@ public class Fotografia   implements Serializable {
         this.lugar = lugar;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
     public Date getData() {
         return data;
     }
@@ -52,19 +49,11 @@ public class Fotografia   implements Serializable {
         this.data = data;
     }
 
-    public List<Vinculo> getVinculos() {
-        return vinculos;
-    }
-
-    public void setVinculos(List<Vinculo> vinculos) {
-        this.vinculos = vinculos;
-    }
-
-    public List<Lembranca> getLembrancas() {
+    public String getLembrancas() {
         return lembrancas;
     }
 
-    public void setLembrancas(List<Lembranca> lembrancas) {
+    public void setLembrancas(String lembrancas) {
         this.lembrancas = lembrancas;
     }
 
@@ -76,16 +65,13 @@ public class Fotografia   implements Serializable {
         this.diagnosticado = diagnosticado;
     }
 
-    public Fotografia(Integer codFotografia, String lugar, String descricao, Date data, List<Vinculo> vinculos,
-                      List<Lembranca> lembrancas, Diagnosticado diagnosticado) {
-        super();
+    public Fotografia(Integer codFotografia, String lugar, Date data, String lembrancas, Diagnosticado diagnosticado, String foto) {
         this.codFotografia = codFotografia;
         this.lugar = lugar;
-        this.descricao = descricao;
         this.data = data;
-        this.vinculos = vinculos;
         this.lembrancas = lembrancas;
         this.diagnosticado = diagnosticado;
+        this.foto = foto;
     }
 
     public Fotografia() {

@@ -16,14 +16,17 @@ public interface FotografiaService {
     @GET("fotografia/buscar/todos")
     Call<List<Fotografia>> buscarTodasFotografias(@Header("Authorization") String token);
 
+    @GET("fotografia/buscar/todos/usuario")
+    Call<List<Fotografia>> buscarTodasFotografiasDoUsuario(@Header("Authorization") String token);
+
     @GET("fotografia/buscar/{ID}")
     Call<Fotografia> buscarFotografiaPorId(@Header("Authorization") String token, @Path("ID") Integer codFotografia);
 
     @POST("fotografia/cadastrar")
     Call<Void> cadastrarFotografia(@Header("Authorization") String token, @Body Fotografia fotografia);
 
-    @PUT("fotografia/editar/{ID}")
-    Call<Void> editarFotografia(@Header("Authorization") String token, @Path("ID") Integer codFotografia, @Body Fotografia fotografia);
+    @PUT("fotografia/editar")
+    Call<Void> editarFotografia(@Header("Authorization") String token, @Body Fotografia fotografia);
 
     @DELETE("fotografia/deletar/{ID}")
     Call<Void> deletarFotografia(@Header("Authorization") String token, @Path("ID") Integer codFotografia);

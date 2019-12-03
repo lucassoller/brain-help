@@ -12,7 +12,6 @@ public class Endereco implements Serializable {
     private String cep;
     private String foto;
     private String titulo;
-    private String descricao;
 
     public Integer getCodEndereco() {
         return codEndereco;

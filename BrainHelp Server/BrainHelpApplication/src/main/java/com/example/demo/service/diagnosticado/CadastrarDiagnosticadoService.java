@@ -7,6 +7,7 @@ import com.example.demo.model.Diagnosticado;
 import com.example.demo.model.security.password.Criptografia;
 import com.example.demo.repository.DiagnosticadoRepository;
 import com.example.demo.service.endereco.CadastrarEnderecoService;
+import com.example.demo.utils.ImageFileWriter;
 
 @Service
 public class CadastrarDiagnosticadoService {
@@ -21,7 +22,7 @@ public class CadastrarDiagnosticadoService {
 	@Autowired
 	BuscarEmailDiagnosticadoUsadoService buscarEmailUsadoService;
 
-	public void salvar(Diagnosticado diagnosticado) {
+	public void salvar(Diagnosticado diagnosticado) throws Exception {
 		if (Objects.isNull(diagnosticado.getNome()) || diagnosticado.getNome().isEmpty()) {
 			throw new IllegalArgumentException("O nome não pode estar em branco");
 		}
@@ -60,6 +61,11 @@ public class CadastrarDiagnosticadoService {
 		
 		if (Objects.isNull(diagnosticado.getEndereco())) {
 			throw new IllegalArgumentException("O endereço não pode estar em branco");
+		}
+		
+		if(!Objects.isNull(diagnosticado.getFoto()) && !diagnosticado.getFoto().isEmpty()) {
+			String base64 = diagnosticado.getFoto();
+			diagnosticado.setFoto(ImageFileWriter.saveImageToFolder(null, base64));
 		}
 		
 		buscarEmailUsadoService.buscar(diagnosticado.getEmail());

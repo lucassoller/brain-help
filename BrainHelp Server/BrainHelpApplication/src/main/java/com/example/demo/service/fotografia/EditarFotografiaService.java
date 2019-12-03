@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.model.Fotografia;
 import com.example.demo.repository.FotografiaRepository;
+import com.example.demo.utils.ImageFileWriter;
 
 @Service
 public class EditarFotografiaService {
@@ -15,15 +16,11 @@ public class EditarFotografiaService {
 	@Autowired
 	FotografiaRepository fotografiaRepository;
 	
-	public void editar(Integer codFotografia, Fotografia fotografia) {
-		Fotografia fotografiaParaEditar = buscarFotografia.buscar(codFotografia);
+	public void editar(Fotografia fotografia) throws Exception {
+		Fotografia fotografiaParaEditar = buscarFotografia.buscar(fotografia.getCodFotografia());
 		
 		if (!Objects.isNull(fotografia.getLugar()) && !(fotografia.getLugar().isEmpty())) {
 			fotografiaParaEditar.setLugar(fotografia.getLugar());
-		}
-		
-		if (!Objects.isNull(fotografia.getDescricao()) && !fotografia.getDescricao().isEmpty()) {
-			fotografiaParaEditar.setDescricao(fotografia.getDescricao());
 		}
 		
 		if (!Objects.isNull(fotografia.getLembrancas()) && !fotografia.getLembrancas().isEmpty()) {
@@ -31,7 +28,11 @@ public class EditarFotografiaService {
 		}
 		
 		if (!Objects.isNull(fotografia.getFoto()) && !fotografia.getFoto().isEmpty()) {
-			fotografiaParaEditar.setFoto(fotografia.getFoto());
+			if(!fotografiaParaEditar.getFoto().isEmpty()) {
+				ImageFileWriter.deleteFile(fotografiaParaEditar.getFoto());
+			}
+			String base64 = fotografia.getFoto();
+			fotografiaParaEditar.setFoto(ImageFileWriter.saveImageToFolder(null, base64));
 		}
 		
 		if (!Objects.isNull(fotografia.getData())){

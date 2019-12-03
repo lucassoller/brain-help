@@ -33,14 +33,13 @@ public class Endereco {
 	@Column(nullable = false)
 	private String bairro;
 	
-	@Column(nullable = false)
 	private String cep;
 	
 	@Lob
 	@Column(length = 2000)
 	private String foto;
 	
-	private boolean enderecoDoUsuario;
+	private String titulo;
 	
 	@JsonIgnore
 	@ManyToOne
@@ -111,14 +110,6 @@ public class Endereco {
 		this.foto = foto;
 	}
 
-	public boolean isEnderecoDoUsuario() {
-		return enderecoDoUsuario;
-	}
-
-	public void setEnderecoDoUsuario(boolean enderecoDoUsuario) {
-		this.enderecoDoUsuario = enderecoDoUsuario;
-	}
-
 	public Diagnosticado getDiagnosticado() {
 		return diagnosticado;
 	}
@@ -127,8 +118,16 @@ public class Endereco {
 		this.diagnosticado = diagnosticado;
 	}
 
+	public String getTitulo() {
+		return titulo;
+	}
+
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
+
 	public Endereco(Integer codEndereco, String logradouro, String cidade, String estado, int numero, String bairro,
-			String cep, String foto, boolean enderecoDoUsuario, Diagnosticado diagnosticado) {
+			String cep, String foto, String titulo, Diagnosticado diagnosticado) {
 		super();
 		this.codEndereco = codEndereco;
 		this.logradouro = logradouro;
@@ -138,7 +137,7 @@ public class Endereco {
 		this.bairro = bairro;
 		this.cep = cep;
 		this.foto = foto;
-		this.enderecoDoUsuario = enderecoDoUsuario;
+		this.titulo = titulo;
 		this.diagnosticado = diagnosticado;
 	}
 

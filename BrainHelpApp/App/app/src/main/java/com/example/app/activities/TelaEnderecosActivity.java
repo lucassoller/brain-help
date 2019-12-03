@@ -1,14 +1,97 @@
 package com.example.app.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import com.example.app.R;
+import com.example.app.adapter.EnderecosAdapter;
+import com.example.app.classes.Endereco;
+import com.example.app.services.EnderecoService;
+import com.example.app.utils.RetrofitUtils;
+import java.util.ArrayList;
+import java.util.List;
 
 public class TelaEnderecosActivity extends AppCompatActivity {
+
+    private ListView lvEnderecos;
+    private Button btAdicionarEndereco;
+    private List<Endereco> enderecos = new ArrayList<>();
+    public static EnderecosAdapter enderecosAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_enderecos);
+        this.inicializaComponentes();
+        this.lvEnderecos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Endereco endereco = enderecos.get(i);
+                Intent itTelaEnderecoCard = new Intent(TelaEnderecosActivity.this, TelaEnderecoCardActivity.class);
+                itTelaEnderecoCard.putExtra("endereco", endereco);
+                startActivity(itTelaEnderecoCard);
+            }
+        });
+
+        this.btAdicionarEndereco.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent itTelaEnderecoCard = new Intent(TelaEnderecosActivity.this, TelaEnderecoCardActivity.class);
+                startActivity(itTelaEnderecoCard);
+            }
+        });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.navigation_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+        }
+        return false;
+    }
+
+    private void inicializaComponentes(){
+        getVinculos();
+        this.lvEnderecos = findViewById(R.id.lv_enderecos);
+        this.btAdicionarEndereco = findViewById(R.id.bt_adicionar_endereco);
+    }
+
+    private void getVinculos(){
+        EnderecoService enderecoService = RetrofitUtils.retrofit.create(EnderecoService.class);
+        enderecoService.buscarTodosEnderecosDoUsuario(TelaInicialActivity.sp.getString("token", null)).enqueue(new Callback<List<Endereco>>() {
+            @Override
+            public void onResponse(Call<List<Endereco>> call, Response<List<Endereco>> response) {
+                if(response.isSuccessful()){
+                    enderecos = response.body();
+                    enderecosAdapter = new EnderecosAdapter(TelaEnderecosActivity.this, R.layout.list_enderecos, enderecos);
+                    lvEnderecos.setAdapter(enderecosAdapter);
+                }else{
+                    Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Endereco>> call, Throwable t) {
+
+            }
+        });
     }
 }

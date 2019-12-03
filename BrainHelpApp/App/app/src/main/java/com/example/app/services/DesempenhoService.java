@@ -17,14 +17,14 @@ public interface DesempenhoService {
     @GET("desempenho/buscar/todos")
     Call<List<Desempenho>> buscarTodosDesempenhos(@Header("Authorization") String token);
 
+    @GET("desempenho/buscar/todos/usuario")
+    Call<List<Desempenho>> buscarTodosDesempenhosDoUsuario(@Header("Authorization") String token);
+
     @GET("desempenho/buscar/{ID}")
     Call<Desempenho> buscarDesempenhoPorId(@Header("Authorization") String token, @Path("ID") Integer codDesempenho);
 
     @POST("desempenho/cadastrar")
     Call<Void> cadastrarDesempenho(@Header("Authorization") String token, @Body Desempenho desempenho);
-
-    @PUT("desempenho/editar/{ID}")
-    Call<Void> editarDesempenho(@Header("Authorization") String token, @Path("ID") Integer codDesempenho, @Body Desempenho desempenho);
 
     @DELETE("desempenho/deletar/{ID}")
     Call<Void> deletarDesempenho(@Header("Authorization") String token, @Path("ID") Integer codDesempenho);

@@ -15,6 +15,7 @@ import com.example.demo.model.Medicamento;
 import com.example.demo.model.security.UserPrincipal;
 import com.example.demo.repository.MedicamentoRepository;
 import com.example.demo.service.medicamento.BuscarMedicamentoPorIdService;
+import com.example.demo.service.medicamento.BuscarMedicamentosDoUsuarioService;
 import com.example.demo.service.medicamento.CadastrarMedicamentoService;
 import com.example.demo.service.medicamento.DeletarMedicamentoService;
 import com.example.demo.service.medicamento.EditarMedicamentoService;
@@ -38,9 +39,17 @@ public class MedicamentoController {
 	@Autowired
 	private DeletarMedicamentoService deletarMedicamento;
 	
+	@Autowired
+	private BuscarMedicamentosDoUsuarioService buscarMedicamentosDoUsuario;
+	
 	@GetMapping("/buscar/todos")
 	public List<Medicamento> buscarTodos(){
 		return medicamentoRepository.findAll();
+	}
+	
+	@GetMapping("/buscar/todos/usuario")
+	public List<Medicamento> buscarTodosDoUsuario(@AuthenticationPrincipal UserPrincipal userPrincipal){
+		return buscarMedicamentosDoUsuario.buscar(userPrincipal.getEmail());
 	}
 	
 	@GetMapping("/buscar/{ID}")
@@ -49,13 +58,13 @@ public class MedicamentoController {
 	}
 	
 	@PostMapping("/cadastrar")
-	public void cadastrarMedicamento(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Medicamento medicamento) {
+	public void cadastrarMedicamento(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Medicamento medicamento) throws Exception {
 		cadastrarMedicamento.salvar(userPrincipal.getEmail(), medicamento);
 	}
 	
-	@PutMapping("/editar/{ID}")
-	public void editarMedicamento(@PathVariable("ID") Integer codMedicamento, @RequestBody Medicamento medicamento) {
-		editarMedicamento.editar(codMedicamento, medicamento);
+	@PutMapping("/editar")
+	public void editarMedicamento(@RequestBody Medicamento medicamento) throws Exception {
+		editarMedicamento.editar(medicamento);
 	}
 	
 	@DeleteMapping("/deletar/{ID}")

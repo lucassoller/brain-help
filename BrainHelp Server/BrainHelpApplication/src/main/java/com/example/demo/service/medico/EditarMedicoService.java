@@ -16,7 +16,7 @@ public class EditarMedicoService {
 	@Autowired
 	EditarEnderecoService editarEndereco;
 
-	public void editar(String email, Medico medico) {
+	public void editar(String email, Medico medico) throws Exception {
 		Medico medicoParaEditar = medicoRepository.findByEmail(email)
 				.orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
 		if (!Objects.isNull(medico.getNome()) && !medico.getNome().isEmpty()) {
@@ -32,7 +32,7 @@ public class EditarMedicoService {
 			medicoParaEditar.setEspecializacao(medico.getEspecializacao());
 		}
 		if(!Objects.isNull(medico.getEndereco())) {
-			editarEndereco.editar(medicoParaEditar.getEndereco(), medico.getEndereco());
+			editarEndereco.editar(medico.getEndereco());
 		}
 		medicoRepository.save(medicoParaEditar);
 	}

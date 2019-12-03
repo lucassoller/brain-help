@@ -42,7 +42,7 @@ public class TelaDesempenhosActivity extends AppCompatActivity {
 
     private void getDesempenhos(){
         DesempenhoService desempenhoService = RetrofitUtils.retrofit.create(DesempenhoService.class);
-        desempenhoService.buscarTodosDesempenhos(TelaInicialActivity.sp.getString("token", null)).enqueue(new Callback<List<Desempenho>>() {
+        desempenhoService.buscarTodosDesempenhosDoUsuario(TelaInicialActivity.sp.getString("token", null)).enqueue(new Callback<List<Desempenho>>() {
             @Override
             public void onResponse(Call<List<Desempenho>> call, Response<List<Desempenho>> response) {
                 if(response.isSuccessful()){

@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Diagnosticado implements Serializable {
-
+  
     private Integer codDiagnosticado;
     private String nome;
     private String sobrenome;

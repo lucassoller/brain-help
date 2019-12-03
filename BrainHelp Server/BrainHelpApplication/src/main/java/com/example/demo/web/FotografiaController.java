@@ -15,6 +15,7 @@ import com.example.demo.model.Fotografia;
 import com.example.demo.model.security.UserPrincipal;
 import com.example.demo.repository.FotografiaRepository;
 import com.example.demo.service.fotografia.BuscarFotografiaPorIdService;
+import com.example.demo.service.fotografia.BuscarFotografiasDoUsuarioService;
 import com.example.demo.service.fotografia.CadastrarFotografiaService;
 import com.example.demo.service.fotografia.DeletarFotografiaService;
 import com.example.demo.service.fotografia.EditarFotografiaService;
@@ -38,9 +39,17 @@ public class FotografiaController {
 	@Autowired
 	private DeletarFotografiaService deletarFotografia;
 	
+	@Autowired
+	private BuscarFotografiasDoUsuarioService buscarFotografiasDoUsuario;
+	
 	@GetMapping("/buscar/todos")
 	public List<Fotografia> buscarTodos(){
 		return fotografiaRepository.findAll();
+	}
+	
+	@GetMapping("/buscar/todos/usuario")
+	public List<Fotografia> buscarTodosDoUsuario(@AuthenticationPrincipal UserPrincipal userPrincipal){
+		return buscarFotografiasDoUsuario.buscar(userPrincipal.getEmail());
 	}
 	
 	@GetMapping("/buscar/{ID}")
@@ -49,13 +58,13 @@ public class FotografiaController {
 	}
 	
 	@PostMapping("/cadastrar")
-	public void cadastrarFotografia(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Fotografia fotografia) {
+	public void cadastrarFotografia(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Fotografia fotografia) throws Exception {
 		cadastrarFotografia.salvar(userPrincipal.getEmail(), fotografia);
 	}
 	
-	@PutMapping("/editar/{ID}")
-	public void editarFotografia(@PathVariable("ID") Integer codFotografia, @RequestBody Fotografia fotografia) {
-		editarFotografia.editar(codFotografia, fotografia);
+	@PutMapping("/editar")
+	public void editarFotografia(@RequestBody Fotografia fotografia) throws Exception {
+		editarFotografia.editar(fotografia);
 	}
 	
 	@DeleteMapping("/deletar/{ID}")

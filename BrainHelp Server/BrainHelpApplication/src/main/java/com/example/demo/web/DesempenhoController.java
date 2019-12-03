@@ -15,6 +15,7 @@ import com.example.demo.model.Desempenho;
 import com.example.demo.model.security.UserPrincipal;
 import com.example.demo.repository.DesempenhoRepository;
 import com.example.demo.service.desempenho.BuscarDesempenhoPorIdService;
+import com.example.demo.service.desempenho.BuscarDesempenhosDoUsuarioService;
 import com.example.demo.service.desempenho.BuscarDesempenhosService;
 import com.example.demo.service.desempenho.CadastrarDesempenhoService;
 
@@ -34,9 +35,17 @@ public class DesempenhoController {
 	@Autowired
 	private BuscarDesempenhosService buscarDesempenhos;
 	
+	@Autowired
+	private BuscarDesempenhosDoUsuarioService buscarDesempenhosDoUsuario;
+	
 	@GetMapping("/buscar/todos")
 	public List<Desempenho> buscarTodos(){
 		return desempenhoRepository.findAll();
+	}
+	
+	@GetMapping("/buscar/todos/usuario")
+	public List<Desempenho> buscarTodosDoUsuario(@AuthenticationPrincipal UserPrincipal userPrincipal){
+		return buscarDesempenhosDoUsuario.buscar(userPrincipal.getEmail());
 	}
 	
 	@GetMapping("/buscar/{ID}")

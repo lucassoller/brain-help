@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.model.Diagnosticado;
 import com.example.demo.repository.DiagnosticadoRepository;
 import com.example.demo.service.endereco.EditarEnderecoService;
+import com.example.demo.utils.ImageFileWriter;
 
 @Service
 public class EditarDiagnosticadoService {
@@ -19,7 +20,7 @@ public class EditarDiagnosticadoService {
 	@Autowired
 	DiagnosticadoRepository diagnosticadoRepository;
 	
-	public void editar(String emailDiagnosticado, Diagnosticado diagnosticado) {
+	public void editar(String emailDiagnosticado, Diagnosticado diagnosticado) throws Exception {
 		Diagnosticado diagnosticadoParaEditar = buscarDiagnosticado.buscar(emailDiagnosticado);
 		
 		if (!Objects.isNull(diagnosticado.getNome()) && !diagnosticado.getNome().isEmpty()) {
@@ -59,7 +60,15 @@ public class EditarDiagnosticadoService {
 		}
 		
 		if (!Objects.isNull(diagnosticado.getEndereco())) {
-			editarEndereco.editar(diagnosticadoParaEditar.getEndereco(), diagnosticado.getEndereco());		
+			editarEndereco.editar(diagnosticado.getEndereco());		
+		}
+		
+		if (!Objects.isNull(diagnosticado.getFoto()) && !diagnosticado.getFoto().isEmpty()) {
+			if(!diagnosticadoParaEditar.getFoto().isEmpty()) {
+				ImageFileWriter.deleteFile(diagnosticadoParaEditar.getFoto());
+			}
+			String base64 = diagnosticado.getFoto();
+			diagnosticadoParaEditar.setFoto(ImageFileWriter.saveImageToFolder(null, base64));
 		}
 		
 		diagnosticadoRepository.save(diagnosticadoParaEditar);

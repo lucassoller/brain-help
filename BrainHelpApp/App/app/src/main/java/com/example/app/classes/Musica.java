@@ -11,7 +11,7 @@ public class Musica implements Serializable {
 
     private String cantor;
 
-    private List<Lembranca> lembrancas;
+    private String lembrancas;
 
     private Diagnosticado diagnosticado;
 
@@ -39,11 +39,11 @@ public class Musica implements Serializable {
         this.cantor = cantor;
     }
 
-    public List<Lembranca> getLembrancas() {
+    public String getLembrancas() {
         return lembrancas;
     }
 
-    public void setLembrancas(List<Lembranca> lembrancas) {
+    public void setLembrancas(String lembrancas) {
         this.lembrancas = lembrancas;
     }
 
@@ -55,7 +55,7 @@ public class Musica implements Serializable {
         this.diagnosticado = diagnosticado;
     }
 
-    public Musica(Integer codMusica, String nome, String cantor, List<Lembranca> lembrancas,
+    public Musica(Integer codMusica, String nome, String cantor, String lembrancas,
                   Diagnosticado diagnosticado) {
         super();
         this.codMusica = codMusica;

@@ -62,9 +62,9 @@ public class VinculoController {
 		cadastrarVinculo.salvar(userPrincipal.getEmail(), vinculo);
 	}
 	
-	@PutMapping("/editar/{ID}")
-	public void editarVinculo(@PathVariable("ID") Integer codVinculo,  @RequestBody Vinculo vinculo) throws Exception {
-		editarVinculo.editar(codVinculo, vinculo);
+	@PutMapping("/editar")
+	public void editarVinculo(@RequestBody Vinculo vinculo) throws Exception {
+		editarVinculo.editar(vinculo);
 	}
 	
 	@DeleteMapping("/deletar/{ID}")

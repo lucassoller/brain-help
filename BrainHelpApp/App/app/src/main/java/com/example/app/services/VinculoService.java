@@ -25,8 +25,8 @@ public interface VinculoService {
     @POST("vinculo/cadastrar")
     Call<Void> cadastrarVinculo(@Header("Authorization") String token, @Body Vinculo vinculo);
 
-    @PUT("vinculo/editar/{ID}")
-    Call<Void> editarVinculo(@Header("Authorization") String token, @Path("ID") Integer codVinculo, @Body Vinculo vinculo);
+    @PUT("vinculo/editar")
+    Call<Void> editarVinculo(@Header("Authorization") String token, @Body Vinculo vinculo);
 
     @DELETE("vinculo/deletar/{ID}")
     Call<Void> deletarVinculo(@Header("Authorization") String token, @Path("ID") Integer codVinculo);

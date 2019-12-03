@@ -15,8 +15,8 @@ public class EditarMusicaService {
 	@Autowired
 	MusicaRepository musicaRepository;
 	
-	public void editar(Integer codMusica, Musica musica) {
-		Musica musicaParaEditar = buscarMusica.buscar(codMusica);
+	public void editar(Musica musica) {
+		Musica musicaParaEditar = buscarMusica.buscar(musica.getCodMusica());
 		
 		if (!Objects.isNull(musica.getNome()) && !musica.getNome().isEmpty()) {
 			musicaParaEditar.setNome(musica.getNome());

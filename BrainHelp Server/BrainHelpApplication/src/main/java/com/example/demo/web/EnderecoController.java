@@ -15,6 +15,7 @@ import com.example.demo.model.Endereco;
 import com.example.demo.model.security.UserPrincipal;
 import com.example.demo.repository.EnderecoRepository;
 import com.example.demo.service.endereco.BuscarEnderecoPorIdService;
+import com.example.demo.service.endereco.BuscarEnderecosDoUsuarioService;
 import com.example.demo.service.endereco.CadastrarListaEnderecoService;
 import com.example.demo.service.endereco.DeletarEnderecoService;
 import com.example.demo.service.endereco.EditarEnderecoService;
@@ -38,6 +39,8 @@ public class EnderecoController {
 	@Autowired
 	private DeletarEnderecoService deletarEndereco;
 	
+	@Autowired
+	private BuscarEnderecosDoUsuarioService buscarEnderecosDoUsuario;
 	
 	
 	@GetMapping("/buscar/todos")
@@ -45,9 +48,9 @@ public class EnderecoController {
 		return enderecoRepository.findAll();
 	}
 	
-	@GetMapping("/buscar/diagnosticado")
-	public List<Endereco> buscarTodosDoDiagnosticado(){
-		return enderecoRepository.findAll();
+	@GetMapping("/buscar/todos/usuario")
+	public List<Endereco> buscarTodosDoDiagnosticado(@AuthenticationPrincipal UserPrincipal userPrincipal){
+		return buscarEnderecosDoUsuario.buscar(userPrincipal.getEmail());
 	}
 	
 	@GetMapping("/buscar/{ID}")
@@ -56,13 +59,13 @@ public class EnderecoController {
 	}
 	
 	@PostMapping("/cadastrar")
-	public void cadastrarEndereco(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Endereco endereco) {
+	public void cadastrarEndereco(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Endereco endereco) throws Exception {
 		cadastrarEndereco.salvar(endereco, userPrincipal.getEmail());
 	}
 	
-	@PutMapping("/editar/{ID}")
-	public void editarEndereco(@PathVariable("ID") Integer codEndereco, @RequestBody Endereco endereco) {
-		editarEndereco.editar(codEndereco, endereco);
+	@PutMapping("/editar")
+	public void editarEndereco(@RequestBody Endereco endereco) throws Exception {
+		editarEndereco.editar(endereco);
 	}
 	
 	@DeleteMapping("/deletar/{ID}")

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.model.Endereco;
 import com.example.demo.repository.EnderecoRepository;
+import com.example.demo.utils.ImageFileWriter;
 
 @Service
 public class EditarEnderecoService {
@@ -15,7 +16,8 @@ public class EditarEnderecoService {
 	@Autowired
 	BuscarEnderecoPorIdService buscarEndereco;
 
-	public void editar(Endereco enderecoParaEditar, Endereco endereco) {
+	public void editar(Endereco endereco) throws Exception {
+		Endereco enderecoParaEditar = buscarEndereco.buscar(endereco.getCodEndereco());
 		if (!Objects.isNull(endereco.getLogradouro()) && !endereco.getLogradouro().isEmpty()) {
 			enderecoParaEditar.setLogradouro(endereco.getLogradouro());
 		}
@@ -41,14 +43,13 @@ public class EditarEnderecoService {
 		}
 		
 		if (!Objects.isNull(endereco.getFoto()) && !endereco.getFoto().isEmpty()) {
-			enderecoParaEditar.setFoto(endereco.getFoto());
+			if(!enderecoParaEditar.getFoto().isEmpty()) {
+				ImageFileWriter.deleteFile(enderecoParaEditar.getFoto());
+			}
+			String base64 = endereco.getFoto();
+			enderecoParaEditar.setFoto(ImageFileWriter.saveImageToFolder(null, base64));
 		}
 		
 		enderecoRepository.save(enderecoParaEditar);
-	}
-	
-	public void editar(Integer codEndereco, Endereco endereco) {
-		Endereco enderecoParaEditar = buscarEndereco.buscar(codEndereco);
-		editar(enderecoParaEditar, endereco);
 	}
 }

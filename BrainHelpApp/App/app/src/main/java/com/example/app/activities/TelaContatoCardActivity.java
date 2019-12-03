@@ -63,7 +63,6 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
     private EditText etCidade;
     @NotEmpty(message = "Bairro é obrigatório")
     private EditText etBairro;
-    @NotEmpty(message = "CEP é obrigatório")
     private EditText etCep;
     @Checked(message = "Sexo é obrigatório")
     private RadioGroup rgSexo;
@@ -256,7 +255,7 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
 
     private void editar(){
         VinculoService vinculoService = RetrofitUtils.retrofit.create(VinculoService.class);
-        vinculoService.cadastrarVinculo(TelaInicialActivity.sp.getString("token", null), vinculo).enqueue(new Callback<Void>() {
+        vinculoService.editarVinculo(TelaInicialActivity.sp.getString("token", null), vinculo).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()){
@@ -308,26 +307,5 @@ public class TelaContatoCardActivity extends AppCompatActivity implements Valida
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
-    }
-
-    public void getDiagnosticado(){
-        DiagnosticadoService diagnosticadoService = RetrofitUtils.retrofit.create(DiagnosticadoService.class);
-        diagnosticadoService.buscarLogado(TelaInicialActivity.sp.getString("token", null)).enqueue(new Callback<Diagnosticado>() {
-            @Override
-            public void onResponse(Call<Diagnosticado> call, Response<Diagnosticado> response) {
-                String usuarioJson = new Gson().toJson(response.body());
-                TelaInicialActivity.editor.remove("diagnosticado");
-                TelaInicialActivity.editor.putString("diagnosticado", usuarioJson);
-                TelaInicialActivity.editor.commit();
-                Toast.makeText(getApplicationContext(), response.body().getNome(), Toast.LENGTH_SHORT).show();
-
-
-            }
-
-            @Override
-            public void onFailure(Call<Diagnosticado> call, Throwable t) {
-
-            }
-        });
     }
 }

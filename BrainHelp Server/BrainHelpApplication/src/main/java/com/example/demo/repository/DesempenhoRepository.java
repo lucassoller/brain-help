@@ -8,5 +8,6 @@ import com.example.demo.model.Diagnosticado;
 
 public interface DesempenhoRepository extends JpaRepository<Desempenho, Integer>{
 	List<Desempenho> findByDiagnosticadoAndDataRealizacaoBetween(Diagnosticado diagnosticado, Date dataInicial, Date dataFinal);
+	List<Desempenho> findByDiagnosticado(Diagnosticado diagnosticado);
 
 }

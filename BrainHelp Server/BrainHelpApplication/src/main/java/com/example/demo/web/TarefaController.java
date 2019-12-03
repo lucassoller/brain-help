@@ -15,6 +15,7 @@ import com.example.demo.model.Tarefa;
 import com.example.demo.model.security.UserPrincipal;
 import com.example.demo.repository.TarefaRepository;
 import com.example.demo.service.tarefa.BuscarTarefaPorIdService;
+import com.example.demo.service.tarefa.BuscarTarefasDoUsuarioService;
 import com.example.demo.service.tarefa.CadastrarTarefaService;
 import com.example.demo.service.tarefa.DeletarTarefaService;
 import com.example.demo.service.tarefa.EditarTarefaService;
@@ -38,9 +39,17 @@ public class TarefaController {
 	@Autowired
 	private DeletarTarefaService deletarTarefa;
 	
+	@Autowired
+	private BuscarTarefasDoUsuarioService buscarTarefasDoUsuario;
+	
 	@GetMapping("/buscar/todos")
 	public List<Tarefa> buscarTodos(){
 		return tarefaRepository.findAll();
+	}
+	
+	@GetMapping("/buscar/todos/usuario")
+	public List<Tarefa> buscarTodosDoUsuario(@AuthenticationPrincipal UserPrincipal userPrincipal){
+		return buscarTarefasDoUsuario.buscar(userPrincipal.getEmail());
 	}
 	
 	@GetMapping("/buscar/{ID}")
@@ -53,9 +62,9 @@ public class TarefaController {
 		cadastrarTarefa.salvar(userPrincipal.getEmail(), tarefa);
 	}
 	
-	@PutMapping("/editar/{ID}")
-	public void editarTarefa(@PathVariable("ID") Integer codTarefa, @RequestBody Tarefa tarefa) {
-		editarTarefa.editar(codTarefa, tarefa);
+	@PutMapping("/editar")
+	public void editarTarefa(@RequestBody Tarefa tarefa) {
+		editarTarefa.editar(tarefa);
 	}
 	
 	@DeleteMapping("/deletar/{ID}")
