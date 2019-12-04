@@ -9,7 +9,9 @@ import java.util.Base64;
 import javax.imageio.ImageIO;
 
 public class ImageFileWriter {
-	private final static String BASE_PATH = "C:\\imageDir\\";
+	//private final static String BASE_PATH = "C:\\imageDir\\";
+	private final static String BASE_PATH = System.getProperty("user.dir") + "/src/main/resources/imagens/";
+
 
     public static String saveImageToFolder(String imageName, String base64) throws Exception {
         if (imageName == null) {

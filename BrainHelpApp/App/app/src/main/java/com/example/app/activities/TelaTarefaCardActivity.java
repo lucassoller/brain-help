@@ -13,7 +13,9 @@ import com.example.app.R;
 import com.example.app.classes.Tarefa;
 import com.example.app.enumerated.StatusTarefa;
 import com.example.app.services.TarefaService;
+import com.example.app.utils.MyErrorMessage;
 import com.example.app.utils.RetrofitUtils;
+import com.google.gson.Gson;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
@@ -136,7 +138,13 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
         tarefaService.cadastrarTarefa(TelaInicialActivity.sp.getString("token", null), tarefa).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(getApplicationContext(), "Cadastro concluído", Toast.LENGTH_LONG).show();
+                if(response.isSuccessful()){
+                    Toast.makeText(getApplicationContext(), "Cadastro concluído", Toast.LENGTH_LONG).show();
+                }else{
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaTarefaCardActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -151,7 +159,13 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
         tarefaService.cadastrarTarefa(TelaInicialActivity.sp.getString("token", null), tarefa).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(getApplicationContext(), "Cadastro concluído", Toast.LENGTH_LONG).show();
+                if(response.isSuccessful()){
+                    Toast.makeText(getApplicationContext(), "Cadastro concluído", Toast.LENGTH_LONG).show();
+                }else{
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaTarefaCardActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
@@ -162,6 +176,23 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
     }
 
     private void excluir() {
+        TarefaService tarefaService = RetrofitUtils.retrofit.create(TarefaService.class);
+        tarefaService.deletarTarefa(TelaInicialActivity.sp.getString("token", null), tarefa.getCodTarefa()).enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if(response.isSuccessful()){
+                    Toast.makeText(getApplicationContext(), "Cadastro concluído", Toast.LENGTH_LONG).show();
+                }else{
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaTarefaCardActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
 
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }

@@ -18,7 +18,10 @@ import com.example.app.R;
 import com.example.app.adapter.EnderecosAdapter;
 import com.example.app.classes.Endereco;
 import com.example.app.services.EnderecoService;
+import com.example.app.utils.MyErrorMessage;
 import com.example.app.utils.RetrofitUtils;
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,6 +57,12 @@ public class TelaEnderecosActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        this.getEnderecos();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.navigation_menu, menu);
@@ -69,12 +78,11 @@ public class TelaEnderecosActivity extends AppCompatActivity {
     }
 
     private void inicializaComponentes(){
-        getVinculos();
         this.lvEnderecos = findViewById(R.id.lv_enderecos);
         this.btAdicionarEndereco = findViewById(R.id.bt_adicionar_endereco);
     }
 
-    private void getVinculos(){
+    private void getEnderecos(){
         EnderecoService enderecoService = RetrofitUtils.retrofit.create(EnderecoService.class);
         enderecoService.buscarTodosEnderecosDoUsuario(TelaInicialActivity.sp.getString("token", null)).enqueue(new Callback<List<Endereco>>() {
             @Override
@@ -84,7 +92,9 @@ public class TelaEnderecosActivity extends AppCompatActivity {
                     enderecosAdapter = new EnderecosAdapter(TelaEnderecosActivity.this, R.layout.list_enderecos, enderecos);
                     lvEnderecos.setAdapter(enderecosAdapter);
                 }else{
-                    Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaEnderecosActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

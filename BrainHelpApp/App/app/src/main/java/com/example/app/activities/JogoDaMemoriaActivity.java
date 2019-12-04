@@ -20,7 +20,10 @@ import com.example.app.classes.Card;
 import com.example.app.classes.Desempenho;
 import com.example.app.enumerated.AvaliacaoDesempenho;
 import com.example.app.services.DesempenhoService;
+import com.example.app.utils.MyErrorMessage;
 import com.example.app.utils.RetrofitUtils;
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -212,7 +215,7 @@ public class JogoDaMemoriaActivity extends AppCompatActivity {
         calcularDesempenho();
         AlertDialog.Builder builder = new AlertDialog.Builder(JogoDaMemoriaActivity.this);
         builder.setTitle("Desempenho");
-        builder.setMessage("Você obteve " + pontuacao + " pontos e uma avalição " + desempenho.getAvaliacaoDesempenho().toString() + " na atividade " + atividade.getNome());
+        builder.setMessage("Você obteve " + pontuacao + " pontos e uma avaliação " + desempenho.getAvaliacaoDesempenho().toString() + " na atividade " + atividade.getNome());
         builder.setPositiveButton("Fechar", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface arg0, int arg1) {
 
@@ -229,7 +232,9 @@ public class JogoDaMemoriaActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(!response.isSuccessful()){
-                    Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(JogoDaMemoriaActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

@@ -12,7 +12,9 @@ import com.example.app.R;
 import com.example.app.adapter.DesempenhosAdapter;
 import com.example.app.classes.Desempenho;
 import com.example.app.services.DesempenhoService;
+import com.example.app.utils.MyErrorMessage;
 import com.example.app.utils.RetrofitUtils;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,8 +37,13 @@ public class TelaDesempenhosActivity extends AppCompatActivity {
         this.inicializaComponentes();
     }
 
-    private void inicializaComponentes(){
+    @Override
+    protected void onResume() {
+        super.onResume();
         getDesempenhos();
+    }
+
+    private void inicializaComponentes(){
         this.lvDesempenhos = findViewById(R.id.lv_desempenhos);
     }
 
@@ -51,7 +58,9 @@ public class TelaDesempenhosActivity extends AppCompatActivity {
                     desempenhosAdapter = new DesempenhosAdapter(TelaDesempenhosActivity.this, R.layout.list_desempenhos, desempenhos);
                     lvDesempenhos.setAdapter(desempenhosAdapter);
                 }else{
-                    Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaDesempenhosActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

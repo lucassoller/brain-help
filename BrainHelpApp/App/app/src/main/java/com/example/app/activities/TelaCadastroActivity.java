@@ -25,7 +25,9 @@ import com.example.app.services.DiagnosticadoService;
 import com.example.app.services.LoginService;
 import com.example.app.utils.BitmapUtils;
 import com.example.app.utils.ImagePickerUtils;
+import com.example.app.utils.MyErrorMessage;
 import com.example.app.utils.RetrofitUtils;
+import com.google.gson.Gson;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Checked;
@@ -232,8 +234,15 @@ public class TelaCadastroActivity extends AppCompatActivity implements Validator
         diagnosticadoService.cadastrarDiagnosticado(diagnosticado).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
-                Toast.makeText(TelaCadastroActivity.this, "cadastrado!", Toast.LENGTH_SHORT).show();
-                logar();
+                if(response.isSuccessful()){
+                    Toast.makeText(TelaCadastroActivity.this, "cadastrado!", Toast.LENGTH_SHORT).show();
+                    logar();
+                }else{
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaCadastroActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
             }
 
             @Override
@@ -248,12 +257,18 @@ public class TelaCadastroActivity extends AppCompatActivity implements Validator
         loginService.logarDiagnosticado(new LoginRequestDto(diagnosticado.getEmail(), diagnosticado.getSenha())).enqueue(new Callback<LoginResponseDto>() {
             @Override
             public void onResponse(Call<LoginResponseDto> call, Response<LoginResponseDto> response) {
-                TelaInicialActivity.editor.putString("email", response.body().getEmail());
-                TelaInicialActivity.editor.putString("token", response.body().getToken());
-                TelaInicialActivity.editor.commit();
-                Intent itTelaHome = new Intent(TelaCadastroActivity.this, TelaHomeActivity.class);
-                startActivity(itTelaHome);
-                finish();
+                if(response.isSuccessful()){
+                    TelaInicialActivity.editor.putString("email", response.body().getEmail());
+                    TelaInicialActivity.editor.putString("token", response.body().getToken());
+                    TelaInicialActivity.editor.commit();
+                    Intent itTelaHome = new Intent(TelaCadastroActivity.this, TelaHomeActivity.class);
+                    startActivity(itTelaHome);
+                    finish();
+                }else{
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaCadastroActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

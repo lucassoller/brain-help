@@ -19,6 +19,7 @@ import com.example.app.classes.Endereco;
 import com.example.app.classes.Vinculo;
 import com.example.app.enumerated.Sexo;
 import com.example.app.services.VinculoService;
+import com.example.app.utils.MyErrorMessage;
 import com.example.app.utils.RetrofitUtils;
 import com.google.gson.Gson;
 import java.util.List;
@@ -60,6 +61,12 @@ public class TelaContatosActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        this.getVinculos();
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.navigation_menu, menu);
@@ -85,7 +92,6 @@ public class TelaContatosActivity extends AppCompatActivity {
     }
 
     private void inicializaComponentes(){
-        getVinculos();
         this.lvContatos = findViewById(R.id.lv_contatos);
         this.btAdicionarContato = findViewById(R.id.bt_adicionar_contato);
     }
@@ -100,7 +106,9 @@ public class TelaContatosActivity extends AppCompatActivity {
                     contatosAdapter = new ContatosAdapter(TelaContatosActivity.this, R.layout.list_contatos, vinculos);
                     lvContatos.setAdapter(contatosAdapter);
                 }else{
-                    Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaContatosActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

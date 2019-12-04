@@ -25,14 +25,6 @@ import java.io.IOException;
 
 public class TelaChatbotActivity extends AppCompatActivity {
 
-    private ImageButton ibAddImgReceita;
-    private ImageButton foto2;
-    private Bitmap foto;
-    private Button button;
-    private String f;
-    String captured_image;
-    final int RES_IMAGE_CAPTURE = 123;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

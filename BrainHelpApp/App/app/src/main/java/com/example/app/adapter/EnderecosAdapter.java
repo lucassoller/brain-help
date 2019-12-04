@@ -48,7 +48,7 @@ public class EnderecosAdapter extends ArrayAdapter<Endereco> {
         }
 
         holder.tvTitulo.setText(endereco.getTitulo());
-        holder.tvEndereco.setText("Endereco: " + endereco.getLogradouro() + ", "+ endereco.getNumero() + " - Bairro" + endereco.getBairro() + ", " +
+        holder.tvEndereco.setText("Endereço: " + endereco.getLogradouro() + ", "+ endereco.getNumero() + " - Bairro" + endereco.getBairro() + ", " +
                 endereco.getCidade() + " - " + endereco.getEstado());
         if(endereco.getFoto() != null && !endereco.getFoto().isEmpty()){
             holder.ivFoto.setImageBitmap(BitmapUtils.base64ToBitmap(endereco.getFoto()));

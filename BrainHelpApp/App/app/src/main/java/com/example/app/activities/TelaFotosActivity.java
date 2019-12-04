@@ -18,7 +18,10 @@ import com.example.app.R;
 import com.example.app.adapter.FotografiasAdapter;
 import com.example.app.classes.Fotografia;
 import com.example.app.services.FotografiaService;
+import com.example.app.utils.MyErrorMessage;
 import com.example.app.utils.RetrofitUtils;
+import com.google.gson.Gson;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,12 +72,17 @@ public class TelaFotosActivity extends AppCompatActivity {
     }
 
     private void inicializaComponentes(){
-        getVinculos();
         this.lvFotografias = findViewById(R.id.lv_fotografias);
         this.btAdicionarFotografia = findViewById(R.id.bt_adicionar_fotografia);
     }
 
-    private void getVinculos(){
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.getFotos();
+    }
+
+    private void getFotos(){
         FotografiaService fotografiaService = RetrofitUtils.retrofit.create(FotografiaService.class);
         fotografiaService.buscarTodasFotografiasDoUsuario(TelaInicialActivity.sp.getString("token", null)).enqueue(new Callback<List<Fotografia>>() {
             @Override
@@ -84,7 +92,9 @@ public class TelaFotosActivity extends AppCompatActivity {
                     fotografiasAdapter = new FotografiasAdapter(TelaFotosActivity.this, R.layout.list_fotos, fotografias);
                     lvFotografias.setAdapter(fotografiasAdapter);
                 }else{
-                    Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaFotosActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

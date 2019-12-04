@@ -17,7 +17,9 @@ import com.example.app.classes.Fotografia;
 import com.example.app.services.FotografiaService;
 import com.example.app.utils.BitmapUtils;
 import com.example.app.utils.ImagePickerUtils;
+import com.example.app.utils.MyErrorMessage;
 import com.example.app.utils.RetrofitUtils;
+import com.google.gson.Gson;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
@@ -157,7 +159,9 @@ public class TelaFotoCardActivity extends AppCompatActivity implements Validator
                     Toast.makeText(getApplicationContext(), "Cadastro concluído", Toast.LENGTH_LONG).show();
                     finish();
                 }else{
-                    Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaFotoCardActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -177,7 +181,9 @@ public class TelaFotoCardActivity extends AppCompatActivity implements Validator
                     Toast.makeText(getApplicationContext(), "Edição concluída", Toast.LENGTH_LONG).show();
                     finish();
                 }else{
-                    Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaFotoCardActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -196,9 +202,10 @@ public class TelaFotoCardActivity extends AppCompatActivity implements Validator
                 if(response.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "Exclusão concluída", Toast.LENGTH_LONG).show();
                     finish();
-
                 }else{
-                    Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaFotoCardActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

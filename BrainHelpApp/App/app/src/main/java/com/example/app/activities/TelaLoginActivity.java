@@ -12,7 +12,9 @@ import com.example.app.R;
 import com.example.app.classes.dto.LoginRequestDto;
 import com.example.app.classes.dto.LoginResponseDto;
 import com.example.app.services.LoginService;
+import com.example.app.utils.MyErrorMessage;
 import com.example.app.utils.RetrofitUtils;
+import com.google.gson.Gson;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Email;
@@ -64,12 +66,18 @@ public class TelaLoginActivity extends AppCompatActivity implements Validator.Va
         loginService.logarDiagnosticado(new LoginRequestDto(etEmail.getText().toString(), etSenha.getText().toString())).enqueue(new Callback<LoginResponseDto>() {
             @Override
             public void onResponse(Call<LoginResponseDto> call, Response<LoginResponseDto> response) {
-                TelaInicialActivity.editor.putString("email", response.body().getEmail());
-                TelaInicialActivity.editor.putString("token", response.body().getToken());
-                TelaInicialActivity.editor.commit();
-                Intent itTelaHome = new Intent(TelaLoginActivity.this, TelaHomeActivity.class);
-                startActivity(itTelaHome);
-                finish();
+                if(response.isSuccessful()){
+                    TelaInicialActivity.editor.putString("email", response.body().getEmail());
+                    TelaInicialActivity.editor.putString("token", response.body().getToken());
+                    TelaInicialActivity.editor.commit();
+                    Intent itTelaHome = new Intent(TelaLoginActivity.this, TelaHomeActivity.class);
+                    startActivity(itTelaHome);
+                    finish();
+                }else{
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaLoginActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

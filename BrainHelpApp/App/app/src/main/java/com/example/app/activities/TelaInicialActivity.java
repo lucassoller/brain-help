@@ -43,9 +43,6 @@ public class TelaInicialActivity extends AppCompatActivity{
                 startActivity(itTelaCadastro);
             }
         });
-
-
-
     }
 
     private void inicializaComponentes(){
@@ -54,5 +51,4 @@ public class TelaInicialActivity extends AppCompatActivity{
         sp = getSharedPreferences("brain_help", MODE_PRIVATE);
         editor = sp.edit();
     }
-
 }

@@ -19,7 +19,9 @@ import com.example.app.enumerated.Sexo;
 import com.example.app.services.DiagnosticadoService;
 import com.example.app.utils.BitmapUtils;
 import com.example.app.utils.ImagePickerUtils;
+import com.example.app.utils.MyErrorMessage;
 import com.example.app.utils.RetrofitUtils;
+import com.google.gson.Gson;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.Checked;
@@ -287,7 +289,9 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
                 if(response.isSuccessful()){
                     Toast.makeText(TelaPerfilActivity.this, "Edição concluída!", Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(TelaPerfilActivity.this, response.errorBody().toString(), Toast.LENGTH_SHORT).show();
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaPerfilActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -313,7 +317,9 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
                     startActivity(itTelaInicial);
                     finish();
                 }else{
-                    Toast.makeText(TelaPerfilActivity.this, response.errorBody().toString(), Toast.LENGTH_SHORT).show();
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaPerfilActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                 }
 
             }

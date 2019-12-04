@@ -18,7 +18,9 @@ import com.example.app.classes.Endereco;
 import com.example.app.services.EnderecoService;
 import com.example.app.utils.BitmapUtils;
 import com.example.app.utils.ImagePickerUtils;
+import com.example.app.utils.MyErrorMessage;
 import com.example.app.utils.RetrofitUtils;
+import com.google.gson.Gson;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
@@ -67,6 +69,7 @@ public class TelaEnderecoCardActivity extends AppCompatActivity implements Valid
             if(endereco.getFoto() != null && !endereco.getFoto().isEmpty()){
                 ivFoto.setImageBitmap(BitmapUtils.base64ToBitmap(endereco.getFoto()));
             }
+            this.etTitulo.setText(this.endereco.getTitulo());
             this.etLogradouro.setText(this.endereco.getLogradouro());
             this.etNumero.setText(String.valueOf(this.endereco.getNumero()));
             this.etCidade.setText(this.endereco.getCidade());
@@ -178,7 +181,9 @@ public class TelaEnderecoCardActivity extends AppCompatActivity implements Valid
                     Toast.makeText(getApplicationContext(), "Cadastro concluído", Toast.LENGTH_LONG).show();
                     finish();
                 }else{
-                    Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaEnderecoCardActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -198,7 +203,9 @@ public class TelaEnderecoCardActivity extends AppCompatActivity implements Valid
                     Toast.makeText(getApplicationContext(), "Edição concluída", Toast.LENGTH_LONG).show();
                     finish();
                 }else{
-                    Toast.makeText(getApplicationContext(), response.errorBody().toString(), Toast.LENGTH_LONG).show();
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaEnderecoCardActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 

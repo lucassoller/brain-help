@@ -12,7 +12,9 @@ import android.widget.Toast;
 import com.example.app.R;
 import com.example.app.classes.dto.RedefinicaoSenhaRequestDto;
 import com.example.app.services.DiagnosticadoService;
+import com.example.app.utils.MyErrorMessage;
 import com.example.app.utils.RetrofitUtils;
+import com.google.gson.Gson;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
@@ -82,13 +84,15 @@ public class TelaAlterarSenhaActivity extends AppCompatActivity implements Valid
                     Toast.makeText(TelaAlterarSenhaActivity.this, "Senha alterada!", Toast.LENGTH_SHORT).show();
                     finish();
                 }else{
-                    Toast.makeText(TelaAlterarSenhaActivity.this, response.errorBody().toString(), Toast.LENGTH_SHORT).show();
+                    Gson gson = new Gson();
+                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
+                    Toast.makeText(TelaAlterarSenhaActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
