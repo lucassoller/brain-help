@@ -8,7 +8,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.app.R;
+import com.example.app.utils.AlarmReceiver;
+import com.example.app.utils.AlarmSender;
 
 public class TelaHomeActivity extends AppCompatActivity {
 
@@ -20,6 +23,7 @@ public class TelaHomeActivity extends AppCompatActivity {
     private ImageView ivFotos;
     private ImageView ivMedicamentos;
     private ImageView ivEnderecos;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +94,9 @@ public class TelaHomeActivity extends AppCompatActivity {
                 startActivity(itTelaEnderecos);
             }
         });
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

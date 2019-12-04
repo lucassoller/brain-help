@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import com.example.app.R;
+import com.example.app.utils.AlarmSender;
 
 public class TelaInicialActivity extends AppCompatActivity{
 
@@ -43,6 +44,9 @@ public class TelaInicialActivity extends AppCompatActivity{
                 startActivity(itTelaCadastro);
             }
         });
+
+
+        AlarmSender.agendarNotificacao(this);
     }
 
     private void inicializaComponentes(){

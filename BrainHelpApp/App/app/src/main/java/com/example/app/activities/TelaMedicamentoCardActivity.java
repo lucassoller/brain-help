@@ -143,7 +143,7 @@ public class TelaMedicamentoCardActivity extends AppCompatActivity implements Va
                 }else{
                     Gson gson = new Gson();
                     MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
-                    Toast.makeText(TelaTarefaCardActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TelaMedicamentoCardActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -164,7 +164,7 @@ public class TelaMedicamentoCardActivity extends AppCompatActivity implements Va
                 }else{
                     Gson gson = new Gson();
                     MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
-                    Toast.makeText(TelaTarefaCardActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TelaMedicamentoCardActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -185,7 +185,7 @@ public class TelaMedicamentoCardActivity extends AppCompatActivity implements Va
                 }else{
                     Gson gson = new Gson();
                     MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
-                    Toast.makeText(TelaTarefaCardActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TelaMedicamentoCardActivity.this, message.getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
