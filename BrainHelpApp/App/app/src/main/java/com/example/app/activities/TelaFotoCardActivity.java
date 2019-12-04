@@ -2,42 +2,30 @@ package com.example.app.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.app.R;
-import com.example.app.classes.Diagnosticado;
-import com.example.app.classes.Endereco;
 import com.example.app.classes.Fotografia;
-import com.example.app.classes.Vinculo;
-import com.example.app.enumerated.Sexo;
-import com.example.app.services.DiagnosticadoService;
 import com.example.app.services.FotografiaService;
-import com.example.app.services.VinculoService;
 import com.example.app.utils.BitmapUtils;
 import com.example.app.utils.ImagePickerUtils;
 import com.example.app.utils.RetrofitUtils;
-import com.google.gson.Gson;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
-import com.mobsandgeeks.saripaar.annotation.Checked;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
-import com.mobsandgeeks.saripaar.annotation.Select;
-
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
-
-import de.hdodenhof.circleimageview.CircleImageView;
+import java.util.Locale;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,6 +33,12 @@ import retrofit2.Response;
 public class TelaFotoCardActivity extends AppCompatActivity implements Validator.ValidationListener {
 
     private Fotografia fotografia;
+    @NotEmpty(message = "Lugar é obrigatório")
+    private EditText etLugar;
+    @NotEmpty(message = "Data é obrigatório")
+    private EditText etData;
+    @NotEmpty(message = "Lembraças é obrigatório")
+    private EditText etLembrancas;
     private Button btCadastrar;
     private Button btExcluir;
     private Button btEditar;
@@ -62,7 +56,11 @@ public class TelaFotoCardActivity extends AppCompatActivity implements Validator
             if(fotografia.getFoto() != null && !fotografia.getFoto().isEmpty()){
                 ivFoto.setImageBitmap(BitmapUtils.base64ToBitmap(fotografia.getFoto()));
             }
-
+            this.etLugar.setText(fotografia.getLugar());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
+            String data = dateFormat.format(fotografia.getData());
+            this.etData.setText(data);
+            this.etLembrancas.setText(fotografia.getLembrancas());
             this.acao = "editar";
             relativeLayout.removeView(this.btCadastrar);
         }else{
@@ -103,6 +101,9 @@ public class TelaFotoCardActivity extends AppCompatActivity implements Validator
 
     private void inicializaComponentes() {
         this.fotografia = (Fotografia) getIntent().getSerializableExtra("fotografia");
+        this.etLugar = findViewById(R.id.et_lugar);
+        this.etData = findViewById(R.id.et_data);
+        this.etLembrancas = findViewById(R.id.et_lembrancas);
         this.btCadastrar = findViewById(R.id.bt_cadastrar);
         this.btEditar = findViewById(R.id.bt_editar);
         this.btExcluir = findViewById(R.id.bt_excluir);
@@ -114,10 +115,17 @@ public class TelaFotoCardActivity extends AppCompatActivity implements Validator
 
     @Override
     public void onValidationSucceeded() {
+        fotografia.setLugar(etLugar.getText().toString());
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            fotografia.setData(format.parse(etData.getText().toString()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        fotografia.setLembrancas(etLembrancas.getText().toString());
         if(foto != null){
             fotografia.setFoto(BitmapUtils.bitmapToBase64(foto));
         }
-
         if(this.acao.equals("cadastrar")){
             this.cadastrar();
         }else{

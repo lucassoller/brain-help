@@ -7,17 +7,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import com.example.app.R;
-import com.example.app.classes.Diagnosticado;
-import com.example.app.services.DiagnosticadoService;
-import com.example.app.utils.RetrofitUtils;
-import com.google.gson.Gson;
 
 public class TelaHomeActivity extends AppCompatActivity {
 
@@ -29,7 +20,6 @@ public class TelaHomeActivity extends AppCompatActivity {
     private ImageView ivFotos;
     private ImageView ivMedicamentos;
     private ImageView ivEnderecos;
-    private Diagnosticado diagnosticado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -26,8 +26,8 @@ import com.mobsandgeeks.saripaar.annotation.Checked;
 import com.mobsandgeeks.saripaar.annotation.Email;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import java.io.File;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -149,6 +149,9 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
     }
 
     private void inicializaEditText(){
+        if(diagnosticado.getFoto() != null && !diagnosticado.getFoto().isEmpty()){
+            ivFoto.setImageBitmap(BitmapUtils.base64ToBitmap(diagnosticado.getFoto()));
+        }
         this.etNome.setText(diagnosticado.getNome());
         this.etSobrenome.setText(diagnosticado.getSobrenome());
         this.etEmail.setText(diagnosticado.getEmail());
@@ -187,6 +190,7 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
         this.etCidade.setText(diagnosticado.getEndereco().getCidade());
         this.etBairro.setText(diagnosticado.getEndereco().getBairro());
         this.etCep.setText(diagnosticado.getEndereco().getCep());
+
     }
 
     @Override
@@ -216,11 +220,12 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
             diagnosticado.setEstagioAlzheimer(EstagioAlzheimer.AVANCADO);
         }
 
-        String dataDiagnosticoVet [] = etDataDiagnostico.getText().toString().split("/");
-        String dia = dataDiagnosticoVet[0];
-        String mes = dataDiagnosticoVet[1];
-        String ano = dataDiagnosticoVet[2];
-        diagnosticado.setDataDiagnostico(new Date(mes+"/"+dia+"/"+ano));
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            diagnosticado.setDataDiagnostico(format.parse(etDataDiagnostico.getText().toString()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         Endereco endereco = new Endereco();
         endereco.setLogradouro(etLogradouro.getText().toString());
         endereco.setNumero(Integer.parseInt(etNumero.getText().toString()));
@@ -229,6 +234,9 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
         endereco.setBairro(etBairro.getText().toString());
         endereco.setCep(etCep.getText().toString());
         diagnosticado.setEndereco(endereco);
+        if(foto != null){
+            diagnosticado.setFoto(BitmapUtils.bitmapToBase64(foto));
+        }
         editar();
     }
 

@@ -1,9 +1,154 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#B9E5FF"
     tools:context=".activities.TelaFotoCardActivity">
 
-</android.support.constraint.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_foto"
+                android:layout_width="400dp"
+                android:layout_height="250dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                tools:srcCompat="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/tv_lugar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_foto"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Lugar"
+                android:textSize="9pt" />
+
+            <EditText
+                android:id="@+id/et_lugar"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_lugar"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="Lugar"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColorHint="#38B6FF" />
+
+            <TextView
+                android:id="@+id/tv_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_lugar"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Data"
+                android:textSize="9pt" />
+
+            <EditText
+                android:id="@+id/et_data"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_data"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="Data da foto dd/MM/AAAA"
+                android:inputType="date"
+                android:padding="10dp"
+                android:textColorHint="#38B6FF" />
+
+            <TextView
+                android:id="@+id/tv_lembrancas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_data"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Lembranças"
+                android:textSize="9pt" />
+
+            <EditText
+                android:id="@+id/et_lembrancas"
+                android:layout_width="350dp"
+                android:layout_height="120dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:layout_below="@+id/tv_lembrancas"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:padding="10dp"
+                android:text=""
+                android:textColorHint="#38B6FF"/>
+
+            <Button
+                android:id="@+id/bt_cadastrar"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_lembrancas"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_corner_purple"
+                android:text="Cadastrar"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/bt_editar"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_lembrancas"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_corner_purple"
+                android:text="Editar"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/bt_excluir"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_lembrancas"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_corner_red"
+                android:text="Excluir"
+                android:textColor="#FFFFFF" />
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

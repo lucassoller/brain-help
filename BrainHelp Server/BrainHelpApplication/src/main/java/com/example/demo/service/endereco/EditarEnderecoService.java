@@ -18,6 +18,10 @@ public class EditarEnderecoService {
 
 	public void editar(Endereco endereco) throws Exception {
 		Endereco enderecoParaEditar = buscarEndereco.buscar(endereco.getCodEndereco());
+		if (!Objects.isNull(endereco.getTitulo()) && !endereco.getTitulo().isEmpty()) {
+			enderecoParaEditar.setTitulo(endereco.getTitulo());
+		}
+		
 		if (!Objects.isNull(endereco.getLogradouro()) && !endereco.getLogradouro().isEmpty()) {
 			enderecoParaEditar.setLogradouro(endereco.getLogradouro());
 		}

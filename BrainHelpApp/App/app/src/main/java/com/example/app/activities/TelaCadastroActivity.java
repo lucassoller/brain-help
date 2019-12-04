@@ -35,6 +35,8 @@ import com.mobsandgeeks.saripaar.annotation.NotEmpty;
 import com.mobsandgeeks.saripaar.annotation.Password;
 
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -189,11 +191,12 @@ public class TelaCadastroActivity extends AppCompatActivity implements Validator
             diagnosticado.setSexo(Sexo.F);
         }
 
-        String dataDiagnosticoVet [] = etDataDiagnostico.getText().toString().split("/");
-        String dia = dataDiagnosticoVet[0];
-        String mes = dataDiagnosticoVet[1];
-        String ano = dataDiagnosticoVet[2];
-        diagnosticado.setDataDiagnostico(new Date(mes+"/"+dia+"/"+ano));
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            diagnosticado.setDataDiagnostico(format.parse(etDataDiagnostico.getText().toString()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         Endereco endereco = new Endereco();
         endereco.setLogradouro(etLogradouro.getText().toString());
         endereco.setNumero(Integer.parseInt(etNumero.getText().toString()));
@@ -202,6 +205,10 @@ public class TelaCadastroActivity extends AppCompatActivity implements Validator
         endereco.setBairro(etBairro.getText().toString());
         endereco.setCep(etCep.getText().toString());
         diagnosticado.setEndereco(endereco);
+        if(foto != null){
+            diagnosticado.setFoto(BitmapUtils.bitmapToBase64(foto));
+        }
+
         cadastrar();
     }
 

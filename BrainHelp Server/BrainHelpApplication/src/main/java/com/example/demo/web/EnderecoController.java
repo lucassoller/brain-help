@@ -42,7 +42,6 @@ public class EnderecoController {
 	@Autowired
 	private BuscarEnderecosDoUsuarioService buscarEnderecosDoUsuario;
 	
-	
 	@GetMapping("/buscar/todos")
 	public List<Endereco> buscarTodos(){
 		return enderecoRepository.findAll();
