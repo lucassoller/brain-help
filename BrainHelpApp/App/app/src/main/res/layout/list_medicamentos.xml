@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/iv_foto"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:textSize="15pt"
         android:textColor="#000000"
         android:paddingRight="30dp"
@@ -30,7 +30,7 @@
         android:text="Omeprazol" />
 
     <TextView
-        android:id="@+id/tv_endereco"
+        android:id="@+id/tv_horario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tv_titulo"
@@ -38,6 +38,32 @@
         android:textSize="11pt"
         android:paddingRight="30dp"
         android:paddingLeft="30dp"
+        android:textColor="#000000"
+        android:text="Tomar às 14:00" />
+
+    <TextView
+        android:id="@+id/tv_quantidade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_horario"
+        android:layout_marginTop="5dp"
+        android:textSize="11pt"
+        android:paddingRight="30dp"
+        android:paddingLeft="30dp"
+        android:textColor="#000000"
+        android:text="5 comprimidos" />
+
+    <TextView
+        android:id="@+id/tv_frequencia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_quantidade"
+        android:layout_marginTop="5dp"
+        android:textSize="11pt"
+        android:paddingRight="30dp"
+        android:paddingLeft="30dp"
         android:layout_marginBottom="10dp"
-        android:text="Endereço: Rua Vitalino Batista de Andrade, 43 - Bairro Centro, Sapucaia do Sul - RS" />
+        android:textColor="#000000"
+        android:text="De 4 em 4 horas" />
+
 </RelativeLayout>

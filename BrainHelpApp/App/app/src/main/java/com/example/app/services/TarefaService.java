@@ -25,6 +25,9 @@ public interface TarefaService {
     @PUT("tarefa/editar")
     Call<Void> editarTarefa(@Header("Authorization") String token, @Body Tarefa tarefa);
 
+    @PUT("tarefa/editar/status")
+    Call<Void> editarStatusTarefa(@Header("Authorization") String token, @Body Tarefa tarefa);
+
     @DELETE("tarefa/deletar/{ID}")
     Call<Void> deletarTarefa(@Header("Authorization") String token, @Path("ID") Integer codTarefa);
 }
