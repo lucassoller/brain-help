@@ -19,8 +19,10 @@ import com.google.gson.Gson;
 import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.NotEmpty;
-import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -48,9 +50,14 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
         this.inicializaComponentes();
         if(tarefa != null){
             this.etTarefa.setText(this.tarefa.getTarefa());
-            String data[] = this.tarefa.getDataRealizacao().toString().split("T");
-            this.etData.setText(data[0]);
-            this.etHora.setText(data[1]);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
+            String data = dateFormat.format(tarefa.getDataRealizacao());
+            this.etHora.setText(data);
+
+            SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", new Locale("pt", "BR"));
+            String hora = timeFormat.format(tarefa.getDataRealizacao());
+            this.etHora.setText(hora);
+
             this.etDescricao.setText(this.tarefa.getDescricao());
             if(!this.tarefa.getStatusTarefa().equals(StatusTarefa.CONCLUIDA)){
                 this.acao = "editar";
@@ -59,7 +66,6 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
                 this.relativeLayout.removeView(btEditar);
                 this.relativeLayout.removeView(btExcluir);
             }
-
         }else{
             this.acao = "cadastrar";
             this.relativeLayout.removeView(btEditar);
@@ -79,14 +85,12 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
                 validator.validate();
             }
         });
-
         this.btExcluir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 excluir();
             }
         });
-
     }
 
     private void inicializaComponentes(){
@@ -106,10 +110,12 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
     @Override
     public void onValidationSucceeded() {
         this.tarefa.setTarefa(etTarefa.getText().toString());
-        String d[] = etData.getText().toString().split("/");
-        String t[] = etHora.getText().toString().split(":");
-        this.tarefa.setDataRealizacao(new Date(Integer.parseInt(d[2]),Integer.parseInt(d[1]),Integer.parseInt(d[0]),
-                Integer.parseInt(t[0]),Integer.parseInt(t[1])));
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm", new Locale("pt", "BR"));
+        try {
+            tarefa.setDataRealizacao(dateFormat.parse(etData.getText().toString() + " " + etHora.getText().toString()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         this.tarefa.setDescricao(etDescricao.getText().toString());
         if(this.acao.equals("cadastrar")){
             this.cadastrar();
@@ -156,11 +162,11 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
 
     private void editar(){
         TarefaService tarefaService = RetrofitUtils.retrofit.create(TarefaService.class);
-        tarefaService.cadastrarTarefa(TelaInicialActivity.sp.getString("token", null), tarefa).enqueue(new Callback<Void>() {
+        tarefaService.editarTarefa(TelaInicialActivity.sp.getString("token", null), tarefa).enqueue(new Callback<Void>() {
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(getApplicationContext(), "Cadastro concluído", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Edição concluída", Toast.LENGTH_LONG).show();
                 }else{
                     Gson gson = new Gson();
                     MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
@@ -181,7 +187,7 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
             @Override
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()){
-                    Toast.makeText(getApplicationContext(), "Cadastro concluído", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Exclusão concluída", Toast.LENGTH_LONG).show();
                 }else{
                     Gson gson = new Gson();
                     MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);

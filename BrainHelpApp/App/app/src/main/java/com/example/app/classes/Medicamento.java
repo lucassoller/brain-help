@@ -1,5 +1,6 @@
 package com.example.app.classes;
 
+import com.example.app.enumerated.Frequencia;
 import com.example.app.enumerated.Medida;
 import com.example.app.enumerated.TipoDuracao;
 
@@ -9,29 +10,15 @@ import java.util.Date;
 public class Medicamento implements Serializable {
 
     private Integer codMedicamento;
-
     private String nomeMedicamento;
-
     private String funcao;
-
     private String contraIndicacoes;
-
     private String efeitosColaterais;
-
     private int quantidade;
-
     private Medida medida;
-
-    private int frequenciaDiaria;
-
-    private Date proximoHorario;
-
-    private int duracao;
-
-    private TipoDuracao tipoDuracao;
-
+    private Date horario;
+    private Frequencia frequencia;
     private Diagnosticado diagnosticado;
-
     private String foto;
 
     public String getFoto() {
@@ -98,28 +85,12 @@ public class Medicamento implements Serializable {
         this.medida = medida;
     }
 
-    public int getFrequenciaDiaria() {
-        return frequenciaDiaria;
+    public Date getHorario() {
+        return horario;
     }
 
-    public void setFrequenciaDiaria(int frequenciaDiaria) {
-        this.frequenciaDiaria = frequenciaDiaria;
-    }
-
-    public Date getProximoHorario() {
-        return proximoHorario;
-    }
-
-    public void setProximoHorario(Date proximoHorario) {
-        this.proximoHorario = proximoHorario;
-    }
-
-    public int getDuracao() {
-        return duracao;
-    }
-
-    public void setDuracao(int duracao) {
-        this.duracao = duracao;
+    public void setHorario(Date horario) {
+        this.horario = horario;
     }
 
     public Diagnosticado getDiagnosticado() {
@@ -129,16 +100,15 @@ public class Medicamento implements Serializable {
     public void setDiagnosticado(Diagnosticado diagnosticado) {
         this.diagnosticado = diagnosticado;
     }
-
-    public TipoDuracao getTipoDuracao() {
-        return tipoDuracao;
+    public Frequencia getFrequencia() {
+        return frequencia;
     }
 
-    public void setTipoDuracao(TipoDuracao tipoDuracao) {
-        this.tipoDuracao = tipoDuracao;
+    public void setFrequencia(Frequencia frequencia) {
+        this.frequencia = frequencia;
     }
 
-    public Medicamento(Integer codMedicamento, String nomeMedicamento, String funcao, String contraIndicacoes, String efeitosColaterais, int quantidade, Medida medida, int frequenciaDiaria, Date proximoHorario, int duracao, TipoDuracao tipoDuracao, com.example.app.classes.Diagnosticado diagnosticado, String foto) {
+    public Medicamento(Integer codMedicamento, String nomeMedicamento, String funcao, String contraIndicacoes, String efeitosColaterais, int quantidade, Medida medida, Date horario, Frequencia frequencia, Diagnosticado diagnosticado, String foto) {
         this.codMedicamento = codMedicamento;
         this.nomeMedicamento = nomeMedicamento;
         this.funcao = funcao;
@@ -146,10 +116,8 @@ public class Medicamento implements Serializable {
         this.efeitosColaterais = efeitosColaterais;
         this.quantidade = quantidade;
         this.medida = medida;
-        this.frequenciaDiaria = frequenciaDiaria;
-        this.proximoHorario = proximoHorario;
-        this.duracao = duracao;
-        this.tipoDuracao = tipoDuracao;
+        this.horario = horario;
+        this.frequencia = frequencia;
         this.diagnosticado = diagnosticado;
         this.foto = foto;
     }

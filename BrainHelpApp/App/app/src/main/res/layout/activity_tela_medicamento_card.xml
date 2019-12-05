@@ -1,9 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#B9E5FF"
     tools:context=".activities.TelaMedicamentoCardActivity">
 
-</android.support.constraint.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_foto"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="10dp"
+                android:layout_centerHorizontal="true"
+                tools:srcCompat="@drawable/sem_foto"
+                android:src="@drawable/sem_foto"
+                android:paddingRight="30dp"
+                android:paddingLeft="30dp" />
+
+            <TextView
+                android:id="@+id/tv_nome_medicamento"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iv_foto"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Nome do medicamento"
+                android:textSize="9pt" />
+
+            <EditText
+                android:id="@+id/et_nome_medicamento"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_nome_medicamento"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="Nome do medicamento"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColorHint="#38B6FF" />
+
+            <TextView
+                android:id="@+id/tv_funcao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_nome_medicamento"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Função do medicamento"
+                android:textSize="9pt" />
+
+            <EditText
+                android:id="@+id/et_funcao"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_funcao"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="Função do medicamento"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColorHint="#38B6FF" />
+
+            <TextView
+                android:id="@+id/tv_contraindicacoes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_funcao"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Contraindicações"
+                android:textSize="9pt" />
+
+            <EditText
+                android:id="@+id/et_contraindicacoes"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_contraindicacoes"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="Contraindicações"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColorHint="#38B6FF" />
+
+            <TextView
+                android:id="@+id/tv_efeitos_colaterais"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_contraindicacoes"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Efeitos colaterais"
+                android:textSize="9pt" />
+
+            <EditText
+                android:id="@+id/et_efeitos_colaterais"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_efeitos_colaterais"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="Efeitos colaterais"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColorHint="#38B6FF" />
+
+            <TextView
+                android:id="@+id/tv_quantidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_efeitos_colaterais"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Quantidade"
+                android:textSize="9pt" />
+
+            <EditText
+                android:id="@+id/et_quantidade"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_quantidade"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="Quantidade"
+                android:inputType="number"
+                android:padding="10dp"
+                android:textColorHint="#38B6FF" />
+
+            <TextView
+                android:id="@+id/tv_medida"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_quantidade"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Medida"
+                android:textSize="9pt" />
+
+            <Spinner
+                android:id="@+id/sp_medidas"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_medida"
+                android:layout_centerHorizontal="true"
+                android:background="#FFFFFF"
+                android:layout_marginTop="5dp" />
+
+            <TextView
+                android:id="@+id/tv_horario"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sp_medidas"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Horário"
+                android:textSize="9pt" />
+
+            <EditText
+                android:id="@+id/et_horario"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_horario"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="Horário HH:mm"
+                android:inputType="time"
+                android:padding="10dp"
+                android:textColorHint="#38B6FF" />
+
+            <TextView
+                android:id="@+id/tv_frequencia"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_horario"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Frequência"
+                android:textSize="9pt" />
+
+            <Spinner
+                android:id="@+id/sp_frequencias"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_frequencia"
+                android:layout_centerHorizontal="true"
+                android:background="#FFFFFF"
+                android:layout_marginTop="5dp" />
+
+            <Button
+                android:id="@+id/bt_cadastrar"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sp_frequencias"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_corner_purple"
+                android:text="Cadastrar"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/bt_editar"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sp_frequencias"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_corner_purple"
+                android:text="Editar"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/bt_excluir"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sp_frequencias"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_corner_red"
+                android:text="Excluir"
+                android:textColor="#FFFFFF" />
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

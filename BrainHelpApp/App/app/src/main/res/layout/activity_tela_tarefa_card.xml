@@ -42,7 +42,7 @@
         android:layout_marginTop="5dp"
         android:background="#FFFFFF"
         android:ems="10"
-        android:hint="Insira um título"
+        android:hint="Tarefa"
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColorHint="#38B6FF" />
@@ -57,7 +57,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:text="Data"
+        android:text="Data da realização"
         android:textSize="9pt" />
 
     <EditText
@@ -69,7 +69,7 @@
         android:layout_marginTop="5dp"
         android:background="#FFFFFF"
         android:ems="10"
-        android:hint="15/09/2019"
+        android:hint="Data realização dd/MM/AAAA"
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColorHint="#38B6FF" />
@@ -84,7 +84,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginLeft="30dp"
         android:layout_marginTop="20dp"
-        android:text="Hora"
+        android:text="Hora da realização"
         android:textSize="9pt" />
 
     <EditText
@@ -96,7 +96,7 @@
         android:layout_marginTop="5dp"
         android:background="#FFFFFF"
         android:ems="10"
-        android:hint="17:00"
+        android:hint="Hora realização HH:mm"
         android:inputType="textPersonName"
         android:padding="10dp"
         android:textColorHint="#38B6FF" />
