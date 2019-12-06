@@ -55,21 +55,6 @@ public class TelaMedicamentosActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.navigation_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-
-        }
-        return false;
-    }
-
     private void inicializaComponentes(){
         this.lvMedicamentos = findViewById(R.id.lv_medicamentos);
         this.btAdicionarMedicamentos = findViewById(R.id.bt_adicionar_medicamento);
@@ -102,5 +87,44 @@ public class TelaMedicamentosActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.navigation_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.perfil:
+                Intent itTelaUsuario = new Intent(TelaMedicamentosActivity.this, TelaPerfilActivity.class);
+                itTelaUsuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaUsuario);
+                return true;
+            case R.id.alterar_senha:
+                Intent itTelaSenha = new Intent(TelaMedicamentosActivity.this, TelaAlterarSenhaActivity.class);
+                itTelaSenha.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaSenha);
+                return true;
+            case R.id.desempenhos:
+                Intent itTelaDesempenho = new Intent(TelaMedicamentosActivity.this, TelaDesempenhosActivity.class);
+                itTelaDesempenho.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaDesempenho);
+                return true;
+            case R.id.sair:
+                TelaInicialActivity.editor.remove("token");
+                TelaInicialActivity.editor.remove("email");
+                TelaInicialActivity.editor.commit();
+
+                Intent itTelaInicial = new Intent(TelaMedicamentosActivity.this, TelaInicialActivity.class);
+                itTelaInicial.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaInicial);
+                finish();
+                return true;
+        }
+        return false;
     }
 }

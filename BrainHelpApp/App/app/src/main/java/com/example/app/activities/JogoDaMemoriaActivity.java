@@ -2,8 +2,12 @@ package com.example.app.activities;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Chronometer;
@@ -23,7 +27,6 @@ import com.example.app.services.DesempenhoService;
 import com.example.app.utils.MyErrorMessage;
 import com.example.app.utils.RetrofitUtils;
 import com.google.gson.Gson;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -243,5 +246,44 @@ public class JogoDaMemoriaActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), t.toString(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.navigation_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.perfil:
+                Intent itTelaUsuario = new Intent(JogoDaMemoriaActivity.this, TelaPerfilActivity.class);
+                itTelaUsuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaUsuario);
+                return true;
+            case R.id.alterar_senha:
+                Intent itTelaSenha = new Intent(JogoDaMemoriaActivity.this, TelaAlterarSenhaActivity.class);
+                itTelaSenha.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaSenha);
+                return true;
+            case R.id.desempenhos:
+                Intent itTelaDesempenho = new Intent(JogoDaMemoriaActivity.this, TelaDesempenhosActivity.class);
+                itTelaDesempenho.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaDesempenho);
+                return true;
+            case R.id.sair:
+                TelaInicialActivity.editor.remove("token");
+                TelaInicialActivity.editor.remove("email");
+                TelaInicialActivity.editor.commit();
+
+                Intent itTelaInicial = new Intent(JogoDaMemoriaActivity.this, TelaInicialActivity.class);
+                itTelaInicial.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaInicial);
+                finish();
+                return true;
+        }
+        return false;
     }
 }

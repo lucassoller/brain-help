@@ -7,13 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import com.example.app.R;
-import com.example.app.utils.AlarmReceiver;
-import com.example.app.utils.AlarmSender;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
 
 public class TelaInicialActivity extends AppCompatActivity{
 

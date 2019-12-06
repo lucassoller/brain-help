@@ -3,6 +3,9 @@ package com.example.app.activities;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -357,5 +360,44 @@ public class TelaMedicamentoCardActivity extends AppCompatActivity implements Va
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.navigation_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.perfil:
+                Intent itTelaUsuario = new Intent(TelaMedicamentoCardActivity.this, TelaPerfilActivity.class);
+                itTelaUsuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaUsuario);
+                return true;
+            case R.id.alterar_senha:
+                Intent itTelaSenha = new Intent(TelaMedicamentoCardActivity.this, TelaAlterarSenhaActivity.class);
+                itTelaSenha.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaSenha);
+                return true;
+            case R.id.desempenhos:
+                Intent itTelaDesempenho = new Intent(TelaMedicamentoCardActivity.this, TelaDesempenhosActivity.class);
+                itTelaDesempenho.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaDesempenho);
+                return true;
+            case R.id.sair:
+                TelaInicialActivity.editor.remove("token");
+                TelaInicialActivity.editor.remove("email");
+                TelaInicialActivity.editor.commit();
+
+                Intent itTelaInicial = new Intent(TelaMedicamentoCardActivity.this, TelaInicialActivity.class);
+                itTelaInicial.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaInicial);
+                finish();
+                return true;
+        }
+        return false;
     }
 }

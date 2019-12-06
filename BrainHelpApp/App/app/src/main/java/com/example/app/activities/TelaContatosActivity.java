@@ -10,21 +10,16 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.app.R;
 import com.example.app.adapter.ContatosAdapter;
-import com.example.app.classes.Diagnosticado;
-import com.example.app.classes.Endereco;
 import com.example.app.classes.Vinculo;
-import com.example.app.enumerated.Sexo;
 import com.example.app.services.VinculoService;
 import com.example.app.utils.MyErrorMessage;
 import com.example.app.utils.RetrofitUtils;
 import com.google.gson.Gson;
 import java.util.List;
 import java.util.ArrayList;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -65,32 +60,7 @@ public class TelaContatosActivity extends AppCompatActivity {
         super.onResume();
         this.getVinculos();
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.navigation_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.perfil:
-                Intent itTelaUsuario = new Intent(TelaContatosActivity.this, TelaPerfilActivity.class);
-                itTelaUsuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(itTelaUsuario);
-                return true;
-            case R.id.sair:
-                finish();
-                TelaInicialActivity.editor.remove("token");
-                TelaInicialActivity.editor.remove("email");
-                TelaInicialActivity.editor.commit();
-                return true;
-        }
-        return false;
-    }
-
+    
     private void inicializaComponentes(){
         this.lvContatos = findViewById(R.id.lv_contatos);
         this.btAdicionarContato = findViewById(R.id.bt_adicionar_contato);
@@ -117,5 +87,44 @@ public class TelaContatosActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.navigation_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.perfil:
+                Intent itTelaUsuario = new Intent(TelaContatosActivity.this, TelaPerfilActivity.class);
+                itTelaUsuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaUsuario);
+                return true;
+            case R.id.alterar_senha:
+                Intent itTelaSenha = new Intent(TelaContatosActivity.this, TelaContatosActivity.class);
+                itTelaSenha.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaSenha);
+                return true;
+            case R.id.desempenhos:
+                Intent itTelaDesempenho = new Intent(TelaContatosActivity.this, TelaDesempenhosActivity.class);
+                itTelaDesempenho.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaDesempenho);
+                return true;
+            case R.id.sair:
+                TelaInicialActivity.editor.remove("token");
+                TelaInicialActivity.editor.remove("email");
+                TelaInicialActivity.editor.commit();
+
+                Intent itTelaInicial = new Intent(TelaContatosActivity.this, TelaInicialActivity.class);
+                itTelaInicial.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaInicial);
+                finish();
+                return true;
+        }
+        return false;
     }
 }

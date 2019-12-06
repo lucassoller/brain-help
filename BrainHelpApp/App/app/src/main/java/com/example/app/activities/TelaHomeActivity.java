@@ -8,10 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.example.app.R;
-import com.example.app.utils.AlarmReceiver;
-import com.example.app.utils.AlarmSender;
 
 public class TelaHomeActivity extends AppCompatActivity {
 
@@ -97,6 +94,16 @@ public class TelaHomeActivity extends AppCompatActivity {
 
     }
 
+    private void inicializaComponenetes(){
+        this.ivContatos = findViewById(R.id.iv_contatos);
+        this.ivJogos = findViewById(R.id.iv_jogos);
+        this.ivChatbot = findViewById(R.id.iv_chatbot);
+        this.ivTarefas = findViewById(R.id.iv_tarefas);
+        this.ivMusicas = findViewById(R.id.iv_musicas);
+        this.ivFotos = findViewById(R.id.iv_fotos);
+        this.ivMedicamentos = findViewById(R.id.iv_medicamentos);
+        this.ivEnderecos = findViewById(R.id.iv_enderecos);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -142,18 +149,5 @@ public class TelaHomeActivity extends AppCompatActivity {
                 return true;
         }
         return false;
-    }
-
-
-
-    private void inicializaComponenetes(){
-        this.ivContatos = findViewById(R.id.iv_contatos);
-        this.ivJogos = findViewById(R.id.iv_jogos);
-        this.ivChatbot = findViewById(R.id.iv_chatbot);
-        this.ivTarefas = findViewById(R.id.iv_tarefas);
-        this.ivMusicas = findViewById(R.id.iv_musicas);
-        this.ivFotos = findViewById(R.id.iv_fotos);
-        this.ivMedicamentos = findViewById(R.id.iv_medicamentos);
-        this.ivEnderecos = findViewById(R.id.iv_enderecos);
     }
 }

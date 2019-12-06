@@ -4,7 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +23,6 @@ import com.mobsandgeeks.saripaar.ValidationError;
 import com.mobsandgeeks.saripaar.Validator;
 import com.mobsandgeeks.saripaar.annotation.ConfirmPassword;
 import com.mobsandgeeks.saripaar.annotation.Password;
-
 import java.util.List;
 
 public class TelaAlterarSenhaActivity extends AppCompatActivity implements Validator.ValidationListener{
@@ -95,5 +98,39 @@ public class TelaAlterarSenhaActivity extends AppCompatActivity implements Valid
                 Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.navigation_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.perfil:
+                Intent itTelaUsuario = new Intent(TelaAlterarSenhaActivity.this, TelaPerfilActivity.class);
+                itTelaUsuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaUsuario);
+                return true;
+            case R.id.desempenhos:
+                Intent itTelaDesempenho = new Intent(TelaAlterarSenhaActivity.this, TelaDesempenhosActivity.class);
+                itTelaDesempenho.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaDesempenho);
+                return true;
+            case R.id.sair:
+                TelaInicialActivity.editor.remove("token");
+                TelaInicialActivity.editor.remove("email");
+                TelaInicialActivity.editor.commit();
+
+                Intent itTelaInicial = new Intent(TelaAlterarSenhaActivity.this, TelaInicialActivity.class);
+                itTelaInicial.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaInicial);
+                finish();
+                return true;
+        }
+        return false;
     }
 }

@@ -3,6 +3,9 @@ package com.example.app.activities;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -32,7 +35,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
-
 import androidx.appcompat.app.AppCompatActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 import retrofit2.Call;
@@ -272,15 +274,6 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent itTelaInicial = new Intent(TelaPerfilActivity.this, TelaHomeActivity.class);
-        itTelaInicial.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(itTelaInicial);
-        finish();
-    }
-
     private void editar(){
         DiagnosticadoService diagnosticadoService = RetrofitUtils.retrofit.create(DiagnosticadoService.class);
         diagnosticadoService.editarDiagnosticado(TelaInicialActivity.sp.getString("token", null), diagnosticado).enqueue(new Callback<Void>() {
@@ -350,5 +343,39 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
 
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.navigation_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.alterar_senha:
+                Intent itTelaSenha = new Intent(TelaPerfilActivity.this, TelaAlterarSenhaActivity.class);
+                itTelaSenha.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaSenha);
+                return true;
+            case R.id.desempenhos:
+                Intent itTelaDesempenho = new Intent(TelaPerfilActivity.this, TelaDesempenhosActivity.class);
+                itTelaDesempenho.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaDesempenho);
+                return true;
+            case R.id.sair:
+                TelaInicialActivity.editor.remove("token");
+                TelaInicialActivity.editor.remove("email");
+                TelaInicialActivity.editor.commit();
+
+                Intent itTelaInicial = new Intent(TelaPerfilActivity.this, TelaInicialActivity.class);
+                itTelaInicial.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(itTelaInicial);
+                finish();
+                return true;
+        }
+        return false;
     }
 }
