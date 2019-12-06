@@ -43,20 +43,12 @@ public class EditarMedicamentoService {
 			medicamentoParaEditar.setMedida(medicamento.getMedida());
 		}
 		
-		if (!Objects.isNull(medicamento.getFrequenciaDiaria())) {
-			medicamentoParaEditar.setFrequenciaDiaria(medicamento.getFrequenciaDiaria());
+		if (!Objects.isNull(medicamento.getFrequencia())) {
+			medicamentoParaEditar.setFrequencia(medicamento.getFrequencia());
 		}
 		
-		if (!Objects.isNull(medicamento.getProximoHorario())) {
-			medicamentoParaEditar.setProximoHorario(medicamento.getProximoHorario());
-		}
-		
-		if (!Objects.isNull(medicamento.getDuracao())) {
-			medicamentoParaEditar.setDuracao(medicamento.getDuracao());
-		}
-		
-		if (!Objects.isNull(medicamento.getTipoDuracao())) {
-			medicamentoParaEditar.setTipoDuracao(medicamento.getTipoDuracao());		
+		if (!Objects.isNull(medicamento.getHorario())) {
+			medicamentoParaEditar.setHorario(medicamento.getHorario());
 		}
 		
 		if (!Objects.isNull(medicamento.getFoto()) && !medicamento.getFoto().isEmpty()) {

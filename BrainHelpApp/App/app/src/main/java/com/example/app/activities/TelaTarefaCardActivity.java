@@ -13,6 +13,7 @@ import com.example.app.R;
 import com.example.app.classes.Tarefa;
 import com.example.app.enumerated.StatusTarefa;
 import com.example.app.services.TarefaService;
+import com.example.app.utils.AlarmSender;
 import com.example.app.utils.MyErrorMessage;
 import com.example.app.utils.RetrofitUtils;
 import com.google.gson.Gson;
@@ -67,6 +68,7 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
                 this.relativeLayout.removeView(btExcluir);
             }
         }else{
+            tarefa = new Tarefa();
             this.acao = "cadastrar";
             this.relativeLayout.removeView(btEditar);
             this.relativeLayout.removeView(btExcluir);
@@ -146,6 +148,7 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "Cadastro concluído", Toast.LENGTH_LONG).show();
+                    AlarmSender.agendarTarefa(TelaTarefaCardActivity.this, tarefa);
                 }else{
                     Gson gson = new Gson();
                     MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);

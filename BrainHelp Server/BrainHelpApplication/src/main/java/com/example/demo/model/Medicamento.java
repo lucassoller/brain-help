@@ -9,9 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
-
-import com.example.demo.model.enumerated.TipoDuracao;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.demo.model.enumerated.Frequencia;
 import com.example.demo.model.enumerated.Medida;
 
 @Entity
@@ -36,14 +35,9 @@ public class Medicamento {
 	@Column(nullable = false)
 	private Medida medida;
 	
-	@Column(nullable = false)
-	private int frequenciaDiaria;
+	private Date horario;
 	
-	private Date proximoHorario;
-	
-	private int duracao;
-	
-	private TipoDuracao tipoDuracao;
+	private Frequencia frequencia;
 	
 	@Lob
 	@Column(length = 2000)
@@ -110,44 +104,12 @@ public class Medicamento {
 		this.medida = medida;
 	}
 
-	public int getFrequenciaDiaria() {
-		return frequenciaDiaria;
-	}
-
-	public void setFrequenciaDiaria(int frequenciaDiaria) {
-		this.frequenciaDiaria = frequenciaDiaria;
-	}
-
-	public Date getProximoHorario() {
-		return proximoHorario;
-	}
-
-	public void setProximoHorario(Date proximoHorario) {
-		this.proximoHorario = proximoHorario;
-	}
-
-	public int getDuracao() {
-		return duracao;
-	}
-
-	public void setDuracao(int duracao) {
-		this.duracao = duracao;
-	}
-
 	public Diagnosticado getDiagnosticado() {
 		return diagnosticado;
 	}
 
 	public void setDiagnosticado(Diagnosticado diagnosticado) {
 		this.diagnosticado = diagnosticado;
-	}
-	
-	public TipoDuracao getTipoDuracao() {
-		return tipoDuracao;
-	}
-
-	public void setTipoDuracao(TipoDuracao tipoDuracao) {
-		this.tipoDuracao = tipoDuracao;
 	}
 
 	public String getFoto() {
@@ -158,9 +120,25 @@ public class Medicamento {
 		this.foto = foto;
 	}
 
+	public Date getHorario() {
+		return horario;
+	}
+
+	public void setHorario(Date horario) {
+		this.horario = horario;
+	}
+
+	public Frequencia getFrequencia() {
+		return frequencia;
+	}
+
+	public void setFrequencia(Frequencia frequencia) {
+		this.frequencia = frequencia;
+	}
+
 	public Medicamento(Integer codMedicamento, String nomeMedicamento, String funcao, String contraIndicacoes,
-			String efeitosColaterais, int quantidade, Medida medida, int frequenciaDiaria, Date proximoHorario,
-			int duracao, TipoDuracao tipoDuracao, String foto, Diagnosticado diagnosticado) {
+			String efeitosColaterais, int quantidade, Medida medida, Date horario, Frequencia frequencia, String foto,
+			Diagnosticado diagnosticado) {
 		super();
 		this.codMedicamento = codMedicamento;
 		this.nomeMedicamento = nomeMedicamento;
@@ -169,10 +147,8 @@ public class Medicamento {
 		this.efeitosColaterais = efeitosColaterais;
 		this.quantidade = quantidade;
 		this.medida = medida;
-		this.frequenciaDiaria = frequenciaDiaria;
-		this.proximoHorario = proximoHorario;
-		this.duracao = duracao;
-		this.tipoDuracao = tipoDuracao;
+		this.horario = horario;
+		this.frequencia = frequencia;
 		this.foto = foto;
 		this.diagnosticado = diagnosticado;
 	}

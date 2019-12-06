@@ -33,7 +33,7 @@ public class CadastrarTarefaService {
 		
 		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
 				
-		tarefa.setStatusTarefa(StatusTarefa.ABERTA);
+		tarefa.setStatusTarefa(StatusTarefa.NAO_CONCLUIDA);
 		tarefa.setDiagnosticado(diagnosticado);
 		tarefaRepository.save(tarefa);
 	}

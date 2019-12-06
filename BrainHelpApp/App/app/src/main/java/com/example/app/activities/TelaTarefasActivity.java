@@ -34,13 +34,13 @@ public class TelaTarefasActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tela_fotos);
+        setContentView(R.layout.activity_tela_tarefas);
         this.inicializaComponentes();
         this.lvTarefas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Tarefa tarefa = tarefas.get(i);
-                Intent itTelaTarefaCard = new Intent(TelaTarefasActivity.this, TelaMedicamentoCardActivity.class);
+                Intent itTelaTarefaCard = new Intent(TelaTarefasActivity.this, TelaTarefaCardActivity.class);
                 itTelaTarefaCard.putExtra("tarefa", tarefa);
                 startActivity(itTelaTarefaCard);
             }
@@ -49,7 +49,7 @@ public class TelaTarefasActivity extends AppCompatActivity {
         this.btAdicionarTarefa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent itTelaTarefaCard = new Intent(TelaTarefasActivity.this, TelaMedicamentoCardActivity.class);
+                Intent itTelaTarefaCard = new Intent(TelaTarefasActivity.this, TelaTarefaCardActivity.class);
                 startActivity(itTelaTarefaCard);
             }
         });

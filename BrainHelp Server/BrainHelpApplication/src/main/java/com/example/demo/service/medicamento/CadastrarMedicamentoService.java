@@ -3,7 +3,6 @@ package com.example.demo.service.medicamento;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.demo.model.Diagnosticado;
 import com.example.demo.model.Medicamento;
 import com.example.demo.repository.MedicamentoRepository;
@@ -34,18 +33,6 @@ public class CadastrarMedicamentoService {
 		
 		if (Objects.isNull(medicamento.getMedida())) {
 			throw new IllegalArgumentException("A medida do medicamento não pode estar em branco");
-		}
-		
-		if (Objects.isNull(medicamento.getFrequenciaDiaria())) {
-			throw new IllegalArgumentException("A frequência diária do medicamento não pode estar em branco");
-		}
-		
-		if (medicamento.getFrequenciaDiaria() < 1) {
-			throw new IllegalArgumentException("A frequência diária do medicamento não pode ser inferior a 1");
-		}
-		
-		if(medicamento.getDuracao() > 0 && Objects.isNull(medicamento.getTipoDuracao())) {
-			throw new IllegalArgumentException("O tipo da duração do medicamento não pode estar em branco");
 		}
 		
 		if(!Objects.isNull(medicamento.getFoto()) && !medicamento.getFoto().isEmpty()) {

@@ -11,6 +11,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.app.R;
+import com.example.app.activities.TelaInicialActivity;
 import com.example.app.utils.MyErrorMessage;
 import com.example.app.utils.RetrofitUtils;
 import com.example.app.classes.Tarefa;

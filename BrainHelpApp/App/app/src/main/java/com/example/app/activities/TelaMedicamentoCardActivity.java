@@ -18,6 +18,7 @@ import com.example.app.classes.Medicamento;
 import com.example.app.enumerated.Frequencia;
 import com.example.app.enumerated.Medida;
 import com.example.app.services.MedicamentoService;
+import com.example.app.utils.AlarmSender;
 import com.example.app.utils.BitmapUtils;
 import com.example.app.utils.ImagePickerUtils;
 import com.example.app.utils.MyErrorMessage;
@@ -283,6 +284,7 @@ public class TelaMedicamentoCardActivity extends AppCompatActivity implements Va
             public void onResponse(Call<Void> call, Response<Void> response) {
                 if(response.isSuccessful()){
                     Toast.makeText(getApplicationContext(), "Cadastro concluído", Toast.LENGTH_LONG).show();
+                    AlarmSender.agendarMedicamento(TelaMedicamentoCardActivity.this, medicamento);
                     finish();
                 }else{
                     Gson gson = new Gson();

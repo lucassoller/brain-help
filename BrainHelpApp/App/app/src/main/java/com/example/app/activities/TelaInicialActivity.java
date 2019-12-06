@@ -9,6 +9,11 @@ import android.widget.Button;
 import com.example.app.R;
 import com.example.app.utils.AlarmSender;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class TelaInicialActivity extends AppCompatActivity{
 
     private Button btLogin;
@@ -46,7 +51,23 @@ public class TelaInicialActivity extends AppCompatActivity{
         });
 
 
-        AlarmSender.agendarNotificacao(this);
+//        Date date = null;
+//        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", new Locale("pt", "BR"));
+//        try {
+//            date = (format.parse("05/12/2019 22:22:10"));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//
+//        Date date2 = null;
+//        try {
+//            date2 = (format.parse("05/12/2019 22:23:10"));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        AlarmSender.agendarNotificacao(this, date, 0, "Limpar casa", "realizar agora", "a");
+//        AlarmSender.agendarNotificacao(this, date2, 1, "Tirar lixo", "saco preto", "b");
+
     }
 
     private void inicializaComponentes(){
