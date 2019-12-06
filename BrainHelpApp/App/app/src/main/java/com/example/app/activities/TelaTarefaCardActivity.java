@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
@@ -36,6 +37,9 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
     @NotEmpty(message = "A hora é obrigatório")
     private EditText etHora;
     private EditText etDescricao;
+    private RadioGroup rbStatus;
+    private RadioButton rbSelecionado;
+    private RadioButton rbCompleta;
     private Button btCadastrar;
     private Button btEditar;
     private Button btExcluir;
@@ -50,26 +54,27 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
         setContentView(R.layout.activity_tela_tarefa_card);
         this.inicializaComponentes();
         if(tarefa != null){
+            this.rbCompleta.setEnabled(true);
             this.etTarefa.setText(this.tarefa.getTarefa());
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", new Locale("pt", "BR"));
             String data = dateFormat.format(tarefa.getDataRealizacao());
-            this.etHora.setText(data);
+            this.etData.setText(data);
 
             SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm", new Locale("pt", "BR"));
             String hora = timeFormat.format(tarefa.getDataRealizacao());
             this.etHora.setText(hora);
-
             this.etDescricao.setText(this.tarefa.getDescricao());
-            if(!this.tarefa.getStatusTarefa().equals(StatusTarefa.CONCLUIDA)){
-                this.acao = "editar";
-                this.relativeLayout.removeView(btCadastrar);
+            if(tarefa.getStatusTarefa().equals(StatusTarefa.CONCLUIDA)){
+                rbCompleta.setChecked(true);
             }else{
-                this.relativeLayout.removeView(btEditar);
-                this.relativeLayout.removeView(btExcluir);
+                rbSelecionado = findViewById(R.id.rb_incompleta);
+                rbSelecionado.setChecked(true);
             }
+            this.relativeLayout.removeView(btCadastrar);
         }else{
             tarefa = new Tarefa();
             this.acao = "cadastrar";
+            this.rbCompleta.setEnabled(false);
             this.relativeLayout.removeView(btEditar);
             this.relativeLayout.removeView(btExcluir);
         }
@@ -78,6 +83,13 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
             @Override
             public void onClick(View view) {
                 validator.validate();
+            }
+        });
+
+        this.rbStatus.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                rbSelecionado = findViewById(i);
             }
         });
 
@@ -105,6 +117,8 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
         this.btEditar = findViewById(R.id.bt_editar);
         this.btExcluir = findViewById(R.id.bt_excluir);
         this.relativeLayout = findViewById(R.id.layout);
+        this.rbStatus = findViewById(R.id.rg_status);
+        this.rbCompleta = findViewById(R.id.rb_completa);
         this.validator = new Validator(this);
         validator.setValidationListener(this);
     }
@@ -117,6 +131,11 @@ public class TelaTarefaCardActivity extends AppCompatActivity implements Validat
             tarefa.setDataRealizacao(dateFormat.parse(etData.getText().toString() + " " + etHora.getText().toString()));
         } catch (ParseException e) {
             e.printStackTrace();
+        }
+        if(rbSelecionado.getText().toString().equals("Concluída")){
+            tarefa.setStatusTarefa(StatusTarefa.CONCLUIDA);
+        }else{
+            tarefa.setStatusTarefa(StatusTarefa.NAO_CONCLUIDA);
         }
         this.tarefa.setDescricao(etDescricao.getText().toString());
         if(this.acao.equals("cadastrar")){

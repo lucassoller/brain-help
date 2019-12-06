@@ -19,10 +19,11 @@ public class AlarmSender {
 
         int code = (int) new Date().getTime();
 
-        intent.putExtra("titulo", tarefa.getTarefa());
-        intent.putExtra("texto", tarefa.getDescricao());
+        intent.putExtra("tarefa", "Está na hora de ralizar sua tarefa");
+        intent.putExtra("texto", tarefa.getTarefa());
         intent.putExtra("canal", tarefa.getCodTarefa()+"t");
         intent.putExtra("id", code);
+        intent.putExtra("tela", 2);
 
         alarmIntent = PendingIntent.getBroadcast(context, code, intent, 0);
 
@@ -41,10 +42,11 @@ public class AlarmSender {
 
         int code = (int) new Date().getTime();
 
-        intent.putExtra("titulo", "Está na hora de tomar "+ medicamento.getNomeMedicamento());
-        intent.putExtra("texto", "Consumir " + medicamento.getQuantidade() + " " + medicamento.getMedida());
+        intent.putExtra("titulo", "Está na hora de consumir seu medicamento");
+        intent.putExtra("texto", "Consumir " + medicamento.getQuantidade() + " " + medicamento.getMedida() + " de " + medicamento.getNomeMedicamento());
         intent.putExtra("canal", medicamento.getCodMedicamento()+"m");
         intent.putExtra("id", code);
+        intent.putExtra("tela", 1);
 
         alarmIntent = PendingIntent.getBroadcast(context, code, intent, 0);
 

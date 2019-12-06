@@ -6,26 +6,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
 import android.widget.TextView;
-import android.widget.Toast;
 import com.example.app.R;
-import com.example.app.activities.TelaInicialActivity;
-import com.example.app.utils.MyErrorMessage;
-import com.example.app.utils.RetrofitUtils;
 import com.example.app.classes.Tarefa;
-import com.example.app.enumerated.StatusTarefa;
-import com.example.app.services.TarefaService;
-import com.google.gson.Gson;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 public class TarefasAdapter extends ArrayAdapter<Tarefa> {
 
@@ -41,7 +29,7 @@ public class TarefasAdapter extends ArrayAdapter<Tarefa> {
         TextView tvTitulo;
         TextView tvData;
         TextView tvHorario;
-        CheckBox cbCompleta;
+        TextView tvStatus;
     }
 
     @NonNull
@@ -56,7 +44,7 @@ public class TarefasAdapter extends ArrayAdapter<Tarefa> {
             holder.tvTitulo = convertView.findViewById(R.id.tv_titulo);
             holder.tvData = convertView.findViewById(R.id.tv_data);
             holder.tvHorario = convertView.findViewById(R.id.tv_horario);
-            holder.cbCompleta = convertView.findViewById(R.id.cb_completa);
+            holder.tvStatus = convertView.findViewById(R.id.tv_status);
             convertView.setTag(holder);
         }else{
             holder = (ViewHolder) convertView.getTag();
@@ -74,47 +62,12 @@ public class TarefasAdapter extends ArrayAdapter<Tarefa> {
 
         switch (tarefa.getStatusTarefa()){
             case CONCLUIDA:
-                holder.cbCompleta.setChecked(true);
+                holder.tvStatus.setText("Status: Concluída");
                 break;
             case NAO_CONCLUIDA:
-                holder.cbCompleta.setChecked(false);
+                holder.tvStatus.setText("Status: Não concluída");
                 break;
         }
-
-        holder.cbCompleta.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked){
-                    tarefa.setStatusTarefa(StatusTarefa.CONCLUIDA);
-                }else{
-                    tarefa.setStatusTarefa(StatusTarefa.NAO_CONCLUIDA);
-                }
-                atualizaStatus();
-            }
-        });
-
-
         return convertView;
-    }
-
-    private void atualizaStatus(){
-        TarefaService tarefaService = RetrofitUtils.retrofit.create(TarefaService.class);
-        tarefaService.editarStatusTarefa(TelaInicialActivity.sp.getString("token", null), tarefa).enqueue(new Callback<Void>() {
-            @Override
-            public void onResponse(Call<Void> call, Response<Void> response) {
-                if(response.isSuccessful()){
-                    Toast.makeText(context, "Cadastro concluído", Toast.LENGTH_LONG).show();
-                }else{
-                    Gson gson = new Gson();
-                    MyErrorMessage message = gson.fromJson(response.errorBody().charStream(), MyErrorMessage.class);
-                    Toast.makeText(context, message.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Void> call, Throwable t) {
-                Toast.makeText(context, t.toString(), Toast.LENGTH_LONG).show();
-            }
-        });
     }
 }

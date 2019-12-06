@@ -4,167 +4,218 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#B9E5FF"
-    android:id="@+id/layout"
     tools:context=".activities.TelaTarefaCardActivity">
 
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="15dp"
-        android:text="Nova tarefa"
-        android:textSize="13pt" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_tarefa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textView10"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:text="Tarefa"
-        android:textSize="9pt" />
+        <RelativeLayout
+            android:id="@+id/layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-    <EditText
-        android:id="@+id/et_tarefa"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_tarefa"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="Tarefa"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        android:textColorHint="#38B6FF" />
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="15dp"
+                android:text="Nova tarefa"
+                android:textSize="13pt" />
 
-    <TextView
-        android:id="@+id/tv_data"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/et_tarefa"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:text="Data da realização"
-        android:textSize="9pt" />
+            <TextView
+                android:id="@+id/tv_tarefa"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textView10"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Tarefa"
+                android:textSize="9pt" />
 
-    <EditText
-        android:id="@+id/et_data"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_data"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="Data realização dd/MM/AAAA"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        android:textColorHint="#38B6FF" />
+            <EditText
+                android:id="@+id/et_tarefa"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_tarefa"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="Tarefa"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColorHint="#38B6FF" />
 
-    <TextView
-        android:id="@+id/tv_hora"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/et_data"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:text="Hora da realização"
-        android:textSize="9pt" />
+            <TextView
+                android:id="@+id/tv_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_tarefa"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Data da realização"
+                android:textSize="9pt" />
 
-    <EditText
-        android:id="@+id/et_hora"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tv_hora"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:background="#FFFFFF"
-        android:ems="10"
-        android:hint="Hora realização HH:mm"
-        android:inputType="textPersonName"
-        android:padding="10dp"
-        android:textColorHint="#38B6FF" />
+            <EditText
+                android:id="@+id/et_data"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_data"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="Data realização dd/MM/AAAA"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColorHint="#38B6FF" />
 
-    <TextView
-        android:id="@+id/tv_descricao"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/et_hora"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="20dp"
-        android:text="Descrição"
-        android:textSize="9pt" />
+            <TextView
+                android:id="@+id/tv_hora"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_data"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Hora da realização"
+                android:textSize="9pt" />
 
-    <EditText
-        android:id="@+id/et_descricao"
-        android:layout_width="350dp"
-        android:layout_height="100dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        android:layout_below="@+id/tv_descricao"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp"
-        android:background="#FFFFFF"
-        android:padding="10dp"
-        android:text=""
-        android:textColorHint="#38B6FF" />
+            <EditText
+                android:id="@+id/et_hora"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_hora"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:ems="10"
+                android:hint="Hora realização HH:mm"
+                android:inputType="textPersonName"
+                android:padding="10dp"
+                android:textColorHint="#38B6FF" />
 
-    <Button
-        android:id="@+id/bt_cadastrar"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/et_descricao"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/button_corner_purple"
-        android:text="Cadastrar"
-        android:textColor="#FFFFFF" />
+            <TextView
+                android:id="@+id/tv_descricao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_hora"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Descrição"
+                android:textSize="9pt" />
 
-    <Button
-        android:id="@+id/bt_editar"
-        android:layout_width="165dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/et_descricao"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true"
-        android:layout_marginStart="30dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/button_corner_purple"
-        android:text="Editar"
-        android:textColor="#FFFFFF" />
+            <EditText
+                android:id="@+id/et_descricao"
+                android:layout_width="350dp"
+                android:layout_height="100dp"
+                android:ems="10"
+                android:gravity="start|top"
+                android:inputType="textMultiLine"
+                android:layout_below="@+id/tv_descricao"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp"
+                android:background="#FFFFFF"
+                android:padding="10dp"
+                android:text=""
+                android:textColorHint="#38B6FF" />
 
-    <Button
-        android:id="@+id/bt_excluir"
-        android:layout_width="165dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/et_descricao"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
-        android:background="@drawable/button_corner_red"
-        android:text="Excluir"
-        android:textColor="#FFFFFF" />
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_descricao"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="20dp"
+                android:text="Status"
+                android:textSize="9pt" />
+
+            <RadioGroup
+                android:id="@+id/rg_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_status"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp">
+
+                <RadioButton
+                    android:id="@+id/rb_completa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Concluída" />
+
+                <RadioButton
+                    android:id="@+id/rb_incompleta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Não concluída" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/bt_cadastrar"
+                android:layout_width="350dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rg_status"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_corner_purple"
+                android:text="Cadastrar"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/bt_editar"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rg_status"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_corner_purple"
+                android:text="Editar"
+                android:textColor="#FFFFFF" />
+
+            <Button
+                android:id="@+id/bt_excluir"
+                android:layout_width="165dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rg_status"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="30dp"
+                android:background="@drawable/button_corner_red"
+                android:text="Excluir"
+                android:textColor="#FFFFFF" />
+
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
