@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.demo.model.Diagnosticado;
 import com.example.demo.repository.DiagnosticadoRepository;
+import com.example.demo.utils.ImageFileWriter;
 
 @Service
 public class BuscarDiagnosticadosPorNomeOuEmailService {
@@ -22,10 +23,25 @@ public class BuscarDiagnosticadosPorNomeOuEmailService {
 			throw new IllegalArgumentException("O nome não pode estar em branco");
 		}
 		
+		List<Diagnosticado> diagnosticados;
+		
 		if(medicoPresente) {
-			return diagnosticadoRepository.findByMedico(email, nome);
+			diagnosticados = diagnosticadoRepository.findByMedico(email, nome);
+		}else {
+			diagnosticados = diagnosticadoRepository.findByMedicoNotLike(nome);
 		}
 		
-		return diagnosticadoRepository.findByMedicoNotLike(nome);
+		diagnosticados.stream().forEach(diagnosticado ->{
+			try {
+				if(!Objects.isNull(diagnosticado.getFoto()) && !diagnosticado.getFoto().isEmpty()) {
+					diagnosticado.setFoto(ImageFileWriter.returnBase64FromFile(diagnosticado.getFoto()));
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		});
+		
+		return diagnosticados;
 	}
 }

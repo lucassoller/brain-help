@@ -9,9 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.app.R;
-import com.example.app.classes.Medicamento;
-import com.example.app.enumerated.Frequencia;
-import com.example.app.utils.BitmapUtils;
+import com.example.app.model.Medicamento;
+import com.example.app.model.enumerated.Frequencia;
+import com.example.app.util.BitmapUtils;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -59,19 +59,19 @@ public class MedicamentosAdapter extends ArrayAdapter<Medicamento> {
         int horaAcrescentada = 0;
         switch (medicamento.getFrequencia()){
             case QUATRO:
-                frequencia = "De 4 em 4 horas";
+                frequencia = "de 4 em 4 horas";
                 horaAcrescentada = 4;
                 break;
             case SEIS:
-                frequencia = "De 6 em 6 horas";
+                frequencia = "de 6 em 6 horas";
                 horaAcrescentada = 6;
                 break;
             case OITO:
-                frequencia = "De 8 em 8 horas";
+                frequencia = "de 8 em 8 horas";
                 horaAcrescentada = 8;
                 break;
             case DOZE:
-                frequencia = "De 12 em 12 horas";
+                frequencia = "de 12 em 12 horas";
                 horaAcrescentada = 12;
                 break;
             case DIARIA:
@@ -107,9 +107,9 @@ public class MedicamentosAdapter extends ArrayAdapter<Medicamento> {
         }
 
         holder.tvTitulo.setText(medicamento.getNomeMedicamento());
-        holder.tvFrequencia.setText(frequencia);
-        holder.tvHorario.setText(data);
-        holder.tvQuantidade.setText(String.valueOf(medicamento.getQuantidade()));
+        holder.tvFrequencia.setText("Frequência: "+frequencia);
+        holder.tvHorario.setText("Próximo horário: "+data);
+        holder.tvQuantidade.setText("Quantidade: "+medicamento.getQuantidade()+" "+medicamento.getMedida());
         if(medicamento.getFoto() != null && !medicamento.getFoto().isEmpty()){
             holder.ivFoto.setImageBitmap(BitmapUtils.base64ToBitmap(medicamento.getFoto()));
         }else{

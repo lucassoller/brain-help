@@ -1,5 +1,7 @@
 package com.example.demo.service.desempenho;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +19,13 @@ public class BuscarDesempenhosService {
 	
 	@Autowired
 	BuscarDiagnosticadoPorEmailService buscarDiagnosticado;
-	public List<Desempenho> buscar(String emailDiagnosticado, Date dataInicial, Date dataFinal){
+	public List<Desempenho> buscar(String emailDiagnosticado, String dataInicial, String dataFinal) throws ParseException{
 		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
-		return desempenhoRepository.findByDiagnosticadoAndDataRealizacaoBetween(diagnosticado, dataInicial, dataFinal);
+		
+		SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy");
+		Date dataI = dataFormat.parse(dataInicial);
+		Date dataF = dataFormat.parse(dataFinal);
+		
+		return desempenhoRepository.findByDiagnosticadoAndDataRealizacaoBetween(diagnosticado, dataI, dataF);
 	}
 }

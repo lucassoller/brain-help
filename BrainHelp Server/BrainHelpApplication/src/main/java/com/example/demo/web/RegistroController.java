@@ -6,15 +6,12 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.example.demo.model.Diagnosticado;
 import com.example.demo.model.Medico;
 import com.example.demo.model.dto.RedefinicaoSenhaRequestDto;
 import com.example.demo.repository.MedicoRepository;
 import com.example.demo.service.diagnosticado.CadastrarDiagnosticadoService;
 import com.example.demo.service.medico.CadastrarMedicoService;
-import com.example.demo.service.medico.EditarFotoMedicoService;
 import com.example.demo.service.medico.EditarSenhaMedicoService;
 
 @RestController
@@ -31,19 +28,11 @@ public class RegistroController {
 	EditarSenhaMedicoService editarSenhaMedico;
 	
 	@Autowired
-	EditarFotoMedicoService editarFotoMedico;
-	
-	@Autowired
 	MedicoRepository medicoRepository;
 	
 	@PostMapping("/medico")
-	public void cadastrarMedico(@RequestBody Medico medico) {
+	public void cadastrarMedico(@RequestBody Medico medico) throws Exception {
 		cadastrarMedico.salvar(medico);
-	}
-	
-	@PutMapping("/medico/editar/foto")
-	public void editarFotoMedico(MultipartFile file, RedirectAttributes redirectAttributes, String email) {
-		editarFotoMedico.editar(file, email);
 	}
 	
 	@PutMapping("/medico/editar/senha")

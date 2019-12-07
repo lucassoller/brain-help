@@ -22,6 +22,16 @@ export default class DiagnosticadoService {
             }
         })
     }
+
+    static buscarDesempenhos(email, dataInicial, dataFinal) {
+		return axios.get(`${CONFIG.API_URL_BASE}/desempenho/buscar/desempenhos?emailDiagnosticado=${email}&dataInicial=${dataInicial}&dataFinal=${dataFinal}`,
+        {
+            headers: {
+                authorization:  LoginService.getLoggedUser(),
+                'Content-Type': 'application/json',
+            }
+        })
+    }
     
     static buscarOutrosPacientesPorNome(nome) {
 		return axios.get(`${CONFIG.API_URL_BASE}/diagnosticado/buscar/todos/desvinculados/${nome}`,

@@ -2,7 +2,6 @@ import React from 'react'
 import Alert from '../generic/Alert/Alert'
 import CadastroService from '../../Services/CadastroService'
 import LoginService from '../../Services/LoginService'
-import RegisterService from '../../Services/RegisterService'
 import './Cadastro.css'
 import {Redirect} from 'react-router-dom'
 import $ from 'jquery'
@@ -32,6 +31,7 @@ export default class Cadastro extends React.Component{
             estado: '',
             bairro: '',
             cep: '',
+            foto: '',
             file: null,
             google: false,
             disabled: false,
@@ -55,20 +55,16 @@ export default class Cadastro extends React.Component{
         this.setarImagem(e)
     }
 
+    
     setarImagem(e){
+        var foto;
         var reader = new FileReader();     
         reader.onload = function(i) {
-            document.getElementById("info-imagem").setAttribute("src", reader.result )
-            document.getElementById("info-imagem").style.background = "none";
+            foto = reader.result;
+            document.getElementById("info-imagem").setAttribute("src", foto)
+            document.getElementById("info-imagem").style.background = "none";  
         }
         reader.readAsDataURL(e.target.files[0]);
-    }
-
-    enviarImagem(){ 
-        var formData = new FormData();
-        formData.append("file", this.state.file)
-        formData.append("email", this.state.email) 
-        RegisterService.editarFoto(formData)
     }
 
     componentDidMount(){
@@ -108,15 +104,14 @@ export default class Cadastro extends React.Component{
                 error: 'As senhas não coincidem'
             })
         }else{
+            var foto = document.getElementById("info-imagem").src;
+            foto = foto.split(",")[1];
             var endereco = {logradouro: account.logradouro, numero: account.numero, cidade: account.cidade,
             estado: account.estado, bairro: account.bairro, cep: account.cep};
             CadastroService
             .register(account.nome, account.sobrenome, account.email, account.senha,
-                account.google, account.telefone, endereco, account.especializacao)
+                account.google, account.telefone, endereco, account.especializacao, foto)
             .then((result) => {
-                if(this.state.file !== null){
-                    this.enviarImagem()
-                }
                 LoginService.login(this.state.email, this.state.senha)
                 .then((r) =>{
                     this.setSelectedContent(SELECTED_CONTENTS.HOME)

@@ -80,6 +80,7 @@ export default class Paciente extends React.Component{
                         telefone={paciente.telefone}
                         estagio={paciente.estagioAlzheimer}
                         tipoPaciente={this.props.tipoPaciente}
+                        foto={paciente.foto}
                     />
                 </div>
         

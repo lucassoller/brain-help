@@ -1,7 +1,7 @@
 import axios from 'axios'
 import CONFIG from '../config'
 export default class CadastroService {
-    static register(nome, sobrenome, email, senha, google, telefone, endereco, especializacao) {
+    static register(nome, sobrenome, email, senha, google, telefone, endereco, especializacao, foto) {
         return axios.post(`${CONFIG.API_URL_BASE}/public/registro/medico`, {
             nome,
             sobrenome,
@@ -11,6 +11,7 @@ export default class CadastroService {
             telefone,
             endereco,
             especializacao,
+            foto
         })
     }
 

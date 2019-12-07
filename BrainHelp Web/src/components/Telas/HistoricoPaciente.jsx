@@ -1,6 +1,7 @@
 import React from 'react'
 import './HistoricoPaciente.css'
 import DiagnosticadoService from '../../Services/DiagnosticadoService'
+import Desempenho from './Desempenho'
 export default class HistoricoPaciente extends React.Component{
     constructor(){
         super()
@@ -8,44 +9,49 @@ export default class HistoricoPaciente extends React.Component{
             paciente: {},
             endereco: {},
             estagio: '',
-            dataDiagnostico: '15/09/2000'
+            dataAtividade1: '',
+            dataAtividade2: '',
+            atividade: false
         }
+        this.onClickGerarRelatorios = this.onClickGerarRelatorios.bind(this)
+        this.handdleChange = this.handdleChange.bind(this)
+    }
+
+    handdleChange(event) {
+        const target = event.target
+        const value = target.value
+        const name = target.name
+        this.setState({
+            [name]: value
+        })
     }
 
     componentDidMount(){
         this.loadPaciente()
     }
 
-    loadPaciente(){
-        if(this.props.email !== undefined && this.props.email !== ''){
-            DiagnosticadoService.buscarPacientePorEmail(this.props.email)
-            .then((result ) => {
-                var estagio = "";
-                if(result.data.estagioAlzheimer === "INICIAL"){
-                    estagio = "Inicial";
-                }else if(result.data.estagioAlzheimer === "INTERMEDIARIO"){
-                    estagio = "Intermediário";
-                }else{
-                    estagio = "Avançado";
-                }
-                this.setState({
-                    paciente: result.data,
-                    endereco: result.data.endereco,
-                    estagio: estagio
-                })
-            }).catch((err) => {
-                this.setState({
-                    error: err.response.data.message
-                })
-            })
-        }
+    onClickGerarRelatorios(){
+        this.setState({
+            atividade: true
+        })
     }
 
-    render(){
-        return(<div className="historico-container">
-            <div className="historico-content">
+    renderConteudo(){
+        if(this.state.atividade && this.state.dataAtividade1 !== '' && this.state.dataAtividade2 !== ''){
+        
+            return (<Desempenho 
+                emailDiagnosticado = {this.state.paciente.email}
+                dataInicial = {this.state.dataAtividade1}
+                dataFinal = {this.state.dataAtividade2}
+            />)
+                
+        }else{
+            return(<div>
+                <div className="historico-content">
                 <div className="historico-circle">
-                    <div className="historico-foto"></div>
+                    <div className="historico-foto">
+                        <img src='' id="historico-imagem" alt=""/>
+                    </div>
                 </div>
                 <div className="historico-form">                                    
                     <div className="historico-combo">
@@ -137,6 +143,7 @@ export default class HistoricoPaciente extends React.Component{
                             value={this.state.dataAtividade1}
                             className="historico-input-data"
                             placeholder="dd/mm/AAAA"
+                            onChange={this.handdleChange}
                         />
                         <div className="historico-data-final historico-atividade-data">Até:</div>
                         <input 
@@ -145,10 +152,11 @@ export default class HistoricoPaciente extends React.Component{
                             value={this.state.dataAtividade2}
                             className="historico-input-data"
                             placeholder="dd/mm/AAAA"
+                            onChange={this.handdleChange}
                         />
                     </div>
                     <div className="historico-footer"> 
-                        <div className="historico-atividade-button">Gerar relatório</div>
+                        <div className="historico-atividade-button" onClick={this.onClickGerarRelatorios}>Gerar relatório</div>
                     </div>
                 </div>
                 <div className="historico-conversas">
@@ -176,6 +184,49 @@ export default class HistoricoPaciente extends React.Component{
                         </div>
                 </div>
             </div>
+        </div>
+        )
+        
+        }
+    }
+
+    loadPaciente(){
+        if(this.props.email !== undefined && this.props.email !== ''){
+            DiagnosticadoService.buscarPacientePorEmail(this.props.email)
+            .then((result ) => {
+                var estagio = "";
+                if(result.data.estagioAlzheimer === "INICIAL"){
+                    estagio = "Inicial";
+                }else if(result.data.estagioAlzheimer === "INTERMEDIARIO"){
+                    estagio = "Intermediário";
+                }else{
+                    estagio = "Avançado";
+                }
+
+                var foto = '';
+                if(result.data.foto !== '' || result.data.foto !== null){
+                    foto =  'data:image/png;base64,'+result.data.foto;
+                    document.getElementById("historico-imagem").src = foto;
+                }
+
+                var datas = result.data.dataDiagnostico.split('T')[0].split('-');
+                this.setState({
+                    paciente: result.data,
+                    endereco: result.data.endereco,
+                    estagio: estagio,
+                    dataDiagnostico: datas[2]+"/"+datas[1]+"/"+datas[0]
+                })
+            }).catch((err) => {
+                this.setState({
+                    error: err.response.data.message
+                })
+            })
+        }
+    }
+
+    render(){
+        return(<div className="historico-container">
+            {this.renderConteudo()}
         </div>)
     }
 }

@@ -3,7 +3,6 @@ import Alert from '../generic/Alert/Alert'
 import MedicoService from '../../Services/MedicoService'
 import './MeuPerfil.css'
 import {Redirect} from 'react-router-dom'
-import RegisterService from '../../Services/RegisterService'
 import $ from 'jquery'
 
 const SELECTED_CONTENTS = {
@@ -28,6 +27,7 @@ export default class MeuPerfil extends React.Component{
             estado: '',
             bairro: '',
             cep: '',
+            foto: '',
             file: null,
             selectedContent: SELECTED_CONTENTS.CADASTRO
         }
@@ -62,13 +62,6 @@ export default class MeuPerfil extends React.Component{
         reader.readAsDataURL(e.target.files[0]);
     }
 
-    enviarImagem(){ 
-        var formData = new FormData();
-        formData.append("file", this.state.file)
-        formData.append("email", this.state.email) 
-        RegisterService.editarFoto(formData)
-    }
-
     setColor(){
         $(".perfil-disabled").css("background", "rgb(233, 232, 232)");
         $(".perfil-disabled").css("color", "rgb(78, 76, 76)");
@@ -90,6 +83,14 @@ export default class MeuPerfil extends React.Component{
     loadMedicoLogado(){
         MedicoService.obterMedicoLogado()
         .then((result) => {  
+            var foto = '';
+            if(result.data.foto !== '' && result.data.foto !== null){
+                foto =  'data:image/png;base64,'+result.data.foto;
+                document.getElementById("perfil-imagem").style.background = "none";
+                document.getElementById("perfil-imagem").src = foto;
+            }
+
+            console.log(foto);
             this.setState({
                 nome: result.data.nome,
                 sobrenome: result.data.sobrenome,
@@ -101,7 +102,7 @@ export default class MeuPerfil extends React.Component{
                 estado: result.data.endereco.estado,
                 cidade: result.data.endereco.cidade,
                 bairro: result.data.endereco.bairro,
-                cep: result.data.endereco.cep
+                cep: result.data.endereco.cep,
             })       
         }).catch((err) => {
             this.setState({
@@ -117,15 +118,14 @@ export default class MeuPerfil extends React.Component{
                 error: 'As senhas não coincidem'
             })
         }else{
+            var foto = document.getElementById("perfil-imagem").src;
+            foto = foto.split(",")[1];
             var endereco = {logradouro: account.logradouro, numero: account.numero, cidade: account.cidade,
             estado: account.estado, bairro: account.bairro, cep: account.cep};
             MedicoService
             .editarPerfil(account.nome, account.sobrenome, account.telefone, endereco, 
-                account.especializacao)
-            .then(() => {     
-                if(this.state.file !== null){
-                    this.enviarImagem()
-                }   
+                account.especializacao, foto)
+            .then(() => {      
             }).catch((err) => {
                 this.setState({
                     error: err.response.data.message
@@ -157,7 +157,7 @@ export default class MeuPerfil extends React.Component{
                     <div className="perfil-form">
                     <div className="perfil-left">
                         <div className="perfil-foto">
-                            <img src="" id="perfil-imagem" alt=""/>
+                            <img src='' id="perfil-imagem" alt=""/>
                         </div>
                         <div className="perfil-upload">
                             <div onClick={this.onClickUpload}>Enviar foto</div>

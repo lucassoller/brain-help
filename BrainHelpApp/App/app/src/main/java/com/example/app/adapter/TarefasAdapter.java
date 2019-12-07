@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import com.example.app.R;
-import com.example.app.classes.Tarefa;
+import com.example.app.model.Tarefa;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;

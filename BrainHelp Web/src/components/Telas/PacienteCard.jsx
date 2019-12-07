@@ -14,7 +14,8 @@ export default class PacienteCard extends React.Component{
         super()
         this.state = {
             vinculado: false,
-            selectedContent: SELECTED_CONTENTS.MEUSPACIENTES
+            selectedContent: SELECTED_CONTENTS.MEUSPACIENTES,
+            foto: ''
         }
         this.onClickVincular = this.onClickVincular.bind(this)
         this.onClickCard = this.onClickCard.bind(this)
@@ -61,6 +62,15 @@ export default class PacienteCard extends React.Component{
         }
     }
 
+    renderFoto(){
+        var foto = '';
+        if(this.props.foto !== '' || this.props.foto !== null){
+            foto =  'data:image/png;base64,'+this.props.foto;
+        }
+
+        return foto;
+    }
+
     renderEstagio(){
        if(this.props.estagio === 'INICIAL'){
             return 'Inicial'
@@ -77,7 +87,9 @@ export default class PacienteCard extends React.Component{
             return <Redirect to = {'/home/paciente/'+this.props.email}/>
         }
         return(<div className="pacienteCard-container" onClick={this.onClickCard}>
-            <div className="pacienteCard-foto"></div>
+            <div className="pacienteCard-foto">
+                <img src={this.renderFoto()} id="pacienteCard-imagem" alt=""/>
+            </div>
             <div className="pacienteCard-info">
                 <div className="pacienteCard-nome">{this.props.nome+" "+this.props.sobrenome}</div>
                 <div className="pacienteCard-outro">Telefone: {this.props.telefone}</div>

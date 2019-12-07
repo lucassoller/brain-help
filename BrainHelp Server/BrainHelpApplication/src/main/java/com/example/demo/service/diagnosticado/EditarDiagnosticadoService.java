@@ -64,7 +64,7 @@ public class EditarDiagnosticadoService {
 		}
 		
 		if (!Objects.isNull(diagnosticado.getFoto()) && !diagnosticado.getFoto().isEmpty()) {
-			if(!diagnosticadoParaEditar.getFoto().isEmpty()) {
+			if(diagnosticadoParaEditar.getFoto() != null && !diagnosticadoParaEditar.getFoto().isEmpty()) {
 				ImageFileWriter.deleteFile(diagnosticadoParaEditar.getFoto());
 			}
 			String base64 = diagnosticado.getFoto();

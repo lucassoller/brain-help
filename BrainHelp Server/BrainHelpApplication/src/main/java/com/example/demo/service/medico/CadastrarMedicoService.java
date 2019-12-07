@@ -7,6 +7,7 @@ import com.example.demo.model.Medico;
 import com.example.demo.model.security.password.Criptografia;
 import com.example.demo.repository.MedicoRepository;
 import com.example.demo.service.endereco.CadastrarEnderecoService;
+import com.example.demo.utils.ImageFileWriter;
 
 @Service
 public class CadastrarMedicoService {
@@ -20,7 +21,7 @@ public class CadastrarMedicoService {
 	@Autowired
 	CadastrarEnderecoService cadastrarEndereco;
 	
-	public void salvar(Medico medico) {
+	public void salvar(Medico medico) throws Exception {
 		if (Objects.isNull(medico.getNome()) || medico.getNome().isEmpty()) {
 			throw new IllegalArgumentException("O nome não pode estar em branco");
 		}
@@ -47,7 +48,12 @@ public class CadastrarMedicoService {
 		
 		if (Objects.isNull(medico.getEndereco())) {
 			throw new IllegalArgumentException("O endereço não pode estar em branco");
-		}		   
+		}
+		
+		if(!Objects.isNull(medico.getFoto()) && !medico.getFoto().isEmpty()) {
+			String base64 = medico.getFoto();
+			medico.setFoto(ImageFileWriter.saveImageToFolder(null, base64));
+		}
 		
 		cadastrarEndereco.salvar(medico.getEndereco());
 		medicoRepository.save(medico);

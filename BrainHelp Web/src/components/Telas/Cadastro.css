@@ -192,6 +192,11 @@
     cursor: pointer;
  }
 
+ .info-left{
+    margin-top: 10px;;
+    margin-right: 20px;
+ }
+
 .info-upload{
     margin-top: 10px;
     width: 160px;

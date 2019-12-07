@@ -198,7 +198,7 @@ export default class Home extends React.Component{
                     <div className="closebtn" onClick={this.closeNav}>x</div>
                     <div className="nav-item" onClick={this.onClickMeusPacientes}>Página Inicial</div>
                     <div className="nav-item" onClick={this.onClickVincularPacientes}>Vincular Pacientes</div>
-                    <div className="nav-item">Relatórios Gerados</div>
+                    {/* <div className="nav-item">Relatórios Gerados</div> */}
                 </div>
 
                 <div id="mySidenav2" className="sidenav2">

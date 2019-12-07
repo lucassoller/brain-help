@@ -15,8 +15,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.example.app.R;
-import com.example.app.activities.JogoDaMemoriaActivity;
-import com.example.app.classes.Atividade;
+import com.example.app.activity.JogoDaMemoriaActivity;
+import com.example.app.model.Atividade;
 import java.util.List;
 
 public class JogosAdapter extends ArrayAdapter<Atividade> {

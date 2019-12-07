@@ -1,5 +1,6 @@
 package com.example.demo.web;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,7 @@ public class DesempenhoController {
 	}
 	
 	@GetMapping("/buscar/desempenhos")
-	public List<Desempenho> buscarDesempenhosDeAtividades(@RequestParam("emailDiagnosticado") String emailDiagnosticado, @RequestParam("dataInicial") Date dataInicial, @RequestParam("dataFinal") Date dataFinal){
+	public List<Desempenho> buscarDesempenhosDeAtividades(@RequestParam("emailDiagnosticado") String emailDiagnosticado, @RequestParam("dataInicial") String dataInicial, @RequestParam("dataFinal") String dataFinal) throws ParseException{
 		return buscarDesempenhos.buscar(emailDiagnosticado, dataInicial, dataFinal);
 	}
 	

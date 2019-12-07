@@ -13,13 +13,14 @@ export default class MedicoService {
         })
     }
 
-    static editarPerfil(nome, sobrenome, telefone, endereco, especializacao) {
-        return axios.put(`${CONFIG.API_URL_BASE}/medico/editar/perfil`, {
+    static editarPerfil(nome, sobrenome, telefone, endereco, especializacao, foto) {
+        return axios.put(`${CONFIG.API_URL_BASE}/medico/editar`, {
             nome,
             sobrenome,  
             telefone,
             endereco,
             especializacao,
+            foto
         },
         {
             headers: {

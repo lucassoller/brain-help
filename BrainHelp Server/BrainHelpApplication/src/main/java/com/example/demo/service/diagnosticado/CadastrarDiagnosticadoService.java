@@ -63,12 +63,12 @@ public class CadastrarDiagnosticadoService {
 			throw new IllegalArgumentException("O endereço não pode estar em branco");
 		}
 		
+		buscarEmailUsadoService.buscar(diagnosticado.getEmail());
+		
 		if(!Objects.isNull(diagnosticado.getFoto()) && !diagnosticado.getFoto().isEmpty()) {
 			String base64 = diagnosticado.getFoto();
 			diagnosticado.setFoto(ImageFileWriter.saveImageToFolder(null, base64));
 		}
-		
-		buscarEmailUsadoService.buscar(diagnosticado.getEmail());
 		
 		Criptografia criptografia = new Criptografia();
 		diagnosticado.setSenha(criptografia.criptografarSenha(diagnosticado.getSenha()));

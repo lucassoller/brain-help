@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.model.Medico;
 import com.example.demo.repository.MedicoRepository;
 import com.example.demo.service.endereco.EditarEnderecoService;
+import com.example.demo.utils.ImageFileWriter;
 
 @Service
 public class EditarMedicoService {
@@ -32,7 +33,13 @@ public class EditarMedicoService {
 			medicoParaEditar.setEspecializacao(medico.getEspecializacao());
 		}
 		if(!Objects.isNull(medico.getEndereco())) {
+			medico.getEndereco().setCodEndereco(medicoParaEditar.getEndereco().getCodEndereco());
 			editarEndereco.editar(medico.getEndereco());
+		}
+		
+		if(!Objects.isNull(medico.getFoto()) && !medico.getFoto().isEmpty()) {
+			String base64 = medico.getFoto();
+			medicoParaEditar.setFoto(ImageFileWriter.saveImageToFolder(null, base64));
 		}
 		medicoRepository.save(medicoParaEditar);
 	}
