@@ -13,7 +13,7 @@ public class BuscarDiagnosticadoPorEmailService {
 	@Autowired
 	DiagnosticadoRepository diagnosticadoRepository;
 
-	public Diagnosticado buscar(String email) {
+	public Diagnosticado buscar(String email, boolean foto) {
 		if ((Objects.isNull(email) || email.isEmpty())) {
 			throw new IllegalArgumentException("O email não pode estar em branco");
 		}
@@ -21,7 +21,7 @@ public class BuscarDiagnosticadoPorEmailService {
 		Diagnosticado diagnosticado = diagnosticadoRepository.findByEmail(email)
 				.orElseThrow(() -> new IllegalArgumentException("Nenhum diagnosticado foi encontrado"));
 		
-		if(!Objects.isNull(diagnosticado.getFoto()) && !diagnosticado.getFoto().isEmpty()) {
+		if(foto && !Objects.isNull(diagnosticado.getFoto()) && !diagnosticado.getFoto().isEmpty()) {
 			try {
 				diagnosticado.setFoto(ImageFileWriter.returnBase64FromFile(diagnosticado.getFoto()));
 			} catch (Exception e) {

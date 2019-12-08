@@ -39,11 +39,11 @@ export default class HistoricoPaciente extends React.Component{
     renderConteudo(){
         if(this.state.atividade && this.state.dataAtividade1 !== '' && this.state.dataAtividade2 !== ''){
         
-            return (<Desempenho 
+            return (<div className="historico-content-desempenho"><Desempenho 
                 emailDiagnosticado = {this.state.paciente.email}
                 dataInicial = {this.state.dataAtividade1}
                 dataFinal = {this.state.dataAtividade2}
-            />)
+            /></div>)
                 
         }else{
             return(<div>
@@ -165,16 +165,16 @@ export default class HistoricoPaciente extends React.Component{
                         <div className="historico-atividade-data">Data (de):</div>
                             <input 
                                 type="date"
-                                name="dataAtividade1"
-                                value={this.state.dataAtividade1}
+                                name="dataAtividade3"
+                                value={this.state.dataAtividade3}
                                 className="historico-input-data"
                                 placeholder="dd/mm/AAAA"
                             />
                             <div className="historico-data-final historico-atividade-data">Até:</div>
                             <input 
                                 type="date"
-                                name="dataAtividade2"
-                                value={this.state.dataAtividade2}
+                                name="dataAtividade4"
+                                value={this.state.dataAtividade4}
                                 className="historico-input-data"
                                 placeholder="dd/mm/AAAA"
                             />

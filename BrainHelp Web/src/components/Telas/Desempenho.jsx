@@ -1,6 +1,7 @@
 import React from 'react'
 import DesempenhoCard from './DesempenhoCard'
 import DiagnosticadoService from '../../Services/DiagnosticadoService'
+import './DesempenhoCard.css'
 export default class Desempenho extends React.Component{
     constructor(){
         super()
@@ -28,22 +29,22 @@ export default class Desempenho extends React.Component{
 
     renderDesempenhos() {
             const desempenhos = this.state.desempenhos.map((desempenho) => {              
-                return <div>
+                return (<div className= "large">
                     <DesempenhoCard
                         atividade={desempenho.atividade}
                         pontuacao={desempenho.pontuacao}
-                        dataRelizacao={desempenho.dataRelizacao}
+                        dataRealizacao={desempenho.dataRealizacao}
                         avaliacaoDesempenho={desempenho.avaliacaoDesempenho}
                     />
-                </div>
+                </div>)
             })
-            return <div>
+            return (<div className= "large">
                 {desempenhos}
-            </div>
+            </div>)
     }
 
     render(){
-        return(<div>
+        return(<div className= "large">
             {this.renderDesempenhos()}
         </div>)
     }

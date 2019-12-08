@@ -15,7 +15,7 @@ public class DeletarDiagnosticadoService {
 	DiagnosticadoRepository diagnosticadoRepository;
 	
 	public void deletar(String emailDiagnosticado) {
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado, false);
 		diagnosticadoRepository.delete(diagnosticado);
 	}
 }

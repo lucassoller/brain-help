@@ -21,7 +21,7 @@ public class EditarDiagnosticadoService {
 	DiagnosticadoRepository diagnosticadoRepository;
 	
 	public void editar(String emailDiagnosticado, Diagnosticado diagnosticado) throws Exception {
-		Diagnosticado diagnosticadoParaEditar = buscarDiagnosticado.buscar(emailDiagnosticado);
+		Diagnosticado diagnosticadoParaEditar = buscarDiagnosticado.buscar(emailDiagnosticado, false);
 		
 		if (!Objects.isNull(diagnosticado.getNome()) && !diagnosticado.getNome().isEmpty()) {
 			diagnosticadoParaEditar.setNome(diagnosticado.getNome());

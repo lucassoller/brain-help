@@ -20,11 +20,13 @@ public class BuscarDesempenhosService {
 	@Autowired
 	BuscarDiagnosticadoPorEmailService buscarDiagnosticado;
 	public List<Desempenho> buscar(String emailDiagnosticado, String dataInicial, String dataFinal) throws ParseException{
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado, false);
 		
 		SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy");
-		Date dataI = dataFormat.parse(dataInicial);
-		Date dataF = dataFormat.parse(dataFinal);
+		String [] datasI = dataInicial.split("-");
+		String [] datasF = dataFinal.split("-");
+		Date dataI = dataFormat.parse(datasI[2]+"/"+datasI[1]+"/"+datasI[0]);
+		Date dataF = dataFormat.parse(datasF[2]+"/"+datasF[1]+"/"+datasF[0]);
 		
 		return desempenhoRepository.findByDiagnosticadoAndDataRealizacaoBetween(diagnosticado, dataI, dataF);
 	}

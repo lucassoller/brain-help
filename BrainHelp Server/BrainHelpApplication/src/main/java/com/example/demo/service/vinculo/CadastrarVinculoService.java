@@ -23,7 +23,7 @@ public class CadastrarVinculoService {
 	BuscarDiagnosticadoPorEmailService buscarDiagnosticado;
 
 	public void salvar(String emailDiagnosticado, Vinculo vinculo) throws Exception {
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado, false);
 		
 		if (Objects.isNull(vinculo.getNome()) || vinculo.getNome().isEmpty()) {
 			throw new IllegalArgumentException("O nome não pode estar em branco");

@@ -23,7 +23,7 @@ public class BuscarMedicamentosDoUsuarioService {
 		if (Objects.isNull(emailDiagnosticado) || emailDiagnosticado.isEmpty()) {
 			throw new IllegalArgumentException("O email do diagnosticado não pode estar em branco");
 		}
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado, false);
 		List<Medicamento> medicamentos = medicamentoRepository.findByDiagnosticado(diagnosticado);
 		medicamentos.stream().forEach(medicamento ->{
 			try {

@@ -32,7 +32,7 @@ public class CadastrarFotografiaService {
 			String base64 = fotografia.getFoto();
 			fotografia.setFoto(ImageFileWriter.saveImageToFolder(null, base64));
 		}
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado, false);
 		
 		fotografia.setDiagnosticado(diagnosticado);
 		fotografiaRepository.save(fotografia);

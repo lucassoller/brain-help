@@ -11,9 +11,6 @@ import com.example.demo.model.security.password.Criptografia;
 
 @Service
 public class LogarMedicoService {
-//
-//	@Autowired
-//	private BuscarMedicoPorEmailOuIdService buscarMedico;
 	
 	@Autowired
 	private BuscarMedicoPorEmailService buscarMedico;
@@ -33,7 +30,7 @@ public class LogarMedicoService {
 		}
 
 		Criptografia criptografia = new Criptografia();
-		Medico medico = buscarMedico.buscar(loginDto.getIdentificacao());
+		Medico medico = buscarMedico.buscar(loginDto.getIdentificacao(), false);
 
 		if(!criptografia.senhaIgual(loginDto.getSenha(), medico.getSenha())){
 			throw new IllegalArgumentException("Senha incorreta");

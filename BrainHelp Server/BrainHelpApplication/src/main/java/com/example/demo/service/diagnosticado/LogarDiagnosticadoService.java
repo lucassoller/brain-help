@@ -30,7 +30,7 @@ public class LogarDiagnosticadoService {
 		}
 
 		Criptografia criptografia = new Criptografia();
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(loginDto.getIdentificacao());
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(loginDto.getIdentificacao(), false);
 
 		if(!criptografia.senhaIgual(loginDto.getSenha(), diagnosticado.getSenha())){
 			throw new IllegalArgumentException("Senha incorreta");

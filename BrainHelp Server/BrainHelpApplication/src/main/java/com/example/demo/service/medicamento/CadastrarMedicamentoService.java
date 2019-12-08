@@ -40,7 +40,7 @@ public class CadastrarMedicamentoService {
 			medicamento.setFoto(ImageFileWriter.saveImageToFolder(null, base64));
 		}
 		
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado, false);
 		medicamento.setDiagnosticado(diagnosticado);
 		medicamentoRepository.save(medicamento);
 	}

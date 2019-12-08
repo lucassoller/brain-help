@@ -19,7 +19,7 @@ public class EditarSenhaDiagnosticadoService {
 	DiagnosticadoRepository diagnosticadoRepository;
 	
 	public void editar(String emailDiagnosticado, RedefinicaoSenhaRequestDto redefinicaoSenha) {
-		Diagnosticado diagnosticadoParaEditar = buscarDiagnosticado.buscar(emailDiagnosticado);
+		Diagnosticado diagnosticadoParaEditar = buscarDiagnosticado.buscar(emailDiagnosticado, false);
 		
 		if (Objects.isNull(redefinicaoSenha.getSenhaAtual()) || redefinicaoSenha.getSenhaAtual().isEmpty()) {
 			throw new IllegalArgumentException("A senha atual não pode estar em branco");

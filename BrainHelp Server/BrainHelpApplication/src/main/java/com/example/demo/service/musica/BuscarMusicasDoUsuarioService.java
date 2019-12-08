@@ -22,7 +22,7 @@ public class BuscarMusicasDoUsuarioService {
 		if (Objects.isNull(emailDiagnosticado) || emailDiagnosticado.isEmpty()) {
 			throw new IllegalArgumentException("O email do diagnosticado não pode estar em branco");
 		}
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado, false);
 		return musicaRepository.findByDiagnosticado(diagnosticado);
 	}
 }

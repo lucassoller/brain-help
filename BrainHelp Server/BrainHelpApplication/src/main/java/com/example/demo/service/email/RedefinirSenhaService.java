@@ -26,7 +26,7 @@ public class RedefinirSenhaService {
 		String emailRecuperacao = url.split(":")[0];
 		long dataUrl = Long.parseLong(url.split(":")[1]);
 		
-		buscarMedico.buscar(emailRecuperacao);
+		buscarMedico.buscar(emailRecuperacao, false);
 		
 		GregorianCalendar gc = new GregorianCalendar();
 		

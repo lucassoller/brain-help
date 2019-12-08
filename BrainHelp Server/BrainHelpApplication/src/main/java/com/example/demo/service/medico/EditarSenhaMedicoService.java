@@ -25,7 +25,7 @@ public class EditarSenhaMedicoService {
 			throw new IllegalArgumentException("A senha não pode estar em branco");
 		}
 		
-		Medico medico = buscarMedico.buscar(redefinicaoRequest.getEmail());
+		Medico medico = buscarMedico.buscar(redefinicaoRequest.getEmail(), false);
 		
 		Criptografia criptografia = new Criptografia();
 		medico.setSenha(criptografia.criptografarSenha(redefinicaoRequest.getSenha()));

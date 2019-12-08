@@ -15,7 +15,7 @@ public class DeletarMedicoService {
 	MedicoRepository medicoRepository;
 	
 	public void deletar(String emailMedico) {
-		Medico medico = buscarMedico.buscar(emailMedico);
+		Medico medico = buscarMedico.buscar(emailMedico, false);
 		medicoRepository.delete(medico);
 	}
 }

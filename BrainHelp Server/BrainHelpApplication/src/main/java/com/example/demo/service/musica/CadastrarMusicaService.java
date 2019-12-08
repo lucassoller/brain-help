@@ -27,7 +27,7 @@ public class CadastrarMusicaService {
 			throw new IllegalArgumentException("O nome do cantor não pode estar em branco");
 		}
 		
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado, false);
 		musica.setDiagnosticado(diagnosticado);
 		musicaRepository.save(musica);
 	}

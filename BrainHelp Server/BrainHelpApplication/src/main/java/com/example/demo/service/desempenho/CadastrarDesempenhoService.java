@@ -31,7 +31,7 @@ public class CadastrarDesempenhoService {
 			throw new IllegalArgumentException("A avaliação do desempenho não pode estar em branco");
 		}
 		
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado, false);
 		desempenho.setDiagnosticado(diagnosticado);
 		
 		desempenhoRepository.save(desempenho);

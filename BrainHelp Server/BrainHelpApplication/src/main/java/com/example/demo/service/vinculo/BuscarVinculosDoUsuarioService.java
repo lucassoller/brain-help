@@ -24,7 +24,7 @@ public class BuscarVinculosDoUsuarioService {
 		if (Objects.isNull(emailDiagnosticado) || emailDiagnosticado.isEmpty()) {
 			throw new IllegalArgumentException("O email do diagnosticado não pode estar em branco");
 		}
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado, false);
 		List<Vinculo> vinculos = vinculoRepository.findByDiagnosticado(diagnosticado);
 		vinculos.stream().forEach(vinculo ->{
 			try {

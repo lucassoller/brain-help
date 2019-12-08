@@ -28,8 +28,8 @@ public class VincularDiagnosticadoService {
 			throw new IllegalArgumentException("O email do diagnosticado não pode estar em branco");
 		}
 
-		Medico medico = buscarMedico.buscar(emailMedico);
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado);
+		Medico medico = buscarMedico.buscar(emailMedico, false);
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(emailDiagnosticado, false);
 		
 		diagnosticado.setMedico(medico);
 		

@@ -49,7 +49,7 @@ public class MedicoController {
 	
 	@GetMapping("/buscar/{EMAIL}")
 	public Medico buscarPorEmail(@PathVariable("EMAIL") String email){
-		return buscarMedicoPorEmail.buscar(email);
+		return buscarMedicoPorEmail.buscar(email, true);
 	}
 	
 	@GetMapping("/vincular/{EMAIL}")

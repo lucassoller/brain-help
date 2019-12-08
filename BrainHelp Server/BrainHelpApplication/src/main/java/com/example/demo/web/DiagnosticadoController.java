@@ -53,12 +53,12 @@ public class DiagnosticadoController {
 	
 	@GetMapping("/buscar/{EMAIL}")
 	public Diagnosticado buscarPorEmail(@PathVariable("EMAIL") String email){
-		return buscarDiagnosticadoPorEmail.buscar(email);
+		return buscarDiagnosticadoPorEmail.buscar(email, true);
 	}
 	
 	@GetMapping("/buscar/logado")
 	public Diagnosticado buscarLogado(@AuthenticationPrincipal UserPrincipal userPrincipal){
-		return buscarDiagnosticadoPorEmail.buscar(userPrincipal.getEmail());
+		return buscarDiagnosticadoPorEmail.buscar(userPrincipal.getEmail(), true);
 	}
 	
 	@GetMapping("/buscar/todos/vinculados/{NOME}")

@@ -48,7 +48,7 @@ public class CadastrarListaEnderecoService {
 			endereco.setFoto(ImageFileWriter.saveImageToFolder(null, base64));
 		}
 		
-		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(email);
+		Diagnosticado diagnosticado = buscarDiagnosticado.buscar(email, false);
 		
 		endereco.setDiagnosticado(diagnosticado);
 		enderecoRepository.save(endereco);

@@ -13,7 +13,7 @@ public class BuscarMedicoPorEmailService {
 	@Autowired
 	MedicoRepository medicoRepository;
 
-	public Medico buscar(String emailMedico) {
+	public Medico buscar(String emailMedico, boolean foto) {
 		if ((Objects.isNull(emailMedico) || emailMedico.isEmpty())) {
 			throw new IllegalArgumentException("O email não pode estar em branco");
 		}		
@@ -21,7 +21,7 @@ public class BuscarMedicoPorEmailService {
 		Medico medico = medicoRepository.findByEmail(emailMedico)
 				.orElseThrow(() -> new IllegalArgumentException("Usuário não encontrado"));
 		
-		if(!Objects.isNull(medico.getFoto()) && !medico.getFoto().isEmpty()) {
+		if(foto && !Objects.isNull(medico.getFoto()) && !medico.getFoto().isEmpty()) {
 			try {
 				medico.setFoto(ImageFileWriter.returnBase64FromFile(medico.getFoto()));
 			} catch (Exception e) {
