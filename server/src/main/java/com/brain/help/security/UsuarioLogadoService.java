@@ -2,38 +2,48 @@ package com.brain.help.security;
 
 import com.brain.help.entity.Dependente;
 import com.brain.help.entity.Medico;
-import com.brain.help.repository.DiagnosticadoRepository;
+import com.brain.help.repository.DependenteRepository;
 import com.brain.help.repository.MedicoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class UsuarioLogadoService {
 
-    private final DiagnosticadoRepository diagnosticadoRepository;
+    private final DependenteRepository dependenteRepository;
     private final MedicoRepository medicoRepository;
 
-    public String getEmailLogado() {
+    private Authentication getAuthentication() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || !authentication.isAuthenticated() || authentication.getName() == null) {
             throw new UsernameNotFoundException("Nenhum usuário autenticado na sessão.");
         }
-        return authentication.getName();
+        return authentication;
     }
 
-    public Dependente getDiagnosticadoLogado() {
-        String email = getEmailLogado();
-        return diagnosticadoRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("Diagnosticado não encontrado: " + email));
+    public String getEmailLogado() {
+        return getAuthentication().getName();
+    }
+
+    public Dependente getDependenteLogado() {
+        Authentication auth = getAuthentication();
+        if (auth.getPrincipal() instanceof Dependente dependente) {
+            return dependente;
+        }
+        return dependenteRepository.findByEmail(auth.getName())
+                .orElseThrow(() -> new UsernameNotFoundException("Dependente não encontrado: " + auth.getName()));
     }
 
     public Medico getMedicoLogado() {
-        String email = getEmailLogado();
-        return medicoRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("Médico não encontrado: " + email));
+        Authentication auth = getAuthentication();
+        if (auth.getPrincipal() instanceof Medico medico) {
+            return medico;
+        }
+        return medicoRepository.findByEmail(auth.getName())
+                .orElseThrow(() -> new UsernameNotFoundException("Médico não encontrado: " + auth.getName()));
     }
 }

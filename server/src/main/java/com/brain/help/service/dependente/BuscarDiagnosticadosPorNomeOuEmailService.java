@@ -5,14 +5,14 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.brain.help.entity.Dependente;
-import com.brain.help.repository.DiagnosticadoRepository;
+import com.brain.help.repository.DependenteRepository;
 import com.brain.help.utils.ImageFileWriter;
 
 @Service
 public class BuscarDiagnosticadosPorNomeOuEmailService {
 
 	@Autowired
-	DiagnosticadoRepository diagnosticadoRepository;
+    DependenteRepository dependenteRepository;
 
 	public List<Dependente> buscar(String email, String nome, boolean medicoPresente) {
 		if ((Objects.isNull(email) || email.isEmpty())) {
@@ -26,9 +26,9 @@ public class BuscarDiagnosticadosPorNomeOuEmailService {
 		List<Dependente> dependentes;
 		
 		if(medicoPresente) {
-			dependentes = diagnosticadoRepository.findByMedico(email, nome);
+			dependentes = dependenteRepository.findByMedico(email, nome);
 		}else {
-			dependentes = diagnosticadoRepository.findByMedicoNotLike(nome);
+			dependentes = dependenteRepository.findByMedicoNotLike(nome);
 		}
 		
 		dependentes.stream().forEach(diagnosticado ->{

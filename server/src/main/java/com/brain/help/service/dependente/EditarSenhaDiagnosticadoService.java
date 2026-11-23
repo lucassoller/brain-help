@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.brain.help.entity.Dependente;
 import com.brain.help.dto.senha.RedefinicaoSenhaRequestDto;
 import com.brain.help.config.password.Criptografia;
-import com.brain.help.repository.DiagnosticadoRepository;
+import com.brain.help.repository.DependenteRepository;
 
 @Service
 public class EditarSenhaDiagnosticadoService {
@@ -16,7 +16,7 @@ public class EditarSenhaDiagnosticadoService {
 	BuscarDiagnosticadoPorEmailService buscarDiagnosticado;
 	
 	@Autowired
-	DiagnosticadoRepository diagnosticadoRepository;
+    DependenteRepository dependenteRepository;
 	
 	public void editar(String emailDiagnosticado, RedefinicaoSenhaRequestDto redefinicaoSenha) {
 		Dependente dependenteParaEditar = buscarDiagnosticado.buscar(emailDiagnosticado, false);
@@ -37,6 +37,6 @@ public class EditarSenhaDiagnosticadoService {
 		}
 		
 		dependenteParaEditar.setSenha(criptografia.criptografarSenha(redefinicaoSenha.getSenha()));
-		diagnosticadoRepository.save(dependenteParaEditar);
+		dependenteRepository.save(dependenteParaEditar);
 	}
 }

@@ -1,16 +1,21 @@
 package com.brain.help.entity;
 
+import java.util.Collection;
 import java.util.List;
 import jakarta.persistence.*;
 import lombok.*;
+import org.jspecify.annotations.Nullable;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
-@EqualsAndHashCode(callSuper = true)
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "medico")
-public class Medico extends Usuario{
+public class Medico implements UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,7 +53,17 @@ public class Medico extends Usuario{
 	private List<Dependente> dependentes;
 
 	@Override
-	public String getRole() {
-		return "ROLE_MEDICO";
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return List.of(new SimpleGrantedAuthority("ROLE_MEDICO"));
+	}
+
+	@Override
+	public @Nullable String getPassword() {
+		return this.getSenha();
+	}
+
+	@Override
+	public String getUsername() {
+		return this.getEmail();
 	}
 }

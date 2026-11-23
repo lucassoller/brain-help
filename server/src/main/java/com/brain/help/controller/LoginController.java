@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.brain.help.entity.Medico;
 import com.brain.help.dto.login.LoginRequestDto;
 import com.brain.help.dto.login.LoginResponseDto;
-import com.brain.help.repository.DiagnosticadoRepository;
+import com.brain.help.repository.DependenteRepository;
 import com.brain.help.repository.MedicoRepository;
 import com.brain.help.service.dependente.LogarDiagnosticadoService;
 import com.brain.help.service.medico.LogarMedicoGoogleService;
@@ -30,7 +30,7 @@ public class LoginController {
 	LogarDiagnosticadoService logarDiagnosticado;
 	
 	@Autowired
-	DiagnosticadoRepository d;
+    DependenteRepository d;
 	
 	@Autowired
 	MedicoRepository mr;

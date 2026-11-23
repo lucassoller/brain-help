@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.brain.help.entity.Dependente;
 import com.brain.help.config.password.Criptografia;
-import com.brain.help.repository.DiagnosticadoRepository;
+import com.brain.help.repository.DependenteRepository;
 import com.brain.help.service.endereco.CadastrarEnderecoService;
 import com.brain.help.utils.ImageFileWriter;
 
@@ -13,7 +13,7 @@ import com.brain.help.utils.ImageFileWriter;
 public class CadastrarDiagnosticadoService {
 
 	@Autowired
-	DiagnosticadoRepository diagnosticadoRepository;
+	DependenteRepository dependenteRepository;
 
 	@Autowired
 	CadastrarEnderecoService cadastrarEndereco;
@@ -74,6 +74,6 @@ public class CadastrarDiagnosticadoService {
 		dependente.setSenha(criptografia.criptografarSenha(dependente.getSenha()));
 		
 		cadastrarEndereco.salvar(dependente.getEndereco());
-		diagnosticadoRepository.save(dependente);
+		dependenteRepository.save(dependente);
 	}
 }

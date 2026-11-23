@@ -5,21 +5,21 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.brain.help.entity.Dependente;
-import com.brain.help.repository.DiagnosticadoRepository;
+import com.brain.help.repository.DependenteRepository;
 import com.brain.help.utils.ImageFileWriter;
 
 @Service
 public class BuscarDiagnosticadosVinculadosService {
 
 	@Autowired
-	DiagnosticadoRepository diagnosticadoRepository;
+    DependenteRepository dependenteRepository;
 
 	public List<Dependente> buscar(String emailMedico) {
 		if ((Objects.isNull(emailMedico) || emailMedico.isEmpty())) {
 			throw new IllegalArgumentException("O email não pode estar em branco");
 		}
 		
-		List<Dependente> dependentes = diagnosticadoRepository.findAllByMedico(emailMedico);
+		List<Dependente> dependentes = dependenteRepository.findAllByMedico(emailMedico);
 
 		
 		dependentes.stream().forEach(diagnosticado ->{

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.brain.help.entity.Dependente;
 import com.brain.help.dto.senha.RedefinicaoSenhaRequestDto;
-import com.brain.help.repository.DiagnosticadoRepository;
+import com.brain.help.repository.DependenteRepository;
 import com.brain.help.service.dependente.BuscarDiagnosticadoPorEmailService;
 import com.brain.help.service.dependente.BuscarDiagnosticadosPorNomeOuEmailService;
 import com.brain.help.service.dependente.BuscarDiagnosticadosVinculadosService;
@@ -25,7 +25,7 @@ import com.brain.help.service.dependente.EditarSenhaDiagnosticadoService;
 public class DiagnosticadoController {
 	
 	@Autowired
-	private DiagnosticadoRepository diagnosticadoRepository;
+	private DependenteRepository dependenteRepository;
 	
 	@Autowired
 	private BuscarDiagnosticadoPorEmailService buscarDiagnosticadoPorEmail;
@@ -47,7 +47,7 @@ public class DiagnosticadoController {
 	
 	@GetMapping("/buscar/todos")
 	public List<Dependente> buscarTodos(){
-		return diagnosticadoRepository.findAll();
+		return dependenteRepository.findAll();
 	}
 	
 	@GetMapping("/buscar/{EMAIL}")

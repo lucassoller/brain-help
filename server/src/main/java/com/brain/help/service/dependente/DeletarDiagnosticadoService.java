@@ -3,7 +3,7 @@ package com.brain.help.service.dependente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.brain.help.entity.Dependente;
-import com.brain.help.repository.DiagnosticadoRepository;
+import com.brain.help.repository.DependenteRepository;
 
 @Service
 public class DeletarDiagnosticadoService {
@@ -12,10 +12,10 @@ public class DeletarDiagnosticadoService {
 	BuscarDiagnosticadoPorEmailService buscarDiagnosticado;
 	
 	@Autowired
-	DiagnosticadoRepository diagnosticadoRepository;
+	DependenteRepository dependenteRepository;
 	
 	public void deletar(String emailDiagnosticado) {
 		Dependente dependente = buscarDiagnosticado.buscar(emailDiagnosticado, false);
-		diagnosticadoRepository.delete(dependente);
+		dependenteRepository.delete(dependente);
 	}
 }

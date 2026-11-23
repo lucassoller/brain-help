@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.brain.help.entity.Dependente;
 import com.brain.help.entity.Medico;
-import com.brain.help.entity.Atividade;
 import com.brain.help.dto.senha.RedefinicaoSenhaRequestDto;
 import com.brain.help.repository.MedicoRepository;
 import com.brain.help.repository.TesteRepository;

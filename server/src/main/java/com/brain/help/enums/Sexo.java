@@ -1,5 +1,8 @@
 package com.brain.help.enums;
 
 public enum Sexo {
-	M, F
+	MASCULINO,
+	FEMININO,
+	OUTRO,
+	NAO_INFORMADO
 }

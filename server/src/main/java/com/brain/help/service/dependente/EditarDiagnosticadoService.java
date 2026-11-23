@@ -4,7 +4,7 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.brain.help.entity.Dependente;
-import com.brain.help.repository.DiagnosticadoRepository;
+import com.brain.help.repository.DependenteRepository;
 import com.brain.help.service.endereco.EditarEnderecoService;
 import com.brain.help.utils.ImageFileWriter;
 
@@ -18,7 +18,7 @@ public class EditarDiagnosticadoService {
 	EditarEnderecoService editarEndereco;
 	
 	@Autowired
-	DiagnosticadoRepository diagnosticadoRepository;
+    DependenteRepository dependenteRepository;
 	
 	public void editar(String emailDiagnosticado, Dependente dependente) throws Exception {
 		Dependente dependenteParaEditar = buscarDiagnosticado.buscar(emailDiagnosticado, false);
@@ -71,6 +71,6 @@ public class EditarDiagnosticadoService {
 			dependenteParaEditar.setFoto(ImageFileWriter.saveImageToFolder(null, base64));
 		}
 		
-		diagnosticadoRepository.save(dependenteParaEditar);
+		dependenteRepository.save(dependenteParaEditar);
 	}
 }

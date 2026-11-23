@@ -1,6 +1,7 @@
 package com.brain.help.config;
 
 import com.brain.help.security.*;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -25,18 +26,15 @@ public class SecurityConfig {
     private final CustomAccessDeniedHandler customAccessDeniedHandler;
     private final CustomAuthenticationEntryPoint customAuthenticationEntryPoint;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final CustomLogoutHandler logoutHandler;
 
     public SecurityConfig(CustomUserDetailsService customUserDetailsService,
                           CustomAccessDeniedHandler customAccessDeniedHandler,
                           CustomAuthenticationEntryPoint customAuthenticationEntryPoint,
-                          JwtAuthenticationFilter jwtAuthenticationFilter,
-                          CustomLogoutHandler logoutHandler) {
+                          JwtAuthenticationFilter jwtAuthenticationFilter) {
         this.customUserDetailsService = customUserDetailsService;
         this.customAccessDeniedHandler = customAccessDeniedHandler;
         this.customAuthenticationEntryPoint = customAuthenticationEntryPoint;
         this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-        this.logoutHandler = logoutHandler;
     }
 
     @Bean
@@ -83,8 +81,8 @@ public class SecurityConfig {
                                 org.springframework.security.config.http.SessionCreationPolicy.STATELESS))
                 .logout(logout -> logout
                         .logoutUrl("/public/logout")
-                        .addLogoutHandler(logoutHandler)
-                        .logoutSuccessHandler((req, res, auth) -> res.setStatus(200)))
+                        .logoutSuccessHandler((request, response, authentication) ->
+                                response.setStatus(HttpServletResponse.SC_OK)))
                 .cors(Customizer.withDefaults());
         return http.build();
 
