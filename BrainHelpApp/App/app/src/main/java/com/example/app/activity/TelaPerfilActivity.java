@@ -352,18 +352,18 @@ public class TelaPerfilActivity extends AppCompatActivity  implements Validator.
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.alterar_senha:
+        int itemId = item.getItemId();
+        if (itemId == R.id.alterar_senha) {
                 Intent itTelaSenha = new Intent(TelaPerfilActivity.this, TelaAlterarSenhaActivity.class);
                 itTelaSenha.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(itTelaSenha);
                 return true;
-            case R.id.desempenhos:
+        } else if (itemId == R.id.desempenhos) {
                 Intent itTelaDesempenho = new Intent(TelaPerfilActivity.this, TelaDesempenhosActivity.class);
                 itTelaDesempenho.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(itTelaDesempenho);
                 return true;
-            case R.id.sair:
+        } else if (itemId == R.id.sair) {
                 TelaInicialActivity.editor.remove("token");
                 TelaInicialActivity.editor.remove("email");
                 TelaInicialActivity.editor.commit();

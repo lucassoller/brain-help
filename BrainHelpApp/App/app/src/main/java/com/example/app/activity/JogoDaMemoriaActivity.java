@@ -257,32 +257,31 @@ public class JogoDaMemoriaActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.perfil:
-                Intent itTelaUsuario = new Intent(JogoDaMemoriaActivity.this, TelaPerfilActivity.class);
-                itTelaUsuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(itTelaUsuario);
-                return true;
-            case R.id.alterar_senha:
-                Intent itTelaSenha = new Intent(JogoDaMemoriaActivity.this, TelaAlterarSenhaActivity.class);
-                itTelaSenha.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(itTelaSenha);
-                return true;
-            case R.id.desempenhos:
-                Intent itTelaDesempenho = new Intent(JogoDaMemoriaActivity.this, TelaDesempenhosActivity.class);
-                itTelaDesempenho.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(itTelaDesempenho);
-                return true;
-            case R.id.sair:
-                TelaInicialActivity.editor.remove("token");
-                TelaInicialActivity.editor.remove("email");
-                TelaInicialActivity.editor.commit();
+        if(item.getItemId() == R.id.perfil){
+            Intent itTelaUsuario = new Intent(JogoDaMemoriaActivity.this, TelaPerfilActivity.class);
+            itTelaUsuario.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(itTelaUsuario);
+            return true;
+        }else if (item.getItemId() == R.id.alterar_senha){
+            Intent itTelaSenha = new Intent(JogoDaMemoriaActivity.this, TelaAlterarSenhaActivity.class);
+            itTelaSenha.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(itTelaSenha);
+            return true;
+        }else if (item.getItemId() == R.id.desempenhos){
+            Intent itTelaDesempenho = new Intent(JogoDaMemoriaActivity.this, TelaDesempenhosActivity.class);
+            itTelaDesempenho.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(itTelaDesempenho);
+            return true;
+        }else if (item.getItemId() == R.id.sair){
+            TelaInicialActivity.editor.remove("token");
+            TelaInicialActivity.editor.remove("email");
+            TelaInicialActivity.editor.commit();
 
-                Intent itTelaInicial = new Intent(JogoDaMemoriaActivity.this, TelaInicialActivity.class);
-                itTelaInicial.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(itTelaInicial);
-                finish();
-                return true;
+            Intent itTelaInicial = new Intent(JogoDaMemoriaActivity.this, TelaInicialActivity.class);
+            itTelaInicial.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(itTelaInicial);
+            finish();
+            return true;
         }
         return false;
     }

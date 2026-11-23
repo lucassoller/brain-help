@@ -54,13 +54,10 @@ public class BitmapUtils {
     }
 
     public static Compressor getCompressor(Context ctx) {
-
-        return new Compressor
-                .Builder(ctx)
+        return new Compressor(ctx)
                 .setMaxHeight(400)
                 .setMaxWidth(400)
                 .setCompressFormat(Bitmap.CompressFormat.PNG)
-                .setQuality(50)
-                .build();
+                .setQuality(50);
     }
 }
