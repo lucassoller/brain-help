@@ -27,10 +27,10 @@ public class Medico implements UserDetails {
 	@Column(nullable = false, length = 100)
 	private String sobrenome;
 
-	@Column(nullable = false, unique = true, length = 254)
+	@Column(nullable = false, unique = true, length = 150)
 	private String email;
 	
-	@Column(length = 60)
+	@Column(nullable = false)
 	private String senha;
 	
 	@Column(nullable = false)
@@ -42,15 +42,8 @@ public class Medico implements UserDetails {
 	@Column(length = 36)
 	private String foto;
 	
-	@OneToOne(cascade = CascadeType.REMOVE)
-	@JoinColumn(name="endereco_id")
-	private Endereco endereco;
-	
 	@Column(nullable = false, length = 100)
 	private String especializacao;
-	
-	@OneToMany(cascade = CascadeType.REFRESH, mappedBy = "medico")
-	private List<Dependente> dependentes;
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {

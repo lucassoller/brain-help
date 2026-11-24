@@ -17,7 +17,7 @@ public class Musica {
 	private Long id;
 	
 	@Column(nullable = false, length = 200)
-	private String nome;
+	private String nomeMusica;
 	
 	@Column(nullable = false, length = 200)
 	private String cantor;
@@ -28,7 +28,7 @@ public class Musica {
 	@Column(nullable = false)
 	private String musica;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "dependente_id")
 	private Dependente dependente;
 }

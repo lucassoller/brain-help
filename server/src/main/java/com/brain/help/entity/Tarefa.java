@@ -28,7 +28,7 @@ public class Tarefa {
 	private LocalDateTime dataRealizacao;
 
 	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
+	@Column(nullable = false, length = 30)
 	private StatusTarefa statusTarefa;
 
 	@ManyToOne

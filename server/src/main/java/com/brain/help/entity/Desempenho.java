@@ -1,7 +1,6 @@
 package com.brain.help.entity;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import jakarta.persistence.*;
 import com.brain.help.enums.AvaliacaoDesempenho;
 import lombok.Getter;
@@ -29,10 +28,10 @@ public class Desempenho{
 	private LocalDateTime dataRealizacao;
 
 	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
+	@Column(nullable = false, length = 30)
 	private AvaliacaoDesempenho avaliacaoDesempenho;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "dependente_id")
 	private Dependente dependente;
 }
