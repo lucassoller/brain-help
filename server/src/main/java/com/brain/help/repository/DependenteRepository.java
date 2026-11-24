@@ -6,8 +6,12 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import com.brain.help.entity.Dependente;
 
-public interface DependenteRepository extends JpaRepository<Dependente, Integer>{
+public interface DependenteRepository extends JpaRepository<Dependente, Long>{
 	Optional<Dependente> findByEmail(String email);
+
+	boolean existsByEmail(String email);
+
+	boolean existsByEmailAndIdNot(String email, Long id);
 	
 	@Query("SELECT d FROM Dependente d WHERE (d.medico.email LIKE ?1) AND (d.nome LIKE %?2% OR d.email LIKE %?2%) ORDER BY d.nome, d.sobrenome")
 	List<Dependente> findByMedico(String email, String nome);
