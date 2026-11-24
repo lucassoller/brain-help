@@ -2,6 +2,7 @@ package com.brain.help.service.dependente;
 
 import com.brain.help.dto.dependente.DependenteDTO;
 import com.brain.help.dto.dependente.DependenteResponseDTO;
+import com.brain.help.dto.senha.MudancaSenhaDTO;
 import com.brain.help.entity.Dependente;
 import com.brain.help.exception.BusinessException;
 import com.brain.help.exception.ConflictException;
@@ -14,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Objects;
 
 @Service
@@ -40,9 +42,16 @@ public class DependenteService {
     }
 
     @Transactional(readOnly = true)
+    public List<DependenteResponseDTO> buscarTodos() {
+        return dependenteRepository.findAll()
+                .stream()
+                .map(this::toDTO)
+                .toList();
+    }
+
+    @Transactional(readOnly = true)
     public DependenteResponseDTO buscarPerfilLogado() {
-        Dependente entity = usuarioLogadoService.getDependenteLogado();
-        return toDTO(entity);
+        return toDTO(usuarioLogadoService.getDependenteLogado());
     }
 
     @Transactional(readOnly = true)
@@ -66,8 +75,14 @@ public class DependenteService {
 
     @Transactional
     public DependenteResponseDTO atualizar(Long id, DependenteDTO dto) throws Exception {
-        Dependente entity = buscarDependentePorId(id);
+        Dependente entity = usuarioLogadoService.getDependenteLogado();
         return executarAtualizacao(entity, dto);
+    }
+
+    @Transactional
+    public DependenteResponseDTO atualizarSenhaLogado(MudancaSenhaDTO dto) {
+        Dependente entity = usuarioLogadoService.getDependenteLogado();
+        return executarAtualizacaoSenhaLogado(entity, dto);
     }
 
     @Transactional
@@ -103,9 +118,30 @@ public class DependenteService {
         return toDTO(atualizado);
     }
 
+    public DependenteResponseDTO executarAtualizacaoSenhaLogado(Dependente entity, MudancaSenhaDTO dto) {
+        validarSenhas(dto, entity.getSenhaHash());
+        entity.setSenhaHash(passwordEncoder.encode(dto.getNovaSenha()));
+        Dependente atualizado = dependenteRepository.save(entity);
+        return toDTO(atualizado);
+    }
+
     private void validarSenhas(DependenteDTO dto) {
         if (!Objects.equals(dto.getSenha(), dto.getConfirmarSenha())) {
             throw new BusinessException("As senhas não coincidem");
+        }
+    }
+
+    private void validarSenhas(MudancaSenhaDTO dto, String senhaHash) {
+        if (!passwordEncoder.matches(dto.getSenhaAtual(), senhaHash)) {
+            throw new BusinessException("Senha atual inválida");
+        }
+
+        if (!Objects.equals(dto.getNovaSenha(), dto.getConfirmarSenha())) {
+            throw new BusinessException("As senhas não coincidem");
+        }
+
+        if (Objects.equals(dto.getSenhaAtual(), dto.getNovaSenha())) {
+            throw new BusinessException("A nova senha deve ser diferente da senha atual");
         }
     }
 

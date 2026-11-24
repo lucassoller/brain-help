@@ -1,13 +1,9 @@
 package com.brain.help.dto.dependente;
 
-import com.brain.help.entity.Medico;
 import com.brain.help.enums.AvaliacaoDesempenho;
 import com.brain.help.enums.EstagioAlzheimer;
 import com.brain.help.enums.Sexo;
-import jakarta.persistence.*;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-
 import java.time.LocalDate;
 
 @Data
