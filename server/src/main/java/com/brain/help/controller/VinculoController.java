@@ -20,6 +20,7 @@ import com.brain.help.service.vinculo.DeletarVinculoService;
 import com.brain.help.service.vinculo.EditarVinculoService;
 
 @RestController
+
 @RequestMapping("/vinculo")
 public class VinculoController {
 	
@@ -70,4 +71,23 @@ public class VinculoController {
 	public void deletarVinculo(@PathVariable("ID") Integer codVinculo) {
 		deletarVinculo.deletar(codVinculo);
 	}
+
+		/*
+
+	@GetMapping("/buscar/todos/vinculados/{NOME}")
+	public List<Dependente> buscarTodosVinculadosPorNome(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("NOME") String nome){
+		return buscarDiagnosticados.buscar(userPrincipal.getEmail(), nome, true);
+	}
+
+	@GetMapping("/buscar/todos/vinculados")
+	public List<Dependente> buscarTodosVinculados(@AuthenticationPrincipal UserPrincipal userPrincipal){
+		return buscarDiagnosticadosVinculados.buscar(userPrincipal.getEmail());
+	}
+
+	@GetMapping("/buscar/todos/desvinculados/{NOME}")
+	public List<Dependente> buscarTodosNaoVinculados(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("NOME") String nome){
+		return buscarDiagnosticados.buscar(userPrincipal.getEmail(), nome, false);
+	}
+
+	*/
 }

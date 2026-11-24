@@ -3,7 +3,6 @@ package com.brain.help.entity;
 import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
-
 import jakarta.persistence.*;
 import com.brain.help.enums.AvaliacaoDesempenho;
 import com.brain.help.enums.EstagioAlzheimer;
@@ -24,9 +23,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Table(name = "dependente")
 public class Dependente implements UserDetails {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@EqualsAndHashCode.Include
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Column(nullable = false, length = 100)

@@ -18,6 +18,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class Medico implements UserDetails {
 
 	@Id
+	@EqualsAndHashCode.Include
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 

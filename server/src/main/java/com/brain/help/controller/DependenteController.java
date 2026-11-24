@@ -7,19 +7,17 @@ import com.brain.help.dto.dependente.DependenteResponseDTO;
 import com.brain.help.dto.senha.MudancaSenhaDTO;
 import com.brain.help.service.dependente.*;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/dependentes")
 public class DependenteController {
 
 	private final DependenteService dependenteService;
-
-    public DependenteController(DependenteService dependenteService) {
-        this.dependenteService = dependenteService;
-    }
 
 	@PostMapping("/cadastrar")
 	public ResponseEntity<DependenteResponseDTO> cadastrar(@Valid @RequestBody DependenteDTO dto) throws Exception {
@@ -40,26 +38,6 @@ public class DependenteController {
 	public ResponseEntity<DependenteResponseDTO> buscarLogado(){
 		return ResponseEntity.ok(dependenteService.buscarPerfilLogado());
 	}
-
-	/*
-	
-	@GetMapping("/buscar/todos/vinculados/{NOME}")
-	public List<Dependente> buscarTodosVinculadosPorNome(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("NOME") String nome){
-		return buscarDiagnosticados.buscar(userPrincipal.getEmail(), nome, true);
-	}
-	
-	@GetMapping("/buscar/todos/vinculados")
-	public List<Dependente> buscarTodosVinculados(@AuthenticationPrincipal UserPrincipal userPrincipal){
-		return buscarDiagnosticadosVinculados.buscar(userPrincipal.getEmail());
-	}
-	
-	@GetMapping("/buscar/todos/desvinculados/{NOME}")
-	public List<Dependente> buscarTodosNaoVinculados(@AuthenticationPrincipal UserPrincipal userPrincipal, @PathVariable("NOME") String nome){
-		return buscarDiagnosticados.buscar(userPrincipal.getEmail(), nome, false);
-	}
-
-	*/
-
 	
 	@PutMapping("/editar")
 	public ResponseEntity<DependenteResponseDTO> editar(@Valid @RequestBody DependenteDTO dto) throws Exception {
