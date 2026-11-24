@@ -29,7 +29,7 @@ public class Fotografia {
 	@Column(nullable = false, length = 2000)
 	private String foto;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "dependente_id")
 	private Dependente dependente;
 }

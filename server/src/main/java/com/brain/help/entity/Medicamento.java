@@ -36,19 +36,20 @@ public class Medicamento {
 	private int quantidade;
 
 	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
+	@Column(nullable = false, length = 30)
 	private Medida medida;
 	
 	private LocalDateTime horario;
 
 	@Enumerated(EnumType.STRING)
+	@Column(length = 30)
 	private Frequencia frequencia;
 	
 	@Lob
 	@Column(length = 2000)
 	private String foto;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "dependente_id")
 	private Dependente dependente;
 }

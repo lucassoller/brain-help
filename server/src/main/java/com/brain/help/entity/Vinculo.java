@@ -20,34 +20,33 @@ public class Vinculo {
 	@Column(nullable = false, length = 100)
 	private String nome;
 	
-	@Column(nullable = false, length = 20)
-    private String telefone;
-	
 	@Column(nullable = false, length = 100)
 	private String sobrenome;
+
+	@Column(nullable = false, length = 20)
+	private String telefone;
 	
 	@Column(nullable = false, length = 100)
 	private String vinculo;
 
 	@Enumerated(EnumType.STRING)
-	@Column(nullable = false)
+	@Column(nullable = false, length = 30)
 	private Sexo sexo;
 	
 	@Column(nullable = false)
 	private int idade;
-		
-	@OneToOne(cascade = CascadeType.REMOVE)
-	@JoinColumn(name="endereco_id")
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "endereco_id")
 	private Endereco endereco;
 	
 	@Column(length = 2000)
 	private String lembrancas;
 
-	@ManyToOne
-	@JoinColumn(name = "dependente_id")
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "dependente_id", nullable = false)
 	private Dependente dependente;
 	
 	@Lob
-	@Column(length = 2000)
 	private String foto;
 }

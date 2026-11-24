@@ -41,7 +41,10 @@ public class Endereco {
 	@Column(length = 100)
 	private String titulo;
 
-	@ManyToOne
-	@JoinColumn(name = "dependente_id")
+	@Column(nullable = false)
+	private boolean principal;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "dependente_id", nullable = false)
 	private Dependente dependente;
 }
