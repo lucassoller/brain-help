@@ -1,57 +1,30 @@
 package com.brain.help.controller;
 
-import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
+import com.brain.help.dto.login.LoginRequestDTO;
+import com.brain.help.dto.login.LoginResponseDTO;
+import com.brain.help.service.login.LoginService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.brain.help.entity.Medico;
-import com.brain.help.dto.login.LoginRequestDto;
-import com.brain.help.dto.login.LoginResponseDto;
-import com.brain.help.repository.DependenteRepository;
-import com.brain.help.repository.MedicoRepository;
-import com.brain.help.service.dependente.LogarDiagnosticadoService;
-import com.brain.help.service.medico.LogarMedicoGoogleService;
-import com.brain.help.service.medico.LogarMedicoService;
 
 @RestController
 @RequestMapping("/public/login")
+@RequiredArgsConstructor
 public class LoginController {
 
-	@Autowired
-	LogarMedicoService logarMedico;
-	
-	@Autowired
-	LogarMedicoGoogleService logarMedicoNoGoogle;
-	
-	@Autowired
-	LogarDiagnosticadoService logarDiagnosticado;
-	
-	@Autowired
-    DependenteRepository d;
-	
-	@Autowired
-	MedicoRepository mr;
-	
+	private final LoginService loginService;
+
 	@PostMapping("/medico")
-	public LoginResponseDto logarMedico(@RequestBody LoginRequestDto loginDto) {
-		return logarMedico.logar(loginDto);
+	public ResponseEntity<LoginResponseDTO> loginMedico(@Valid @RequestBody LoginRequestDTO dto) {
+		return ResponseEntity.ok(loginService.loginMedico(dto));
 	}
-	
-	@PostMapping("/medico/google")
-	public LoginResponseDto logarMedicoGoogle(@RequestBody LoginRequestDto loginDto) {
-		return logarMedicoNoGoogle.logar(loginDto);
-	}
-	
-	@PostMapping("/diagnosticado")
-	public LoginResponseDto logarDiagnosticado(@RequestBody LoginRequestDto loginDto) {
-		return logarDiagnosticado.logar(loginDto);
-	}	
-	
-	@GetMapping("/todos")
-	public List<Medico> todos() {
-		return mr.findAll();
+
+	@PostMapping("/dependente")
+	public ResponseEntity<LoginResponseDTO> loginDependente(@Valid @RequestBody LoginRequestDTO dto) {
+		return ResponseEntity.ok(loginService.loginDependente(dto));
 	}
 }

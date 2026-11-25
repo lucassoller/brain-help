@@ -1,22 +1,3 @@
-/*
-
-	public LoginResponseDto logar(LoginRequestDto loginDto) {
-		if (Objects.isNull(loginDto.getIdentificacao()) || loginDto.getIdentificacao().isEmpty()) {
-			throw new IllegalArgumentException("O nome de usuário não pode estar em branco");
-		}
-		if (Objects.isNull(loginDto.getSenha()) || loginDto.getSenha().isEmpty()) {
-			throw new IllegalArgumentException("A senha não pode estar em branco");
-		}
-		Criptografia criptografia = new Criptografia();
-		Medico medico = buscar(loginDto.getIdentificacao(), false);
-		if (!criptografia.senhaIgual(loginDto.getSenha(), medico.getSenha())) {
-			throw new IllegalArgumentException("Senha incorreta");
-		}
-		String token = authenticationService.authenticate(medico.getEmail(), medico.getSenha());
-		return new LoginResponseDto(medico.getEmail(), token, medico.isGoogle());
-	}
-
- */
 package com.brain.help.service.medico;
 
 import com.brain.help.dto.medico.MedicoDTO;
