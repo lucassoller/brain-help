@@ -4,6 +4,7 @@ import com.brain.help.dto.dependente.DependenteDTO;
 import com.brain.help.dto.dependente.DependenteResponseDTO;
 import com.brain.help.dto.senha.MudancaSenhaDTO;
 import com.brain.help.entity.Dependente;
+import com.brain.help.entity.Medico;
 import com.brain.help.exception.BusinessException;
 import com.brain.help.exception.ConflictException;
 import com.brain.help.exception.NotFoundException;
@@ -83,6 +84,22 @@ public class DependenteService {
     public DependenteResponseDTO atualizarSenhaLogado(MudancaSenhaDTO dto) {
         Dependente entity = usuarioLogadoService.getDependenteLogado();
         return executarAtualizacaoSenhaLogado(entity, dto);
+    }
+
+    @Transactional
+    public void vincularAoMedicoLogado(Long dependenteId) {
+        Medico medicoLogado = usuarioLogadoService.getMedicoLogado();
+        Dependente dependente = buscarDependentePorId(dependenteId);
+
+        if (dependente.getMedico() != null) {
+            if (Objects.equals(dependente.getMedico().getId(), medicoLogado.getId())) {
+                throw new BusinessException("Este dependente já está vinculado a você");
+            }
+            throw new ConflictException("Este dependente já está vinculado a outro médico");
+        }
+
+        dependente.setMedico(medicoLogado);
+        Dependente salvo = dependenteRepository.save(dependente);
     }
 
     @Transactional

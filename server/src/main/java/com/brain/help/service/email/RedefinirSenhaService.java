@@ -7,7 +7,6 @@ import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.brain.help.repository.MedicoRepository;
-import com.brain.help.service.medico.BuscarMedicoPorEmailService;
 
 @Service
 public class RedefinirSenhaService {

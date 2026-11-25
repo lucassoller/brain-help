@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import com.brain.help.entity.Dependente;
 import com.brain.help.entity.Medicamento;
 import com.brain.help.repository.MedicamentoRepository;
-import com.brain.help.service.dependente.BuscarDiagnosticadoPorEmailService;
 import com.brain.help.utils.ImageFileWriter;
 
 @Service

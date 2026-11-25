@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import com.brain.help.entity.Dependente;
 import com.brain.help.entity.Musica;
 import com.brain.help.repository.MusicaRepository;
-import com.brain.help.service.dependente.BuscarDiagnosticadoPorEmailService;
 
 @Service
 public class CadastrarMusicaService {

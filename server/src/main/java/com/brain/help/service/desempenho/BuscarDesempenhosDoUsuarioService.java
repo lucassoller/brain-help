@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.brain.help.entity.Desempenho;
 import com.brain.help.entity.Dependente;
 import com.brain.help.repository.DesempenhoRepository;
-import com.brain.help.service.dependente.BuscarDiagnosticadoPorEmailService;
 
 @Service
 public class BuscarDesempenhosDoUsuarioService {

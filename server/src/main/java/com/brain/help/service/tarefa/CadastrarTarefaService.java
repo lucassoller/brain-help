@@ -7,7 +7,6 @@ import com.brain.help.entity.Dependente;
 import com.brain.help.entity.Tarefa;
 import com.brain.help.enums.StatusTarefa;
 import com.brain.help.repository.TarefaRepository;
-import com.brain.help.service.dependente.BuscarDiagnosticadoPorEmailService;
 
 @Service
 public class CadastrarTarefaService {

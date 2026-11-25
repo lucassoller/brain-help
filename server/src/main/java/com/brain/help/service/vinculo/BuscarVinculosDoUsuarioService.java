@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import com.brain.help.entity.Dependente;
 import com.brain.help.entity.Vinculo;
 import com.brain.help.repository.VinculoRepository;
-import com.brain.help.service.dependente.BuscarDiagnosticadoPorEmailService;
 import com.brain.help.utils.ImageFileWriter;
 
 @Service

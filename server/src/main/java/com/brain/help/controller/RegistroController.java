@@ -16,9 +16,7 @@ import com.brain.help.entity.Medico;
 import com.brain.help.dto.senha.RedefinicaoSenhaRequestDto;
 import com.brain.help.repository.MedicoRepository;
 import com.brain.help.repository.TesteRepository;
-import com.brain.help.service.dependente.CadastrarDiagnosticadoService;
 import com.brain.help.service.medico.CadastrarMedicoService;
-import com.brain.help.service.medico.EditarSenhaMedicoService;
 
 @RestController
 @RequestMapping("/public/registro")
