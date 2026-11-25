@@ -47,7 +47,7 @@ public class DependenteController {
 	@PutMapping("/editar/{id}")
 	public ResponseEntity<DependenteResponseDTO> editarPorId(@Valid @RequestBody DependenteDTO dto,
 															 @PathVariable Long id) throws Exception {
-		return ResponseEntity.ok(dependenteService.atualizar(id, dto));
+		return ResponseEntity.ok(dependenteService.atualizarPorId(id, dto));
 	}
 	
 	

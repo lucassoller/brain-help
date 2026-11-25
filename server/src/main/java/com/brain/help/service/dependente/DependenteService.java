@@ -75,8 +75,8 @@ public class DependenteService {
     }
 
     @Transactional
-    public DependenteResponseDTO atualizar(Long id, DependenteDTO dto) throws Exception {
-        Dependente entity = usuarioLogadoService.getDependenteLogado();
+    public DependenteResponseDTO atualizarPorId(Long id, DependenteDTO dto) throws Exception {
+        Dependente entity = buscarDependentePorId(id);
         return executarAtualizacao(entity, dto);
     }
 
