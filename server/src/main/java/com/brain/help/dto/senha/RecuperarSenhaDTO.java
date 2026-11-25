@@ -9,6 +9,6 @@ import lombok.Data;
 public class RecuperarSenhaDTO {
     @NotBlank(message = "O email é obrigatório")
     @Email(message = "Email inválido")
-    @Size(max = 50, message = "O email deve ter no máximo 50 caracteres")
+    @Size(max = 100, message = "O email deve ter no máximo 50 caracteres")
     private String email;
 }

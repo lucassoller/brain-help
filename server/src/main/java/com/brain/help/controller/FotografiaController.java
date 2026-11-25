@@ -2,7 +2,7 @@ package com.brain.help.controller;
 
 import com.brain.help.dto.fotografia.FotografiaDTO;
 import com.brain.help.dto.fotografia.FotografiaResponseDTO;
-import com.brain.help.service.fotografia.FotografiaService;
+import com.brain.help.service.FotografiaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

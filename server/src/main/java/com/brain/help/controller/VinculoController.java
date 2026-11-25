@@ -2,7 +2,7 @@ package com.brain.help.controller;
 
 import com.brain.help.dto.vinculo.VinculoDTO;
 import com.brain.help.dto.vinculo.VinculoResponseDTO;
-import com.brain.help.service.vinculo.VinculoService;
+import com.brain.help.service.VinculoService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

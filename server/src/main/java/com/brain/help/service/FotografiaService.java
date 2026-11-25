@@ -1,4 +1,4 @@
-package com.brain.help.service.fotografia;
+package com.brain.help.service;
 
 import com.brain.help.dto.fotografia.FotografiaDTO;
 import com.brain.help.dto.fotografia.FotografiaResponseDTO;

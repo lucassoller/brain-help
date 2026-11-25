@@ -1,4 +1,4 @@
-package com.brain.help.service.vinculo;
+package com.brain.help.service;
 
 import com.brain.help.dto.vinculo.VinculoDTO;
 import com.brain.help.dto.vinculo.VinculoResponseDTO;

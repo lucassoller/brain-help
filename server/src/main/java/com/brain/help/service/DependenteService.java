@@ -1,4 +1,4 @@
-package com.brain.help.service.dependente;
+package com.brain.help.service;
 
 import com.brain.help.dto.dependente.DependenteDTO;
 import com.brain.help.dto.dependente.DependenteResponseDTO;

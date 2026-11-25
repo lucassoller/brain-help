@@ -1,4 +1,4 @@
-package com.brain.help.service.medico;
+package com.brain.help.service;
 
 import com.brain.help.dto.medico.MedicoDTO;
 import com.brain.help.dto.medico.MedicoResponseDTO;

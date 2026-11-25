@@ -5,7 +5,7 @@ import java.util.List;
 import com.brain.help.dto.dependente.DependenteDTO;
 import com.brain.help.dto.dependente.DependenteResponseDTO;
 import com.brain.help.dto.senha.MudancaSenhaDTO;
-import com.brain.help.service.dependente.*;
+import com.brain.help.service.DependenteService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

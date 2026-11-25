@@ -1,4 +1,4 @@
-package com.brain.help.service.login;
+package com.brain.help.service;
 
 import com.brain.help.dto.login.LoginRequestDTO;
 import com.brain.help.dto.login.LoginResponseDTO;
