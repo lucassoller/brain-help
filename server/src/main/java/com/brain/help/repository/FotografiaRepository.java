@@ -1,10 +1,12 @@
 package com.brain.help.repository;
 
-import java.util.List;
-import org.springframework.data.jpa.repository.JpaRepository;
-import com.brain.help.entity.Dependente;
 import com.brain.help.entity.Fotografia;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface FotografiaRepository extends JpaRepository<Fotografia, Integer>{
-	List<Fotografia> findByDiagnosticado(Dependente dependente);
+import java.util.List;
+import java.util.Optional;
+
+public interface FotografiaRepository extends JpaRepository<Fotografia, Long> {
+
+	List<Fotografia> findByDependenteIdOrderByDataDesc(Long dependenteId);
 }

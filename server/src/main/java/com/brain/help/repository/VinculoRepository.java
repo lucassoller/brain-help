@@ -3,18 +3,13 @@ package com.brain.help.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.brain.help.entity.Dependente;
 import com.brain.help.entity.Vinculo;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface VinculoRepository extends JpaRepository<Vinculo, Long>{
-	List<Vinculo> findByDependente(Dependente dependente);
-	List<Vinculo> findByDiagnosticadoAndVinculo(Dependente dependente, String vinculo);
-	List<Vinculo> findByDiagnosticadoAndNomeContaining(Dependente dependente, String nome);
 
 	List<Vinculo> findByDependenteIdOrderByNomeAsc(Long dependenteId);
-
 
 	@Query("""
 	SELECT v FROM Vinculo v
