@@ -99,7 +99,28 @@ public class DependenteService {
         }
 
         dependente.setMedico(medicoLogado);
-        Dependente salvo = dependenteRepository.save(dependente);
+        dependenteRepository.save(dependente);
+    }
+
+    @Transactional(readOnly = true)
+    public List<DependenteResponseDTO> buscarDependentesPorNomeOuEmail(String termo) {
+        if (termo == null || termo.trim().length() < 2) {
+            throw new BusinessException("Informe pelo menos 2 caracteres para a busca");
+        }
+
+        return dependenteRepository.buscarDependentesPorNomeOuEmail(termo.trim())
+                .stream()
+                .map(this::toDTO)
+                .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<DependenteResponseDTO> buscarTodosVinculadosAoMedicoLogado() {
+        Medico medicoLogado = usuarioLogadoService.getMedicoLogado();
+        return dependenteRepository.findByMedicoIdOrderByNomeAsc(medicoLogado.getId())
+                .stream()
+                .map(this::toDTO)
+                .toList();
     }
 
     @Transactional

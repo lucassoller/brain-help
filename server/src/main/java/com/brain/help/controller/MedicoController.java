@@ -1,5 +1,6 @@
 package com.brain.help.controller;
 
+import com.brain.help.dto.dependente.DependenteResponseDTO;
 import com.brain.help.dto.medico.MedicoDTO;
 import com.brain.help.dto.medico.MedicoResponseDTO;
 import com.brain.help.dto.senha.MudancaSenhaDTO;
@@ -66,6 +67,16 @@ public class MedicoController {
 	public ResponseEntity<Void> vincularDependente(@PathVariable Long dependenteId) {
 		dependenteService.vincularAoMedicoLogado(dependenteId);
 		return ResponseEntity.noContent().build();
+	}
+
+	@GetMapping("/dependentes/disponiveis")
+	public ResponseEntity<List<DependenteResponseDTO>> buscarDependentesDisponiveis(@RequestParam String termo) {
+		return ResponseEntity.ok(dependenteService.buscarDependentesPorNomeOuEmail(termo));
+	}
+
+	@GetMapping("/dependentes/vinculados")
+	public ResponseEntity<List<DependenteResponseDTO>> buscarDependentesVinculados() {
+		return ResponseEntity.ok(dependenteService.buscarTodosVinculadosAoMedicoLogado());
 	}
 
 	@DeleteMapping("/deletar")
