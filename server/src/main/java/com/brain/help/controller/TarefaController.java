@@ -1,73 +1,52 @@
 package com.brain.help.controller;
 
+import com.brain.help.dto.tarefa.TarefaDTO;
+import com.brain.help.dto.tarefa.TarefaResponseDTO;
+import com.brain.help.service.TarefaService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.brain.help.entity.Tarefa;
-import com.brain.help.repository.TarefaRepository;
-import com.brain.help.service.tarefa.BuscarTarefaPorIdService;
-import com.brain.help.service.tarefa.BuscarTarefasDoUsuarioService;
-import com.brain.help.service.tarefa.CadastrarTarefaService;
-import com.brain.help.service.tarefa.DeletarTarefaService;
-import com.brain.help.service.tarefa.EditarTarefaService;
 
 @RestController
-@RequestMapping("/tarefa")
+@RequestMapping("/tarefas")
+@RequiredArgsConstructor
 public class TarefaController {
-	
-	@Autowired
-	private TarefaRepository tarefaRepository;
-	
-	@Autowired
-	private CadastrarTarefaService cadastrarTarefa;
-	
-	@Autowired
-	private BuscarTarefaPorIdService buscarTarefaPorId;
-	
-	@Autowired
-	private EditarTarefaService editarTarefa;
-	
-	@Autowired
-	private DeletarTarefaService deletarTarefa;
-	
-	@Autowired
-	private BuscarTarefasDoUsuarioService buscarTarefasDoUsuario;
-	
-	@GetMapping("/buscar/todos")
-	public List<Tarefa> buscarTodos(){
-		return tarefaRepository.findAll();
-	}
-	
-	@GetMapping("/buscar/todos/usuario")
-	public List<Tarefa> buscarTodosDoUsuario(@AuthenticationPrincipal UserPrincipal userPrincipal){
-		return buscarTarefasDoUsuario.buscar(userPrincipal.getEmail());
-	}
-	
-	@GetMapping("/buscar/{ID}")
-	public Tarefa buscarPorId(@PathVariable("ID") Integer codTarefa){
-		return buscarTarefaPorId.buscar(codTarefa);
-	}
-	
+
+	private final TarefaService tarefaService;
+
 	@PostMapping("/cadastrar")
-	public void cadastrarTarefa(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Tarefa tarefa) {
-		cadastrarTarefa.salvar(userPrincipal.getEmail(), tarefa);
+	public ResponseEntity<TarefaResponseDTO> cadastrar(@Valid @RequestBody TarefaDTO dto) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(tarefaService.cadastrar(dto));
 	}
-	
-	@PutMapping("/editar")
-	public void editarTarefa(@RequestBody Tarefa tarefa) {
-		editarTarefa.editar(tarefa);
+
+	@GetMapping("/buscar/todas")
+	public ResponseEntity<List<TarefaResponseDTO>> buscarTodas() {
+		return ResponseEntity.ok(tarefaService.buscarTodosDoLogado());
 	}
-	
-	@DeleteMapping("/deletar/{ID}")
-	public void deletarTarefa(@PathVariable("ID") Integer codTarefa) {
-		deletarTarefa.deletar(codTarefa);
+
+	@GetMapping("/buscar/{id}")
+	public ResponseEntity<TarefaResponseDTO> buscarPorId(@PathVariable Long id) {
+		return ResponseEntity.ok(tarefaService.buscarPorId(id));
+	}
+
+	@PutMapping("/editar/{id}")
+	public ResponseEntity<TarefaResponseDTO> editar(@PathVariable Long id,
+													@Valid @RequestBody TarefaDTO dto) {
+		return ResponseEntity.ok(tarefaService.editar(id, dto));
+	}
+
+	@PatchMapping("/finalizar/{id}")
+	public ResponseEntity<TarefaResponseDTO> finalizar(@PathVariable Long id) {
+		return ResponseEntity.ok(tarefaService.finalizar(id));
+	}
+
+	@DeleteMapping("/deletar/{id}")
+	public ResponseEntity<Void> deletar(@PathVariable Long id) {
+		tarefaService.deletar(id);
+		return ResponseEntity.noContent().build();
 	}
 }

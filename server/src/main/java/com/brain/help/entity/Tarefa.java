@@ -25,7 +25,9 @@ public class Tarefa {
 	private String descricao;
 	
 	@Column(nullable = false)
-	private LocalDateTime dataRealizacao;
+	private LocalDateTime dataCriacao;
+
+	private LocalDateTime dataFinalizacao;
 
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 30)
