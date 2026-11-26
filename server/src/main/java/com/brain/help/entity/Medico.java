@@ -40,7 +40,7 @@ public class Medico implements UserDetails {
 	@Column(nullable = false, length = 20)
 	private String telefone;
 	
-	@Column(length = 36)
+	@Lob
 	private String foto;
 	
 	@Column(nullable = false, length = 100)

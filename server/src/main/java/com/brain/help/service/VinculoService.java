@@ -3,8 +3,11 @@ package com.brain.help.service;
 import com.brain.help.dto.vinculo.VinculoDTO;
 import com.brain.help.dto.vinculo.VinculoResponseDTO;
 import com.brain.help.entity.Dependente;
+import com.brain.help.entity.Endereco;
 import com.brain.help.entity.Vinculo;
 import com.brain.help.exception.NotFoundException;
+import com.brain.help.mapper.EnderecoMapper;
+import com.brain.help.repository.EnderecoRepository;
 import com.brain.help.repository.VinculoRepository;
 import com.brain.help.security.UsuarioLogadoService;
 import com.brain.help.utils.ImageFileWriter;
@@ -19,6 +22,8 @@ import java.util.List;
 public class VinculoService {
 
 	private final VinculoRepository vinculoRepository;
+	private final EnderecoRepository enderecoRepository;
+	private final EnderecoMapper enderecoMapper;
 	private final UsuarioLogadoService usuarioLogadoService;
 
 	@Transactional
@@ -33,8 +38,8 @@ public class VinculoService {
 
 	@Transactional(readOnly = true)
 	public List<VinculoResponseDTO> buscarVinculosDoLogado() {
-		Dependente dependenteLogado = usuarioLogadoService.getDependenteLogado();
-		return vinculoRepository.findByDependenteIdOrderByNomeAsc(dependenteLogado.getId())
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		return vinculoRepository.findByDependenteIdOrderByNomeAsc(dependenteId)
 				.stream()
 				.map(this::toDTO)
 				.toList();
@@ -42,7 +47,8 @@ public class VinculoService {
 
 	@Transactional(readOnly = true)
 	public VinculoResponseDTO buscarPorId(Long id) {
-		Vinculo entity = buscarVinculoPorId(id);
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		Vinculo entity = buscarVinculoDoDependente(id, dependenteId);
 		return toDTO(entity);
 	}
 
@@ -52,8 +58,8 @@ public class VinculoService {
 			return buscarVinculosDoLogado();
 		}
 
-		Dependente dependenteLogado = usuarioLogadoService.getDependenteLogado();
-		return vinculoRepository.buscarPorDependenteENome(dependenteLogado.getId(), nome.trim())
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		return vinculoRepository.buscarPorDependenteENome(dependenteId, nome.trim())
 				.stream()
 				.map(this::toDTO)
 				.toList();
@@ -65,9 +71,9 @@ public class VinculoService {
 			return buscarVinculosDoLogado();
 		}
 
-		Dependente dependenteLogado = usuarioLogadoService.getDependenteLogado();
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
 		return vinculoRepository
-				.findByDependenteIdAndVinculoContainingIgnoreCaseOrderByNomeAsc(dependenteLogado.getId(), vinculo.trim())
+				.findByDependenteIdAndVinculoContainingIgnoreCaseOrderByNomeAsc(dependenteId, vinculo.trim())
 				.stream()
 				.map(this::toDTO)
 				.toList();
@@ -75,7 +81,8 @@ public class VinculoService {
 
 	@Transactional
 	public VinculoResponseDTO editar(Long id, VinculoDTO dto) throws Exception {
-		Vinculo entity = buscarVinculoPorId(id);
+		Dependente dependenteLogado = usuarioLogadoService.getDependenteLogado();
+		Vinculo entity = buscarVinculoDoDependente(id, dependenteLogado.getId());
 
 		entity.setNome(dto.getNome());
 		entity.setSobrenome(dto.getSobrenome());
@@ -84,6 +91,7 @@ public class VinculoService {
 		entity.setSexo(dto.getSexo());
 		entity.setIdade(dto.getIdade());
 		entity.setLembrancas(dto.getLembrancas());
+		entity.setEndereco(resolverEndereco(dto, dependenteLogado));
 
 		if (dto.getFoto() != null && !dto.getFoto().isBlank()) {
 			entity.setFoto(ImageFileWriter.saveImageToFolder(entity.getFoto(), dto.getFoto()));
@@ -95,13 +103,32 @@ public class VinculoService {
 
 	@Transactional
 	public void deletar(Long id) {
-		Vinculo entity = buscarVinculoPorId(id);
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		Vinculo entity = buscarVinculoDoDependente(id, dependenteId);
 		vinculoRepository.delete(entity);
 	}
 
-	private Vinculo buscarVinculoPorId(Long vinculoId) {
-		return vinculoRepository.findById(vinculoId)
+	private Vinculo buscarVinculoDoDependente(Long vinculoId, Long dependenteId) {
+		return vinculoRepository.findByIdAndDependenteId(vinculoId, dependenteId)
 				.orElseThrow(() -> new NotFoundException("Vínculo não encontrado"));
+	}
+
+	private Endereco resolverEndereco(VinculoDTO dto, Dependente dependente) throws Exception {
+		if (dto.getEnderecoId() != null) {
+			return enderecoRepository.findByIdAndDependenteId(dto.getEnderecoId(), dependente.getId())
+					.orElseThrow(() -> new NotFoundException("Endereço não encontrado"));
+		}
+
+		if (dto.getEndereco() != null) {
+			Endereco novoEndereco = enderecoMapper.toEntity(dto.getEndereco(), dependente);
+			novoEndereco.setPrincipal(false);
+			if (novoEndereco.getTitulo() == null || novoEndereco.getTitulo().isBlank()) {
+				novoEndereco.setTitulo("Casa de " + dto.getNome());
+			}
+			return enderecoRepository.save(novoEndereco);
+		}
+
+		return null;
 	}
 
 	private Vinculo toEntity(VinculoDTO dto, Dependente dependente) throws Exception {
@@ -114,6 +141,7 @@ public class VinculoService {
 		entity.setSexo(dto.getSexo());
 		entity.setIdade(dto.getIdade());
 		entity.setLembrancas(dto.getLembrancas());
+		entity.setEndereco(resolverEndereco(dto, dependente));
 		entity.setDependente(dependente);
 
 		if (dto.getFoto() != null && !dto.getFoto().isBlank()) {
@@ -135,6 +163,7 @@ public class VinculoService {
 		dto.setIdade(entity.getIdade());
 		dto.setLembrancas(entity.getLembrancas());
 		dto.setFoto(entity.getFoto());
+		dto.setEndereco(enderecoMapper.toDTO(entity.getEndereco()));
 		return dto;
 	}
 }

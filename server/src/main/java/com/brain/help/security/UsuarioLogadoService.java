@@ -38,6 +38,11 @@ public class UsuarioLogadoService {
                 .orElseThrow(() -> new UsernameNotFoundException("Dependente não encontrado: " + auth.getName()));
     }
 
+
+    public Long getDependenteIdLogado() {
+        return this.getDependenteLogado().getId();
+    }
+
     public Medico getMedicoLogado() {
         Authentication auth = getAuthentication();
         if (auth.getPrincipal() instanceof Medico medico) {

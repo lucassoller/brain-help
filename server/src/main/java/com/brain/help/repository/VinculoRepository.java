@@ -1,6 +1,7 @@
 package com.brain.help.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.brain.help.entity.Vinculo;
@@ -21,6 +22,8 @@ public interface VinculoRepository extends JpaRepository<Vinculo, Long>{
 										   @Param("nome") String nome);
 
 	List<Vinculo> findByDependenteIdAndVinculoContainingIgnoreCaseOrderByNomeAsc(Long dependenteId, String vinculo);
+
+	Optional<Vinculo> findByIdAndDependenteId(Long id, Long dependenteId);
 
 	boolean existsByEnderecoId(Long enderecoId);
 

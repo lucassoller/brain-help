@@ -6,10 +6,10 @@ import com.brain.help.entity.Dependente;
 import com.brain.help.entity.Endereco;
 import com.brain.help.exception.BusinessException;
 import com.brain.help.exception.NotFoundException;
+import com.brain.help.mapper.EnderecoMapper;
 import com.brain.help.repository.EnderecoRepository;
 import com.brain.help.repository.VinculoRepository;
 import com.brain.help.security.UsuarioLogadoService;
-import com.brain.help.utils.ImageFileWriter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,74 +23,87 @@ public class EnderecoService {
 	private final EnderecoRepository enderecoRepository;
 	private final VinculoRepository vinculoRepository;
 	private final UsuarioLogadoService usuarioLogadoService;
+	private final EnderecoMapper enderecoMapper;
+
+	@Transactional
+	public EnderecoResponseDTO salvarOuEditarPrincipal(EnderecoDTO dto) throws Exception {
+		Dependente dependenteLogado = usuarioLogadoService.getDependenteLogado();
+
+		Endereco entity = enderecoRepository.findByDependenteIdAndPrincipalTrue(dependenteLogado.getId())
+				.orElseGet(() -> {
+					Endereco novo = new Endereco();
+					novo.setDependente(dependenteLogado);
+					return novo;
+				});
+
+		enderecoMapper.atualizarEntity(entity, dto);
+		entity.setPrincipal(true);
+
+		if (entity.getTitulo() == null || entity.getTitulo().isBlank()) {
+			entity.setTitulo("Minha Casa");
+		}
+
+		Endereco salvo = enderecoRepository.save(entity);
+		return enderecoMapper.toDTO(salvo);
+	}
+
+	@Transactional(readOnly = true)
+	public EnderecoResponseDTO buscarPrincipalDoLogado() {
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		return enderecoRepository.findByDependenteIdAndPrincipalTrue(dependenteId)
+				.map(enderecoMapper::toDTO)
+				.orElse(null); // Retorna null (HTTP 200 vazio) se ainda não cadastrou, facilitando o check no onboarding
+	}
 
 	@Transactional
 	public EnderecoResponseDTO cadastrar(EnderecoDTO dto) throws Exception {
 		Dependente dependenteLogado = usuarioLogadoService.getDependenteLogado();
 
-		if (dto.isPrincipal()) {
-			enderecoRepository.desmarcarPrincipalDoDependente(dependenteLogado.getId());
-		}
+		Endereco entity = enderecoMapper.toEntity(dto, dependenteLogado);
+		entity.setPrincipal(false);
 
-		Endereco entity = toEntity(dto, dependenteLogado);
 		Endereco salvo = enderecoRepository.save(entity);
-		return toDTO(salvo);
+		return enderecoMapper.toDTO(salvo);
 	}
 
 	@Transactional(readOnly = true)
 	public List<EnderecoResponseDTO> buscarTodosDoLogado() {
-		Dependente dependente = usuarioLogadoService.getDependenteLogado();
-		return enderecoRepository.findByDependenteIdOrderByPrincipalDescTituloAsc(dependente.getId())
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		return enderecoRepository.findByDependenteIdOrderByPrincipalDescTituloAsc(dependenteId)
 				.stream()
-				.map(this::toDTO)
+				.map(enderecoMapper::toDTO)
 				.toList();
 	}
 
 	@Transactional(readOnly = true)
 	public EnderecoResponseDTO buscarPorId(Long id) {
-		Dependente dependente = usuarioLogadoService.getDependenteLogado();
-		Endereco entity = buscarEnderecoDoDependente(id, dependente.getId());
-		return toDTO(entity);
-	}
-
-	@Transactional(readOnly = true)
-	public EnderecoResponseDTO buscarPrincipalDoLogado() {
-		Dependente dependente = usuarioLogadoService.getDependenteLogado();
-		Endereco entity = enderecoRepository.findByDependenteIdAndPrincipalTrue(dependente.getId())
-				.orElseThrow(() -> new NotFoundException("Endereço principal não cadastrado"));
-		return toDTO(entity);
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		Endereco entity = buscarEnderecoDoDependente(id, dependenteId);
+		return enderecoMapper.toDTO(entity);
 	}
 
 	@Transactional
 	public EnderecoResponseDTO editar(Long id, EnderecoDTO dto) throws Exception {
-		Dependente dependente = usuarioLogadoService.getDependenteLogado();
-		Endereco entity = buscarEnderecoDoDependente(id, dependente.getId());
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		Endereco entity = buscarEnderecoDoDependente(id, dependenteId);
 
-		if (dto.isPrincipal() && !entity.isPrincipal()) {
-			enderecoRepository.desmarcarPrincipalDoDependente(dependente.getId());
+		if (entity.isPrincipal()) {
+			throw new BusinessException("Use a rota de endereço principal para editar sua residência");
 		}
 
-		entity.setTitulo(dto.getTitulo());
-		entity.setLogradouro(dto.getLogradouro());
-		entity.setNumero(dto.getNumero());
-		entity.setBairro(dto.getBairro());
-		entity.setCidade(dto.getCidade());
-		entity.setEstado(dto.getEstado());
-		entity.setCep(dto.getCep());
-		entity.setPrincipal(dto.isPrincipal());
-
-		if (dto.getFoto() != null && !dto.getFoto().isBlank()) {
-			entity.setFoto(ImageFileWriter.saveImageToFolder(entity.getFoto(), dto.getFoto()));
-		}
-
+		enderecoMapper.atualizarEntity(entity, dto);
 		Endereco atualizado = enderecoRepository.save(entity);
-		return toDTO(atualizado);
+		return enderecoMapper.toDTO(atualizado);
 	}
 
 	@Transactional
 	public void deletar(Long id) {
-		Dependente dependente = usuarioLogadoService.getDependenteLogado();
-		Endereco entity = buscarEnderecoDoDependente(id, dependente.getId());
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		Endereco entity = buscarEnderecoDoDependente(id, dependenteId);
+
+		if (entity.isPrincipal()) {
+			throw new BusinessException("Não é possível excluir o endereço principal");
+		}
 
 		if (vinculoRepository.existsByEnderecoId(id)) {
 			throw new BusinessException("Não é possível excluir um endereço associado a um vínculo");
@@ -102,42 +115,5 @@ public class EnderecoService {
 	private Endereco buscarEnderecoDoDependente(Long enderecoId, Long dependenteId) {
 		return enderecoRepository.findByIdAndDependenteId(enderecoId, dependenteId)
 				.orElseThrow(() -> new NotFoundException("Endereço não encontrado"));
-	}
-
-	private Endereco toEntity(EnderecoDTO dto, Dependente dependente) throws Exception {
-		Endereco entity = new Endereco();
-
-		entity.setTitulo(dto.getTitulo());
-		entity.setLogradouro(dto.getLogradouro());
-		entity.setNumero(dto.getNumero());
-		entity.setBairro(dto.getBairro());
-		entity.setCidade(dto.getCidade());
-		entity.setEstado(dto.getEstado());
-		entity.setCep(dto.getCep());
-		entity.setPrincipal(dto.isPrincipal());
-		entity.setDependente(dependente);
-
-		if (dto.getFoto() != null && !dto.getFoto().isBlank()) {
-			entity.setFoto(ImageFileWriter.saveImageToFolder(null, dto.getFoto()));
-		}
-
-		return entity;
-	}
-
-	private EnderecoResponseDTO toDTO(Endereco entity) {
-		EnderecoResponseDTO dto = new EnderecoResponseDTO();
-
-		dto.setId(entity.getId());
-		dto.setTitulo(entity.getTitulo());
-		dto.setLogradouro(entity.getLogradouro());
-		dto.setNumero(entity.getNumero());
-		dto.setBairro(entity.getBairro());
-		dto.setCidade(entity.getCidade());
-		dto.setEstado(entity.getEstado());
-		dto.setCep(entity.getCep());
-		dto.setFoto(entity.getFoto());
-		dto.setPrincipal(entity.isPrincipal());
-
-		return dto;
 	}
 }

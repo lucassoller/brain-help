@@ -8,7 +8,9 @@ import com.brain.help.entity.Medico;
 import com.brain.help.exception.BusinessException;
 import com.brain.help.exception.ConflictException;
 import com.brain.help.exception.NotFoundException;
+import com.brain.help.mapper.EnderecoMapper;
 import com.brain.help.repository.DependenteRepository;
+import com.brain.help.repository.EnderecoRepository;
 import com.brain.help.security.UsuarioLogadoService;
 import com.brain.help.utils.ImageFileWriter;
 import lombok.RequiredArgsConstructor;
@@ -24,6 +26,8 @@ import java.util.Objects;
 public class DependenteService {
 
     private final DependenteRepository dependenteRepository;
+    private final EnderecoRepository enderecoRepository;
+    private final EnderecoMapper enderecoMapper;
     private final UsuarioLogadoService usuarioLogadoService;
     private final PasswordEncoder passwordEncoder;
 
@@ -156,7 +160,7 @@ public class DependenteService {
         return toDTO(atualizado);
     }
 
-    public DependenteResponseDTO executarAtualizacaoSenhaLogado(Dependente entity, MudancaSenhaDTO dto) {
+    private DependenteResponseDTO executarAtualizacaoSenhaLogado(Dependente entity, MudancaSenhaDTO dto) {
         validarSenhas(dto, entity.getSenhaHash());
         entity.setSenhaHash(passwordEncoder.encode(dto.getNovaSenha()));
         Dependente atualizado = dependenteRepository.save(entity);
@@ -237,6 +241,11 @@ public class DependenteService {
         dto.setDesempenhoAtual(entity.getDesempenhoAtual());
         dto.setFoto(entity.getFoto());
         dto.setGoogle(entity.isGoogle());
+
+        if (entity.getId() != null) {
+            enderecoRepository.findByDependenteIdAndPrincipalTrue(entity.getId())
+                    .ifPresent(end -> dto.setEndereco(enderecoMapper.toDTO(end)));
+        }
 
         return dto;
     }

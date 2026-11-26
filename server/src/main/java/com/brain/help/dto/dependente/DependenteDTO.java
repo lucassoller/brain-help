@@ -50,10 +50,6 @@ public class DependenteDTO {
 
     private String foto;
 
-    @NotNull(message = "O endereço é obrigatório")
-    @Valid
-    private EnderecoDTO endereco;
-
     @Size(max = 255, message = "A chave de segurança deve ter no máximo 255 caracteres")
     private String chaveSeguranca;
 

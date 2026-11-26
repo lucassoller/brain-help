@@ -18,6 +18,17 @@ public class EnderecoController {
 
 	private final EnderecoService enderecoService;
 
+
+	@PutMapping("/principal")
+	public ResponseEntity<EnderecoResponseDTO> salvarOuEditarPrincipal(@Valid @RequestBody EnderecoDTO dto) throws Exception {
+		return ResponseEntity.ok(enderecoService.salvarOuEditarPrincipal(dto));
+	}
+
+	@GetMapping("/principal")
+	public ResponseEntity<EnderecoResponseDTO> buscarPrincipal() {
+		return ResponseEntity.ok(enderecoService.buscarPrincipalDoLogado());
+	}
+
 	@PostMapping("/cadastrar")
 	public ResponseEntity<EnderecoResponseDTO> cadastrar(@Valid @RequestBody EnderecoDTO dto) throws Exception {
 		return ResponseEntity.status(HttpStatus.CREATED).body(enderecoService.cadastrar(dto));
@@ -31,11 +42,6 @@ public class EnderecoController {
 	@GetMapping("/buscar/{id}")
 	public ResponseEntity<EnderecoResponseDTO> buscarPorId(@PathVariable Long id) {
 		return ResponseEntity.ok(enderecoService.buscarPorId(id));
-	}
-
-	@GetMapping("/buscar/principal")
-	public ResponseEntity<EnderecoResponseDTO> buscarPrincipal() {
-		return ResponseEntity.ok(enderecoService.buscarPrincipalDoLogado());
 	}
 
 	@PutMapping("/editar/{id}")
