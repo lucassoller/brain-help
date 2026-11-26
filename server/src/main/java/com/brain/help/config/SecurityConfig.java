@@ -71,7 +71,7 @@ public class SecurityConfig {
                         .authenticationEntryPoint(customAuthenticationEntryPoint)
                         .accessDeniedHandler(customAccessDeniedHandler))
                 .authorizeHttpRequests(auth -> auth
-                        //PARA CADASTRAR UM SERVIDOR E TESTAR DESCOMENTAR ESSA LINHA E COMENTAR TUDO ATÉ ANTES DO RETURN
+                        //PARA CADASTRAR E TESTAR, DESCOMENTAR ESSA LINHA E COMENTAR TUDO ATÉ ANTES DO RETURN
                         //COMENTAR A ROLE NO PUT/POST DO SERVIDOR CONTROLLER
                         //.anyRequest().permitAll());
                         .requestMatchers("/public/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll()

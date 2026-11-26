@@ -1,6 +1,6 @@
 package com.brain.help.exception;
 
-import com.vincula.dto.ErrorResponseDTO;
+import com.brain.help.dto.ErrorResponseDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -112,23 +112,5 @@ public class GlobalExceptionHandler {
         );
 
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-    }
-
-    @ExceptionHandler(GeorreferenciamentoException.class)
-    public ResponseEntity<ErrorResponseDTO> handleGeorreferenciamento(
-            GeorreferenciamentoException ex,
-            HttpServletRequest request
-    ) {
-
-        ErrorResponseDTO response = new ErrorResponseDTO(
-                ex.getMessage(),
-                null,
-                request.getRequestURI(),
-                ex.getCodigo().name()
-        );
-
-        return ResponseEntity
-                .status(HttpStatus.UNPROCESSABLE_CONTENT)
-                .body(response);
     }
 }
