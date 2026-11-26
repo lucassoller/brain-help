@@ -91,7 +91,7 @@ public class VinculoService {
 		entity.setSexo(dto.getSexo());
 		entity.setIdade(dto.getIdade());
 		entity.setLembrancas(dto.getLembrancas());
-		entity.setEndereco(resolverEndereco(dto, dependenteLogado));
+		entity.setEndereco(resolverEndereco(dto, dependenteLogado, entity.getEndereco()));
 
 		if (dto.getFoto() != null && !dto.getFoto().isBlank()) {
 			entity.setFoto(ImageFileWriter.saveImageToFolder(entity.getFoto(), dto.getFoto()));
@@ -113,13 +113,21 @@ public class VinculoService {
 				.orElseThrow(() -> new NotFoundException("Vínculo não encontrado"));
 	}
 
-	private Endereco resolverEndereco(VinculoDTO dto, Dependente dependente) throws Exception {
+	private Endereco resolverEndereco(VinculoDTO dto, Dependente dependente, Endereco enderecoAtual) throws Exception {
 		if (dto.getEnderecoId() != null) {
 			return enderecoRepository.findByIdAndDependenteId(dto.getEnderecoId(), dependente.getId())
 					.orElseThrow(() -> new NotFoundException("Endereço não encontrado"));
 		}
 
 		if (dto.getEndereco() != null) {
+			if (enderecoAtual != null && !enderecoAtual.isPrincipal()) {
+				enderecoMapper.atualizarEntity(enderecoAtual, dto.getEndereco());
+				if (enderecoAtual.getTitulo() == null || enderecoAtual.getTitulo().isBlank()) {
+					enderecoAtual.setTitulo("Casa de " + dto.getNome());
+				}
+				return enderecoRepository.save(enderecoAtual);
+			}
+
 			Endereco novoEndereco = enderecoMapper.toEntity(dto.getEndereco(), dependente);
 			novoEndereco.setPrincipal(false);
 			if (novoEndereco.getTitulo() == null || novoEndereco.getTitulo().isBlank()) {
@@ -141,7 +149,7 @@ public class VinculoService {
 		entity.setSexo(dto.getSexo());
 		entity.setIdade(dto.getIdade());
 		entity.setLembrancas(dto.getLembrancas());
-		entity.setEndereco(resolverEndereco(dto, dependente));
+		entity.setEndereco(resolverEndereco(dto, dependente, null));
 		entity.setDependente(dependente);
 
 		if (dto.getFoto() != null && !dto.getFoto().isBlank()) {

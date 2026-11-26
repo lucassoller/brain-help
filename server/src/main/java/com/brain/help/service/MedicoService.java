@@ -78,8 +78,11 @@ public class MedicoService {
 
 	@Transactional
 	public MedicoResponseDTO atualizar(Long id, MedicoDTO dto) throws Exception {
-		Medico entity = buscarMedicoPorId(id);
-		return executarAtualizacao(entity, dto);
+		Medico medicoLogado = usuarioLogadoService.getMedicoLogado();
+		if (!Objects.equals(medicoLogado.getId(), id)) {
+			throw new BusinessException("Você não tem permissão para alterar o perfil de outro médico");
+		}
+		return executarAtualizacao(medicoLogado, dto);
 	}
 
 	@Transactional
@@ -96,8 +99,11 @@ public class MedicoService {
 
 	@Transactional
 	public void deletar(Long id) {
-		Medico entity = buscarMedicoPorId(id);
-		medicoRepository.delete(entity);
+		Medico medicoLogado = usuarioLogadoService.getMedicoLogado();
+		if (!Objects.equals(medicoLogado.getId(), id)) {
+			throw new BusinessException("Você não tem permissão para excluir o perfil de outro médico");
+		}
+		medicoRepository.delete(medicoLogado);
 	}
 
 	private MedicoResponseDTO executarAtualizacao(Medico entity, MedicoDTO dto) throws Exception {
@@ -108,7 +114,10 @@ public class MedicoService {
 		entity.setEmail(dto.getEmail());
 		entity.setTelefone(dto.getTelefone());
 		entity.setEspecializacao(dto.getEspecializacao());
-		entity.setEnderecoConsultorio(enderecoMapper.toConsultorioEntity(dto.getEnderecoConsultorio()));
+
+		if (dto.getEnderecoConsultorio() != null) {
+			entity.setEnderecoConsultorio(enderecoMapper.toConsultorioEntity(dto.getEnderecoConsultorio()));
+		}
 
 		if (dto.getFoto() != null && !dto.getFoto().isBlank()) {
 			entity.setFoto(ImageFileWriter.saveImageToFolder(entity.getFoto(), dto.getFoto()));
@@ -182,7 +191,11 @@ public class MedicoService {
 		return entity;
 	}
 
-	private MedicoResponseDTO toDTO(Medico entity) {
+	public MedicoResponseDTO toDTO(Medico entity) {
+		if (entity == null) {
+			return null;
+		}
+
 		MedicoResponseDTO dto = new MedicoResponseDTO();
 
 		dto.setId(entity.getId());

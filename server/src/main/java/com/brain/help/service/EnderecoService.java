@@ -52,7 +52,7 @@ public class EnderecoService {
 		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
 		return enderecoRepository.findByDependenteIdAndPrincipalTrue(dependenteId)
 				.map(enderecoMapper::toDTO)
-				.orElse(null); // Retorna null (HTTP 200 vazio) se ainda não cadastrou, facilitando o check no onboarding
+				.orElse(null);
 	}
 
 	@Transactional

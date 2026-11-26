@@ -23,7 +23,6 @@ public class FotografiaService {
 
 	@Transactional
 	public FotografiaResponseDTO cadastrar(FotografiaDTO dto) throws Exception {
-
 		Dependente dependenteLogado = usuarioLogadoService.getDependenteLogado();
 		Fotografia entity = toEntity(dto, dependenteLogado);
 		Fotografia salva = fotografiaRepository.save(entity);
@@ -33,8 +32,8 @@ public class FotografiaService {
 
 	@Transactional(readOnly = true)
 	public List<FotografiaResponseDTO> buscarTodosDoLogado() {
-		Dependente dependenteLogado = usuarioLogadoService.getDependenteLogado();
-		return fotografiaRepository.findByDependenteIdOrderByDataDesc(dependenteLogado.getId())
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		return fotografiaRepository.findByDependenteIdOrderByDataDesc(dependenteId)
 				.stream()
 				.map(this::toDTO)
 				.toList();
@@ -42,13 +41,13 @@ public class FotografiaService {
 
 	@Transactional(readOnly = true)
 	public FotografiaResponseDTO buscarPorId(Long id) {
-		Fotografia entity = buscarFotografiaPorId(id);
+		Fotografia entity = buscarFotografiaDoDependente(id);
 		return toDTO(entity);
 	}
 
 	@Transactional
 	public FotografiaResponseDTO editar(Long id, FotografiaDTO dto) throws Exception {
-		Fotografia entity = buscarFotografiaPorId(id);
+		Fotografia entity = buscarFotografiaDoDependente(id);
 
 		entity.setLugar(dto.getLugar());
 		entity.setData(dto.getData());
@@ -64,12 +63,13 @@ public class FotografiaService {
 
 	@Transactional
 	public void deletar(Long id) {
-		Fotografia entity = buscarFotografiaPorId(id);
+		Fotografia entity = buscarFotografiaDoDependente(id);
 		fotografiaRepository.delete(entity);
 	}
 
-	private Fotografia buscarFotografiaPorId(Long fotografiaId) {
-		return fotografiaRepository.findById(fotografiaId)
+	private Fotografia buscarFotografiaDoDependente(Long fotografiaId) {
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		return fotografiaRepository.findByIdAndDependenteId(fotografiaId, dependenteId)
 				.orElseThrow(() -> new NotFoundException("Fotografia não encontrada"));
 	}
 
@@ -79,8 +79,11 @@ public class FotografiaService {
 		entity.setLugar(dto.getLugar());
 		entity.setData(dto.getData());
 		entity.setLembrancas(dto.getLembrancas());
-		entity.setFoto(ImageFileWriter.saveImageToFolder(null, dto.getFoto()));
 		entity.setDependente(dependente);
+
+		if (dto.getFoto() != null && !dto.getFoto().isBlank()) {
+			entity.setFoto(ImageFileWriter.saveImageToFolder(null, dto.getFoto()));
+		}
 
 		return entity;
 	}

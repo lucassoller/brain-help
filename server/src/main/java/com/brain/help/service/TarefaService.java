@@ -33,8 +33,8 @@ public class TarefaService {
 
 	@Transactional(readOnly = true)
 	public List<TarefaResponseDTO> buscarTodosDoLogado() {
-		Dependente dependenteLogado = usuarioLogadoService.getDependenteLogado();
-		return tarefaRepository.findByDependenteIdOrderByDataCriacaoDesc(dependenteLogado.getId())
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		return tarefaRepository.findByDependenteIdOrderByDataCriacaoDesc(dependenteId)
 				.stream()
 				.map(this::toDTO)
 				.toList();
@@ -42,13 +42,13 @@ public class TarefaService {
 
 	@Transactional(readOnly = true)
 	public TarefaResponseDTO buscarPorId(Long id) {
-		Tarefa entity = buscarTarefaPorId(id);
+		Tarefa entity = buscarTarefaDoDependente(id);
 		return toDTO(entity);
 	}
 
 	@Transactional
 	public TarefaResponseDTO editar(Long id, TarefaDTO dto) {
-		Tarefa entity = buscarTarefaPorId(id);
+		Tarefa entity = buscarTarefaDoDependente(id);
 		entity.setTarefa(dto.getTarefa());
 		entity.setDescricao(dto.getDescricao());
 
@@ -58,7 +58,7 @@ public class TarefaService {
 
 	@Transactional
 	public TarefaResponseDTO finalizar(Long id) {
-		Tarefa entity = buscarTarefaPorId(id);
+		Tarefa entity = buscarTarefaDoDependente(id);
 
 		if (entity.getStatusTarefa() == StatusTarefa.CONCLUIDA) {
 			throw new BusinessException("Esta tarefa já foi finalizada");
@@ -73,12 +73,13 @@ public class TarefaService {
 
 	@Transactional
 	public void deletar(Long id) {
-		Tarefa entity = buscarTarefaPorId(id);
+		Tarefa entity = buscarTarefaDoDependente(id);
 		tarefaRepository.delete(entity);
 	}
 
-	private Tarefa buscarTarefaPorId(Long tarefaId) {
-		return tarefaRepository.findById(tarefaId)
+	private Tarefa buscarTarefaDoDependente(Long tarefaId) {
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		return tarefaRepository.findByIdAndDependenteId(tarefaId, dependenteId)
 				.orElseThrow(() -> new NotFoundException("Tarefa não encontrada"));
 	}
 

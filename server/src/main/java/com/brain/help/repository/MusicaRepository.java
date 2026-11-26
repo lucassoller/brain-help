@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import java.util.List;
+import java.util.Optional;
 
 
 public interface MusicaRepository extends JpaRepository<Musica, Long> {
@@ -22,4 +23,6 @@ public interface MusicaRepository extends JpaRepository<Musica, Long> {
     """)
 	List<Musica> buscarPorDependenteENomeOuCantor(@Param("dependenteId") Long dependenteId,
 												  @Param("termo") String termo);
+
+	Optional<Musica> findByIdAndDependenteId(Long id, Long dependenteId);
 }

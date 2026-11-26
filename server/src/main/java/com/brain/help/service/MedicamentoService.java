@@ -24,6 +24,7 @@ public class MedicamentoService {
 
 	@Transactional
 	public MedicamentoResponseDTO cadastrar(MedicamentoDTO dto) throws Exception {
+		validarDatas(dto);
 		Dependente dependenteLogado = usuarioLogadoService.getDependenteLogado();
 		Medicamento entity = toEntity(dto, dependenteLogado);
 		Medicamento salvo = medicamentoRepository.save(entity);
@@ -32,8 +33,8 @@ public class MedicamentoService {
 
 	@Transactional(readOnly = true)
 	public List<MedicamentoResponseDTO> buscarTodosDoLogado() {
-		Dependente dependenteLogado = usuarioLogadoService.getDependenteLogado();
-		return medicamentoRepository.findByDependenteIdOrderByNomeMedicamentoAsc(dependenteLogado.getId())
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		return medicamentoRepository.findByDependenteIdOrderByNomeMedicamentoAsc(dependenteId)
 				.stream()
 				.map(this::toDTO)
 				.toList();
@@ -41,13 +42,14 @@ public class MedicamentoService {
 
 	@Transactional(readOnly = true)
 	public MedicamentoResponseDTO buscarPorId(Long id) {
-		Medicamento entity = buscarMedicamentoPorId(id);
+		Medicamento entity = buscarMedicamentoDoDependente(id);
 		return toDTO(entity);
 	}
 
 	@Transactional
 	public MedicamentoResponseDTO editar(Long id, MedicamentoDTO dto) throws Exception {
-		Medicamento entity = buscarMedicamentoPorId(id);
+		validarDatas(dto);
+		Medicamento entity = buscarMedicamentoDoDependente(id);
 
 		entity.setNomeMedicamento(dto.getNomeMedicamento());
 		entity.setFuncao(dto.getFuncao());
@@ -56,11 +58,6 @@ public class MedicamentoService {
 		entity.setQuantidade(dto.getQuantidade());
 		entity.setMedida(dto.getMedida());
 		entity.setDataHoraInicial(dto.getDataHoraInicial());
-
-		if (dto.getDataFinal() != null && dto.getDataFinal().isBefore(dto.getDataHoraInicial().toLocalDate())) {
-			throw new BusinessException("A data final não pode ser anterior à data de início");
-		}
-
 		entity.setDataFinal(dto.getDataFinal());
 		entity.setFrequencia(dto.getFrequencia());
 
@@ -74,13 +71,20 @@ public class MedicamentoService {
 
 	@Transactional
 	public void deletar(Long id) {
-		Medicamento entity = buscarMedicamentoPorId(id);
+		Medicamento entity = buscarMedicamentoDoDependente(id);
 		medicamentoRepository.delete(entity);
 	}
 
-	private Medicamento buscarMedicamentoPorId (Long medicamentoId) {
-		return medicamentoRepository.findById(medicamentoId)
+	private Medicamento buscarMedicamentoDoDependente(Long medicamentoId) {
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		return medicamentoRepository.findByIdAndDependenteId(medicamentoId, dependenteId)
 				.orElseThrow(() -> new NotFoundException("Medicamento não encontrado"));
+	}
+
+	private void validarDatas(MedicamentoDTO dto) {
+		if (dto.getDataFinal() != null && dto.getDataFinal().isBefore(dto.getDataHoraInicial().toLocalDate())) {
+			throw new BusinessException("A data final não pode ser anterior à data de início");
+		}
 	}
 
 	private Medicamento toEntity(MedicamentoDTO dto, Dependente dependente) throws Exception {
@@ -93,11 +97,6 @@ public class MedicamentoService {
 		entity.setQuantidade(dto.getQuantidade());
 		entity.setMedida(dto.getMedida());
 		entity.setDataHoraInicial(dto.getDataHoraInicial());
-
-		if (dto.getDataFinal() != null && dto.getDataFinal().isBefore(dto.getDataHoraInicial().toLocalDate())) {
-			throw new BusinessException("A data final não pode ser anterior à data de início");
-		}
-
 		entity.setDataFinal(dto.getDataFinal());
 		entity.setFrequencia(dto.getFrequencia());
 		entity.setDependente(dependente);
@@ -120,7 +119,6 @@ public class MedicamentoService {
 		dto.setQuantidade(entity.getQuantidade());
 		dto.setMedida(entity.getMedida());
 		dto.setDataHoraInicial(entity.getDataHoraInicial());
-
 		dto.setDataFinal(entity.getDataFinal());
 		dto.setFrequencia(entity.getFrequencia());
 		dto.setFoto(entity.getFoto());

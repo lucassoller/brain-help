@@ -13,6 +13,7 @@ import com.brain.help.security.UsuarioLogadoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -35,8 +36,8 @@ public class DesempenhoService {
 
     @Transactional(readOnly = true)
     public List<DesempenhoResponseDTO> buscarTodosDoLogado() {
-        Dependente dependenteLogado = usuarioLogadoService.getDependenteLogado();
-        return desempenhoRepository.findByDependenteIdOrderByDataRealizacaoDesc(dependenteLogado.getId())
+        Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+        return desempenhoRepository.findByDependenteIdOrderByDataRealizacaoDesc(dependenteId)
                 .stream()
                 .map(this::toDTO)
                 .toList();
@@ -44,7 +45,7 @@ public class DesempenhoService {
 
     @Transactional(readOnly = true)
     public DesempenhoResponseDTO buscarPorId(Long id) {
-        Desempenho entity = buscarDesempenhoPorId(id);
+        Desempenho entity = buscarDesempenhoDoDependente(id);
         return toDTO(entity);
     }
 
@@ -66,7 +67,7 @@ public class DesempenhoService {
 
     @Transactional
     public DesempenhoResponseDTO editar(Long id, DesempenhoDTO dto) {
-        Desempenho entity = buscarDesempenhoPorId(id);
+        Desempenho entity = buscarDesempenhoDoDependente(id);
 
         entity.setAtividade(dto.getAtividade());
         entity.setPontuacao(dto.getPontuacao());
@@ -81,12 +82,13 @@ public class DesempenhoService {
 
     @Transactional
     public void deletar(Long id) {
-        Desempenho entity = buscarDesempenhoPorId(id);
+        Desempenho entity = buscarDesempenhoDoDependente(id);
         desempenhoRepository.delete(entity);
     }
 
-    private Desempenho buscarDesempenhoPorId(Long desempenhoId) {
-        return desempenhoRepository.findById(desempenhoId)
+    private Desempenho buscarDesempenhoDoDependente(Long desempenhoId) {
+        Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+        return desempenhoRepository.findByIdAndDependenteId(desempenhoId, dependenteId)
                 .orElseThrow(() -> new NotFoundException("Registro de desempenho não encontrado"));
     }
 

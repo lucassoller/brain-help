@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface FotografiaRepository extends JpaRepository<Fotografia, Long> {
 
 	List<Fotografia> findByDependenteIdOrderByDataDesc(Long dependenteId);
+
+	Optional<Fotografia> findByIdAndDependenteId(Long id, Long dependenteId);
 }

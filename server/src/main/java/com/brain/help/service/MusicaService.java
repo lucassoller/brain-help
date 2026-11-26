@@ -30,8 +30,8 @@ public class MusicaService {
 
 	@Transactional(readOnly = true)
 	public List<MusicaResponseDTO> buscarTodosDoLogado() {
-		Dependente dependente = usuarioLogadoService.getDependenteLogado();
-		return musicaRepository.findByDependenteIdOrderByNomeMusicaAsc(dependente.getId())
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		return musicaRepository.findByDependenteIdOrderByNomeMusicaAsc(dependenteId)
 				.stream()
 				.map(this::toDTO)
 				.toList();
@@ -43,8 +43,8 @@ public class MusicaService {
 			return buscarTodosDoLogado();
 		}
 
-		Dependente dependente = usuarioLogadoService.getDependenteLogado();
-		return musicaRepository.buscarPorDependenteENomeOuCantor(dependente.getId(), termo.trim())
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		return musicaRepository.buscarPorDependenteENomeOuCantor(dependenteId, termo.trim())
 				.stream()
 				.map(this::toDTO)
 				.toList();
@@ -52,13 +52,13 @@ public class MusicaService {
 
 	@Transactional(readOnly = true)
 	public MusicaResponseDTO buscarPorId(Long id) {
-		Musica entity = buscarMusicaPorId(id);
+		Musica entity = buscarMusicaDoDependente(id);
 		return toDTO(entity);
 	}
 
 	@Transactional
 	public MusicaResponseDTO editar(Long id, MusicaDTO dto) {
-		Musica entity = buscarMusicaPorId(id);
+		Musica entity = buscarMusicaDoDependente(id);
 
 		entity.setNomeMusica(dto.getNomeMusica());
 		entity.setCantor(dto.getCantor());
@@ -71,12 +71,13 @@ public class MusicaService {
 
 	@Transactional
 	public void deletar(Long id) {
-		Musica entity = buscarMusicaPorId(id);
+		Musica entity = buscarMusicaDoDependente(id);
 		musicaRepository.delete(entity);
 	}
 
-	private Musica buscarMusicaPorId(Long musicaId) {
-		return musicaRepository.findById(musicaId)
+	private Musica buscarMusicaDoDependente(Long musicaId) {
+		Long dependenteId = usuarioLogadoService.getDependenteIdLogado();
+		return musicaRepository.findByIdAndDependenteId(musicaId, dependenteId)
 				.orElseThrow(() -> new NotFoundException("Música não encontrada"));
 	}
 
