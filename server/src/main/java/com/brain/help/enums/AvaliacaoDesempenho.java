@@ -1,5 +1,5 @@
 package com.brain.help.enums;
 
 public enum AvaliacaoDesempenho {
-	RUIM, REGULAR, BOA, EXCELENTE;
+	RUIM, REGULAR, BOA, EXCELENTE
 }

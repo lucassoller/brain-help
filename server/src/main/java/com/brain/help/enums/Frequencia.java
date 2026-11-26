@@ -1,5 +1,5 @@
 package com.brain.help.enums;
 
 public enum Frequencia {
-	QUATRO, SEIS, OITO, DOZE, DIARIA, SEMANAL, MENSAL
+	A_CADA_4_HORAS, A_CADA_6_HORAS, A_CADA_8_HORAS, A_CADA_12_HORAS, DIARIA, SEMANAL, MENSAL
 }

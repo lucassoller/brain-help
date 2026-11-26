@@ -1,11 +1,11 @@
 package com.brain.help.repository;
 
-import java.util.List;
-import org.springframework.data.jpa.repository.JpaRepository;
-import com.brain.help.entity.Dependente;
 import com.brain.help.entity.Medicamento;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
-public interface MedicamentoRepository extends JpaRepository<Medicamento, Integer>{
-	List<Medicamento> findByDiagnosticado(Dependente dependente);
-	List<Medicamento> findByDiagnosticadoAndFuncao(Dependente dependente, String funcao);
+public interface MedicamentoRepository extends JpaRepository<Medicamento, Long> {
+
+	List<Medicamento> findByDependenteIdOrderByNomeMedicamentoAsc(Long dependenteId);
+
 }

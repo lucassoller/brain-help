@@ -1,6 +1,8 @@
 package com.brain.help.entity;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Date;
 import jakarta.persistence.*;
 import com.brain.help.enums.Frequencia;
@@ -38,8 +40,12 @@ public class Medicamento {
 	@Enumerated(EnumType.STRING)
 	@Column(nullable = false, length = 30)
 	private Medida medida;
-	
-	private LocalDateTime horario;
+
+	@Column(nullable = false)
+	private LocalDateTime dataHoraInicial;
+
+	@Column(nullable = false)
+	private LocalDate dataFinal;
 
 	@Enumerated(EnumType.STRING)
 	@Column(length = 30)

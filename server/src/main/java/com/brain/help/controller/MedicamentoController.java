@@ -1,73 +1,47 @@
 package com.brain.help.controller;
 
+import com.brain.help.dto.medicamento.MedicamentoDTO;
+import com.brain.help.dto.medicamento.MedicamentoResponseDTO;
+import com.brain.help.service.MedicamentoService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.brain.help.entity.Medicamento;
-import com.brain.help.repository.MedicamentoRepository;
-import com.brain.help.service.medicamento.BuscarMedicamentoPorIdService;
-import com.brain.help.service.medicamento.BuscarMedicamentosDoUsuarioService;
-import com.brain.help.service.medicamento.CadastrarMedicamentoService;
-import com.brain.help.service.medicamento.DeletarMedicamentoService;
-import com.brain.help.service.medicamento.EditarMedicamentoService;
 
 @RestController
-@RequestMapping("/medicamento")
+@RequestMapping("/medicamentos")
+@RequiredArgsConstructor
 public class MedicamentoController {
-	
-	@Autowired
-	private MedicamentoRepository medicamentoRepository;
-	
-	@Autowired
-	private CadastrarMedicamentoService cadastrarMedicamento;
-	
-	@Autowired
-	private BuscarMedicamentoPorIdService buscarMedicamentoPorId;
-	
-	@Autowired
-	private EditarMedicamentoService editarMedicamento;
-	
-	@Autowired
-	private DeletarMedicamentoService deletarMedicamento;
-	
-	@Autowired
-	private BuscarMedicamentosDoUsuarioService buscarMedicamentosDoUsuario;
-	
-	@GetMapping("/buscar/todos")
-	public List<Medicamento> buscarTodos(){
-		return medicamentoRepository.findAll();
-	}
-	
-	@GetMapping("/buscar/todos/usuario")
-	public List<Medicamento> buscarTodosDoUsuario(@AuthenticationPrincipal UserPrincipal userPrincipal){
-		return buscarMedicamentosDoUsuario.buscar(userPrincipal.getEmail());
-	}
-	
-	@GetMapping("/buscar/{ID}")
-	public Medicamento buscarPorId(@PathVariable("ID") Integer codMedicamento){
-		return buscarMedicamentoPorId.buscar(codMedicamento);
-	}
-	
+
+	private final MedicamentoService medicamentoService;
+
 	@PostMapping("/cadastrar")
-	public void cadastrarMedicamento(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Medicamento medicamento) throws Exception {
-		cadastrarMedicamento.salvar(userPrincipal.getEmail(), medicamento);
+	public ResponseEntity<MedicamentoResponseDTO> cadastrar(@Valid @RequestBody MedicamentoDTO dto) throws Exception {
+		return ResponseEntity.status(HttpStatus.CREATED).body(medicamentoService.cadastrar(dto));
 	}
-	
-	@PutMapping("/editar")
-	public void editarMedicamento(@RequestBody Medicamento medicamento) throws Exception {
-		editarMedicamento.editar(medicamento);
+
+	@GetMapping("/buscar/todos")
+	public ResponseEntity<List<MedicamentoResponseDTO>> buscarTodos() {
+		return ResponseEntity.ok(medicamentoService.buscarTodosDoLogado());
 	}
-	
-	@DeleteMapping("/deletar/{ID}")
-	public void deletarMedicamento(@PathVariable("ID") Integer codMedicamento) {
-		deletarMedicamento.deletar(codMedicamento);
+
+	@GetMapping("/buscar/{id}")
+	public ResponseEntity<MedicamentoResponseDTO> buscarPorId(@PathVariable Long id) {
+		return ResponseEntity.ok(medicamentoService.buscarPorId(id));
+	}
+
+	@PutMapping("/editar/{id}")
+	public ResponseEntity<MedicamentoResponseDTO> editar(@PathVariable Long id,
+														 @Valid @RequestBody MedicamentoDTO dto) throws Exception {
+		return ResponseEntity.ok(medicamentoService.editar(id, dto));
+	}
+
+	@DeleteMapping("/deletar/{id}")
+	public ResponseEntity<Void> deletar(@PathVariable Long id) {
+		medicamentoService.deletar(id);
+		return ResponseEntity.noContent().build();
 	}
 }
