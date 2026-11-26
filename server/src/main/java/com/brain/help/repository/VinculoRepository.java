@@ -22,4 +22,6 @@ public interface VinculoRepository extends JpaRepository<Vinculo, Long>{
 
 	List<Vinculo> findByDependenteIdAndVinculoContainingIgnoreCaseOrderByNomeAsc(Long dependenteId, String vinculo);
 
+	boolean existsByEnderecoId(Long enderecoId);
+
 }

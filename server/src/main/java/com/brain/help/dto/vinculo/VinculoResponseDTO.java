@@ -1,5 +1,6 @@
 package com.brain.help.dto.vinculo;
 
+import com.brain.help.dto.endereco.EnderecoResponseDTO;
 import com.brain.help.enums.Sexo;
 import lombok.Data;
 
@@ -15,4 +16,5 @@ public class VinculoResponseDTO {
     private int idade;
     private String lembrancas;
     private String foto;
+    private EnderecoResponseDTO endereco;
 }

@@ -1,7 +1,10 @@
 package com.brain.help.dto.medico;
 
+import com.brain.help.dto.endereco.EnderecoConsultorioDTO;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
@@ -34,6 +37,10 @@ public class MedicoDTO {
 
     @Size(max = 255, message = "A confirmação de senha deve ter no máximo 255 caracteres")
     private String confirmarSenha;
+
+    @NotNull(message = "O endereço é obrigatório")
+    @Valid
+    private EnderecoConsultorioDTO enderecoConsultorio;
 
     private String foto;
 }

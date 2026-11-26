@@ -1,7 +1,9 @@
 package com.brain.help.dto.dependente;
 
+import com.brain.help.dto.endereco.EnderecoDTO;
 import com.brain.help.enums.EstagioAlzheimer;
 import com.brain.help.enums.Sexo;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -47,6 +49,10 @@ public class DependenteDTO {
     private EstagioAlzheimer estagioAlzheimer;
 
     private String foto;
+
+    @NotNull(message = "O endereço é obrigatório")
+    @Valid
+    private EnderecoDTO endereco;
 
     @Size(max = 255, message = "A chave de segurança deve ter no máximo 255 caracteres")
     private String chaveSeguranca;

@@ -1,5 +1,6 @@
 package com.brain.help.dto.medico;
 
+import com.brain.help.dto.endereco.EnderecoConsultorioDTO;
 import lombok.Data;
 
 @Data
@@ -12,5 +13,6 @@ public class MedicoResponseDTO {
     private String telefone;
     private String especializacao;
     private String foto;
+    private EnderecoConsultorioDTO enderecoConsultorio;
     private boolean google;
 }

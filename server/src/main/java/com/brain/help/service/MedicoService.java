@@ -1,8 +1,10 @@
 package com.brain.help.service;
 
+import com.brain.help.dto.endereco.EnderecoConsultorioDTO;
 import com.brain.help.dto.medico.MedicoDTO;
 import com.brain.help.dto.medico.MedicoResponseDTO;
 import com.brain.help.dto.senha.MudancaSenhaDTO;
+import com.brain.help.entity.EnderecoConsultorio;
 import com.brain.help.entity.Medico;
 import com.brain.help.exception.BusinessException;
 import com.brain.help.exception.ConflictException;
@@ -111,6 +113,8 @@ public class MedicoService {
 			entity.setFoto(ImageFileWriter.saveImageToFolder(entity.getFoto(), dto.getFoto()));
 		}
 
+		entity.setEnderecoConsultorio(toEnderecoConsultorioEntity(dto.getEnderecoConsultorio()));
+
 		Medico atualizado = medicoRepository.save(entity);
 		return toDTO(atualizado);
 	}
@@ -169,6 +173,7 @@ public class MedicoService {
 		entity.setTelefone(dto.getTelefone());
 		entity.setEspecializacao(dto.getEspecializacao());
 		entity.setSenha(passwordEncoder.encode(dto.getSenha()));
+		entity.setEnderecoConsultorio(toEnderecoConsultorioEntity(dto.getEnderecoConsultorio()));
 		entity.setGoogle(false);
 
 		if (dto.getFoto() != null && !dto.getFoto().isBlank()) {
@@ -188,8 +193,41 @@ public class MedicoService {
 		dto.setTelefone(entity.getTelefone());
 		dto.setEspecializacao(entity.getEspecializacao());
 		dto.setFoto(entity.getFoto());
+		dto.setEnderecoConsultorio(toEnderecoConsultorioDTO(entity.getEnderecoConsultorio()));
 		dto.setGoogle(entity.isGoogle());
 
+		return dto;
+	}
+
+	private EnderecoConsultorio toEnderecoConsultorioEntity(EnderecoConsultorioDTO dto) {
+		if (dto == null) {
+			return null;
+		}
+
+		EnderecoConsultorio endereco = new EnderecoConsultorio();
+		endereco.setLogradouro(dto.getLogradouro());
+		endereco.setNumero(dto.getNumero());
+		endereco.setComplemento(dto.getComplemento());
+		endereco.setBairro(dto.getBairro());
+		endereco.setCidade(dto.getCidade());
+		endereco.setEstado(dto.getEstado());
+		endereco.setCep(dto.getCep());
+		return endereco;
+	}
+
+	private EnderecoConsultorioDTO toEnderecoConsultorioDTO(EnderecoConsultorio entity) {
+		if (entity == null) {
+			return null;
+		}
+
+		EnderecoConsultorioDTO dto = new EnderecoConsultorioDTO();
+		dto.setLogradouro(entity.getLogradouro());
+		dto.setNumero(entity.getNumero());
+		dto.setComplemento(entity.getComplemento());
+		dto.setBairro(entity.getBairro());
+		dto.setCidade(entity.getCidade());
+		dto.setEstado(entity.getEstado());
+		dto.setCep(entity.getCep());
 		return dto;
 	}
 }

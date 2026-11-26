@@ -46,6 +46,9 @@ public class Medico implements UserDetails {
 	@Column(nullable = false, length = 100)
 	private String especializacao;
 
+	@Embedded
+	private EnderecoConsultorio enderecoConsultorio;
+
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return List.of(new SimpleGrantedAuthority("ROLE_MEDICO"));

@@ -1,6 +1,8 @@
 package com.brain.help.dto.vinculo;
 
+import com.brain.help.dto.endereco.EnderecoDTO;
 import com.brain.help.enums.Sexo;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.Data;
 
@@ -33,6 +35,11 @@ public class VinculoDTO {
 
     @Size(max = 2000, message = "As lembranças devem ter no máximo 2000 caracteres")
     private String lembrancas;
+
+    private Long enderecoId;
+
+    @Valid
+    private EnderecoDTO endereco;
 
     private String foto;
 }

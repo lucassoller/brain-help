@@ -1,73 +1,52 @@
 package com.brain.help.controller;
 
+import com.brain.help.dto.endereco.EnderecoDTO;
+import com.brain.help.dto.endereco.EnderecoResponseDTO;
+import com.brain.help.service.EnderecoService;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.brain.help.entity.Endereco;
-import com.brain.help.repository.EnderecoRepository;
-import com.brain.help.service.endereco.BuscarEnderecoPorIdService;
-import com.brain.help.service.endereco.BuscarEnderecosDoUsuarioService;
-import com.brain.help.service.endereco.CadastrarListaEnderecoService;
-import com.brain.help.service.endereco.DeletarEnderecoService;
-import com.brain.help.service.endereco.EditarEnderecoService;
 
 @RestController
-@RequestMapping("/endereco")
+@RequestMapping("/enderecos")
+@RequiredArgsConstructor
 public class EnderecoController {
-	
-	@Autowired
-	private EnderecoRepository enderecoRepository;
-	
-	@Autowired
-	private CadastrarListaEnderecoService cadastrarEndereco;
-	
-	@Autowired
-	private BuscarEnderecoPorIdService buscarEnderecoPorId;
-	
-	@Autowired
-	private EditarEnderecoService editarEndereco;
-	
-	@Autowired
-	private DeletarEnderecoService deletarEndereco;
-	
-	@Autowired
-	private BuscarEnderecosDoUsuarioService buscarEnderecosDoUsuario;
-	
-	@GetMapping("/buscar/todos")
-	public List<Endereco> buscarTodos(){
-		return enderecoRepository.findAll();
-	}
-	
-	@GetMapping("/buscar/todos/usuario")
-	public List<Endereco> buscarTodosDoDiagnosticado(@AuthenticationPrincipal UserPrincipal userPrincipal){
-		return buscarEnderecosDoUsuario.buscar(userPrincipal.getEmail());
-	}
-	
-	@GetMapping("/buscar/{ID}")
-	public Endereco buscarPorId(@PathVariable("ID") Integer codEndereco){
-		return buscarEnderecoPorId.buscar(codEndereco);
-	}
-	
+
+	private final EnderecoService enderecoService;
+
 	@PostMapping("/cadastrar")
-	public void cadastrarEndereco(@AuthenticationPrincipal UserPrincipal userPrincipal, @RequestBody Endereco endereco) throws Exception {
-		cadastrarEndereco.salvar(endereco, userPrincipal.getEmail());
+	public ResponseEntity<EnderecoResponseDTO> cadastrar(@Valid @RequestBody EnderecoDTO dto) throws Exception {
+		return ResponseEntity.status(HttpStatus.CREATED).body(enderecoService.cadastrar(dto));
 	}
-	
-	@PutMapping("/editar")
-	public void editarEndereco(@RequestBody Endereco endereco) throws Exception {
-		editarEndereco.editar(endereco);
+
+	@GetMapping("/buscar/todos")
+	public ResponseEntity<List<EnderecoResponseDTO>> buscarTodos() {
+		return ResponseEntity.ok(enderecoService.buscarTodosDoLogado());
 	}
-	
-	@DeleteMapping("/deletar/{ID}")
-	public void deletarEndereco(@PathVariable("ID") Integer codEndereco) {
-		deletarEndereco.deletar(codEndereco);
+
+	@GetMapping("/buscar/{id}")
+	public ResponseEntity<EnderecoResponseDTO> buscarPorId(@PathVariable Long id) {
+		return ResponseEntity.ok(enderecoService.buscarPorId(id));
+	}
+
+	@GetMapping("/buscar/principal")
+	public ResponseEntity<EnderecoResponseDTO> buscarPrincipal() {
+		return ResponseEntity.ok(enderecoService.buscarPrincipalDoLogado());
+	}
+
+	@PutMapping("/editar/{id}")
+	public ResponseEntity<EnderecoResponseDTO> editar(@PathVariable Long id,
+													  @Valid @RequestBody EnderecoDTO dto) throws Exception {
+		return ResponseEntity.ok(enderecoService.editar(id, dto));
+	}
+
+	@DeleteMapping("/deletar/{id}")
+	public ResponseEntity<Void> deletar(@PathVariable Long id) {
+		enderecoService.deletar(id);
+		return ResponseEntity.noContent().build();
 	}
 }

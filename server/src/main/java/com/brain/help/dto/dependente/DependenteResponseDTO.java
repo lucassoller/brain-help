@@ -1,5 +1,6 @@
 package com.brain.help.dto.dependente;
 
+import com.brain.help.dto.endereco.EnderecoResponseDTO;
 import com.brain.help.enums.AvaliacaoDesempenho;
 import com.brain.help.enums.EstagioAlzheimer;
 import com.brain.help.enums.Sexo;
@@ -20,5 +21,6 @@ public class DependenteResponseDTO {
     private AvaliacaoDesempenho desempenhoAtual;
     private String foto;
     private LocalDate dataDiagnostico;
+    private EnderecoResponseDTO endereco;
     private boolean google;
 }
