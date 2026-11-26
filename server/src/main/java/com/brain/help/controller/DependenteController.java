@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.brain.help.dto.dependente.DependenteDTO;
 import com.brain.help.dto.dependente.DependenteResponseDTO;
+import com.brain.help.dto.medico.MedicoResponseDTO;
 import com.brain.help.dto.senha.MudancaSenhaDTO;
 import com.brain.help.service.DependenteService;
 import jakarta.validation.Valid;
@@ -37,6 +38,11 @@ public class DependenteController {
 	@GetMapping("/buscar/logado")
 	public ResponseEntity<DependenteResponseDTO> buscarLogado(){
 		return ResponseEntity.ok(dependenteService.buscarPerfilLogado());
+	}
+
+	@GetMapping("/meu-medico")
+	public ResponseEntity<MedicoResponseDTO> buscarMeuMedico() {
+		return ResponseEntity.ok(dependenteService.buscarMeuMedico());
 	}
 	
 	@PutMapping("/editar")

@@ -2,6 +2,7 @@ package com.brain.help.service;
 
 import com.brain.help.dto.dependente.DependenteDTO;
 import com.brain.help.dto.dependente.DependenteResponseDTO;
+import com.brain.help.dto.medico.MedicoResponseDTO;
 import com.brain.help.dto.senha.MudancaSenhaDTO;
 import com.brain.help.entity.Dependente;
 import com.brain.help.entity.Medico;
@@ -104,6 +105,29 @@ public class DependenteService {
 
         dependente.setMedico(medicoLogado);
         dependenteRepository.save(dependente);
+    }
+
+    @Transactional(readOnly = true)
+    public MedicoResponseDTO buscarMeuMedico() {
+        Dependente dependenteLogado = usuarioLogadoService.getDependenteLogado();
+        Medico medico = dependenteLogado.getMedico();
+
+        if (medico == null) {
+            return null;
+        }
+
+        MedicoResponseDTO dto = new MedicoResponseDTO();
+        dto.setId(medico.getId());
+        dto.setNome(medico.getNome());
+        dto.setSobrenome(medico.getSobrenome());
+        dto.setEmail(medico.getEmail());
+        dto.setTelefone(medico.getTelefone());
+        dto.setEspecializacao(medico.getEspecializacao());
+        dto.setFoto(medico.getFoto());
+        dto.setGoogle(medico.isGoogle());
+        dto.setEnderecoConsultorio(enderecoMapper.toConsultorioDTO(medico.getEnderecoConsultorio()));
+
+        return dto;
     }
 
     @Transactional(readOnly = true)
