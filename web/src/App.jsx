@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
 
-import TelaInicial from './pages/TelaInicial';
+import TelaInicial from './pages/telaInicial/TelaInicial.jsx';
 import Login from "./pages/login/Login.jsx";
 
 function App() {

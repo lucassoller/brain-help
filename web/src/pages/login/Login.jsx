@@ -24,7 +24,7 @@ function Login() {
         setCarregando(true);
 
         try {
-            const response = await api.post("/public/login", {
+            const response = await api.post("/public/login/medico", {
                 email,
                 senha,
             });
