@@ -1,0 +1,228 @@
+.home-container{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: #B9E5FF;
+    
+}
+
+.home-navbar{
+    width: 100%;
+    background: #38B6FF;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    padding: 10px 0 10px 0;
+}
+
+.home-menu{
+    width: 40px;
+    height: 40px;
+    background: url('../imagens/menu-button.png') no-repeat center;
+    background-size: 100%;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.home-perfil{
+    width: 35px;
+    height: 35px;
+    background: url('../imagens/user.png') no-repeat center;
+    background-size: 100%;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.home-titulo{
+    font-family: "Segoe UI";
+    color: white;
+    font-size: 22pt;
+    text-shadow: 0px 1px 4px rgb(119, 117, 117);
+    margin-left: 5px;
+
+}
+
+.home-content{
+    margin-top: 85px;
+    flex: 1;
+    background: #B9E5FF;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.home-users{
+    flex: 1;
+}
+
+.home-search{
+    margin: 0 0 30px 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    background: white;
+    box-shadow: 0px 0px 3px 0.1px rgb(196, 194, 194);
+
+}
+
+.home-form{
+    display: flex !important;
+    flex: 1;
+    border: none;
+    padding-left: 10px !important;
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+    background: white !important;
+}
+
+.home-form::-webkit-input-placeholder {
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ .home-form:-moz-placeholder { /* Firefox 18- */
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ .home-form::-moz-placeholder {  /* Firefox 19+ */
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+  
+ .home-form:-ms-input-placeholder {  
+    font-size: 20pt;
+    color: #47BDEF;
+    font-weight: 400;
+ }
+
+.home-search-icon{
+    width: 50px;
+    background: url('../imagens/search.png') no-repeat center;
+    background-size: 75%;
+    cursor: pointer;
+}
+
+.home-content-side{
+    width: 150px;
+}
+
+.home-logo{
+    width: 40px;
+    height: 40px;
+    background: white;
+    background-image: url('../imagens/sem-nome.png');
+    background-position: center;
+    background-size: 110%;
+    border-radius: 50px;
+}
+
+.home-center{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.home-tipo{
+    width: 100%;
+    color: #47BDEF;
+    font-size:30pt; 
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    margin: 10px 0 10px 0;
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(3, 3, 46);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav div {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: rgb(184, 181, 181);
+    display: block;
+    transition: 0.3s;
+}
+
+.nav-item:hover {
+    color: #f1f1f1;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav div {font-size: 18px;}
+}
+
+.closebtn{
+    color: rgb(184, 181, 181);
+    cursor: pointer;
+}
+
+.closebtn:hover{
+    color: white;
+}
+
+.sidenav2 {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: rgb(3, 3, 46);
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.closebtn2{
+    color: rgb(184, 181, 181);
+    cursor: pointer;
+}
+
+.sidenav2 div{
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: rgb(184, 181, 181);
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav2 .closebtn{
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 36px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav2 {padding-top: 15px;}
+    .sidenav2 a {font-size: 18px;}
+}

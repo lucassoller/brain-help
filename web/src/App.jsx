@@ -1,17 +1,21 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import {Route, BrowserRouter, Routes} from 'react-router-dom';
 import './App.css';
 
-
-import TelaInicial from './components/Telas/TelaInicial';
+import TelaInicial from './pages/TelaInicial';
+import Login from "./pages/login/Login.jsx";
 
 function App() {
     return (
-        <Routes>
-
+        <BrowserRouter>
+            <Routes>
 
                 <Route path="/" element={<TelaInicial />} />
-        </Routes>
+                <Route path="/login" element={<Login />} />
+
+            </Routes>
+
+        </BrowserRouter>
     );
 }
 
