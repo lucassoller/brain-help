@@ -20,7 +20,7 @@
 .home-menu{
     width: 40px;
     height: 40px;
-    background: url('../imagens/menu-button.png') no-repeat center;
+    background: url('../../public/menu-button.png') no-repeat center;
     background-size: 100%;
     margin-left: 10px;
     cursor: pointer;
@@ -29,7 +29,7 @@
 .home-perfil{
     width: 35px;
     height: 35px;
-    background: url('../imagens/user.png') no-repeat center;
+    background: url('../../public/user.png') no-repeat center;
     background-size: 100%;
     margin-right: 10px;
     cursor: pointer;
@@ -104,7 +104,7 @@
 
 .home-search-icon{
     width: 50px;
-    background: url('../imagens/search.png') no-repeat center;
+    background: url('../../public/search.png') no-repeat center;
     background-size: 75%;
     cursor: pointer;
 }
@@ -117,7 +117,7 @@
     width: 40px;
     height: 40px;
     background: white;
-    background-image: url('../imagens/sem-nome.png');
+    background-image: url('/sem-nome.png');
     background-position: center;
     background-size: 110%;
     border-radius: 50px;

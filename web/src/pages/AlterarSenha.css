@@ -35,7 +35,7 @@
 .alterar-eye{
     width: 40px;
     height: 30px;
-    background: url('../imagens/eyee.png') no-repeat center;
+    background: url('../../public/eyee.png') no-repeat center;
     background-size: 70%;
 }
 

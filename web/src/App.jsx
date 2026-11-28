@@ -1,6 +1,5 @@
 import React from 'react';
 import {Route, BrowserRouter, Routes} from 'react-router-dom';
-import './App.css';
 
 import TelaInicial from './pages/TelaInicial';
 import Login from "./pages/login/Login.jsx";

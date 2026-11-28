@@ -1,7 +1,7 @@
 .cadastro-inicial-container{
     width: 100%;
     height: 100vh;
-    background: url('../imagens/idosos.png') no-repeat;
+    background: url('/idosos.png') no-repeat;
     background-size: 75%;
     background-position-x: 100%;
     display: flex;
