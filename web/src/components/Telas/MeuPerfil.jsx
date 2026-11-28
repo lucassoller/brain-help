@@ -3,7 +3,7 @@ import Alert from '../generic/Alert/Alert'
 import MedicoService from '../../Services/MedicoService'
 import './MeuPerfil.css'
 import {Redirect} from 'react-router-dom'
-import $ from 'jquery'
+
 
 const SELECTED_CONTENTS = {
     LOGIN: 'LOGIN',

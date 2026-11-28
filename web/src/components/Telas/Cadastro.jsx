@@ -4,7 +4,6 @@ import CadastroService from '../../Services/CadastroService'
 import LoginService from '../../Services/LoginService'
 import './Cadastro.css'
 import {Redirect} from 'react-router-dom'
-import $ from 'jquery'
 import './Cadastro.css'
 
 const SELECTED_CONTENTS = {

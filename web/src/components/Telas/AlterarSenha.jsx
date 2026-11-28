@@ -1,6 +1,5 @@
 import React from 'react'
 import './AlterarSenha.css'
-import $ from 'jquery'
 import MedicoService from '../../Services/MedicoService'
 import LoginService from '../../Services/LoginService'
 

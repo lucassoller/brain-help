@@ -1,74 +1,37 @@
 import React from 'react'
 import './TelaInicial.css'
-import {Redirect} from 'react-router-dom'
+import {useNavigate} from "react-router-dom";
 
-const SELECTED_CONTENTS = {
-    LOGIN: 'LOGIN',
-    CADASTROINICIAL: 'CADASTROINICIAL',
-    HOME: 'HOME',
-    TELAINICIAL: 'TELAINICIAL'
+function TelaInicial() {
 
-}
+    const navigate = useNavigate();
 
-export default class TelaInicial extends React.Component{
-    
-    constructor() {
-        super()
-        this.state = {
-            selectedContent: SELECTED_CONTENTS.TELAINICIAL
-        }
-        this.onClickLinkLogin = this.onClickLinkLogin.bind(this)
-        this.onClickLinkCadastro = this.onClickLinkCadastro.bind(this)
-    }
+    return (
+        <div className="container">
+            <div className="imagem">
 
-    onClickLinkCadastro() {
-        this.setSelectedContent(SELECTED_CONTENTS.CADASTROINICIAL)
-    }
+            </div>
+            <div className="content">
+                <div className="logo">
 
-    onClickLinkLogin() {
-        this.setSelectedContent(SELECTED_CONTENTS.LOGIN)
-    }
+                </div>
 
-    setSelectedContent(content) {
-        this.setState({
-            selectedContent: content
-        })
-    }
-
-    render() {
-        if( this.state.selectedContent === SELECTED_CONTENTS.CADASTROINICIAL){
-            return <Redirect to='/cadastro-inicial' />
-        }
-
-        if( this.state.selectedContent === SELECTED_CONTENTS.LOGIN){
-            return <Redirect to='/login' />
-        }
-
-        return (
-            <div className="container">
-                <div className="imagem">
-
-                </div>  
-                <div className="content">
-                    <div className="logo">
-
+                <div className="navigator">
+                    <div className="title">
+                        <h1>Seja Bem-Vindo ao Brain Help!</h1>
                     </div>
-
-                    <div className="navigator">
-                        <div className="title">
-                            <h1>Seja Bem-Vindo ao Brain Help!</h1>
+                    <div className="buttons">
+                        <div className="entrar botao" onClick={() => navigate("/")}>
+                            Entrar
                         </div>
-                        <div className="buttons">
-                            <div className="entrar botao" onClick={this.onClickLinkLogin}>
-                                    Entrar
-                            </div>
-                            <div className="cadastrar botao" onClick={this.onClickLinkCadastro}>
-                                    Cadastrar
-                            </div>
+                        <div className="cadastrar botao" onClick={() => navigate("/")}>
+                            Cadastrar
                         </div>
                     </div>
                 </div>
-                
-            </div>)
-    }
+            </div>
+
+        </div>)
 }
+
+export default TelaInicial;

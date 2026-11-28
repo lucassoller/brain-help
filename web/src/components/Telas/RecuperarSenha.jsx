@@ -1,6 +1,5 @@
 import React from 'react'
 import './RecuperarSenha.css'
-import $ from 'jquery'
 import EmailService from '../../Services/EmailService'
 import CadastroService from '../../Services/CadastroService'
 

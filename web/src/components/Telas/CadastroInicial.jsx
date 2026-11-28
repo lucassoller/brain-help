@@ -1,7 +1,6 @@
 import React from 'react'
 import './CadastroInicial.css'
 import {Redirect} from 'react-router-dom'
-import GoogleLogin from 'react-google-login';
 import Cadastro from './Cadastro'
 
 const SELECTED_CONTENTS = {

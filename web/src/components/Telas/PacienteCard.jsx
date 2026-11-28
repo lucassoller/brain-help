@@ -1,7 +1,6 @@
 import React from 'react'
 import './PacienteCard.css'
 import MedicoService from '../../Services/MedicoService'
-import $ from 'jquery'
 import {Redirect} from 'react-router-dom'
 
 const SELECTED_CONTENTS = {

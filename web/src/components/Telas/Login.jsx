@@ -3,8 +3,6 @@ import Alert from '../generic/Alert/Alert'
 import LoginService from '../../Services/LoginService'
 import './Login.css'
 import {Redirect} from 'react-router-dom'
-import GoogleLogin from 'react-google-login';
-import $ from 'jquery'
 
 const SELECTED_CONTENTS = {
     LOGIN: 'LOGIN',
